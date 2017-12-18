@@ -49,8 +49,8 @@ public class Dungeon : MonoBehaviour
 				tile.name = "Tile" + x + "_" + y;
 				tile.parent = this.transform;
 
-				tile.GetComponent<Tile>().PosX = x;
-				tile.GetComponent<Tile>().PosY = y;
+				tile.GetComponent<Surface>().PosX = x;
+				tile.GetComponent<Surface>().PosY = y;
 
                 _tiles[x].Add(tile);
                 //_tiles.Add(tile);

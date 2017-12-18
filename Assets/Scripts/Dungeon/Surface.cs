@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Tile : MonoBehaviour 
+public class Surface : MonoBehaviour 
 {
 	public int PosX;
 	public int PosY;

@@ -8,6 +8,11 @@ public class SL : MonoBehaviour
     private static SL _instance = null;
 
     [SerializeField]
+    private GameObject _dataManagerPrefab = null;
+    private static GameObject _dataManagerInstance = null;
+    public static GameObject DataManager { get { return _dataManagerInstance; } }
+
+    [SerializeField]
     private GameObject _partyPrefab = null;
     private static GameObject _partyInstance = null;
     public static GameObject Party { get { return _partyInstance; } }
@@ -30,9 +35,10 @@ public class SL : MonoBehaviour
 
     private void createSingletons()
     {
-        CreateSingleton(_partyInstance,     _partyPrefab);
-        CreateSingleton(_inventoryInstance, _inventoryPrefab);
-        CreateSingleton(_dungeonInstance,   _dungeonPrefab);
+        CreateSingleton(_dataManagerInstance,   _dataManagerPrefab);
+        CreateSingleton(_partyInstance,         _partyPrefab);
+        CreateSingleton(_inventoryInstance,     _inventoryPrefab);
+        CreateSingleton(_dungeonInstance,       _dungeonPrefab);
     }
 
     private void CreateSingleton(GameObject instance, GameObject prefab)
