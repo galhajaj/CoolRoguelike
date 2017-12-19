@@ -8,24 +8,24 @@ public class SL : MonoBehaviour
     private static SL _instance = null;
 
     [SerializeField]
+    private GameObject _gameManagerPrefab = null;
+    public static GameManager GameManager;
+
+    [SerializeField]
     private GameObject _dataManagerPrefab = null;
-    private static GameObject _dataManagerInstance = null;
-    public static GameObject DataManager { get { return _dataManagerInstance; } }
+    public static DataManager DataManager;
 
     [SerializeField]
     private GameObject _partyPrefab = null;
-    private static GameObject _partyInstance = null;
-    public static GameObject Party { get { return _partyInstance; } }
+    public static Party Party;
 
     [SerializeField]
     private GameObject _inventoryPrefab = null;
-    private static GameObject _inventoryInstance = null;
-    public static GameObject Inventory { get { return _inventoryInstance; } }
+    public static Inventory Inventory;
 
     [SerializeField]
     private GameObject _dungeonPrefab = null;
-    private static GameObject _dungeonInstance = null;
-    public static GameObject Dungeon { get { return _dungeonInstance; } }
+    public static Dungeon Dungeon;
 
     void Awake()
     {
@@ -35,15 +35,17 @@ public class SL : MonoBehaviour
 
     private void createSingletons()
     {
-        CreateSingleton(_dataManagerInstance,   _dataManagerPrefab);
-        CreateSingleton(_partyInstance,         _partyPrefab);
-        CreateSingleton(_inventoryInstance,     _inventoryPrefab);
-        CreateSingleton(_dungeonInstance,       _dungeonPrefab);
+        CreateSingleton(_dataManagerPrefab, out DataManager);
+        CreateSingleton(_partyPrefab,       out Party);
+        CreateSingleton(_inventoryPrefab,   out Inventory);
+        CreateSingleton(_dungeonPrefab,     out Dungeon);
+        CreateSingleton(_gameManagerPrefab, out GameManager);
     }
 
-    private void CreateSingleton(GameObject instance, GameObject prefab)
+    private void CreateSingleton<T>(GameObject prefab, out T script)
     {
-        instance = Instantiate(prefab);
+        GameObject instance = Instantiate(prefab);
+        script = instance.GetComponent<T>();
         instance.transform.parent = this.transform;
     }
 
