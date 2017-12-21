@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825f4791deb9c8a4b8335cbb7d355f2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BoardSizeX: 40
-  BoardSizeY: 20
-  TilePrefab: {fileID: 4632854040261538, guid: 2bdecde9f2ded4c499cb452ce3215037, type: 2}
-  WallSprite: {fileID: 21300000, guid: 89827a4a2ee8c9c4a9d2ab4c1529e348, type: 3}
+  _boardSizeX: 40
+  _boardSizeY: 20
+  _surfaceTilePrefab: {fileID: 4632854040261538, guid: 2bdecde9f2ded4c499cb452ce3215037,
+    type: 2}
