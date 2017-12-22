@@ -46,7 +46,7 @@ public class Dungeon : MonoBehaviour
             _tiles[6][5].Type = SurfaceType.WALL;
             _tiles[7][5].Type = SurfaceType.WALL;
 
-            _tiles[12][12].Type = SurfaceType.STAIRS;
+            _tiles[12][5].Type = SurfaceType.STAIRS;
             _tiles[15][15].Type = SurfaceType.STAIRS;
         }
         else if (dungeonName == "Ancient_Castle_Level_1")
@@ -97,7 +97,7 @@ public class Dungeon : MonoBehaviour
 
             for ( int y = 0; y < _boardSizeY; y++ ) 
 			{
-				Vector3 tilePosition = new Vector3(boardOriginX + (tileWidth / 2) + (x * tileWidth), boardOriginY + (tileHeight / 2) + (y * tileHeight), 0);
+				Vector3 tilePosition = new Vector3(boardOriginX + (tileWidth / 2) + (x * tileWidth), boardOriginY - (tileHeight / 2) - (y * tileHeight), 0);
 				Transform tile = Instantiate(_surfaceTilePrefab, tilePosition, Quaternion.identity);
 				tile.name = "Tile" + x + "_" + y;
 				tile.parent = this.transform;
