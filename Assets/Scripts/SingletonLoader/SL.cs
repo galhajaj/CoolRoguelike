@@ -27,6 +27,14 @@ public class SL : MonoBehaviour
     private GameObject _dungeonPrefab = null;
     public static Dungeon Dungeon;
 
+    [SerializeField]
+    private GameObject _villagePrefab = null;
+    public static Village Village;
+
+    [SerializeField]
+    private GameObject _windowManagerPrefab = null;
+    public static WindowManager WindowManager;
+
     void Awake()
     {
         singletonSetup();
@@ -35,11 +43,13 @@ public class SL : MonoBehaviour
 
     private void createSingletons()
     {
-        CreateSingleton(_dataManagerPrefab, out DataManager);
-        CreateSingleton(_partyPrefab,       out Party);
-        CreateSingleton(_inventoryPrefab,   out Inventory);
-        CreateSingleton(_dungeonPrefab,     out Dungeon);
-        CreateSingleton(_gameManagerPrefab, out GameManager);
+        CreateSingleton(_dataManagerPrefab,     out DataManager);
+        CreateSingleton(_partyPrefab,           out Party);
+        CreateSingleton(_inventoryPrefab,       out Inventory);
+        CreateSingleton(_dungeonPrefab,         out Dungeon);
+        CreateSingleton(_villagePrefab,         out Village);
+        CreateSingleton(_windowManagerPrefab,   out WindowManager);
+        CreateSingleton(_gameManagerPrefab,     out GameManager);
     }
 
     private void CreateSingleton<T>(GameObject prefab, out T script)

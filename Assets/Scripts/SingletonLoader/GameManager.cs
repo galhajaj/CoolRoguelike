@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     {
         // TODO: change that... need to be by clicking on book that contains that string
         SL.Dungeon.Load("Ancient_Castle_Level_1");
+        SL.WindowManager.LoadWindow<Dungeon>();
+        //SL.WindowManager.LoadWindow<Village>();
     }
 
 	void Start ()

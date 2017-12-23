@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4845266506190420}
   - component: {fileID: 114090111388826972}
+  - component: {fileID: 114260337719368602}
   m_Layer: 0
   m_Name: Dungeon
   m_TagString: Untagged
@@ -55,3 +56,14 @@ MonoBehaviour:
   _boardSizeY: 24
   _surfaceTilePrefab: {fileID: 4632854040261538, guid: 2bdecde9f2ded4c499cb452ce3215037,
     type: 2}
+--- !u!114 &114260337719368602
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1873038840158286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c07b02f6b8cc19048a7ecc5da76def80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
