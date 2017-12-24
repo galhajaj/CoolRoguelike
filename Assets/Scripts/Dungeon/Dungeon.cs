@@ -88,7 +88,9 @@ public class Dungeon : MonoBehaviour
 	{
 		float boardOriginX = this.transform.position.x;
 		float boardOriginY = this.transform.position.y;
-		float tileWidth = _surfaceTilePrefab.GetComponent<SpriteRenderer> ().bounds.size.x;
+        float originOffsetX = -this.GetComponent<SpriteRenderer>().bounds.size.x / 2;
+        float originOffsetY = this.GetComponent<SpriteRenderer>().bounds.size.y / 2;
+        float tileWidth = _surfaceTilePrefab.GetComponent<SpriteRenderer> ().bounds.size.x;
 		float tileHeight = _surfaceTilePrefab.GetComponent<SpriteRenderer> ().bounds.size.y;
 		
 		for ( int x = 0; x < _boardSizeX; x++ ) 
@@ -97,7 +99,10 @@ public class Dungeon : MonoBehaviour
 
             for ( int y = 0; y < _boardSizeY; y++ ) 
 			{
-				Vector3 tilePosition = new Vector3(boardOriginX + (tileWidth / 2) + (x * tileWidth), boardOriginY - (tileHeight / 2) - (y * tileHeight), 0);
+				Vector3 tilePosition = new Vector3(
+                    boardOriginX + originOffsetX + (tileWidth / 2) + (x * tileWidth), 
+                    boardOriginY + originOffsetY - (tileHeight / 2) - (y * tileHeight), 
+                    0);
 				Transform tile = Instantiate(_surfaceTilePrefab, tilePosition, Quaternion.identity);
 				tile.name = "Tile" + x + "_" + y;
 				tile.parent = this.transform;

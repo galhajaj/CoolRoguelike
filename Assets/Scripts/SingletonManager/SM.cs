@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// SL = SingletonLoader
-public class SL : MonoBehaviour
+// SM = Singleton Manager
+public class SM : MonoBehaviour
 {
-    private static SL _instance = null;
+    private static SM _instance = null;
 
+    // ================================================= //
+    // instantiated
+    // ================================================= //
     [SerializeField]
     private GameObject _gameManagerPrefab = null;
     public static GameManager GameManager;
@@ -20,20 +23,13 @@ public class SL : MonoBehaviour
     public static Party Party;
 
     [SerializeField]
-    private GameObject _inventoryPrefab = null;
-    public static Inventory Inventory;
-
-    [SerializeField]
-    private GameObject _dungeonPrefab = null;
-    public static Dungeon Dungeon;
-
-    [SerializeField]
-    private GameObject _villagePrefab = null;
-    public static Village Village;
-
-    [SerializeField]
     private GameObject _windowManagerPrefab = null;
     public static WindowManager WindowManager;
+    // ================================================= //
+    // managers that exist, like windows
+    // ================================================= //
+    public static Dungeon Dungeon;
+    public static Inventory Inventory;
 
     void Awake()
     {
@@ -43,13 +39,18 @@ public class SL : MonoBehaviour
 
     private void createSingletons()
     {
+        AddSingleton("Dungeon",     out Dungeon);
+        AddSingleton("Inventory",   out Inventory);
         CreateSingleton(_dataManagerPrefab,     out DataManager);
         CreateSingleton(_partyPrefab,           out Party);
-        CreateSingleton(_inventoryPrefab,       out Inventory);
-        CreateSingleton(_dungeonPrefab,         out Dungeon);
-        CreateSingleton(_villagePrefab,         out Village);
         CreateSingleton(_windowManagerPrefab,   out WindowManager);
         CreateSingleton(_gameManagerPrefab,     out GameManager);
+    }
+
+    private void AddSingleton<T>(string name, out T script)
+    {
+        GameObject obj = GameObject.Find(name);
+        script = obj.GetComponent<T>();
     }
 
     private void CreateSingleton<T>(GameObject prefab, out T script)

@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Click2View : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-
+    void Awake()
+    {
+        SM.WindowManager.LoadWindow("Village");
+    }
 
 	void Start ()
     {
@@ -15,9 +18,4 @@ public class Click2View : MonoBehaviour
     {
 		
 	}
-
-    void OnMouseDown()
-    {
-        // view manager load view...
-    }
 }

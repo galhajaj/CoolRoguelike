@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4000078018568184}
   - component: {fileID: 114263760187099504}
   m_Layer: 0
-  m_Name: _SL
+  m_Name: _SM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,12 +56,6 @@ MonoBehaviour:
   _dataManagerPrefab: {fileID: 1442151909584780, guid: f1002550c78f68544947d621ccedaf9b,
     type: 2}
   _partyPrefab: {fileID: 1611616839866244, guid: 58352b98afc5a1548b99813522271105,
-    type: 2}
-  _inventoryPrefab: {fileID: 1199454285134478, guid: ed21a6901e07bbe4abaede46af334354,
-    type: 2}
-  _dungeonPrefab: {fileID: 1873038840158286, guid: 647d18aa6edc3424aac20efd43f1bfa2,
-    type: 2}
-  _villagePrefab: {fileID: 1060876289463290, guid: 838bce1c2e8a58b4ba5dc7a030e9b2e3,
     type: 2}
   _windowManagerPrefab: {fileID: 1673610704520770, guid: ee74e700fad86fa46b8cd0aaaeacec0a,
     type: 2}

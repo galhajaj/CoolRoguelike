@@ -4,30 +4,25 @@ using UnityEngine;
 
 public class Window : MonoBehaviour
 {
-    public Vector2 OriginalPosition { get; private set; }
+    private const int WINDOW_POS_X = -72;
+    private const int WINDOW_POS_Y = 26;
 
-	void Awake()
+    private Vector2 _hidePosition; // original position
+    private Vector2 _showPosition;
+
+    void Awake()
     {
-        OriginalPosition = this.transform.position;
+        _hidePosition = this.transform.position;
+        _showPosition = new Vector2(WINDOW_POS_X, WINDOW_POS_Y);
     }
-
-    void Start ()
-    {
-		
-	}
-	
-	void Update ()
-    {
-		
-	}
 
     public void Hide()
     {
-        this.transform.position = OriginalPosition;
+        this.transform.position = _hidePosition;
     }
 
     public void Show()
     {
-        this.transform.position = Vector2.zero;
+        this.transform.position = _showPosition;
     }
 }

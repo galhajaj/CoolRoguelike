@@ -9,48 +9,48 @@ public class WindowManager : MonoBehaviour
 
     void Awake()
     {
-        // init windows list & deactivate them
+        // init windows list
         var windows = GameObject.FindObjectsOfType<Window>();
         for (int i = 0; i <windows.Length; ++i)
         {
             Window currentWindow = windows[i];
             _windows.Add(currentWindow);
-            currentWindow.gameObject.SetActive(false);
         }
     }
 
-    void Start ()
+    public void LoadWindow(string name)
     {
-		
-	}
-	
-	void Update ()
-    {
-		
-	}
-
-    public void LoadWindow<T>()
-    {
-        // get window by type
-        Window loadedWindow = null;
-        for(int i = 0; i < _windows.Count; ++i)
-        {
-            if (_windows[i].gameObject.GetComponent<T>() != null)
-            {
-                loadedWindow = _windows[i];
-            }
-        }
+        Window selectedWindow = getWindowByName(name);
 
         // check exist
-        if (loadedWindow == null)
+        if (selectedWindow == null)
         {
             Debug.LogError("Window [" + name + "] doesn't exist!");
             return;
         }
 
-        // deacivate all & activate selected
+        // hide all & show selected
+        hideAllWindows();
+        selectedWindow.Show();
+    }
+
+    private void hideAllWindows()
+    {
         foreach (var window in _windows)
-            window.gameObject.SetActive(false);
-        loadedWindow.gameObject.SetActive(true);
+            window.Hide();
+    }
+
+    private Window getWindowByName(string name)
+    {
+        Window window = null;
+        for (int i = 0; i < _windows.Count; ++i)
+        {
+            if (_windows[i].gameObject.name == name)
+            {
+                window = _windows[i];
+                break;
+            }
+        }
+        return window;
     }
 }
