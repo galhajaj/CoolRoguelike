@@ -5,7 +5,7 @@ using System.IO;
 using System.Xml.Serialization;
 using UnityEngine;
 
-public class DataManager : MonoBehaviour
+public class DataManager : Singleton<DataManager>
 {
     private const string CURRENT_PLAYER = "Player1"; // temp...hard coded in the meantime. get it from text somehow
     private const string SAVE_FILE_PATH = @"c:\temp\MyTest.txt"; // change location and name to be for the current player
@@ -26,26 +26,6 @@ public class DataManager : MonoBehaviour
 
     public SavedData Saved;
     // can add here more structs...
-
-    // =========================================================================================== //
-    // make it singletone & permanent between scenes
-    public static DataManager Instance;
-
-    void Awake()
-    {
-        if (Instance == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            Instance = this;
-        }
-        else
-        {
-            if (Instance != this)
-            {
-                Destroy(gameObject);
-            }
-        }
-    }
 
     // =========================================================================================== //
     public int GetNextChipID()

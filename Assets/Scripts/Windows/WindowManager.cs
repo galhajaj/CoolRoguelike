@@ -2,16 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WindowManager : MonoBehaviour
+public class WindowManager : Singleton<WindowManager>
 {
+    // the position where the selected window move to be shown
+    [SerializeField]
+    private Vector2 _showWindowPosition = Vector2.zero;
+    public Vector2 ShowWindowPosition { get { return _showWindowPosition; } }
+
     [SerializeField]
     private List<Window> _windows = new List<Window>();
 
-    void Awake()
+    public string CurrentWindowName { get; private set; }
+
+    protected override void AfterAwake()
     {
         // init windows list
         var windows = GameObject.FindObjectsOfType<Window>();
-        for (int i = 0; i <windows.Length; ++i)
+        for (int i = 0; i < windows.Length; ++i)
         {
             Window currentWindow = windows[i];
             _windows.Add(currentWindow);
@@ -32,6 +39,9 @@ public class WindowManager : MonoBehaviour
         // hide all & show selected
         hideAllWindows();
         selectedWindow.Show();
+
+        // update current window name
+        CurrentWindowName = name;
     }
 
     private void hideAllWindows()

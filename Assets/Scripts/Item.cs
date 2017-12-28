@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class Item : MonoBehaviour
 {
-    void Awake()
-    {
-        SM.WindowManager.LoadWindow("Village");
-    }
 
 	void Start ()
     {

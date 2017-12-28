@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Party : MonoBehaviour
+public class Party : Singleton<Party>
 {
     // position in dungeon
     public int posX = 0;

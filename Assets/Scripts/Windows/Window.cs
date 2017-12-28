@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class Window : MonoBehaviour
 {
-    private const int WINDOW_POS_X = -72;
-    private const int WINDOW_POS_Y = 26;
+    [SerializeField]
+    private bool _isShownAtStart = false;
 
     private Vector2 _hidePosition; // original position
-    private Vector2 _showPosition;
 
     void Awake()
     {
+        
+    }
+
+    void Start()
+    {
         _hidePosition = this.transform.position;
-        _showPosition = new Vector2(WINDOW_POS_X, WINDOW_POS_Y);
+
+        if (_isShownAtStart)
+            Show();
     }
 
     public void Hide()
@@ -23,6 +29,6 @@ public class Window : MonoBehaviour
 
     public void Show()
     {
-        this.transform.position = _showPosition;
+        this.transform.position = WindowManager.Instance.ShowWindowPosition;
     }
 }

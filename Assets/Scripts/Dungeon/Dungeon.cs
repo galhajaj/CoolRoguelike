@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public class Dungeon : MonoBehaviour 
+public class Dungeon : Singleton<Dungeon> 
 {
     [SerializeField]
     private int _boardSizeX = 0;
@@ -16,7 +16,7 @@ public class Dungeon : MonoBehaviour
     private List<List<Surface>> _tiles = new List<List<Surface>>();
 
     // ======================================================================================================================================== //
-    void Awake()
+    protected override void AfterAwake()
     {
         generateTiles();
     }

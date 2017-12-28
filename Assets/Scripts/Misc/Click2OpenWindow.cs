@@ -9,6 +9,6 @@ public class Click2OpenWindow : MonoBehaviour
 
     void OnMouseDown()
     {
-        SM.WindowManager.LoadWindow(_windowName);
+        WindowManager.Instance.LoadWindow(_windowName);
     }
 }
