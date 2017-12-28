@@ -5,10 +5,19 @@ using UnityEngine;
 public class Party : Singleton<Party>
 {
     // position in dungeon
-    public int posX = 0;
-    public int posY = 0;
 
-    // TODO: add list of Creatures (the players)
+    private Position _position;
+    public Position Position
+    {
+        get { return _position; }
+        set
+        {
+            _position = value;
+            Dungeon.Instance.SetPartyMiniaturePositionInDungeon();
+        }
+    }
+
+    private List<Creature> _characters = new List<Creature>();
 
     void Start ()
     {

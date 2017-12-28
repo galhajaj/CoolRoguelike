@@ -11,6 +11,8 @@ public class Dungeon : Singleton<Dungeon>
     private int _boardSizeY = 0;
     [SerializeField]
     private Transform _surfaceTilePrefab = null;
+    [SerializeField]
+    private Transform _partyMiniatureTransform = null;
 
     //private List<Transform> _tiles = new List<Transform>();
     private List<List<Surface>> _tiles = new List<List<Surface>>();
@@ -84,6 +86,12 @@ public class Dungeon : Singleton<Dungeon>
         }
     }
     // ======================================================================================================================================== //
+    public void SetPartyMiniaturePositionInDungeon()
+    {
+        Surface targetTile = _tiles[Party.Instance.Position.X][Party.Instance.Position.Y];
+        _partyMiniatureTransform.position = targetTile.transform.position;
+    }
+    // ======================================================================================================================================== //
     private void generateTiles()
 	{
 		float boardOriginX = this.transform.position.x;
@@ -105,7 +113,7 @@ public class Dungeon : Singleton<Dungeon>
                     0);
 				Transform tile = Instantiate(_surfaceTilePrefab, tilePosition, Quaternion.identity);
 				tile.name = "Tile" + x + "_" + y;
-				tile.parent = this.transform;
+				tile.parent = this.transform.Find("SurfaceTiles").transform;
 
                 Surface surfaceScript = tile.GetComponent<Surface>();
                 surfaceScript.PosX = x;
