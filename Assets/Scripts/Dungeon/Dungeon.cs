@@ -12,7 +12,7 @@ public class Dungeon : Singleton<Dungeon>
     [SerializeField]
     private Transform _tilePrefab = null;
     [SerializeField]
-    private Transform _partyMiniatureTransform = null;
+    private Transform _wallPrefab = null;
 
     private List<List<DungeonTile>> _tiles = new List<List<DungeonTile>>();
 
@@ -37,15 +37,14 @@ public class Dungeon : Singleton<Dungeon>
         // TODO: implement taking from files or something else...
         if (dungeonName == "Ancient_Castle_Level_1")
         {
-            _tiles[3][5].Type = SurfaceType.WALL;
-            _tiles[3][6].Type = SurfaceType.WALL;
-            _tiles[3][7].Type = SurfaceType.WALL;
-            _tiles[3][8].Type = SurfaceType.WALL;
+            putWall(3, 5);
+            putWall(3, 6);
+            putWall(3, 7);
+            putWall(3, 8);
 
-            _tiles[4][5].Type = SurfaceType.WALL;
-            _tiles[5][5].Type = SurfaceType.WALL;
-            _tiles[6][5].Type = SurfaceType.WALL;
-            _tiles[7][5].Type = SurfaceType.WALL;
+            putWall(4, 5);
+            putWall(5, 5);
+            putWall(6, 5);
 
             _tiles[12][5].Type = SurfaceType.STAIRS;
             _tiles[15][15].Type = SurfaceType.STAIRS;
@@ -85,7 +84,7 @@ public class Dungeon : Singleton<Dungeon>
         }
     }
     // ======================================================================================================================================== //
-    private DungeonTile getTile(Position pos)
+    public DungeonTile GetTile(Position pos)
     {
         return _tiles[pos.X][pos.Y];
     }
@@ -94,7 +93,7 @@ public class Dungeon : Singleton<Dungeon>
     // or has a special interaction
     public void PlaceObject(GameObject obj, Position pos)
     {
-        DungeonTile targetTile = getTile(pos);
+        DungeonTile targetTile = GetTile(pos);
 
         if (targetTile.IsContainObject)
         {
@@ -104,6 +103,13 @@ public class Dungeon : Singleton<Dungeon>
 
         obj.transform.position = targetTile.transform.position;
         obj.transform.parent = targetTile.transform;
+    }
+    // ======================================================================================================================================== //
+    private void putWall(int x, int y)
+    {
+        GameObject wall = Instantiate(_wallPrefab).gameObject;
+        Position pos = new Position(x, y);
+        PlaceObject(wall, pos);
     }
     // ======================================================================================================================================== //
     private void generateTiles()

@@ -53,6 +53,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: DungeonObject
+    uniqueID: 133123367
+    locked: 0
   - name: Creature
     uniqueID: 952736375
     locked: 0

@@ -117,7 +117,8 @@ MonoBehaviour:
   _boardSizeY: 24
   _tilePrefab: {fileID: 4632854040261538, guid: 2bdecde9f2ded4c499cb452ce3215037,
     type: 2}
-  _partyMiniatureTransform: {fileID: 4639887323788594}
+  _wallPrefab: {fileID: 4604320926828568, guid: 857e587602effdc439501ecb088b3b63,
+    type: 2}
 --- !u!114 &114260337719368602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -173,7 +174,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 952736375
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 33ac20932496a894fb094506d746946a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

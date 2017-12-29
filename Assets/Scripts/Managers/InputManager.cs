@@ -58,9 +58,16 @@ public class InputManager : Singleton<InputManager>
             // imp. waiting
         }
 
+        // return if no change in position
         if (dx == 0 && dy == 0)
             return;
+
         Position newPosition = new Position(Party.Instance.Position.X + dx, Party.Instance.Position.Y + dy);
+
+        // return if place not free
+        if (Dungeon.Instance.GetTile(newPosition).IsContainObject)
+            return;
+
         Dungeon.Instance.PlaceObject(Party.Instance.gameObject, newPosition);
 	}
 }
