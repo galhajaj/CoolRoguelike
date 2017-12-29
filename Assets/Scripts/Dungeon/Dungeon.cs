@@ -10,12 +10,11 @@ public class Dungeon : Singleton<Dungeon>
     [SerializeField]
     private int _boardSizeY = 0;
     [SerializeField]
-    private Transform _surfaceTilePrefab = null;
+    private Transform _tilePrefab = null;
     [SerializeField]
     private Transform _partyMiniatureTransform = null;
 
-    //private List<Transform> _tiles = new List<Transform>();
-    private List<List<Surface>> _tiles = new List<List<Surface>>();
+    private List<List<DungeonTile>> _tiles = new List<List<DungeonTile>>();
 
     // ======================================================================================================================================== //
     protected override void AfterAwake()
@@ -31,9 +30,9 @@ public class Dungeon : Singleton<Dungeon>
     public void Load(string dungeonName)
     {
         // make all empty
-        foreach (var surfaceList in _tiles)
-            foreach (var surface in surfaceList)
-                surface.Type = SurfaceType.EMPTY;
+        foreach (var tileList in _tiles)
+            foreach (var tile in tileList)
+                tile.Type = SurfaceType.EMPTY;
 
         // TODO: implement taking from files or something else...
         if (dungeonName == "Ancient_Castle_Level_1")
@@ -88,7 +87,7 @@ public class Dungeon : Singleton<Dungeon>
     // ======================================================================================================================================== //
     public void SetPartyMiniaturePositionInDungeon()
     {
-        Surface targetTile = _tiles[Party.Instance.Position.X][Party.Instance.Position.Y];
+        DungeonTile targetTile = _tiles[Party.Instance.Position.X][Party.Instance.Position.Y];
         _partyMiniatureTransform.position = targetTile.transform.position;
     }
     // ======================================================================================================================================== //
@@ -98,12 +97,12 @@ public class Dungeon : Singleton<Dungeon>
 		float boardOriginY = this.transform.position.y;
         float originOffsetX = -this.GetComponent<SpriteRenderer>().bounds.size.x / 2;
         float originOffsetY = this.GetComponent<SpriteRenderer>().bounds.size.y / 2;
-        float tileWidth = _surfaceTilePrefab.GetComponent<SpriteRenderer> ().bounds.size.x;
-		float tileHeight = _surfaceTilePrefab.GetComponent<SpriteRenderer> ().bounds.size.y;
+        float tileWidth = _tilePrefab.GetComponent<SpriteRenderer> ().bounds.size.x;
+		float tileHeight = _tilePrefab.GetComponent<SpriteRenderer> ().bounds.size.y;
 		
 		for ( int x = 0; x < _boardSizeX; x++ ) 
 		{
-            _tiles.Add(new List<Surface>());
+            _tiles.Add(new List<DungeonTile>());
 
             for ( int y = 0; y < _boardSizeY; y++ ) 
 			{
@@ -111,16 +110,16 @@ public class Dungeon : Singleton<Dungeon>
                     boardOriginX + originOffsetX + (tileWidth / 2) + (x * tileWidth), 
                     boardOriginY + originOffsetY - (tileHeight / 2) - (y * tileHeight), 
                     0);
-				Transform tile = Instantiate(_surfaceTilePrefab, tilePosition, Quaternion.identity);
+				Transform tile = Instantiate(_tilePrefab, tilePosition, Quaternion.identity);
 				tile.name = "Tile" + x + "_" + y;
-				tile.parent = this.transform.Find("SurfaceTiles").transform;
+				tile.parent = this.transform.Find("Tiles").transform;
 
-                Surface surfaceScript = tile.GetComponent<Surface>();
-                surfaceScript.PosX = x;
-                surfaceScript.PosY = y;
-                surfaceScript.Type = SurfaceType.EMPTY;
+                DungeonTile tileScript = tile.GetComponent<DungeonTile>();
+                tileScript.PosX = x;
+                tileScript.PosY = y;
+                tileScript.Type = SurfaceType.EMPTY;
 
-                _tiles[x].Add(surfaceScript);
+                _tiles[x].Add(tileScript);
             }
 		}
 	}

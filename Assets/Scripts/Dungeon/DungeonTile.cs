@@ -9,7 +9,7 @@ public enum SurfaceType
     EMPTY
 }
 
-public class Surface : MonoBehaviour 
+public class DungeonTile : MonoBehaviour 
 {
     [SerializeField]
     private Sprite _emptySprite = null;
