@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4820176370756874}
   - component: {fileID: 114177449362845542}
-  - component: {fileID: 114573769382825226}
   m_Layer: 0
   m_Name: Party
   m_TagString: Untagged
@@ -50,16 +49,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4207e12f83a4677489d689c82053d033, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114573769382825226
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1611616839866244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62fefd7299d258945ba1672771ea86c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

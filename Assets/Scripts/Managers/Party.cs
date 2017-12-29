@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class Party : Singleton<Party>
 {
-    // position in dungeon
-
-    private Position _position;
+    // position in dungeon, by its tile parent
     public Position Position
     {
-        get { return _position; }
-        set
+        get
         {
-            _position = value;
-            Dungeon.Instance.SetPartyMiniaturePositionInDungeon();
+            DungeonTile parentTile = this.transform.parent.GetComponent<DungeonTile>();
+            Position position = new Position(parentTile.PosX, parentTile.PosY);
+            return position;
         }
     }
 

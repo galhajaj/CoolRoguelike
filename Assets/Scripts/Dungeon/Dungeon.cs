@@ -85,10 +85,25 @@ public class Dungeon : Singleton<Dungeon>
         }
     }
     // ======================================================================================================================================== //
-    public void SetPartyMiniaturePositionInDungeon()
+    private DungeonTile getTile(Position pos)
     {
-        DungeonTile targetTile = _tiles[Party.Instance.Position.X][Party.Instance.Position.Y];
-        _partyMiniatureTransform.position = targetTile.transform.position;
+        return _tiles[pos.X][pos.Y];
+    }
+    // ======================================================================================================================================== //
+    // good for party, creature, chests and another things that can be only one of them in tile and can be move from there 
+    // or has a special interaction
+    public void PlaceObject(GameObject obj, Position pos)
+    {
+        DungeonTile targetTile = getTile(pos);
+
+        if (targetTile.IsContainObject)
+        {
+            Debug.LogError(obj.name + " cannot be placed at (" + pos.X + "," + pos.Y + ")");
+            return;
+        }
+
+        obj.transform.position = targetTile.transform.position;
+        obj.transform.parent = targetTile.transform;
     }
     // ======================================================================================================================================== //
     private void generateTiles()

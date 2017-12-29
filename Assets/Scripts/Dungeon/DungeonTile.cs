@@ -32,15 +32,13 @@ public class DungeonTile : MonoBehaviour
         }
     }
 
-	private bool _isSelected = false;
-	public bool IsSelected
-	{
-		get { return _isSelected; }
-		set 
-		{ 
-			_isSelected = value; 
-		}
-	}
+    // contains the party / creature / chest / wall etc.
+    public bool IsContainObject
+    {
+        get { return this.transform.childCount > 0; }
+    }
+
+    private List<Item> _items = new List<Item>();
 
     private SpriteRenderer _spriteRenderer = null;
 
