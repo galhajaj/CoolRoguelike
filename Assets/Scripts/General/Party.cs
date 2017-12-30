@@ -15,6 +15,13 @@ public class Party : Singleton<Party>
         }
     }
 
+    private string _location = "Village";
+    public string Loaction
+    {
+        get { return _location; }
+        set { _location = value; }
+    }
+
     private List<Creature> _characters = new List<Creature>();
 
     void Start ()

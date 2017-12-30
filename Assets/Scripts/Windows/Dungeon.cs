@@ -29,10 +29,20 @@ public class Dungeon : Singleton<Dungeon>
     // ======================================================================================================================================== //
     public void Load(string dungeonName)
     {
+        // un-parent the party to prevent deletion
+        Party.Instance.transform.parent = null;
+
         // make all empty
         foreach (var tileList in _tiles)
+        {
             foreach (var tile in tileList)
+            {
                 tile.Type = SurfaceType.EMPTY;
+                // delete object inside tile
+                if (tile.transform.childCount > 0)
+                    Destroy(tile.transform.GetChild(0).gameObject);
+            }
+        }
 
         // TODO: implement taking from files or something else...
         if (dungeonName == "Ancient_Castle_Level_1")
@@ -46,42 +56,53 @@ public class Dungeon : Singleton<Dungeon>
             putWall(5, 5);
             putWall(6, 5);
 
-            _tiles[12][5].Type = SurfaceType.STAIRS;
-            _tiles[15][15].Type = SurfaceType.STAIRS;
+            putStairs(12, 5, "Village");
+            putStairs(15, 15, "Ancient_Castle_Level_2");
         }
-        else if (dungeonName == "Ancient_Castle_Level_1")
+        else if (dungeonName == "Ancient_Castle_Level_2")
         {
-            _tiles[3][5].Type = SurfaceType.WALL;
-            //_tiles[3][6].Type = SurfaceType.WALL;
-            _tiles[3][7].Type = SurfaceType.WALL;
-            _tiles[3][8].Type = SurfaceType.WALL;
+            putWall(9, 5);
+            putWall(9, 6);
+            putWall(9, 7);
+            putWall(9, 8);
 
-            _tiles[4][5].Type = SurfaceType.WALL;
-            //_tiles[5][5].Type = SurfaceType.WALL;
-            _tiles[6][5].Type = SurfaceType.WALL;
-            _tiles[7][5].Type = SurfaceType.WALL;
-
-            _tiles[12][12].Type = SurfaceType.STAIRS;
-            _tiles[15][15].Type = SurfaceType.STAIRS;
+            putStairs(12, 12, "Ancient_Castle_Level_1");
+            putStairs(15, 17, "Ancient_Castle_Level_3");
         }
-        else if (dungeonName == "Ancient_Castle_Level_1")
+        else if (dungeonName == "Ancient_Castle_Level_3")
         {
-            _tiles[3][5].Type = SurfaceType.WALL;
-            _tiles[3][6].Type = SurfaceType.WALL;
-            //_tiles[3][7].Type = SurfaceType.WALL;
-            _tiles[3][8].Type = SurfaceType.WALL;
+            putWall(20, 5);
+            putWall(20, 6);
+            putWall(20, 7);
+            putWall(20, 8);
 
-            _tiles[4][5].Type = SurfaceType.WALL;
-            _tiles[5][5].Type = SurfaceType.WALL;
-            //_tiles[6][5].Type = SurfaceType.WALL;
-            _tiles[7][5].Type = SurfaceType.WALL;
-
-            _tiles[12][12].Type = SurfaceType.STAIRS;
+            putStairs(12, 19, "Ancient_Castle_Level_2");
+        }
+        else if (dungeonName == "Village")
+        {
+            // nothing
         }
         else
         {
             Debug.LogError("dungeonName: [" + dungeonName + "] not found!");
         }
+
+        // find the stirs leads to location the party came from
+        DungeonTile startStairs = null;
+        foreach (var tileList in _tiles)
+            foreach (var tile in tileList)
+                if (tile.Type == SurfaceType.STAIRS)
+                    if (tile.LeadTo == Party.Instance.Loaction)
+                        startStairs = tile;
+        if (startStairs == null && dungeonName != "Village")
+        {
+            Debug.LogError("cannot find stairs that lead to " + Party.Instance.Loaction);
+        }
+        // place the party
+        if (dungeonName != "Village")
+            Dungeon.Instance.PlaceObject(Party.Instance.gameObject, startStairs.Position);
+        // update the location of the party
+        Party.Instance.Loaction = dungeonName;
     }
     // ======================================================================================================================================== //
     public DungeonTile GetTile(Position pos)
@@ -110,6 +131,11 @@ public class Dungeon : Singleton<Dungeon>
         GameObject wall = Instantiate(_wallPrefab).gameObject;
         Position pos = new Position(x, y);
         PlaceObject(wall, pos);
+    }
+    // ======================================================================================================================================== //
+    private void putStairs(int x, int y, string leadTo)
+    {
+        _tiles[x][y].SetAsStairs(leadTo);
     }
     // ======================================================================================================================================== //
     private void generateTiles()

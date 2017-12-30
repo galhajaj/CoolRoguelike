@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public enum SurfaceType
 {
-    WALL,
     STAIRS,
     EMPTY
 }
@@ -14,12 +13,12 @@ public class DungeonTile : MonoBehaviour
     [SerializeField]
     private Sprite _emptySprite = null;
     [SerializeField]
-    private Sprite _wallSprite = null;
-    [SerializeField]
     private Sprite _stairsSprite = null;
 
     public int PosX;
 	public int PosY;
+
+    public Position Position { get { return new Position(PosX, PosY); } }
 
     private SurfaceType _type = SurfaceType.EMPTY;
     public SurfaceType Type
@@ -31,6 +30,10 @@ public class DungeonTile : MonoBehaviour
             setSurfaceSprite();
         }
     }
+
+    // in stairs type, the dungeon it lead to
+    private string _leadTo = "";
+    public string LeadTo { get { return _leadTo; } }
 
     // contains the party / creature / chest / wall etc.
     public bool IsContainObject
@@ -57,14 +60,17 @@ public class DungeonTile : MonoBehaviour
 	{
 	
 	}
-	// ======================================================================================================================================== //
-	private void setSurfaceSprite()
+    // ======================================================================================================================================== //
+    public void SetAsStairs(string leadTo)
+    {
+        _leadTo = leadTo;
+        Type = SurfaceType.STAIRS;
+    }
+    // ======================================================================================================================================== //
+    private void setSurfaceSprite()
     {
         switch (_type)
         {
-            case SurfaceType.WALL:
-                _spriteRenderer.sprite = _wallSprite;
-                break;
             case SurfaceType.STAIRS:
                 _spriteRenderer.sprite = _stairsSprite;
                 break;

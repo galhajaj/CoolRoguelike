@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManager : Singleton<InputManager>
+public class DungeonInputManager : MonoBehaviour
 {
 	void Start ()
     {
@@ -56,6 +56,17 @@ public class InputManager : Singleton<InputManager>
         else if (Input.GetKeyDown(KeyCode.Keypad5))
         {
             // imp. waiting
+        }
+        else if (Input.GetKeyDown(KeyCode.Space)) // stairs
+        {
+            DungeonTile partyTile = Dungeon.Instance.GetTile(Party.Instance.Position);
+            if (partyTile.Type == SurfaceType.STAIRS)
+            {
+                if (partyTile.LeadTo == "Village")
+                    WindowManager.Instance.LoadWindow(partyTile.LeadTo);
+
+                Dungeon.Instance.Load(partyTile.LeadTo);
+            }
         }
 
         // return if no change in position
