@@ -45,6 +45,7 @@ public class Dungeon : Singleton<Dungeon>
         }
 
         // TODO: implement taking from files or something else...
+        // ###############################################################
         if (dungeonName == "Ancient_Castle_Level_1")
         {
             putWall(3, 5);
@@ -86,8 +87,9 @@ public class Dungeon : Singleton<Dungeon>
         {
             Debug.LogError("dungeonName: [" + dungeonName + "] not found!");
         }
+        // ###############################################################
 
-        // find the stirs leads to location the party came from
+        // find the stairs that lead to the location that the party came from it
         DungeonTile startStairs = null;
         foreach (var tileList in _tiles)
             foreach (var tile in tileList)
