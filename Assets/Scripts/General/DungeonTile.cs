@@ -2,85 +2,74 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public enum SurfaceType
-{
-    STAIRS,
-    EMPTY
-}
-
 public class DungeonTile : MonoBehaviour 
 {
-    [SerializeField]
-    private Sprite _emptySprite = null;
-    [SerializeField]
-    private Sprite _stairsSprite = null;
-
     public int PosX;
 	public int PosY;
 
     public Position Position { get { return new Position(PosX, PosY); } }
 
-    private SurfaceType _type = SurfaceType.EMPTY;
-    public SurfaceType Type
+    public bool IsBlockPath
     {
-        get { return _type; }
-        set
+        get { return isContainBlockPathDungeonObjects(); }
+    }
+    public bool IsBlockView
+    {
+        get { return isContainBlockViewDungeonObjects(); }
+    }
+
+    public Item[] Items
+    {
+        get { return this.transform.GetComponentsInChildren<Item>(); }
+    }
+
+    public bool IsPortal
+    {
+        get { return (this.transform.GetComponentInChildren<Portal>() != null); }
+    }
+    public string LeadTo
+    {
+        get
         {
-            _type = value;
-            setSurfaceSprite();
+            if (!IsPortal)
+                return "";
+            return this.transform.GetComponentInChildren<Portal>().LeadTo;
         }
     }
-
-    // in stairs type, the dungeon it lead to
-    private string _leadTo = "";
-    public string LeadTo { get { return _leadTo; } }
-
-    // contains the party / creature / chest / wall etc.
-    public bool IsContainObject
-    {
-        get { return this.transform.childCount > 0; }
-    }
-
-    private List<Item> _items = new List<Item>();
-
-    private SpriteRenderer _spriteRenderer = null;
-
     // ======================================================================================================================================== //
-    void Awake()
-    {
-        _spriteRenderer = this.GetComponent<SpriteRenderer>();
-    }
-    // ======================================================================================================================================== //
-	void Start () 
+    private bool isContainBlockPathDungeonObjects() 
 	{
-
-	}
-	// ======================================================================================================================================== //
-	void Update () 
-	{
-	
-	}
-    // ======================================================================================================================================== //
-    public void SetAsStairs(string leadTo)
-    {
-        _leadTo = leadTo;
-        Type = SurfaceType.STAIRS;
-    }
-    // ======================================================================================================================================== //
-    private void setSurfaceSprite()
-    {
-        switch (_type)
+        foreach (DungeonObject obj in this.transform.GetComponentsInChildren<DungeonObject>())
         {
-            case SurfaceType.STAIRS:
-                _spriteRenderer.sprite = _stairsSprite;
-                break;
-            case SurfaceType.EMPTY:
-                _spriteRenderer.sprite = _emptySprite;
-                break;
-            default:
-                Debug.LogError("Unknown surface type " + _type.ToString());
-                break;
+            if (obj.IsBlockPath)
+                return true;
         }
+
+        return false;
+	}
+    // ======================================================================================================================================== //
+    private bool isContainBlockViewDungeonObjects()
+    {
+        foreach (DungeonObject obj in this.transform.GetComponentsInChildren<DungeonObject>())
+        {
+            if (obj.IsBlockView)
+                return true;
+        }
+
+        return false;
+    }
+    // ======================================================================================================================================== //
+    public void Clear()
+    {
+        // delete object inside tile
+        foreach (Transform child in this.transform)
+            Destroy(child.gameObject);
+    }
+    // ======================================================================================================================================== //
+    public void AddObject(GameObject obj)
+    {
+        obj.transform.position = this.transform.position;
+        obj.transform.parent = this.transform;
     }
 	// ======================================================================================================================================== //
 }

@@ -47,14 +47,20 @@ TagManager:
   - name: Surface
     uniqueID: 1624192845
     locked: 0
+  - name: BlockPathObject
+    uniqueID: 133123367
+    locked: 0
+  - name: Portal
+    uniqueID: 1210453039
+    locked: 0
   - name: ItemOnGround
     uniqueID: 4147716683
     locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: DungeonObject
-    uniqueID: 133123367
+  - name: BlockViewObject
+    uniqueID: 2118443781
     locked: 0
   - name: Creature
     uniqueID: 952736375

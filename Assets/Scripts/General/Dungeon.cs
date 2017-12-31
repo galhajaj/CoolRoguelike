@@ -9,10 +9,9 @@ public class Dungeon : Singleton<Dungeon>
     private int _boardSizeX = 0;
     [SerializeField]
     private int _boardSizeY = 0;
+
     [SerializeField]
-    private Transform _tilePrefab = null;
-    [SerializeField]
-    private Transform _wallPrefab = null;
+    public Transform _tilePrefab = null;
 
     private List<List<DungeonTile>> _tiles = new List<List<DungeonTile>>();
 
@@ -32,52 +31,45 @@ public class Dungeon : Singleton<Dungeon>
         // un-parent the party to prevent deletion
         Party.Instance.transform.parent = null;
 
-        // make all empty
-        foreach (var tileList in _tiles)
-        {
-            foreach (var tile in tileList)
-            {
-                tile.Type = SurfaceType.EMPTY;
-                // delete object inside tile
-                if (tile.transform.childCount > 0)
-                    Destroy(tile.transform.GetChild(0).gameObject);
-            }
-        }
+        // clean all dungeon
+        this.clear();
 
         // TODO: implement taking from files or something else...
         // ###############################################################
         if (dungeonName == "Ancient_Castle_Level_1")
         {
-            putWall(3, 5);
-            putWall(3, 6);
-            putWall(3, 7);
-            putWall(3, 8);
+            putDungeonObject(3, 5, ResourcesManager.Instance.WallPrefab);
+            putDungeonObject(3, 6, ResourcesManager.Instance.WallPrefab);
+            putDungeonObject(3, 7, ResourcesManager.Instance.WallPrefab);
+            putDungeonObject(3, 8, ResourcesManager.Instance.WallPrefab);
 
-            putWall(4, 5);
-            putWall(5, 5);
-            putWall(6, 5);
+            putDungeonObject(4, 5, ResourcesManager.Instance.WallPrefab);
+            putDungeonObject(5, 5, ResourcesManager.Instance.WallPrefab);
+            putDungeonObject(6, 5, ResourcesManager.Instance.WallPrefab);
 
-            putStairs(12, 5, "Village");
-            putStairs(15, 15, "Ancient_Castle_Level_2");
+            putDungeonObject(8, 8, ResourcesManager.Instance.SwordItemPrefab);
+
+            putPortal(12, 5, "Village");
+            putPortal(15, 15, "Ancient_Castle_Level_2");
         }
         else if (dungeonName == "Ancient_Castle_Level_2")
         {
-            putWall(9, 5);
-            putWall(9, 6);
-            putWall(9, 7);
-            putWall(9, 8);
+            putDungeonObject(9, 5, ResourcesManager.Instance.WallPrefab);
+            putDungeonObject(9, 6, ResourcesManager.Instance.WallPrefab);
+            putDungeonObject(9, 7, ResourcesManager.Instance.WallPrefab);
+            putDungeonObject(9, 8, ResourcesManager.Instance.WallPrefab);
 
-            putStairs(12, 12, "Ancient_Castle_Level_1");
-            putStairs(15, 17, "Ancient_Castle_Level_3");
+            putPortal(12, 12, "Ancient_Castle_Level_1");
+            putPortal(15, 17, "Ancient_Castle_Level_3");
         }
         else if (dungeonName == "Ancient_Castle_Level_3")
         {
-            putWall(20, 5);
-            putWall(20, 6);
-            putWall(20, 7);
-            putWall(20, 8);
+            putDungeonObject(20, 5, ResourcesManager.Instance.WallPrefab);
+            putDungeonObject(20, 6, ResourcesManager.Instance.WallPrefab);
+            putDungeonObject(20, 7, ResourcesManager.Instance.WallPrefab);
+            putDungeonObject(20, 8, ResourcesManager.Instance.WallPrefab);
 
-            putStairs(12, 19, "Ancient_Castle_Level_2");
+            putPortal(12, 19, "Ancient_Castle_Level_2");
         }
         else if (dungeonName == "Village")
         {
@@ -90,21 +82,35 @@ public class Dungeon : Singleton<Dungeon>
         // ###############################################################
 
         // find the stairs that lead to the location that the party came from it
-        DungeonTile startStairs = null;
-        foreach (var tileList in _tiles)
-            foreach (var tile in tileList)
-                if (tile.Type == SurfaceType.STAIRS)
-                    if (tile.LeadTo == Party.Instance.Loaction)
-                        startStairs = tile;
+        DungeonTile startStairs = findPortalTile(Party.Instance.Loaction);
+
         if (startStairs == null && dungeonName != "Village")
         {
             Debug.LogError("cannot find stairs that lead to " + Party.Instance.Loaction);
         }
         // place the party
         if (dungeonName != "Village")
-            Dungeon.Instance.PlaceObject(Party.Instance.gameObject, startStairs.Position);
+            Dungeon.Instance.SetDungeonObjectPosition(Party.Instance.DungeonObject, startStairs.Position);
         // update the location of the party
         Party.Instance.Loaction = dungeonName;
+    }
+    // ======================================================================================================================================== //
+    private DungeonTile findPortalTile(string leadTo)
+    {
+        foreach (var tileList in _tiles)
+        {
+            foreach (var tile in tileList)
+            {
+                Portal portal = tile.GetComponentInChildren<Portal>();
+                if (portal != null)
+                {
+                    if (portal.LeadTo == leadTo)
+                        return tile;
+                }
+            }
+        }
+
+        return null;
     }
     // ======================================================================================================================================== //
     public DungeonTile GetTile(Position pos)
@@ -114,13 +120,13 @@ public class Dungeon : Singleton<Dungeon>
     // ======================================================================================================================================== //
     // good for party, creature, chests and another things that can be only one of them in tile and can be move from there 
     // or has a special interaction
-    public void PlaceObject(GameObject obj, Position pos)
+    public void SetDungeonObjectPosition(DungeonObject obj, Position pos)
     {
         DungeonTile targetTile = GetTile(pos);
 
-        if (targetTile.IsContainObject)
+        if (targetTile.IsBlockPath)
         {
-            Debug.LogError(obj.name + " cannot be placed at (" + pos.X + "," + pos.Y + ")");
+            Debug.LogError(obj.gameObject.name + " cannot be placed at (" + pos.X + "," + pos.Y + ")");
             return;
         }
 
@@ -128,16 +134,29 @@ public class Dungeon : Singleton<Dungeon>
         obj.transform.parent = targetTile.transform;
     }
     // ======================================================================================================================================== //
-    private void putWall(int x, int y)
+    private DungeonObject putDungeonObject(int x, int y, GameObject prefab)
     {
-        GameObject wall = Instantiate(_wallPrefab).gameObject;
+        GameObject obj = Instantiate(prefab);
+        DungeonObject dungeonObject = obj.GetComponent<DungeonObject>();
         Position pos = new Position(x, y);
-        PlaceObject(wall, pos);
+        SetDungeonObjectPosition(dungeonObject, pos);
+        return dungeonObject;
     }
     // ======================================================================================================================================== //
-    private void putStairs(int x, int y, string leadTo)
+    private void putPortal(int x, int y, string leadTo)
     {
-        _tiles[x][y].SetAsStairs(leadTo);
+        DungeonObject portalObj = putDungeonObject(x, y, ResourcesManager.Instance.StairsPrefab);
+
+        Portal portal = portalObj.GetComponent<Portal>();
+        portal.LeadTo = leadTo;
+    }
+    // ======================================================================================================================================== //
+    private void clear()
+    {
+        // clear each tile
+        foreach (var tileList in _tiles)
+            foreach (var tile in tileList)
+                tile.Clear();
     }
     // ======================================================================================================================================== //
     private void generateTiles()
@@ -166,7 +185,6 @@ public class Dungeon : Singleton<Dungeon>
                 DungeonTile tileScript = tile.GetComponent<DungeonTile>();
                 tileScript.PosX = x;
                 tileScript.PosY = y;
-                tileScript.Type = SurfaceType.EMPTY;
 
                 _tiles[x].Add(tileScript);
             }

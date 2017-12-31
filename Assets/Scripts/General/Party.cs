@@ -24,13 +24,7 @@ public class Party : Singleton<Party>
 
     private List<Creature> _characters = new List<Creature>();
 
-    void Start ()
-    {
-		
-	}
-	
-	void Update ()
-    {
-		
-	}
+    [SerializeField]
+    private DungeonObject _dungeonObject = null;
+    public DungeonObject DungeonObject { get { return _dungeonObject; } }
 }

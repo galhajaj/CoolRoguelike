@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class Inventory : Singleton<Inventory>
 {
-
-	void Start ()
+    public void AddItems(Item[] items)
     {
-		
-	}
-	
-	void Update ()
-    {
-		
-	}
+        foreach (Item item in items)
+        {
+            item.transform.position = this.transform.position;
+            item.transform.parent = this.transform;
+        }
+    }
 }

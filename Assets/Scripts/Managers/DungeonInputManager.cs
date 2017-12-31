@@ -60,7 +60,7 @@ public class DungeonInputManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Space)) // stairs
         {
             DungeonTile partyTile = Dungeon.Instance.GetTile(Party.Instance.Position);
-            if (partyTile.Type == SurfaceType.STAIRS)
+            if (partyTile.IsPortal)
             {
                 if (partyTile.LeadTo == "Village")
                     WindowManager.Instance.LoadWindow(partyTile.LeadTo);
@@ -68,17 +68,23 @@ public class DungeonInputManager : MonoBehaviour
                 Dungeon.Instance.Load(partyTile.LeadTo);
             }
         }
+        else if (Input.GetKeyDown(KeyCode.P)) // pickup items
+        {
+            DungeonTile partyTile = Dungeon.Instance.GetTile(Party.Instance.Position);
+            Inventory.Instance.AddItems(partyTile.Items);
+        }
 
         // return if no change in position
         if (dx == 0 && dy == 0)
             return;
 
         Position newPosition = new Position(Party.Instance.Position.X + dx, Party.Instance.Position.Y + dy);
+        DungeonTile newTile = Dungeon.Instance.GetTile(newPosition);
 
         // return if place not free
-        if (Dungeon.Instance.GetTile(newPosition).IsContainObject)
+        if (newTile.IsBlockPath)
             return;
 
-        Dungeon.Instance.PlaceObject(Party.Instance.gameObject, newPosition);
+        Dungeon.Instance.SetDungeonObjectPosition(Party.Instance.DungeonObject, newPosition);
 	}
 }

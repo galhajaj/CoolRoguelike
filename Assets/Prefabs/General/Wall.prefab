@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4604320926828568}
   - component: {fileID: 212612944237258690}
+  - component: {fileID: 114231844342761432}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -40,6 +41,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114231844342761432
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1301272116306438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956b7287b6ef939458807c67266b8436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isBlockPath: 1
+  _isBlockView: 1
 --- !u!212 &212612944237258690
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -71,7 +85,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 133123367
+  m_SortingLayerID: 2118443781
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 89827a4a2ee8c9c4a9d2ab4c1529e348, type: 3}
