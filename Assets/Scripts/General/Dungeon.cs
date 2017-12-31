@@ -140,6 +140,12 @@ public class Dungeon : Singleton<Dungeon>
         DungeonObject dungeonObject = obj.GetComponent<DungeonObject>();
         Position pos = new Position(x, y);
         SetDungeonObjectPosition(dungeonObject, pos);
+
+        // if item, set sprite to loot icon
+        Item item = obj.GetComponent<Item>();
+        if (item != null)
+            item.SetSpriteToDungeonIcon();
+
         return dungeonObject;
     }
     // ======================================================================================================================================== //
