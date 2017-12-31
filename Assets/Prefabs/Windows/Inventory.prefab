@@ -56,8 +56,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4583743909873312}
   - component: {fileID: 212590298654590720}
-  - component: {fileID: 114033695774324478}
   - component: {fileID: 61440760038027502}
+  - component: {fileID: 114292085916665460}
   m_Layer: 0
   m_Name: Exit (1)
   m_TagString: Untagged
@@ -212,18 +212,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 29, y: 96}
   m_EdgeRadius: 0
---- !u!114 &114033695774324478
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1243452146180258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5944684936cbfc842aaa03439449c9a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _windowName: Village
 --- !u!114 &114210760645902194
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -236,6 +224,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isShownAtStart: 0
+--- !u!114 &114292085916665460
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1243452146180258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a65b9ced18d81e49b11ec04cd71e8e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114323859532289794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -334,7 +333,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1200196113
-  m_SortingLayer: -3
+  m_SortingLayer: -5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 85fb5cbcb8ab8734e8f825fab3e26ef1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
