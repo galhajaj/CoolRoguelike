@@ -116,6 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4438250111580900}
   - component: {fileID: 212326383453747592}
+  - component: {fileID: 114961691675193884}
   m_Layer: 0
   m_Name: Portrait
   m_TagString: Untagged
@@ -150,6 +151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4979681826554550}
   - component: {fileID: 212929613937289232}
+  - component: {fileID: 114786257801394758}
   m_Layer: 0
   m_Name: Portrait (3)
   m_TagString: Untagged
@@ -214,6 +216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4399242780050702}
   - component: {fileID: 212971439349811008}
+  - component: {fileID: 114995221941185608}
   m_Layer: 0
   m_Name: Portrait (2)
   m_TagString: Untagged
@@ -262,6 +265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4443148955044186}
   - component: {fileID: 212739168904014490}
+  - component: {fileID: 114991175173457622}
   m_Layer: 0
   m_Name: Portrait (5)
   m_TagString: Untagged
@@ -295,6 +299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4548203884938138}
   - component: {fileID: 212217594641062040}
+  - component: {fileID: 114213924437103276}
   m_Layer: 0
   m_Name: Portrait (4)
   m_TagString: Untagged
@@ -311,6 +316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4031283860475720}
   - component: {fileID: 212705354708894826}
+  - component: {fileID: 114080520926717240}
   m_Layer: 0
   m_Name: Portrait (1)
   m_TagString: Untagged
@@ -885,6 +891,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 24, y: 22}
   m_EdgeRadius: 0
+--- !u!114 &114080520926717240
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1704966952617200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f85ba451d09bf4e8ae83a93bff661b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _creature: {fileID: 0}
+--- !u!114 &114213924437103276
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1694670035590316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f85ba451d09bf4e8ae83a93bff661b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _creature: {fileID: 0}
 --- !u!114 &114454280605619938
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -897,6 +927,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _windowName: MainMenu
+--- !u!114 &114786257801394758
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1340782787975990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f85ba451d09bf4e8ae83a93bff661b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _creature: {fileID: 0}
+--- !u!114 &114961691675193884
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1296052888385196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f85ba451d09bf4e8ae83a93bff661b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _creature: {fileID: 0}
+--- !u!114 &114991175173457622
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1587456367606064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f85ba451d09bf4e8ae83a93bff661b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _creature: {fileID: 0}
 --- !u!114 &114991981735704612
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -909,6 +975,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _windowName: Inventory
+--- !u!114 &114995221941185608
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1535655653053442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f85ba451d09bf4e8ae83a93bff661b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _creature: {fileID: 0}
 --- !u!212 &212007651243887726
 SpriteRenderer:
   m_ObjectHideFlags: 1

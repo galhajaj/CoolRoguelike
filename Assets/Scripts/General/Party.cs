@@ -22,7 +22,22 @@ public class Party : Singleton<Party>
         set { _location = value; }
     }
 
+    private List<Creature> _members = new List<Creature>();
+
     [SerializeField]
     private DungeonObject _dungeonObject = null;
     public DungeonObject DungeonObject { get { return _dungeonObject; } }
+
+    override protected void AfterAwake()
+    {
+        // init members in list
+        foreach (Creature member in this.transform.GetComponentsInChildren<Creature>())
+            _members.Add(member);
+    }
+
+    public Creature GetRandomMember()
+    {
+        int rand = Random.Range(0, _members.Count);
+        return _members[rand];
+    }
 }

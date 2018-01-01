@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class DungeonInputManager : MonoBehaviour
 {
+    [SerializeField]
+    private float _moveInterval = 0.75F;
+    private float _timeToNextMove = 0.0F;
+
+    private bool _creaturesTurn = true;
+
 	void Start ()
     {
 		
@@ -11,8 +17,14 @@ public class DungeonInputManager : MonoBehaviour
 	
 	void Update ()
     {
+        // return if not in dungeon
         if (WindowManager.Instance.CurrentWindowName != "Dungeon")
             return;
+
+        creaturesTurn();
+        playerTurn();
+
+        
 
         int dx = 0;
         int dy = 0;
@@ -87,4 +99,28 @@ public class DungeonInputManager : MonoBehaviour
 
         Dungeon.Instance.SetDungeonObjectPosition(Party.Instance.DungeonObject, newPosition);
 	}
+
+    private void creaturesTurn()
+    {
+        if (!_creaturesTurn)
+            return;
+
+        // imp.
+        // finish all the creatures action units
+
+        _creaturesTurn = false;
+    }
+
+    private void playerTurn()
+    {
+        // make sure for nice timly equal interval between inputs
+        if (_timeToNextMove >= 0.0F)
+        {
+            _timeToNextMove -= Time.deltaTime;
+            return;
+        }
+
+        // waiting for player input
+        // if all action units of all party has finished - then move to creatures turn
+    }
 }
