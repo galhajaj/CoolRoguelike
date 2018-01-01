@@ -57,3 +57,5 @@ MonoBehaviour:
     type: 2}
   SwordItemPrefab: {fileID: 1552110050588252, guid: 9260e8356d2974b41a92ce757ee6a4b1,
     type: 2}
+  DragonPrefab: {fileID: 1191348109513958, guid: 13cdcf2ecc4177d46aabdeb713275053,
+    type: 2}

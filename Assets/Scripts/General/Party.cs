@@ -22,8 +22,6 @@ public class Party : Singleton<Party>
         set { _location = value; }
     }
 
-    private List<Creature> _characters = new List<Creature>();
-
     [SerializeField]
     private DungeonObject _dungeonObject = null;
     public DungeonObject DungeonObject { get { return _dungeonObject; } }

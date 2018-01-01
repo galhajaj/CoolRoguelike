@@ -8,5 +8,8 @@ public class ResourcesManager : Singleton<ResourcesManager>
 
     public GameObject WallPrefab;
     public GameObject StairsPrefab;
+
     public GameObject SwordItemPrefab;
+
+    public GameObject DragonPrefab;
 }
