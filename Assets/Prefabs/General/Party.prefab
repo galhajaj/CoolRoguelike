@@ -234,16 +234,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Yoko
-  MaxHearts: 0
-  Hearts: 0
-  MaxHitPoints: 0
-  HitPoints: 0
-  MaxMana: 0
-  Mana: 8
+  MaxHearts: 10
+  Hearts: 8
+  MaxHitPoints: 3
+  HitPoints: 1
+  MaxMana: 8
+  Mana: 7
   MinDamage: 1
   MaxDamage: 10
   Shield: 90
-  ActionUnits: 0
+  ActionUnits: 17
 --- !u!114 &114147248417637186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -256,16 +256,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Paul
-  MaxHearts: 0
-  Hearts: 0
-  MaxHitPoints: 0
-  HitPoints: 0
-  MaxMana: 0
+  MaxHearts: 6
+  Hearts: 1
+  MaxHitPoints: 3
+  HitPoints: 2
+  MaxMana: 2
   Mana: 2
   MinDamage: 2
   MaxDamage: 8
   Shield: 80
-  ActionUnits: 0
+  ActionUnits: 10
 --- !u!114 &114185464448636362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -278,16 +278,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Yoko
-  MaxHearts: 0
-  Hearts: 0
-  MaxHitPoints: 0
-  HitPoints: 0
-  MaxMana: 0
-  Mana: 8
+  MaxHearts: 6
+  Hearts: 5
+  MaxHitPoints: 4
+  HitPoints: 4
+  MaxMana: 8
+  Mana: 5
   MinDamage: 1
   MaxDamage: 10
   Shield: 90
-  ActionUnits: 0
+  ActionUnits: 11
 --- !u!114 &114320689760500208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -300,16 +300,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Ringo
-  MaxHearts: 0
-  Hearts: 0
-  MaxHitPoints: 0
-  HitPoints: 0
-  MaxMana: 0
-  Mana: 6
+  MaxHearts: 7
+  Hearts: 7
+  MaxHitPoints: 14
+  HitPoints: 14
+  MaxMana: 6
+  Mana: 2
   MinDamage: 1
   MaxDamage: 2
   Shield: 35
-  ActionUnits: 0
+  ActionUnits: 12
 --- !u!114 &114466778984694956
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -335,16 +335,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: John
-  MaxHearts: 0
-  Hearts: 0
-  MaxHitPoints: 0
-  HitPoints: 0
-  MaxMana: 0
-  Mana: 3
+  MaxHearts: 4
+  Hearts: 3
+  MaxHitPoints: 12
+  HitPoints: 3
+  MaxMana: 3
+  Mana: 2
   MinDamage: 1
   MaxDamage: 4
   Shield: 65
-  ActionUnits: 0
+  ActionUnits: 15
 --- !u!114 &114585528430528530
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -369,16 +369,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: George
-  MaxHearts: 0
-  Hearts: 0
-  MaxHitPoints: 0
-  HitPoints: 0
-  MaxMana: 0
-  Mana: 4
+  MaxHearts: 5
+  Hearts: 2
+  MaxHitPoints: 5
+  HitPoints: 5
+  MaxMana: 4
+  Mana: 3
   MinDamage: 1
   MaxDamage: 6
   Shield: 65
-  ActionUnits: 0
+  ActionUnits: 2
 --- !u!212 &212442535582533952
 SpriteRenderer:
   m_ObjectHideFlags: 1

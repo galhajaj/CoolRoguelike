@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridTile : MonoBehaviour
+public class GridElement : MonoBehaviour
 {
     public int PosX;
     public int PosY;

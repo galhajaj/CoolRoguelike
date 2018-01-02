@@ -7,13 +7,22 @@ public class Portrait : MonoBehaviour
     [SerializeField]
     private Creature _creature = null;
 
-	void Start ()
+    [SerializeField]
+    private Grid _lifeUnitsGrid = null;
+    [SerializeField]
+    private Grid _spellUnitsGrid = null;
+    [SerializeField]
+    private Grid _actionUnitsGrid = null;
+
+    void Start ()
     {
-		
-	}
-	
-	void Update ()
+        _actionUnitsGrid.Rebuild(ConstsManager.Instance.MAX_ACTION_UNITS);
+    }
+
+    void Update ()
     {
-		// TODO: implement gui update of _creature mana/life etc.
-	}
+        // TODO: improve performance
+        _lifeUnitsGrid.Rebuild(1, _creature.MaxHearts);
+        _spellUnitsGrid.Rebuild(1, _creature.MaxMana);
+    }
 }

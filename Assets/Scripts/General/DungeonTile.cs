@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class DungeonTile : GridTile 
+public class DungeonTile : GridElement
 {
     public bool IsBlockPath
     {

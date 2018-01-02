@@ -55,8 +55,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3518cb0452f2fae49ba0065da4b7c3f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _boardSizeX: 40
-  _boardSizeY: 23
+  _sizeX: 40
+  _sizeY: 23
+  _offsetX: -320
+  _offsetY: 184
   _elementPrefab: {fileID: 4632854040261538, guid: 2bdecde9f2ded4c499cb452ce3215037,
     type: 2}
 --- !u!114 &114090111388826972

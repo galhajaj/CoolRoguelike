@@ -89,7 +89,7 @@ public class Dungeon : Singleton<Dungeon>
     // ======================================================================================================================================== //
     private DungeonTile findPortalTile(string leadTo)
     {
-        foreach (DungeonTile tile in _grid.Tiles)
+        foreach (DungeonTile tile in _grid.Elements)
         {
             Portal portal = tile.GetComponentInChildren<Portal>();
             if (portal != null)
@@ -104,7 +104,7 @@ public class Dungeon : Singleton<Dungeon>
     // ======================================================================================================================================== //
     public DungeonTile GetTile(Position pos)
     {
-        return _grid.GetTile(pos) as DungeonTile;
+        return _grid.GetElement(pos) as DungeonTile;
     }
     // ======================================================================================================================================== //
     // good for party, creature, chests and another things that can be only one of them in tile and can be move from there 
@@ -148,7 +148,7 @@ public class Dungeon : Singleton<Dungeon>
     // ======================================================================================================================================== //
     private void clear()
     {
-        foreach (DungeonTile tile in _grid.Tiles)
+        foreach (DungeonTile tile in _grid.Elements)
             tile.Clear();
     }
 	// ======================================================================================================================================== //
