@@ -6,20 +6,8 @@ using System.Collections.Generic;
 public class Dungeon : Singleton<Dungeon> 
 {
     [SerializeField]
-    private int _boardSizeX = 0;
-    [SerializeField]
-    private int _boardSizeY = 0;
+    private Grid _grid = null;
 
-    [SerializeField]
-    public Transform _tilePrefab = null;
-
-    private List<List<DungeonTile>> _tiles = new List<List<DungeonTile>>();
-
-    // ======================================================================================================================================== //
-    protected override void AfterAwake()
-    {
-        generateTiles();
-    }
     // ======================================================================================================================================== //
     void Start() 
 	{
@@ -101,16 +89,13 @@ public class Dungeon : Singleton<Dungeon>
     // ======================================================================================================================================== //
     private DungeonTile findPortalTile(string leadTo)
     {
-        foreach (var tileList in _tiles)
+        foreach (DungeonTile tile in _grid.Tiles)
         {
-            foreach (var tile in tileList)
+            Portal portal = tile.GetComponentInChildren<Portal>();
+            if (portal != null)
             {
-                Portal portal = tile.GetComponentInChildren<Portal>();
-                if (portal != null)
-                {
-                    if (portal.LeadTo == leadTo)
-                        return tile;
-                }
+                if (portal.LeadTo == leadTo)
+                    return tile;
             }
         }
 
@@ -119,7 +104,7 @@ public class Dungeon : Singleton<Dungeon>
     // ======================================================================================================================================== //
     public DungeonTile GetTile(Position pos)
     {
-        return _tiles[pos.X][pos.Y];
+        return _grid.GetTile(pos) as DungeonTile;
     }
     // ======================================================================================================================================== //
     // good for party, creature, chests and another things that can be only one of them in tile and can be move from there 
@@ -163,42 +148,8 @@ public class Dungeon : Singleton<Dungeon>
     // ======================================================================================================================================== //
     private void clear()
     {
-        // clear each tile
-        foreach (var tileList in _tiles)
-            foreach (var tile in tileList)
-                tile.Clear();
+        foreach (DungeonTile tile in _grid.Tiles)
+            tile.Clear();
     }
-    // ======================================================================================================================================== //
-    private void generateTiles()
-	{
-		float boardOriginX = this.transform.position.x;
-		float boardOriginY = this.transform.position.y;
-        float originOffsetX = -this.GetComponent<SpriteRenderer>().bounds.size.x / 2;
-        float originOffsetY = this.GetComponent<SpriteRenderer>().bounds.size.y / 2;
-        float tileWidth = _tilePrefab.GetComponent<SpriteRenderer> ().bounds.size.x;
-		float tileHeight = _tilePrefab.GetComponent<SpriteRenderer> ().bounds.size.y;
-		
-		for ( int x = 0; x < _boardSizeX; x++ ) 
-		{
-            _tiles.Add(new List<DungeonTile>());
-
-            for ( int y = 0; y < _boardSizeY; y++ ) 
-			{
-				Vector3 tilePosition = new Vector3(
-                    boardOriginX + originOffsetX + (tileWidth / 2) + (x * tileWidth), 
-                    boardOriginY + originOffsetY - (tileHeight / 2) - (y * tileHeight), 
-                    0);
-				Transform tile = Instantiate(_tilePrefab, tilePosition, Quaternion.identity);
-				tile.name = "Tile" + x + "_" + y;
-				tile.parent = this.transform.Find("Tiles").transform;
-
-                DungeonTile tileScript = tile.GetComponent<DungeonTile>();
-                tileScript.PosX = x;
-                tileScript.PosY = y;
-
-                _tiles[x].Add(tileScript);
-            }
-		}
-	}
 	// ======================================================================================================================================== //
 }

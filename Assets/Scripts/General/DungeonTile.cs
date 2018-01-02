@@ -2,13 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class DungeonTile : MonoBehaviour 
+public class DungeonTile : GridTile 
 {
-    public int PosX;
-	public int PosY;
-
-    public Position Position { get { return new Position(PosX, PosY); } }
-
     public bool IsBlockPath
     {
         get { return isContainBlockPathDungeonObjects(); }

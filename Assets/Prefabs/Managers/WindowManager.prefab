@@ -51,3 +51,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8850317abb53fe3449bf87522c716ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _showWindowPosition: {x: -72, y: 34}
+  _windows: []
