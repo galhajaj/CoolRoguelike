@@ -82,7 +82,7 @@ public class Dungeon : Singleton<Dungeon>
         }
         // place the party
         if (dungeonName != "Village")
-            Dungeon.Instance.SetDungeonObjectPosition(Party.Instance.DungeonObject, startStairs.Position);
+            Dungeon.Instance.PutDungeonObjectInTile(Party.Instance.DungeonObject, startStairs);
         // update the location of the party
         Party.Instance.Loaction = dungeonName;
     }
@@ -109,18 +109,16 @@ public class Dungeon : Singleton<Dungeon>
     // ======================================================================================================================================== //
     // good for party, creature, chests and another things that can be only one of them in tile and can be move from there 
     // or has a special interaction
-    public void SetDungeonObjectPosition(DungeonObject obj, Position pos)
+    public void PutDungeonObjectInTile(DungeonObject obj, DungeonTile tile)
     {
-        DungeonTile targetTile = GetTile(pos);
-
-        if (targetTile.IsBlockPath)
+        if (tile.IsBlockPath)
         {
-            Debug.LogError(obj.gameObject.name + " cannot be placed at (" + pos.X + "," + pos.Y + ")");
+            Debug.LogError(obj.gameObject.name + " cannot be placed at (" + tile.PosX + "," + tile.PosY + ")");
             return;
         }
 
-        obj.transform.position = targetTile.transform.position;
-        obj.transform.parent = targetTile.transform;
+        obj.transform.position = tile.transform.position;
+        obj.transform.parent = tile.transform;
     }
     // ======================================================================================================================================== //
     private DungeonObject putDungeonObject(int x, int y, GameObject prefab)
@@ -128,7 +126,8 @@ public class Dungeon : Singleton<Dungeon>
         GameObject obj = Instantiate(prefab);
         DungeonObject dungeonObject = obj.GetComponent<DungeonObject>();
         Position pos = new Position(x, y);
-        SetDungeonObjectPosition(dungeonObject, pos);
+        DungeonTile targetTile = GetTile(pos);
+        PutDungeonObjectInTile(dungeonObject, targetTile);
 
         // if item, set sprite to loot icon
         Item item = obj.GetComponent<Item>();

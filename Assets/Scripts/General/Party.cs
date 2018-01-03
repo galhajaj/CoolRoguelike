@@ -28,16 +28,55 @@ public class Party : Singleton<Party>
     private DungeonObject _dungeonObject = null;
     public DungeonObject DungeonObject { get { return _dungeonObject; } }
 
+    // ====================================================================================================== //
     override protected void AfterAwake()
     {
         // init members in list
         foreach (Creature member in this.transform.GetComponentsInChildren<Creature>())
             _members.Add(member);
     }
-
+    // ====================================================================================================== //
+    // get the next member (by order from left to tight) which has action units left
+    public Creature GetActiveMember()
+    {
+        foreach (var member in _members)
+            if (member.ActionUnits > 0)
+                return member;
+        return null;
+    }
+    // ====================================================================================================== //
     public Creature GetRandomMember()
     {
         int rand = Random.Range(0, _members.Count);
         return _members[rand];
     }
+    // ====================================================================================================== //
+    public bool IsOutOfActionUnits()
+    {
+        // check if out of action units
+        foreach (var member in _members)
+            if (member.ActionUnits > 0)
+                return false;
+        return true;
+    }
+    // ====================================================================================================== //
+    // add maximum amount, but not higher
+    public void FillActionUnitsForNextTurn()
+    {
+        foreach (var member in _members)
+        {
+            member.ActionUnits += ConstsManager.Instance.MAX_ACTION_UNITS;
+            // normalize to max
+            if (member.ActionUnits > ConstsManager.Instance.MAX_ACTION_UNITS)
+                member.ActionUnits = ConstsManager.Instance.MAX_ACTION_UNITS;
+        }
+    }
+    // ====================================================================================================== //
+    // init to maximum amount of action units
+    public void RefillActionUnits()
+    {
+        foreach (var member in _members)
+            member.ActionUnits = ConstsManager.Instance.MAX_ACTION_UNITS;
+    }
+    // ====================================================================================================== //
 }

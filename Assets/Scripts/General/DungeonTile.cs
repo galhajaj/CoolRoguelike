@@ -54,6 +54,11 @@ public class DungeonTile : GridElement
         return false;
     }
     // ======================================================================================================================================== //
+    public Creature GetContainedCreature()
+    {
+        return this.transform.GetComponentInChildren<Creature>();
+    }
+    // ======================================================================================================================================== //
     public void Clear()
     {
         // delete object inside tile
