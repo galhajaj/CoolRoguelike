@@ -18,4 +18,11 @@ public class Creature : MonoBehaviour
     public int MaxDamage;
     public int Shield;
     public int ActionUnits;
+
+    public int MeleeAttackCost;
+
+    public void PayMeleeAttackCost()
+    {
+        ActionUnits -= MeleeAttackCost;
+    }
 }

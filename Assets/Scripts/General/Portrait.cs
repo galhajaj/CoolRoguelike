@@ -35,6 +35,7 @@ public class Portrait : MonoBehaviour
         List<GridElement> elements = grid.Elements;
         for (int i = 0; i < elements.Count; ++i)
         {
+            elements[i].GetComponent<SpriteRenderer>().color = Color.white;
             if (i >= number)
             {
                 elements[i].GetComponent<SpriteRenderer>().color = Color.black;

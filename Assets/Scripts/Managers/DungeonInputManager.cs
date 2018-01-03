@@ -60,8 +60,8 @@ public class DungeonInputManager : MonoBehaviour
     // ====================================================================================================== //
     private void finishPlayerTurn()
     {
-        Party.Instance.FillActionUnitsForNextTurn();
         _creaturesTurn = true;
+        Party.Instance.FillActionUnitsForNextTurn();
     }
     // ====================================================================================================== //
     // can be move/ attack/ open door/ open chest...
@@ -116,6 +116,7 @@ public class DungeonInputManager : MonoBehaviour
         Creature targetCreature = targetTile.GetContainedCreature();
         Creature activePartyMember = Party.Instance.GetActiveMember();
 
+        // choose action by the tile content
         if (targetCreature != null)
         {
             meleeAttack(activePartyMember, targetCreature);
@@ -169,13 +170,12 @@ public class DungeonInputManager : MonoBehaviour
     {
         Debug.Log(attacker.name + " attack " + defender.name);
         // imp
-        finishPlayerTurn();
+        Party.Instance.GetActiveMember().PayMeleeAttackCost();
     }
     // ====================================================================================================== //
     private void rangedAttack(Creature attacker, Creature defender, DungeonTile targetTile)
     {
         // imp
-        finishPlayerTurn();
     }
     // ====================================================================================================== //
     private void openDoor(DungeonTile targetTile)

@@ -244,6 +244,7 @@ MonoBehaviour:
   MaxDamage: 10
   Shield: 90
   ActionUnits: 17
+  MeleeAttackCost: 20
 --- !u!114 &114147248417637186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -266,6 +267,7 @@ MonoBehaviour:
   MaxDamage: 8
   Shield: 80
   ActionUnits: 10
+  MeleeAttackCost: 10
 --- !u!114 &114185464448636362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -288,6 +290,7 @@ MonoBehaviour:
   MaxDamage: 10
   Shield: 90
   ActionUnits: 11
+  MeleeAttackCost: 21
 --- !u!114 &114320689760500208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -310,6 +313,7 @@ MonoBehaviour:
   MaxDamage: 2
   Shield: 35
   ActionUnits: 12
+  MeleeAttackCost: 7
 --- !u!114 &114466778984694956
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -345,6 +349,7 @@ MonoBehaviour:
   MaxDamage: 4
   Shield: 65
   ActionUnits: 15
+  MeleeAttackCost: 5
 --- !u!114 &114585528430528530
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -379,6 +384,7 @@ MonoBehaviour:
   MaxDamage: 6
   Shield: 65
   ActionUnits: 2
+  MeleeAttackCost: 30
 --- !u!212 &212442535582533952
 SpriteRenderer:
   m_ObjectHideFlags: 1
