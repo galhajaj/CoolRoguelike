@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 public struct Position
@@ -27,6 +28,11 @@ public struct Position
     public override int GetHashCode()
     {
         return X * 1000 + Y;
+    }
+
+    public int DistanceTo(Position p)
+    {
+        return (int)Math.Sqrt(Math.Pow(this.X - p.X, 2) + Math.Pow(this.Y - p.Y, 2));
     }
 
     public Position Up { get { return new Position(X, Y - 1); } }

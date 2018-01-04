@@ -45,10 +45,19 @@ public class Party : Singleton<Party>
         return null;
     }
     // ====================================================================================================== //
-    public Creature GetRandomMember()
+    public Creature GetRandomLiveMember()
     {
-        int rand = Random.Range(0, _members.Count);
-        return _members[rand];
+        // get list of all live members
+        List<Creature> liveMembers = new List<Creature>();
+        foreach (Creature member in _members)
+            if (member.IsAlive)
+                liveMembers.Add(member);
+
+        if (liveMembers.Count == 0)
+            return null;
+
+        int rand = Random.Range(0, liveMembers.Count);
+        return liveMembers[rand];
     }
     // ====================================================================================================== //
     public bool IsOutOfActionUnits()

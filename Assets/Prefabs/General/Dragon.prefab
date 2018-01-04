@@ -54,11 +54,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Dragon
-  Life: 10
-  Mana: 6
+  _dungeonObject: {fileID: 114547720117384676}
+  _maxHearts: 7
+  _hearts: 5
+  MaxHitPoints: 0
+  HitPoints: 0
+  _maxMana: 3
+  _mana: 1
   MinDamage: 1
   MaxDamage: 6
   Shield: 85
+  _actionUnits: 0
+  MeleeAttackCost: 0
 --- !u!114 &114547720117384676
 MonoBehaviour:
   m_ObjectHideFlags: 1

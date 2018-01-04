@@ -26,6 +26,7 @@ public class Portrait : MonoBehaviour
 
     private void creature_Event_StatsUpdated()
     {
+        Debug.Log("event triggered at " + _creature.name);
         _lifeUnitsGrid.Rebuild(1, _creature.MaxHearts);
         _spellUnitsGrid.Rebuild(1, _creature.MaxMana);
         _actionUnitsGrid.Rebuild(ConstsManager.Instance.MAX_ACTION_UNITS);

@@ -234,16 +234,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Yoko
-  MaxHearts: 10
-  Hearts: 8
+  _dungeonObject: {fileID: 0}
+  _maxHearts: 7
+  _hearts: 5
   MaxHitPoints: 3
   HitPoints: 1
-  MaxMana: 8
-  Mana: 7
+  _maxMana: 3
+  _mana: 1
   MinDamage: 1
   MaxDamage: 10
   Shield: 90
-  ActionUnits: 17
+  _actionUnits: 20
   MeleeAttackCost: 20
 --- !u!114 &114147248417637186
 MonoBehaviour:
@@ -257,16 +258,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Paul
-  MaxHearts: 6
-  Hearts: 1
+  _dungeonObject: {fileID: 0}
+  _maxHearts: 7
+  _hearts: 5
   MaxHitPoints: 3
   HitPoints: 2
-  MaxMana: 2
-  Mana: 2
+  _maxMana: 3
+  _mana: 1
   MinDamage: 2
   MaxDamage: 8
   Shield: 80
-  ActionUnits: 10
+  _actionUnits: 20
   MeleeAttackCost: 10
 --- !u!114 &114185464448636362
 MonoBehaviour:
@@ -280,16 +282,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Yoko
-  MaxHearts: 6
-  Hearts: 5
+  _dungeonObject: {fileID: 0}
+  _maxHearts: 7
+  _hearts: 5
   MaxHitPoints: 4
   HitPoints: 4
-  MaxMana: 8
-  Mana: 5
+  _maxMana: 3
+  _mana: 1
   MinDamage: 1
   MaxDamage: 10
   Shield: 90
-  ActionUnits: 11
+  _actionUnits: 20
   MeleeAttackCost: 21
 --- !u!114 &114320689760500208
 MonoBehaviour:
@@ -303,16 +306,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Ringo
-  MaxHearts: 7
-  Hearts: 7
+  _dungeonObject: {fileID: 0}
+  _maxHearts: 7
+  _hearts: 5
   MaxHitPoints: 14
   HitPoints: 14
-  MaxMana: 6
-  Mana: 2
+  _maxMana: 3
+  _mana: 1
   MinDamage: 1
   MaxDamage: 2
   Shield: 35
-  ActionUnits: 12
+  _actionUnits: 20
   MeleeAttackCost: 7
 --- !u!114 &114466778984694956
 MonoBehaviour:
@@ -339,16 +343,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: John
-  MaxHearts: 4
-  Hearts: 3
+  _dungeonObject: {fileID: 0}
+  _maxHearts: 7
+  _hearts: 5
   MaxHitPoints: 12
   HitPoints: 3
-  MaxMana: 3
-  Mana: 2
+  _maxMana: 3
+  _mana: 1
   MinDamage: 1
   MaxDamage: 4
   Shield: 65
-  ActionUnits: 15
+  _actionUnits: 20
   MeleeAttackCost: 5
 --- !u!114 &114585528430528530
 MonoBehaviour:
@@ -374,16 +379,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: George
-  MaxHearts: 5
-  Hearts: 2
+  _dungeonObject: {fileID: 0}
+  _maxHearts: 7
+  _hearts: 5
   MaxHitPoints: 5
   HitPoints: 5
-  MaxMana: 4
-  Mana: 3
+  _maxMana: 3
+  _mana: 1
   MinDamage: 1
   MaxDamage: 6
   Shield: 65
-  ActionUnits: 2
+  _actionUnits: 20
   MeleeAttackCost: 30
 --- !u!212 &212442535582533952
 SpriteRenderer:

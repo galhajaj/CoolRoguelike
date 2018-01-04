@@ -56,6 +56,10 @@ public class DungeonTile : GridElement
     // ======================================================================================================================================== //
     public Creature GetContainedCreature()
     {
+        // not include the party
+        if (this.Position == Party.Instance.Position)
+            return null;
+
         return this.transform.GetComponentInChildren<Creature>();
     }
     // ======================================================================================================================================== //

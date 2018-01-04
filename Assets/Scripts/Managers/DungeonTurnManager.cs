@@ -32,9 +32,26 @@ public class DungeonTurnManager : MonoBehaviour
 
         Debug.Log("Creatures turn");
 
-        // imp.
-        // finish all the creatures action units
+        foreach(Creature creature in Dungeon.Instance.GetCreatures())
+        {
+            // if close to party - melee
+            if (creature.Position.DistanceTo(Party.Instance.Position) == 1)
+            {
+                Creature randomPartyMember = Party.Instance.GetRandomLiveMember();
+                if (randomPartyMember != null)
+                    creature.MeleeAttack(randomPartyMember);
+            }
+            else // otherwise, move toward party
+            {
+                DungeonTile nextTile = Dungeon.Instance.GetNextStupidTile(creature.Position, Party.Instance.Position);
+                if (nextTile != null)
+                {
+                    move(creature.DungeonObject, nextTile);
+                }
+            }
+        }
 
+        // end of creatures turn...
         _creaturesTurn = false;
     }
     // ====================================================================================================== //
@@ -52,16 +69,12 @@ public class DungeonTurnManager : MonoBehaviour
         checkWaitKey();
         checkUsePortalKey();
         checkPickupKey();
-
-        // if all action units of all party has finished - then move to creatures turn
-        if (Party.Instance.IsOutOfActionUnits())
-            finishPlayerTurn();
     }
     // ====================================================================================================== //
     private void finishPlayerTurn()
     {
+        Debug.Log("finish player turn");
         _creaturesTurn = true;
-        Party.Instance.FillActionUnitsForNextTurn();
     }
     // ====================================================================================================== //
     // can be move/ attack/ open door/ open chest...
@@ -97,11 +110,18 @@ public class DungeonTurnManager : MonoBehaviour
         // choose action by the tile content
         if (targetCreature != null)
         {
-            meleeAttack(activePartyMember, targetCreature);
+            activePartyMember.MeleeAttack(targetCreature, true);
+            // if all action units of all party has finished - then move to creatures turn
+            if (Party.Instance.IsOutOfActionUnits())
+            {
+                finishPlayerTurn();
+                Party.Instance.FillActionUnitsForNextTurn();
+            }
         }
         else if (!targetTile.IsBlockPath)
         {
             move(Party.Instance.DungeonObject, targetTile);
+            finishPlayerTurn();
         }
     }
     // ====================================================================================================== //
@@ -141,14 +161,6 @@ public class DungeonTurnManager : MonoBehaviour
     {
         Debug.Log(obj.name + " move");
         Dungeon.Instance.PutDungeonObjectInTile(obj, tile);
-        finishPlayerTurn();
-    }
-    // ====================================================================================================== //
-    private void meleeAttack(Creature attacker, Creature defender)
-    {
-        Debug.Log(attacker.name + " attack " + defender.name);
-        // imp
-        Party.Instance.GetActiveMember().PayMeleeAttackCost();
     }
     // ====================================================================================================== //
     private void rangedAttack(Creature attacker, Creature defender, DungeonTile targetTile)
