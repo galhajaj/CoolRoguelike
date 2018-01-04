@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DungeonInputManager : MonoBehaviour
+public class DungeonTurnManager : MonoBehaviour
 {
     [SerializeField]
     private float _moveInterval = 0.75F;
@@ -67,51 +67,29 @@ public class DungeonInputManager : MonoBehaviour
     // can be move/ attack/ open door/ open chest...
     private void checkDirectionKeys()
     {
-        int dx = 0;
-        int dy = 0;
+        Position targetPosition = Party.Instance.Position;
 
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Keypad8) || Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            dy--;
-        }
+            targetPosition = Party.Instance.Position.Up;
         else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            dy++;
-        }
+            targetPosition = Party.Instance.Position.Down;
         else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            dx--;
-        }
+            targetPosition = Party.Instance.Position.Left;
         else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.Keypad6) || Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            dx++;
-        }
+            targetPosition = Party.Instance.Position.Right;
         else if (Input.GetKeyDown(KeyCode.Keypad7))
-        {
-            dy--;
-            dx--;
-        }
+            targetPosition = Party.Instance.Position.UpLeft;
         else if (Input.GetKeyDown(KeyCode.Keypad9))
-        {
-            dy--;
-            dx++;
-        }
+            targetPosition = Party.Instance.Position.UpRight;
         else if (Input.GetKeyDown(KeyCode.Keypad1))
-        {
-            dy++;
-            dx--;
-        }
+            targetPosition = Party.Instance.Position.DownLeft;
         else if (Input.GetKeyDown(KeyCode.Keypad3))
-        {
-            dy++;
-            dx++;
-        }
+            targetPosition = Party.Instance.Position.DownRight;
 
         // return if no change in position
-        if (dx == 0 && dy == 0)
+        if (targetPosition == Party.Instance.Position)
             return;
 
-        Position targetPosition = new Position(Party.Instance.Position.X + dx, Party.Instance.Position.Y + dy);
         DungeonTile targetTile = Dungeon.Instance.GetTile(targetPosition);
         Creature targetCreature = targetTile.GetContainedCreature();
         Creature activePartyMember = Party.Instance.GetActiveMember();
