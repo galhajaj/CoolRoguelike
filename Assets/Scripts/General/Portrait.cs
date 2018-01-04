@@ -16,14 +16,19 @@ public class Portrait : MonoBehaviour
 
     void Start ()
     {
-        _actionUnitsGrid.Rebuild(ConstsManager.Instance.MAX_ACTION_UNITS);
+        _creature.Event_StatsUpdated += creature_Event_StatsUpdated;
     }
 
-    void Update ()
+    void Update()
     {
-        // TODO: improve performance
+
+    }
+
+    private void creature_Event_StatsUpdated()
+    {
         _lifeUnitsGrid.Rebuild(1, _creature.MaxHearts);
         _spellUnitsGrid.Rebuild(1, _creature.MaxMana);
+        _actionUnitsGrid.Rebuild(ConstsManager.Instance.MAX_ACTION_UNITS);
 
         updateUnitsColor(_lifeUnitsGrid, _creature.Hearts, _creature.MaxHearts);
         updateUnitsColor(_spellUnitsGrid, _creature.Mana, _creature.MaxMana);

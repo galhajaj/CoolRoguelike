@@ -18,6 +18,16 @@ public struct Position
     {
         return !(p1.X == p2.X && p1.Y == p2.Y);
     }
+    public override bool Equals(object p)
+    {
+        if (p == null || !(p is Position))
+            return false;
+        return (X == ((Position)p).X && Y == ((Position)p).Y);
+    }
+    public override int GetHashCode()
+    {
+        return X * 1000 + Y;
+    }
 
     public Position Up { get { return new Position(X, Y - 1); } }
     public Position Down { get { return new Position(X, Y + 1); } }

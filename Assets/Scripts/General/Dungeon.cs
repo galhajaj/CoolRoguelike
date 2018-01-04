@@ -41,7 +41,7 @@ public class Dungeon : Singleton<Dungeon>
             putDungeonObject(13, 13, ResourcesManager.Instance.DragonPrefab);
 
 
-            putPortal(12, 5, "Village");
+            putPortal(0, 0, "Village");
             putPortal(15, 15, "Ancient_Castle_Level_2");
         }
         else if (dungeonName == "Ancient_Castle_Level_2")
