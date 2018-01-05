@@ -110,7 +110,7 @@ public class DungeonTurnManager : MonoBehaviour
         // choose action by the tile content
         if (targetCreature != null)
         {
-            activePartyMember.MeleeAttack(targetCreature, true);
+            activePartyMember.MeleeAttack(targetCreature);
             // if all action units of all party has finished - then move to creatures turn
             if (Party.Instance.IsOutOfActionUnits())
             {

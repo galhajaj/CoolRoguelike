@@ -68,11 +68,10 @@ public class Creature : MonoBehaviour
     public int MeleeAttackCost;
 
     // =================================================================================== //
-    public void MeleeAttack(Creature target, bool isPartyMember = false)
+    public void MeleeAttack(Creature target)
     {
         // pay action units
-        //if (isPartyMember)
-            ActionUnits -= MeleeAttackCost;
+        this.ActionUnits -= MeleeAttackCost;
         // check if hit
         int rand = UnityEngine.Random.Range(0, 101);
         if (rand <= target.Shield)
@@ -85,4 +84,14 @@ public class Creature : MonoBehaviour
         Debug.Log(this.name + " hit " + target.name);
     }
     // =================================================================================== //
+    void Awake()
+    {
+        Event_StatsUpdated += preventBug;
+    }
+    private void preventBug()
+    {
+         // doing nothing but prevent a bug... need to understand that/ ask in stack overflow...
+    }
+    // =================================================================================== //
+
 }
