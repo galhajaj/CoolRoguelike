@@ -71,7 +71,7 @@ public class Creature : MonoBehaviour
     public void MeleeAttack(Creature target, bool isPartyMember = false)
     {
         // pay action units
-        if (isPartyMember)
+        //if (isPartyMember)
             ActionUnits -= MeleeAttackCost;
         // check if hit
         int rand = UnityEngine.Random.Range(0, 101);

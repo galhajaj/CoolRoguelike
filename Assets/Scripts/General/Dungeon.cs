@@ -179,47 +179,6 @@ public class Dungeon : Singleton<Dungeon>
         helper4GetNextStupidTile(from.UpLeft, to, ref nextPos, ref minDistance);
         helper4GetNextStupidTile(from.DownLeft, to, ref nextPos, ref minDistance);
         helper4GetNextStupidTile(from.DownRight, to, ref nextPos, ref minDistance);
-        /*if (from.Up.DistanceTo(to) < minDistance && !GetTile(from.Up).IsBlockPath)
-        {
-            nextPos = from.Up;
-            minDistance = from.Up.DistanceTo(to);
-        }
-        if (from.Down.DistanceTo(to) < minDistance && !GetTile(from.Down).IsBlockPath)
-        {
-            nextPos = from.Down;
-            minDistance = from.Down.DistanceTo(to);
-        }
-        if (from.Right.DistanceTo(to) < minDistance && !GetTile(from.Right).IsBlockPath)
-        {
-            nextPos = from.Right;
-            minDistance = from.Right.DistanceTo(to);
-        }
-        if (from.Left.DistanceTo(to) < minDistance && !GetTile(from.Left).IsBlockPath)
-        {
-            nextPos = from.Left;
-            minDistance = from.Left.DistanceTo(to);
-        }
-
-        if (from.UpRight.DistanceTo(to) < minDistance && !GetTile(from.UpRight).IsBlockPath)
-        {
-            nextPos = from.UpRight;
-            minDistance = from.UpRight.DistanceTo(to);
-        }
-        if (from.DownRight.DistanceTo(to) < minDistance && !GetTile(from.DownRight).IsBlockPath)
-        {
-            nextPos = from.DownRight;
-            minDistance = from.DownRight.DistanceTo(to);
-        }
-        if (from.UpLeft.DistanceTo(to) < minDistance && !GetTile(from.UpLeft).IsBlockPath)
-        {
-            nextPos = from.UpLeft;
-            minDistance = from.UpLeft.DistanceTo(to);
-        }
-        if (from.DownLeft.DistanceTo(to) < minDistance && !GetTile(from.DownLeft).IsBlockPath)
-        {
-            nextPos = from.DownLeft;
-            minDistance = from.DownLeft.DistanceTo(to);
-        }*/
 
         if (nextPos.X == -1)
             return null;

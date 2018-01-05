@@ -31,7 +31,7 @@ public class Grid : MonoBehaviour
 
     void Start ()
     {
-        generateTiles();
+        GenerateTiles(_sizeX, _sizeY);
     }
 	
 	void Update ()
@@ -39,8 +39,14 @@ public class Grid : MonoBehaviour
 		
 	}
 
-    private void generateTiles()
+    public void GenerateTiles(int sizeX, int sizeY = 1)
     {
+        // make sure all elements deleted
+        deleteAllElements();
+
+        _sizeX = sizeX;
+        _sizeY = sizeY;
+
         float boardOriginX = this.transform.position.x;
         float boardOriginY = this.transform.position.y;
         float elementWidth = _elementPrefab.GetComponent<SpriteRenderer>().bounds.size.x;
@@ -91,24 +97,13 @@ public class Grid : MonoBehaviour
         return GetElement(pos.X, pos.Y);
     }
 
-    public void Rebuild(int sizeX, int sizeY = 1)
-    {
-        deleteAllElements();
-        _sizeX = sizeX;
-        _sizeY = sizeY;
-        generateTiles();
-    }
-
     private void deleteAllElements()
     {
-        for (int x = _sizeX - 1; x >= 0; --x)
+        foreach (List<GridElement> list in _elements)
         {
-            for (int y = _sizeY - 1; y >= 0; --y)
-            {
-                Destroy(_elements[x][y].gameObject);
-            }
-
-            _elements[x].Clear();
+            foreach (GridElement element in list)
+                Destroy(element.gameObject);
+            list.Clear();
         }
         _elements.Clear();
     }
