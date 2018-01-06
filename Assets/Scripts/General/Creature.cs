@@ -72,6 +72,19 @@ public class Creature : MonoBehaviour
 
     public int MeleeAttackCost;
 
+    // items
+    public Item Helmet;
+    public Item Mail;
+    public Item Armor;
+    public Item Cape;
+    public Item RightHand;
+    public Item LeftHand;
+    public Item Boots;
+    public Item Ranged;
+    public Item Ammo; // for ranged weapon...
+    public Item Necklace;
+    public List<Item> Rings = new List<Item>(); // for rings...
+
     // =================================================================================== //
     public void MeleeAttack(Creature target)
     {

@@ -31,7 +31,7 @@ public class Grid : MonoBehaviour
 
     void Start ()
     {
-        GenerateTiles(_sizeX, _sizeY);
+        generateGrid();
     }
 	
 	void Update ()
@@ -39,13 +39,10 @@ public class Grid : MonoBehaviour
 		
 	}
 
-    public void GenerateTiles(int sizeX, int sizeY = 1)
+    private void generateGrid()
     {
         // make sure all elements deleted
         deleteAllElements();
-
-        _sizeX = sizeX;
-        _sizeY = sizeY;
 
         float boardOriginX = this.transform.position.x;
         float boardOriginY = this.transform.position.y;
@@ -74,6 +71,13 @@ public class Grid : MonoBehaviour
                 _elements[x].Add(elementScript);
             }
         }
+    }
+
+    public void Rebuild(int sizeX, int sizeY = 1)
+    {
+        _sizeX = sizeX;
+        _sizeY = sizeY;
+        generateGrid();
     }
 
     private List<GridElement> getElementList()
