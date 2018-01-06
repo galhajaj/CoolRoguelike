@@ -19,6 +19,12 @@ public class Portrait : MonoBehaviour
         _creature.Event_StatsUpdated += creature_Event_StatsUpdated;
 
         // one time stats update
+        StartCoroutine(StatsUpdateCoroutine());
+    }
+
+    private IEnumerator StatsUpdateCoroutine()
+    {
+        yield return new WaitForSeconds(0.5F);
         creature_Event_StatsUpdated();
     }
 
