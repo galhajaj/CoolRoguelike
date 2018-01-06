@@ -146,7 +146,7 @@ public class Dungeon : Singleton<Dungeon>
         // if item, set sprite to loot icon
         Item item = obj.GetComponent<Item>();
         if (item != null)
-            item.SetSpriteToDungeonIcon();
+            item.State = ItemState.GROUND;
 
         return dungeonObject;
     }

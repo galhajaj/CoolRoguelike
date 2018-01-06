@@ -2,22 +2,54 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ItemState
+{
+    GROUND,
+    INVENTORY,
+    EQUIPPED
+}
+
 public class Item : MonoBehaviour
 {
+    private ItemState _state = ItemState.GROUND;
+    public ItemState State
+    {
+        get { return _state; }
+        set
+        {
+            _state = value;
+            setItemSprite();
+        }
+    }
+
+    private SpriteRenderer _spriteRenderer;
     private Sprite _originalSprite;
 
     void Awake()
     {
-        _originalSprite = this.GetComponent<SpriteRenderer>().sprite;
+        _spriteRenderer = this.GetComponent<SpriteRenderer>();
+        _originalSprite = _spriteRenderer.sprite;
     }
 
-    public void SetSpriteToDungeonIcon()
+    private void setItemSprite()
     {
-        this.GetComponent<SpriteRenderer>().sprite = ResourcesManager.Instance.LootOnGroundSprite;
+        switch (_state)
+        {
+            case ItemState.GROUND:
+                _spriteRenderer.sprite = ResourcesManager.Instance.LootOnGroundSprite;
+                break;
+            case ItemState.INVENTORY:
+                _spriteRenderer.sprite = _originalSprite;
+                break;
+            case ItemState.EQUIPPED:
+                break;
+            default:
+                break;
+        }
     }
 
-    public void SetSpriteToOriginal()
-    {
-        this.GetComponent<SpriteRenderer>().sprite = _originalSprite;
-    }
+    // stats to add when wearing
+    public int MinDamage;
+    public int MaxDamage;
+    public int Armor;
 }

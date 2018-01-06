@@ -10,7 +10,7 @@ public class Inventory : Singleton<Inventory>
         {
             item.transform.position = this.transform.position;
             item.transform.parent = this.transform;
-            item.SetSpriteToOriginal();
+            item.State = ItemState.INVENTORY;
         }
     }
 }

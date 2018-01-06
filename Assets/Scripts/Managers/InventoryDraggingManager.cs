@@ -5,7 +5,7 @@ using UnityEngine;
 public class InventoryDraggingManager : MonoBehaviour
 {
     private GameObject _draggedObject = null;
-    //private GameObject _originSocketObject = null;
+    private Vector2 _originalPosition = Vector2.zero;
 
     void Start ()
     {
@@ -33,7 +33,7 @@ public class InventoryDraggingManager : MonoBehaviour
             {
                 _draggedObject = hit.collider.gameObject;
                 setItemSortingLayer(true);
-                //_originSocketObject = _draggedObject.transform.parent.gameObject;
+                _originalPosition = _draggedObject.transform.position;
                 //Inventory.Instance.PutOffChip(_draggedObject);
 
                 // save to file
@@ -46,69 +46,24 @@ public class InventoryDraggingManager : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(0))
         {
-            setItemSortingLayer(false);
-            _draggedObject = null;
-
-            /*if (_draggedObject != null && _originSocketObject != null)
+            if (_draggedObject != null)
             {
-                // target socket raycast
-                LayerMask layerMask = (1 << LayerMask.NameToLayer("SocketsLayer"));
+                LayerMask layerMask = (1 << LayerMask.NameToLayer("Miniature"));
                 RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0.0F, layerMask);
                 Collider2D targetSocketCollider = hit.collider;
 
-                // check if dragged chip allowed in the target socket & already contained chip can switch places with it
-                bool isDraggedChipAllowedInTargetSocket = true;
-                if (targetSocketCollider != null)
+                if (targetSocketCollider != null) // up on miniature
                 {
-                    // allow by type
-                    Chip.ChipType draggedChipType = _draggedObject.GetComponent<Chip>().Type;
-                    string targetSocketTag = targetSocketCollider.gameObject.tag;
-
-                    if (draggedChipType == Chip.ChipType.TURRET && targetSocketTag == "SkillSocketTag")
-                        isDraggedChipAllowedInTargetSocket = false;
-                    if (draggedChipType != Chip.ChipType.TURRET && targetSocketTag == "TurretSocketTag")
-                        isDraggedChipAllowedInTargetSocket = false;
-
-                    // allow by contained chip can switch with it (for example, dragged socketed turret can't switch with 
-                    // inventory skill because it'll couse the skill to replace the turret...)
-                    if (targetSocketCollider.transform.childCount > 0)
-                    {
-                        Chip.ChipType containedChipType = targetSocketCollider.transform.GetChild(0).GetComponent<Chip>().Type;
-                        string originSocketTag = _originSocketObject.tag;
-
-                        if (containedChipType == Chip.ChipType.TURRET && originSocketTag == "SkillSocketTag")
-                            isDraggedChipAllowedInTargetSocket = false;
-                        if (containedChipType != Chip.ChipType.TURRET && originSocketTag == "TurretSocketTag")
-                            isDraggedChipAllowedInTargetSocket = false;
-                    }
+                    _draggedObject.transform.parent = MiniatureManager.Instance.transform;
                 }
-
-                if (targetSocketCollider != null && isDraggedChipAllowedInTargetSocket)
+                else // up on somewhere else
                 {
-                    // if target socket contains chip, move it to the origin socket of dragged chip (switch places)
-                    if (targetSocketCollider.transform.childCount > 0)
-                    {
-                        GameObject containedChip = targetSocketCollider.transform.GetChild(0).gameObject;
-                        Inventory.Instance.PutOffChip(containedChip);
-                        Inventory.Instance.PutOnChip(containedChip, _originSocketObject.transform);
-                    }
-
-                    // place chip in target socket
-                    Inventory.Instance.PutOnChip(_draggedObject, targetSocketCollider.transform);
-
-                    // save to file
-                    DataManager.Instance.SaveDataToFile();
-                }
-                else // if leave drag not on socket - back to origin socket
-                {
-                    _draggedObject.transform.position = _originSocketObject.transform.position;
-                    Inventory.Instance.PutOnChip(_draggedObject, _originSocketObject.transform);
+                    _draggedObject.transform.parent = Inventory.Instance.transform;
                 }
 
                 setItemSortingLayer(false);
                 _draggedObject = null;
-                //_originSocketObject = null;
-            }*/
+            }
         }
     }
 
