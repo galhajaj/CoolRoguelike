@@ -21,14 +21,16 @@ public class Creature : MonoBehaviour
     public int MaxHearts
     {
         get { return _maxHearts; }
-        set { _maxHearts = value; Debug.Log("max hearts set " + this.name); Event_StatsUpdated(); }
+        set { _maxHearts = value;
+            if (Event_StatsUpdated != null) Event_StatsUpdated(); }
     }
     [SerializeField]
     private int _hearts = 5;
     public int Hearts
     {
         get { return _hearts; }
-        set { _hearts = value; Debug.Log("hearts set " + this.name); Event_StatsUpdated(); }
+        set { _hearts = value;
+            if (Event_StatsUpdated != null) Event_StatsUpdated(); }
     }
 
     public bool IsAlive { get { return Hearts > 0; } }
@@ -42,14 +44,16 @@ public class Creature : MonoBehaviour
     public int MaxMana
     {
         get { return _maxMana; }
-        set { _maxMana = value; Debug.Log("max mana set " + this.name); Event_StatsUpdated(); }
+        set { _maxMana = value;
+            if (Event_StatsUpdated != null) Event_StatsUpdated(); }
     }
     [SerializeField]
     private int _mana = 1;
     public int Mana
     {
         get { return _mana; }
-        set { _mana = value; Debug.Log("mana set " + this.name); Event_StatsUpdated(); }
+        set { _mana = value;
+            if (Event_StatsUpdated != null) Event_StatsUpdated(); }
     }
 
     public int MinDamage;
@@ -62,7 +66,8 @@ public class Creature : MonoBehaviour
     public int ActionUnits
     {
         get { return _actionUnits; }
-        set { _actionUnits = value; Debug.Log("action units set " + this.name); Event_StatsUpdated(); }
+        set { _actionUnits = value;
+            if (Event_StatsUpdated != null) Event_StatsUpdated(); }
     }
 
     public int MeleeAttackCost;
@@ -84,14 +89,4 @@ public class Creature : MonoBehaviour
         Debug.Log(this.name + " hit " + target.name);
     }
     // =================================================================================== //
-    void Awake()
-    {
-        Event_StatsUpdated += preventBug;
-    }
-    private void preventBug()
-    {
-         // doing nothing but prevent a bug... need to understand that/ ask in stack overflow...
-    }
-    // =================================================================================== //
-
 }
