@@ -34,7 +34,13 @@ public class InventoryDraggingManager : MonoBehaviour
                 _draggedObject = hit.collider.gameObject;
                 setItemSortingLayer(true);
                 _originalPosition = _draggedObject.transform.position;
-                //Inventory.Instance.PutOffChip(_draggedObject);
+
+                Item item = _draggedObject.GetComponent<Item>();
+                if (item.State == ItemState.EQUIPPED)
+                {
+                    // remove item if equipped
+                    Party.Instance.GetActiveMember().RemoveItem(item);
+                }
 
                 // save to file
                 //DataManager.Instance.SaveDataToFile();
@@ -52,12 +58,17 @@ public class InventoryDraggingManager : MonoBehaviour
                 RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0.0F, layerMask);
                 Collider2D targetSocketCollider = hit.collider;
 
-                if (targetSocketCollider != null) // up on miniature
+                // release on miniature
+                if (targetSocketCollider != null) 
                 {
-                    _draggedObject.transform.parent = MiniatureManager.Instance.transform;
+                    // equip item
+                    Item item = _draggedObject.GetComponent<Item>();
+                    Party.Instance.GetActiveMember().EquipItem(item);
                 }
-                else // up on somewhere else
+                // release on somewhere else
+                else
                 {
+                    // change parent to inventory
                     _draggedObject.transform.parent = Inventory.Instance.transform;
                 }
 

@@ -8,9 +8,14 @@ public class Inventory : Singleton<Inventory>
     {
         foreach (Item item in items)
         {
-            item.transform.position = this.transform.position;
-            item.transform.parent = this.transform;
-            item.State = ItemState.INVENTORY;
+            AddItem(item);
         }
+    }
+
+    public void AddItem(Item item)
+    {
+        item.transform.position = this.transform.position;
+        item.transform.parent = this.transform;
+        item.State = ItemState.INVENTORY;
     }
 }

@@ -72,18 +72,7 @@ public class Creature : MonoBehaviour
 
     public int MeleeAttackCost;
 
-    // items
-    public Item Helmet;
-    public Item Mail;
-    public Item Armor;
-    public Item Cape;
-    public Item RightHand;
-    public Item LeftHand;
-    public Item Boots;
-    public Item Ranged;
-    public Item Ammo; // for ranged weapon...
-    public Item Necklace;
-    public List<Item> Rings = new List<Item>(); // for rings...
+    private Dictionary<ItemType, Item> _equippedItems = new Dictionary<ItemType, Item>();
 
     // =================================================================================== //
     public void MeleeAttack(Creature target)
@@ -100,6 +89,36 @@ public class Creature : MonoBehaviour
         // hit
         target.Hearts--;
         Debug.Log(this.name + " hit " + target.name);
+    }
+    // =================================================================================== //
+    public void EquipItem(Item item)
+    {
+        // remove if item type exists
+        if (_equippedItems.ContainsKey(item.Type))
+            RemoveItem(_equippedItems[item.Type]);
+
+        // put in miniature
+        MiniatureManager.Instance.AddItem(item);
+
+        // add it
+        _equippedItems[item.Type] = item;
+
+        // add stats
+        this.MaxHearts += item.MaxHearts;
+        this.MaxMana += item.MaxMana;
+    }
+    // =================================================================================== //
+    public void RemoveItem(Item item)
+    {
+        // remove from map
+        _equippedItems.Remove(item.Type);
+
+        // put in inventory
+        Inventory.Instance.AddItem(item);
+
+        // remove stats
+        this.MaxHearts -= item.MaxHearts;
+        this.MaxMana -= item.MaxMana;
     }
     // =================================================================================== //
 }

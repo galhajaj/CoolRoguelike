@@ -9,8 +9,28 @@ public enum ItemState
     EQUIPPED
 }
 
+public enum ItemType
+{
+    HELMET,
+    MAIL,
+    ARMOR,
+    CLOCK,
+    WEAPON,
+    SHIELD,
+    BOOTS,
+    RANGED_WEAPON,
+    QUIVER,
+    NECKLACE,
+    RING
+}
+
 public class Item : MonoBehaviour
 {
+    [SerializeField]
+    private ItemType _type = ItemType.WEAPON;
+    public ItemType Type { get { return _type; } }
+
+    [SerializeField]
     private ItemState _state = ItemState.GROUND;
     public ItemState State
     {
@@ -49,6 +69,8 @@ public class Item : MonoBehaviour
     }
 
     // stats to add when wearing
+    public int MaxHearts;
+    public int MaxMana;
     public int MinDamage;
     public int MaxDamage;
     public int Armor;

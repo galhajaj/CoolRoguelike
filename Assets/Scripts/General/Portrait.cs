@@ -18,7 +18,7 @@ public class Portrait : MonoBehaviour
     {
         _creature.Event_StatsUpdated += creature_Event_StatsUpdated;
 
-        // one time stats update
+        // one time stats update - TODO: cancel this ugly coroutine...
         StartCoroutine(StatsUpdateCoroutine());
     }
 
