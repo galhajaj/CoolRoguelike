@@ -948,6 +948,48 @@ Transform:
   m_PrefabParentObject: {fileID: 4909436175983342, guid: fc02e11ad5f8bdd48a3f873b233626f2,
     type: 2}
   m_PrefabInternal: {fileID: 963953437}
+--- !u!1001 &1497432133
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1570744391}
+    m_Modifications:
+    - target: {fileID: 4737942599278790, guid: 7b08ce96a461f9344b98d33cb1002453, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 73.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737942599278790, guid: 7b08ce96a461f9344b98d33cb1002453, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 54.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737942599278790, guid: 7b08ce96a461f9344b98d33cb1002453, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 2.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737942599278790, guid: 7b08ce96a461f9344b98d33cb1002453, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737942599278790, guid: 7b08ce96a461f9344b98d33cb1002453, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737942599278790, guid: 7b08ce96a461f9344b98d33cb1002453, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737942599278790, guid: 7b08ce96a461f9344b98d33cb1002453, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737942599278790, guid: 7b08ce96a461f9344b98d33cb1002453, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 7b08ce96a461f9344b98d33cb1002453, type: 2}
+  m_IsPrefabParent: 0
 --- !u!4 &1570744391 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4399569410712142, guid: ed21a6901e07bbe4abaede46af334354,

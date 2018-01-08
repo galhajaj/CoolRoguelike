@@ -24,7 +24,7 @@ public class SpritePostProcessor : AssetPostprocessor
         //ttt.overridden = true;
         ttt.format = TextureImporterFormat.RGBA32;
         ttt.compressionQuality = 0;
-        ttt.maxTextureSize = 32;
+        ttt.maxTextureSize = 2048;
         ttt.textureCompression = TextureImporterCompression.Uncompressed;
         ti.SetPlatformTextureSettings(ttt);
 
