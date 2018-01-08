@@ -69,6 +69,7 @@ public class Creature : MonoBehaviour
     public int MeleeAttackCost;
 
     private Dictionary<ItemType, Item> _equippedItems = new Dictionary<ItemType, Item>();
+    public Dictionary<ItemType, Item> EquippedItems { get { return _equippedItems; } }
 
     // =================================================================================== //
     public void MeleeAttack(Creature target)
