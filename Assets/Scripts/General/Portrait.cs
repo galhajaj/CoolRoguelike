@@ -13,48 +13,59 @@ public class Portrait : MonoBehaviour
     private Grid _spellUnitsGrid = null;
     [SerializeField]
     private Grid _actionUnitsGrid = null;
+    [SerializeField]
+    private SpriteRenderer _frameRenderer = null;
 
     void Start ()
     {
-        _creature.Event_StatsUpdated += creature_Event_StatsUpdated;
 
-        // one time stats update - TODO: cancel this ugly coroutine...
-        StartCoroutine(StatsUpdateCoroutine());
-    }
-
-    private IEnumerator StatsUpdateCoroutine()
-    {
-        yield return new WaitForSeconds(0.5F);
-        creature_Event_StatsUpdated();
     }
 
     void Update()
     {
+        // frame visibility
+        bool isSelectedMember = (Party.Instance.SelectedMember == _creature);
+        _frameRenderer.enabled = isSelectedMember;
 
+        // units visibility & color
+        updateUnits(_lifeUnitsGrid, _creature.Hearts, _creature.MaxHearts);
+        updateUnits(_spellUnitsGrid, _creature.Mana, _creature.MaxMana);
+        updateUnits(_actionUnitsGrid, _creature.ActionUnits, ConstsManager.Instance.MAX_ACTION_UNITS);
     }
 
-    private void creature_Event_StatsUpdated()
-    {
-        Debug.Log("event triggered at " + _creature.name);
-        _lifeUnitsGrid.Rebuild(1, _creature.MaxHearts);
-        _spellUnitsGrid.Rebuild(1, _creature.MaxMana);
-        _actionUnitsGrid.Rebuild(ConstsManager.Instance.MAX_ACTION_UNITS);
-
-        updateUnitsColor(_lifeUnitsGrid, _creature.Hearts, _creature.MaxHearts);
-        updateUnitsColor(_spellUnitsGrid, _creature.Mana, _creature.MaxMana);
-        updateUnitsColor(_actionUnitsGrid, _creature.ActionUnits, ConstsManager.Instance.MAX_ACTION_UNITS);
-    }
-
-    private void updateUnitsColor(Grid grid, int number, int maxNumber)
+    private void updateUnits(Grid grid, int number, int maxNumber)
     {
         List<GridElement> elements = grid.Elements;
         for (int i = 0; i < elements.Count; ++i)
         {
-            elements[i].GetComponent<SpriteRenderer>().color = Color.white;
+            SpriteRenderer currentSpriteRenderer = elements[i].GetComponent<SpriteRenderer>();
+
+            // visibility of over the max
+            if (i >= maxNumber)
+            {
+                currentSpriteRenderer.enabled = false;
+                continue;
+            }
+            else
+            {
+                currentSpriteRenderer.enabled = true;
+            }
+
+            // black over the number
             if (i >= number)
             {
-                elements[i].GetComponent<SpriteRenderer>().color = Color.black;
+                currentSpriteRenderer.color = Color.black;
+                continue;
             }
+
+            // the rest are white
+            currentSpriteRenderer.color = Color.white;
         }
+    }
+
+    private void OnMouseDown()
+    {
+        if (_creature.IsActive)
+            Party.Instance.SelectedMember = _creature;
     }
 }

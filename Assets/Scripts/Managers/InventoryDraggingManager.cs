@@ -39,7 +39,7 @@ public class InventoryDraggingManager : MonoBehaviour
                 if (item.State == ItemState.EQUIPPED)
                 {
                     // remove item if equipped
-                    Party.Instance.GetActiveMember().RemoveItem(item);
+                    Party.Instance.SelectedMember.RemoveItem(item);
                 }
 
                 // save to file
@@ -63,7 +63,7 @@ public class InventoryDraggingManager : MonoBehaviour
                 {
                     // equip item
                     Item item = _draggedObject.GetComponent<Item>();
-                    Party.Instance.GetActiveMember().EquipItem(item);
+                    Party.Instance.SelectedMember.EquipItem(item);
                 }
                 // release on somewhere else
                 else

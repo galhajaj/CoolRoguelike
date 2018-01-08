@@ -105,7 +105,7 @@ public class DungeonTurnManager : MonoBehaviour
 
         DungeonTile targetTile = Dungeon.Instance.GetTile(targetPosition);
         Creature targetCreature = targetTile.GetContainedCreature();
-        Creature activePartyMember = Party.Instance.GetActiveMember();
+        Creature activePartyMember = Party.Instance.SelectedMember;
 
         // choose action by the tile content
         if (targetCreature != null)

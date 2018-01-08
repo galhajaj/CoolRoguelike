@@ -24,6 +24,22 @@ public class Party : Singleton<Party>
 
     private List<Creature> _members = new List<Creature>();
 
+    private Creature _selectedMember = null;
+    public Creature SelectedMember
+    {
+        get
+        {
+            if (_selectedMember != null)
+                if (_selectedMember.IsActive)
+                    return _selectedMember;
+            foreach (var member in _members)
+                if (member.IsActive)
+                    return member;
+            return null;
+        }
+        set { _selectedMember = value; }
+    }
+
     [SerializeField]
     private DungeonObject _dungeonObject = null;
     public DungeonObject DungeonObject { get { return _dungeonObject; } }
@@ -34,15 +50,6 @@ public class Party : Singleton<Party>
         // init members in list
         foreach (Creature member in this.transform.GetComponentsInChildren<Creature>())
             _members.Add(member);
-    }
-    // ====================================================================================================== //
-    // get the next member (by order from left to tight) which has action units left
-    public Creature GetActiveMember()
-    {
-        foreach (var member in _members)
-            if (member.ActionUnits > 0)
-                return member;
-        return null;
     }
     // ====================================================================================================== //
     public Creature GetRandomLiveMember()

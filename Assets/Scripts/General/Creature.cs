@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Creature : MonoBehaviour
 {
-    public event Action Event_StatsUpdated;
-
     public string Name;
 
     public Position Position { get { return this.GetComponentInParent<DungeonTile>().Position; } }
@@ -21,19 +19,17 @@ public class Creature : MonoBehaviour
     public int MaxHearts
     {
         get { return _maxHearts; }
-        set { _maxHearts = value;
-            if (Event_StatsUpdated != null) Event_StatsUpdated(); }
+        set { _maxHearts = value; }
     }
     [SerializeField]
     private int _hearts = 5;
     public int Hearts
     {
         get { return _hearts; }
-        set { _hearts = value;
-            if (Event_StatsUpdated != null) Event_StatsUpdated(); }
+        set { _hearts = value; }
     }
 
-    public bool IsAlive { get { return Hearts > 0; } }
+    public bool IsAlive { get { return _hearts > 0; } }
 
     public int MaxHitPoints;
     public int HitPoints;
@@ -44,16 +40,14 @@ public class Creature : MonoBehaviour
     public int MaxMana
     {
         get { return _maxMana; }
-        set { _maxMana = value;
-            if (Event_StatsUpdated != null) Event_StatsUpdated(); }
+        set { _maxMana = value; }
     }
     [SerializeField]
     private int _mana = 1;
     public int Mana
     {
         get { return _mana; }
-        set { _mana = value;
-            if (Event_StatsUpdated != null) Event_StatsUpdated(); }
+        set { _mana = value; }
     }
 
     public int MinDamage;
@@ -66,9 +60,11 @@ public class Creature : MonoBehaviour
     public int ActionUnits
     {
         get { return _actionUnits; }
-        set { _actionUnits = value;
-            if (Event_StatsUpdated != null) Event_StatsUpdated(); }
+        set { _actionUnits = value; }
     }
+
+    // is active = has action units left
+    public bool IsActive { get { return _actionUnits > 0; } }
 
     public int MeleeAttackCost;
 
