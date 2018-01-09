@@ -34,6 +34,10 @@ public class DungeonTurnManager : MonoBehaviour
 
         foreach(Creature creature in Dungeon.Instance.GetCreatures())
         {
+            // continue if dead
+            if (!creature.IsAlive)
+                continue;
+
             // if close to party - melee
             if (creature.Position.DistanceTo(Party.Instance.Position) == 1)
             {
