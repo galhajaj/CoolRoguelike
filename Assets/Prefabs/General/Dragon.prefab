@@ -65,7 +65,9 @@ MonoBehaviour:
   MaxDamage: 6
   Shield: 85
   _actionUnits: 0
-  MeleeAttackCost: 0
+  WalkCost: 15
+  MeleeAttackCost: 20
+  RangedAttackCost: 45
 --- !u!114 &114547720117384676
 MonoBehaviour:
   m_ObjectHideFlags: 1

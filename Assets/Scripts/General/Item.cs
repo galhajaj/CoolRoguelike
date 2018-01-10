@@ -73,5 +73,7 @@ public class Item : MonoBehaviour
     public int MaxMana;
     public int MinDamage;
     public int MaxDamage;
+    public int MinRangedDamage;
+    public int MaxRangedDamage;
     public int Armor;
 }

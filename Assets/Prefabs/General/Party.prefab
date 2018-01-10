@@ -245,7 +245,9 @@ MonoBehaviour:
   MaxDamage: 10
   Shield: 90
   _actionUnits: 20
+  WalkCost: 0
   MeleeAttackCost: 20
+  RangedAttackCost: 40
 --- !u!114 &114147248417637186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -269,7 +271,9 @@ MonoBehaviour:
   MaxDamage: 8
   Shield: 80
   _actionUnits: 20
+  WalkCost: 0
   MeleeAttackCost: 10
+  RangedAttackCost: 30
 --- !u!114 &114185464448636362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -293,7 +297,9 @@ MonoBehaviour:
   MaxDamage: 10
   Shield: 90
   _actionUnits: 20
+  WalkCost: 0
   MeleeAttackCost: 21
+  RangedAttackCost: 22
 --- !u!114 &114320689760500208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -317,7 +323,9 @@ MonoBehaviour:
   MaxDamage: 2
   Shield: 35
   _actionUnits: 20
+  WalkCost: 0
   MeleeAttackCost: 7
+  RangedAttackCost: 5
 --- !u!114 &114466778984694956
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -354,7 +362,9 @@ MonoBehaviour:
   MaxDamage: 4
   Shield: 65
   _actionUnits: 20
+  WalkCost: 0
   MeleeAttackCost: 5
+  RangedAttackCost: 25
 --- !u!114 &114585528430528530
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -367,6 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dungeonObject: {fileID: 114466778984694956}
+  _walkCost: 20
 --- !u!114 &114928195759437484
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -390,7 +401,9 @@ MonoBehaviour:
   MaxDamage: 6
   Shield: 65
   _actionUnits: 20
+  WalkCost: 0
   MeleeAttackCost: 30
+  RangedAttackCost: 17
 --- !u!212 &212442535582533952
 SpriteRenderer:
   m_ObjectHideFlags: 1

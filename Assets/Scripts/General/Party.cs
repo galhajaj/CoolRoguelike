@@ -40,9 +40,24 @@ public class Party : Singleton<Party>
         set { _selectedMember = value; }
     }
 
+    public bool IsContainActiveMember
+    {
+        get
+        {
+            foreach (var member in _members)
+                if (member.IsActive)
+                    return true;
+            return false;
+        }
+    }
+
     [SerializeField]
     private DungeonObject _dungeonObject = null;
     public DungeonObject DungeonObject { get { return _dungeonObject; } }
+
+    [SerializeField]
+    private int _walkCost = 20;
+    public int WalkCost { get { return _walkCost; } }
 
     // ====================================================================================================== //
     override protected void AfterAwake()
@@ -67,15 +82,6 @@ public class Party : Singleton<Party>
         return liveMembers[rand];
     }
     // ====================================================================================================== //
-    public bool IsOutOfActionUnits()
-    {
-        // check if out of action units
-        foreach (var member in _members)
-            if (member.ActionUnits > 0)
-                return false;
-        return true;
-    }
-    // ====================================================================================================== //
     // add maximum amount, but not higher
     public void FillActionUnitsForNextTurn()
     {
@@ -93,6 +99,19 @@ public class Party : Singleton<Party>
     {
         foreach (var member in _members)
             member.ActionUnits = ConstsManager.Instance.MAX_ACTION_UNITS;
+    }
+    // ====================================================================================================== //
+    public void PayWalkCost()
+    {
+        // party has shared walk cost
+        foreach (var member in _members)
+            member.ActionUnits -= WalkCost;
+    }
+    // ====================================================================================================== //
+    public void WaitTurn()
+    {
+        foreach (var member in _members)
+            member.ActionUnits -= ConstsManager.Instance.MAX_ACTION_UNITS;
     }
     // ====================================================================================================== //
 }

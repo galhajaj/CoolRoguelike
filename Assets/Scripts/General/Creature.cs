@@ -66,7 +66,9 @@ public class Creature : MonoBehaviour
     // is active = has action units left
     public bool IsActive { get { return _actionUnits > 0; } }
 
+    public int WalkCost;
     public int MeleeAttackCost;
+    public int RangedAttackCost;
 
     private Dictionary<ItemType, Item> _equippedItems = new Dictionary<ItemType, Item>();
     public Dictionary<ItemType, Item> EquippedItems { get { return _equippedItems; } }
@@ -86,6 +88,27 @@ public class Creature : MonoBehaviour
         // hit
         target.Hearts--;
         Debug.Log(this.name + " hit " + target.name);
+    }
+    // =================================================================================== //
+    public void RangedAttack(Creature target)
+    {
+        // pay action units
+        this.ActionUnits -= RangedAttackCost;
+        // check if hit
+        int rand = UnityEngine.Random.Range(0, 101);
+        if (rand <= target.Shield)
+        {
+            Debug.Log(this.name + " missed " + target.name);
+            return;
+        }
+        // hit
+        target.Hearts--;
+        Debug.Log(this.name + " hit " + target.name);
+    }
+    // =================================================================================== //
+    public void PayWalkCost()
+    {
+        this.ActionUnits -= WalkCost;
     }
     // =================================================================================== //
     public void EquipItem(Item item)

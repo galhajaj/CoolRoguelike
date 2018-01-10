@@ -50,7 +50,9 @@ public class DungeonTurnManager : MonoBehaviour
                 DungeonTile nextTile = Dungeon.Instance.GetNextStupidTile(creature.Position, Party.Instance.Position);
                 if (nextTile != null)
                 {
-                    move(creature.DungeonObject, nextTile);
+                    Debug.Log(creature.name + " move");
+                    Dungeon.Instance.PutDungeonObjectInTile(creature.DungeonObject, nextTile);
+                    creature.PayWalkCost();
                 }
             }
         }
@@ -73,12 +75,19 @@ public class DungeonTurnManager : MonoBehaviour
         checkWaitKey();
         checkUsePortalKey();
         checkPickupKey();
+        checkShootButton();
+
+        // check if all party members have no action units left = end turn
+        if (!Party.Instance.IsContainActiveMember)
+            finishPlayerTurn();
     }
     // ====================================================================================================== //
     private void finishPlayerTurn()
     {
         Debug.Log("finish player turn");
         _creaturesTurn = true;
+        // refill action units
+        Party.Instance.FillActionUnitsForNextTurn();
     }
     // ====================================================================================================== //
     // can be move/ attack/ open door/ open chest...
@@ -115,17 +124,12 @@ public class DungeonTurnManager : MonoBehaviour
         if (targetCreature != null)
         {
             activePartyMember.MeleeAttack(targetCreature);
-            // if all action units of all party has finished - then move to creatures turn
-            if (Party.Instance.IsOutOfActionUnits())
-            {
-                finishPlayerTurn();
-                Party.Instance.FillActionUnitsForNextTurn();
-            }
         }
         else if (!targetTile.IsBlockPath)
         {
-            move(Party.Instance.DungeonObject, targetTile);
-            finishPlayerTurn();
+            Debug.Log("party move");
+            Dungeon.Instance.PutDungeonObjectInTile(Party.Instance.DungeonObject, targetTile);
+            Party.Instance.PayWalkCost();
         }
     }
     // ====================================================================================================== //
@@ -134,7 +138,7 @@ public class DungeonTurnManager : MonoBehaviour
         if (!Input.GetKeyDown(KeyCode.Keypad5))
             return;
 
-        finishPlayerTurn();
+        Party.Instance.WaitTurn();
     }
     // ====================================================================================================== //
     private void checkUsePortalKey() // stairs etc.
@@ -161,10 +165,25 @@ public class DungeonTurnManager : MonoBehaviour
         Inventory.Instance.AddItems(partyTile.Items);
     }
     // ====================================================================================================== //
-    private void move(DungeonObject obj, DungeonTile tile)
+    private void checkShootButton()
     {
-        Debug.Log(obj.name + " move");
-        Dungeon.Instance.PutDungeonObjectInTile(obj, tile);
+        if (!Input.GetMouseButtonDown(0))
+            return;
+
+        LayerMask layerMask = (1 << LayerMask.NameToLayer("DungeonTile"));
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0.0F, layerMask);
+        if (hit.collider == null)
+            return;
+
+        DungeonTile targetTile = hit.collider.GetComponent<DungeonTile>();
+        Creature targetCreature = targetTile.GetContainedCreature();
+        if (targetCreature == null)
+            return;
+
+        Creature activePartyMember = Party.Instance.SelectedMember;
+        activePartyMember.RangedAttack(targetCreature);
+
+        Debug.Log("SHOOT!!!");
     }
     // ====================================================================================================== //
     private void rangedAttack(Creature attacker, Creature defender, DungeonTile targetTile)
@@ -175,7 +194,6 @@ public class DungeonTurnManager : MonoBehaviour
     private void openDoor(DungeonTile targetTile)
     {
         // imp
-        finishPlayerTurn(); // not relevant in peace mode...
     }
     // ====================================================================================================== //
     private void openChest(DungeonTile targetTile)
