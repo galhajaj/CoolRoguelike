@@ -6,8 +6,10 @@ public class Grid : MonoBehaviour
 {
     [SerializeField]
     private int _sizeX = 0;
+    public int SizeX { get { return _sizeX; } }
     [SerializeField]
     private int _sizeY = 0;
+    public int SizeY { get { return _sizeY; } }
     [SerializeField]
     private int _offsetX = 0;
     [SerializeField]

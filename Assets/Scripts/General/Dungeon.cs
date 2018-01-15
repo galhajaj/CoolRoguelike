@@ -165,6 +165,42 @@ public class Dungeon : Singleton<Dungeon>
             tile.Clear();
     }
     // ======================================================================================================================================== //
+    public List<List<bool>> GetWalkingMap()
+    {
+        List<List<bool>> walkingMap = new List<List<bool>>();
+
+        for (int x = 0; x < _grid.SizeX; x++)
+        {
+            walkingMap.Add(new List<bool>());
+
+            for (int y = 0; y < _grid.SizeY; y++)
+            {
+                DungeonTile tile = GetTile(new Position(x, y));
+                walkingMap[x].Add(!tile.IsBlockPath);
+            }
+        }
+
+        return walkingMap;
+    }
+    // ======================================================================================================================================== //
+    public List<List<bool>> GetSightMap()
+    {
+        List<List<bool>> sightMap = new List<List<bool>>();
+
+        for (int x = 0; x < _grid.SizeX; x++)
+        {
+            sightMap.Add(new List<bool>());
+
+            for (int y = 0; y < _grid.SizeY; y++)
+            {
+                DungeonTile tile = GetTile(new Position(x, y));
+                sightMap[x].Add(!tile.IsBlockView);
+            }
+        }
+
+        return sightMap;
+    }
+    // ======================================================================================================================================== //
     // stupid path - to be deleted! :-)
     public DungeonTile GetNextStupidTile(Position from, Position to)
     {
