@@ -326,7 +326,7 @@ MonoBehaviour:
   MaxDamage: 2
   Shield: 35
   _actionUnits: 20
-  _beltSlotsCount: 3
+  _beltSlotsCount: 6
   WalkCost: 0
   MeleeAttackCost: 7
   RangedAttackCost: 5
