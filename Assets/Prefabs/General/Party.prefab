@@ -245,6 +245,7 @@ MonoBehaviour:
   MaxDamage: 10
   Shield: 90
   _actionUnits: 20
+  _beltSlotsCount: 3
   WalkCost: 0
   MeleeAttackCost: 20
   RangedAttackCost: 40
@@ -271,6 +272,7 @@ MonoBehaviour:
   MaxDamage: 8
   Shield: 80
   _actionUnits: 20
+  _beltSlotsCount: 5
   WalkCost: 0
   MeleeAttackCost: 10
   RangedAttackCost: 30
@@ -297,6 +299,7 @@ MonoBehaviour:
   MaxDamage: 10
   Shield: 90
   _actionUnits: 20
+  _beltSlotsCount: 3
   WalkCost: 0
   MeleeAttackCost: 21
   RangedAttackCost: 22
@@ -323,6 +326,7 @@ MonoBehaviour:
   MaxDamage: 2
   Shield: 35
   _actionUnits: 20
+  _beltSlotsCount: 3
   WalkCost: 0
   MeleeAttackCost: 7
   RangedAttackCost: 5
@@ -362,6 +366,7 @@ MonoBehaviour:
   MaxDamage: 4
   Shield: 65
   _actionUnits: 20
+  _beltSlotsCount: 3
   WalkCost: 0
   MeleeAttackCost: 5
   RangedAttackCost: 25
@@ -401,6 +406,7 @@ MonoBehaviour:
   MaxDamage: 6
   Shield: 65
   _actionUnits: 20
+  _beltSlotsCount: 3
   WalkCost: 0
   MeleeAttackCost: 30
   RangedAttackCost: 17

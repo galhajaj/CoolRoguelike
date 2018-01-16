@@ -24,7 +24,8 @@ public class Grid : MonoBehaviour
 
     private List<List<GridElement>> _elements = new List<List<GridElement>>();
 
-    public List<GridElement> Elements { get { return getElementList(); } }
+    private List<GridElement> _elementsList = new List<GridElement>();
+    public List<GridElement> Elements { get { return /*getElementList();*/_elementsList; } }
 
     void Awake()
     {
@@ -71,6 +72,9 @@ public class Grid : MonoBehaviour
                 elementScript.PosY = y;
 
                 _elements[x].Add(elementScript);
+
+                _elementsList.Add(elementScript);
+                elementScript.Index = _elementsList.Count - 1;
             }
         }
     }
@@ -82,7 +86,7 @@ public class Grid : MonoBehaviour
         generateGrid();
     }
 
-    private List<GridElement> getElementList()
+    /*private List<GridElement> getElementList()
     {
         List<GridElement> result = new List<GridElement>();
 
@@ -91,7 +95,7 @@ public class Grid : MonoBehaviour
                 result.Add(element);
 
         return result;
-    }
+    }*/
 
     public GridElement GetElement(int x, int y = 0)
     {
@@ -112,5 +116,49 @@ public class Grid : MonoBehaviour
             list.Clear();
         }
         _elements.Clear();
+        _elementsList.Clear();
+    }
+
+    // overloading
+    public void UpdateElementsVisibility(int activeElements)
+    {
+        UpdateElementsVisibility(activeElements, activeElements);
+    }
+
+    // elements that are active will has white sprite renderer - normal
+    // above max will be invisible & uncollidable (if has collider)
+    // from active to max they will be black (black sprite renderer)
+    public void UpdateElementsVisibility(int activeElements, int maxElements)
+    {
+        for (int i = 0; i < Elements.Count; ++i)
+        {
+            SpriteRenderer currentSpriteRenderer = Elements[i].GetComponent<SpriteRenderer>();
+            Collider2D currentCollider = Elements[i].GetComponent<Collider2D>();
+
+            // visibility of over the max
+            if (i >= maxElements)
+            {
+                currentSpriteRenderer.enabled = false;
+                if (currentCollider != null)
+                    currentCollider.enabled = false;
+                continue;
+            }
+            else
+            {
+                currentSpriteRenderer.enabled = true;
+                if (currentCollider != null)
+                    currentCollider.enabled = true;
+            }
+
+            // black over the number
+            if (i >= activeElements)
+            {
+                currentSpriteRenderer.color = Color.black;
+                continue;
+            }
+
+            // the rest are white
+            currentSpriteRenderer.color = Color.white;
+        }
     }
 }

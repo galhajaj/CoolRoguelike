@@ -6,7 +6,8 @@ public enum ItemState
 {
     GROUND,
     INVENTORY,
-    EQUIPPED
+    EQUIPPED,
+    ON_BELT
 }
 
 public enum ItemType
@@ -17,11 +18,13 @@ public enum ItemType
     CLOCK,
     WEAPON,
     SHIELD,
+    BELT,
     BOOTS,
     RANGED_WEAPON,
     QUIVER,
     NECKLACE,
-    RING
+    RING,
+    POTION
 }
 
 public class Item : MonoBehaviour
@@ -53,19 +56,10 @@ public class Item : MonoBehaviour
 
     private void setItemSprite()
     {
-        switch (_state)
-        {
-            case ItemState.GROUND:
-                _spriteRenderer.sprite = ResourcesManager.Instance.LootOnGroundSprite;
-                break;
-            case ItemState.INVENTORY:
-                _spriteRenderer.sprite = _originalSprite;
-                break;
-            case ItemState.EQUIPPED:
-                break;
-            default:
-                break;
-        }
+        if (_state == ItemState.GROUND)
+            _spriteRenderer.sprite = ResourcesManager.Instance.LootOnGroundSprite;
+        else
+            _spriteRenderer.sprite = _originalSprite;
     }
 
     // stats to add when wearing

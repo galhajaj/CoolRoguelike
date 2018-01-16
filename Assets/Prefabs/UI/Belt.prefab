@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4914484534324870}
   - component: {fileID: 114459818425063118}
+  - component: {fileID: 114923005467853592}
   m_Layer: 0
   m_Name: Belt
   m_TagString: Untagged
@@ -55,5 +56,19 @@ MonoBehaviour:
   _sizeY: 1
   _offsetX: 0
   _offsetY: 0
+  _spacing: 0
+  _invertYAxis: 0
   _elementPrefab: {fileID: 4555489485982582, guid: bee7ffdb3e6821b4b863481a1f98ed87,
     type: 2}
+--- !u!114 &114923005467853592
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1002038241341800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36959b5e3fedb664f9709b77cf829736, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _beltGrid: {fileID: 114459818425063118}
