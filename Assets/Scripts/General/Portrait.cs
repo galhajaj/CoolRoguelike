@@ -28,9 +28,9 @@ public class Portrait : MonoBehaviour
         _frameRenderer.enabled = isSelectedMember;
 
         // units visibility & color of grid units
-        _lifeUnitsGrid.UpdateElementsVisibility(_creature.Hearts, _creature.MaxHearts);
-        _spellUnitsGrid.UpdateElementsVisibility(_creature.Mana, _creature.MaxMana);
-        _actionUnitsGrid.UpdateElementsVisibility(_creature.ActionUnits, ConstsManager.Instance.MAX_ACTION_UNITS);
+        _lifeUnitsGrid.UpdateElementsVisibility(_creature.Stats[Stat.HEARTS], _creature.Stats[Stat.MAX_HEARTS]);
+        _spellUnitsGrid.UpdateElementsVisibility(_creature.Stats[Stat.MANA], _creature.Stats[Stat.MAX_MANA]);
+        _actionUnitsGrid.UpdateElementsVisibility(_creature.ActionUnits, Consts.MAX_ACTION_UNITS);
     }
 
     private void OnMouseDown()

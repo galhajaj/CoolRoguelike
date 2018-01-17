@@ -87,10 +87,10 @@ public class Party : Singleton<Party>
     {
         foreach (var member in _members)
         {
-            member.ActionUnits += ConstsManager.Instance.MAX_ACTION_UNITS;
+            member.ActionUnits += Consts.MAX_ACTION_UNITS;
             // normalize to max
-            if (member.ActionUnits > ConstsManager.Instance.MAX_ACTION_UNITS)
-                member.ActionUnits = ConstsManager.Instance.MAX_ACTION_UNITS;
+            if (member.ActionUnits > Consts.MAX_ACTION_UNITS)
+                member.ActionUnits = Consts.MAX_ACTION_UNITS;
         }
     }
     // ====================================================================================================== //
@@ -98,7 +98,7 @@ public class Party : Singleton<Party>
     public void RefillActionUnits()
     {
         foreach (var member in _members)
-            member.ActionUnits = ConstsManager.Instance.MAX_ACTION_UNITS;
+            member.ActionUnits = Consts.MAX_ACTION_UNITS;
     }
     // ====================================================================================================== //
     public void PayWalkCost()
@@ -111,7 +111,7 @@ public class Party : Singleton<Party>
     public void WaitTurn()
     {
         foreach (var member in _members)
-            member.ActionUnits -= ConstsManager.Instance.MAX_ACTION_UNITS;
+            member.ActionUnits -= Consts.MAX_ACTION_UNITS;
     }
     // ====================================================================================================== //
 }

@@ -92,15 +92,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084ccba231090fc4c97c730672c8be17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 7
+  Stats:
+    _Buckets: 0000000001000000ffffffff
+    _HashCodes: 090000000a00000000000000
+    _Next: ffffffffffffffff00000000
+    _Count: 2
+    _Version: 8
+    _FreeList: -1
+    _FreeCount: 0
+    _Keys: 090000000a00000000000000
+    _Values: 010000000400000000000000
+  SocketType: 9
+  Type: 8
   _state: 0
-  MaxHearts: 0
-  MaxMana: 0
-  MinDamage: 0
-  MaxDamage: 0
-  MinRangedDamage: 1
-  MaxRangedDamage: 6
-  Armor: 0
 --- !u!212 &212425059061372048
 SpriteRenderer:
   m_ObjectHideFlags: 1

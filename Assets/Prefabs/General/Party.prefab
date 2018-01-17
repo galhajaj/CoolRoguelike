@@ -11,63 +11,47 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1900597609084844}
   m_IsPrefabParent: 1
---- !u!1 &1249197517634166
+--- !u!1 &1420456320661152
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4898471041041704}
-  - component: {fileID: 114320689760500208}
+  - component: {fileID: 4492044997036826}
+  - component: {fileID: 114639964176969662}
   m_Layer: 0
-  m_Name: Ringo
+  m_Name: Paul
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1353043542476954
+--- !u!1 &1431541653495778
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4384627564764624}
-  - component: {fileID: 114102822768040532}
+  - component: {fileID: 4292028239418152}
+  - component: {fileID: 114151034821585864}
   m_Layer: 0
-  m_Name: Yoko
+  m_Name: John
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1637109287046930
+--- !u!1 &1467230756033202
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4617377913274136}
-  - component: {fileID: 114185464448636362}
-  m_Layer: 0
-  m_Name: Ono
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1676246136051272
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4463393188092458}
-  - component: {fileID: 114928195759437484}
+  - component: {fileID: 4664664272740028}
+  - component: {fileID: 114633281057583762}
   m_Layer: 0
   m_Name: George
   m_TagString: Untagged
@@ -75,17 +59,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1895169619206346
+--- !u!1 &1772456696237310
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4258487343027524}
-  - component: {fileID: 114147248417637186}
+  - component: {fileID: 4659204957433158}
+  - component: {fileID: 114767849462084620}
   m_Layer: 0
-  m_Name: Paul
+  m_Name: Ringo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,7 +103,23 @@ GameObject:
   - component: {fileID: 4186681475440176}
   - component: {fileID: 114489164201965090}
   m_Layer: 0
-  m_Name: John
+  m_Name: Ono
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1978125113135132
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4615604488080478}
+  - component: {fileID: 114131501373872118}
+  m_Layer: 0
+  m_Name: Yoko
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,6 +131,19 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1956638347461440}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4851400576957004}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4292028239418152
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1431541653495778}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -138,57 +151,57 @@ Transform:
   m_Father: {fileID: 4851400576957004}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4258487343027524
+--- !u!4 &4492044997036826
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1895169619206346}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 1420456320661152}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4851400576957004}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4384627564764624
+--- !u!4 &4615604488080478
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1353043542476954}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 1978125113135132}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4851400576957004}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4463393188092458
+--- !u!4 &4659204957433158
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1676246136051272}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 1772456696237310}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4851400576957004}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4617377913274136
+--- !u!4 &4664664272740028
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1637109287046930}
+  m_GameObject: {fileID: 1467230756033202}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4851400576957004}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4851400576957004
 Transform:
@@ -200,136 +213,61 @@ Transform:
   m_LocalPosition: {x: 783, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4292028239418152}
+  - {fileID: 4492044997036826}
+  - {fileID: 4664664272740028}
+  - {fileID: 4659204957433158}
+  - {fileID: 4615604488080478}
   - {fileID: 4186681475440176}
-  - {fileID: 4258487343027524}
-  - {fileID: 4898471041041704}
-  - {fileID: 4463393188092458}
-  - {fileID: 4384627564764624}
-  - {fileID: 4617377913274136}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4898471041041704
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1249197517634166}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4851400576957004}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114102822768040532
+--- !u!114 &114131501373872118
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1353043542476954}
+  m_GameObject: {fileID: 1978125113135132}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 169468c06fb74d74d854b7cc8962162a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Yoko
   _dungeonObject: {fileID: 0}
-  _maxHearts: 7
-  _hearts: 5
-  MaxHitPoints: 3
-  HitPoints: 1
-  _maxMana: 3
-  _mana: 1
-  MinDamage: 1
-  MaxDamage: 10
-  Shield: 90
+  Stats:
+    _Buckets: ffffffff000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c000000ffffffffffffffffffffffff
+    _HashCodes: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d00000000000000000000000000000000000000
+    _Next: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000
+    _Count: 13
+    _Version: 69
+    _FreeList: -1
+    _FreeCount: 0
+    _Keys: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d00000000000000000000000000000000000000
+    _Values: 06000000050000000a0000000800000005000000020000000100000006000000010000000400000021000000060000000000000000000000000000000000000000000000
   _actionUnits: 20
-  _beltSlotsCount: 3
-  WalkCost: 0
-  MeleeAttackCost: 20
-  RangedAttackCost: 40
---- !u!114 &114147248417637186
+--- !u!114 &114151034821585864
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1895169619206346}
+  m_GameObject: {fileID: 1431541653495778}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 169468c06fb74d74d854b7cc8962162a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Paul
   _dungeonObject: {fileID: 0}
-  _maxHearts: 7
-  _hearts: 5
-  MaxHitPoints: 3
-  HitPoints: 2
-  _maxMana: 3
-  _mana: 1
-  MinDamage: 2
-  MaxDamage: 8
-  Shield: 80
+  Stats:
+    _Buckets: ffffffff000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c000000ffffffffffffffffffffffff
+    _HashCodes: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d00000000000000000000000000000000000000
+    _Next: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000
+    _Count: 13
+    _Version: 68
+    _FreeList: -1
+    _FreeCount: 0
+    _Keys: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d00000000000000000000000000000000000000
+    _Values: 06000000050000000a0000000800000005000000020000000100000006000000010000000400000021000000040000000000000000000000000000000000000000000000
   _actionUnits: 20
-  _beltSlotsCount: 5
-  WalkCost: 0
-  MeleeAttackCost: 10
-  RangedAttackCost: 30
---- !u!114 &114185464448636362
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1637109287046930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 169468c06fb74d74d854b7cc8962162a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Yoko
-  _dungeonObject: {fileID: 0}
-  _maxHearts: 7
-  _hearts: 5
-  MaxHitPoints: 4
-  HitPoints: 4
-  _maxMana: 3
-  _mana: 1
-  MinDamage: 1
-  MaxDamage: 10
-  Shield: 90
-  _actionUnits: 20
-  _beltSlotsCount: 3
-  WalkCost: 0
-  MeleeAttackCost: 21
-  RangedAttackCost: 22
---- !u!114 &114320689760500208
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1249197517634166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 169468c06fb74d74d854b7cc8962162a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Ringo
-  _dungeonObject: {fileID: 0}
-  _maxHearts: 7
-  _hearts: 5
-  MaxHitPoints: 14
-  HitPoints: 14
-  _maxMana: 3
-  _mana: 1
-  MinDamage: 1
-  MaxDamage: 2
-  Shield: 35
-  _actionUnits: 20
-  _beltSlotsCount: 6
-  WalkCost: 0
-  MeleeAttackCost: 7
-  RangedAttackCost: 5
 --- !u!114 &114466778984694956
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -354,22 +292,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 169468c06fb74d74d854b7cc8962162a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: John
   _dungeonObject: {fileID: 0}
-  _maxHearts: 7
-  _hearts: 5
-  MaxHitPoints: 12
-  HitPoints: 3
-  _maxMana: 3
-  _mana: 1
-  MinDamage: 1
-  MaxDamage: 4
-  Shield: 65
+  Stats:
+    _Buckets: ffffffff000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c000000ffffffffffffffffffffffff
+    _HashCodes: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d00000000000000000000000000000000000000
+    _Next: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000
+    _Count: 13
+    _Version: 69
+    _FreeList: -1
+    _FreeCount: 0
+    _Keys: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d00000000000000000000000000000000000000
+    _Values: 06000000050000000a0000000800000005000000020000000100000006000000010000000400000021000000010000000000000000000000000000000000000000000000
   _actionUnits: 20
-  _beltSlotsCount: 3
-  WalkCost: 0
-  MeleeAttackCost: 5
-  RangedAttackCost: 25
 --- !u!114 &114585528430528530
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -383,33 +317,75 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dungeonObject: {fileID: 114466778984694956}
   _walkCost: 20
---- !u!114 &114928195759437484
+--- !u!114 &114633281057583762
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1676246136051272}
+  m_GameObject: {fileID: 1467230756033202}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 169468c06fb74d74d854b7cc8962162a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: George
   _dungeonObject: {fileID: 0}
-  _maxHearts: 7
-  _hearts: 5
-  MaxHitPoints: 5
-  HitPoints: 5
-  _maxMana: 3
-  _mana: 1
-  MinDamage: 1
-  MaxDamage: 6
-  Shield: 65
+  Stats:
+    _Buckets: ffffffff000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c000000ffffffffffffffffffffffff
+    _HashCodes: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d00000000000000000000000000000000000000
+    _Next: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000
+    _Count: 13
+    _Version: 69
+    _FreeList: -1
+    _FreeCount: 0
+    _Keys: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d00000000000000000000000000000000000000
+    _Values: 06000000050000000a0000000800000005000000020000000100000006000000010000000400000021000000020000000000000000000000000000000000000000000000
   _actionUnits: 20
-  _beltSlotsCount: 3
-  WalkCost: 0
-  MeleeAttackCost: 30
-  RangedAttackCost: 17
+--- !u!114 &114639964176969662
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1420456320661152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 169468c06fb74d74d854b7cc8962162a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dungeonObject: {fileID: 0}
+  Stats:
+    _Buckets: ffffffff000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c000000ffffffffffffffffffffffff
+    _HashCodes: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d00000000000000000000000000000000000000
+    _Next: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000
+    _Count: 13
+    _Version: 73
+    _FreeList: -1
+    _FreeCount: 0
+    _Keys: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d00000000000000000000000000000000000000
+    _Values: 04000000020000000a0000000800000008000000050000000100000006000000010000000400000021000000030000000000000000000000000000000000000000000000
+  _actionUnits: 20
+--- !u!114 &114767849462084620
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1772456696237310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 169468c06fb74d74d854b7cc8962162a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dungeonObject: {fileID: 0}
+  Stats:
+    _Buckets: ffffffff000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c000000ffffffffffffffffffffffff
+    _HashCodes: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d00000000000000000000000000000000000000
+    _Next: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000
+    _Count: 13
+    _Version: 69
+    _FreeList: -1
+    _FreeCount: 0
+    _Keys: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d00000000000000000000000000000000000000
+    _Values: 06000000050000000a0000000800000005000000020000000100000006000000010000000400000021000000050000000000000000000000000000000000000000000000
+  _actionUnits: 20
 --- !u!212 &212442535582533952
 SpriteRenderer:
   m_ObjectHideFlags: 1

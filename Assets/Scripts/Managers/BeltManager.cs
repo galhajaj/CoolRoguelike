@@ -16,7 +16,7 @@ public class BeltManager : Singleton<BeltManager>
 	void Update ()
     {
         // units visibility & color of grid units
-        _beltGrid.UpdateElementsVisibility(Party.Instance.SelectedMember.BeltSlotsCount);
+        _beltGrid.UpdateElementsVisibility(Party.Instance.SelectedMember.Stats[Stat.BELT_SLOTS_NUMBER]);
 
         // hide/show items on belt by the selected member
         // TODO: improve performance?

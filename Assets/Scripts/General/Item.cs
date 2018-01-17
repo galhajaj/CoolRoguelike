@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,28 +11,12 @@ public enum ItemState
     ON_BELT
 }
 
-public enum ItemType
-{
-    HELMET,
-    MAIL,
-    ARMOR,
-    CLOCK,
-    WEAPON,
-    SHIELD,
-    BELT,
-    BOOTS,
-    RANGED_WEAPON,
-    QUIVER,
-    NECKLACE,
-    RING,
-    POTION
-}
-
 public class Item : MonoBehaviour
 {
-    [SerializeField]
-    private ItemType _type = ItemType.WEAPON;
-    public ItemType Type { get { return _type; } }
+    public StatsDictionary Stats = new StatsDictionary();
+
+    public SocketType SocketType;
+    public ItemType Type;
 
     [SerializeField]
     private ItemState _state = ItemState.GROUND;
@@ -61,13 +46,4 @@ public class Item : MonoBehaviour
         else
             _spriteRenderer.sprite = _originalSprite;
     }
-
-    // stats to add when wearing
-    public int MaxHearts;
-    public int MaxMana;
-    public int MinDamage;
-    public int MaxDamage;
-    public int MinRangedDamage;
-    public int MaxRangedDamage;
-    public int Armor;
 }
