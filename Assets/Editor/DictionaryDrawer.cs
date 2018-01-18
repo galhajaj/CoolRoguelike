@@ -6,9 +6,9 @@ using UnityObject = UnityEngine.Object;
 
 // this class adds a convenient gui for the dictionary in the editor
 // NOTE: for a new one, you'll need to add new class (see at the bottom)
-public abstract class DictionaryDrawer<TK, TV> : PropertyDrawer
+public abstract class DictionaryDrawer<TK> : PropertyDrawer
 {
-    private SerializableDictionary<TK, TV> _Dictionary;
+    private SerializableDictionary<TK> _Dictionary;
     private bool _Foldout;
     private const float kButtonWidth = 18f;
 
@@ -82,7 +82,7 @@ public abstract class DictionaryDrawer<TK, TV> : PropertyDrawer
             valueRect.x = position.width / 2 + 15;
             valueRect.width = keyRect.width - kButtonWidth;
             EditorGUI.BeginChangeCheck();
-            value = DoField(valueRect, typeof(TV), value);
+            value = DoField(valueRect, typeof(int), value);
             if (EditorGUI.EndChangeCheck())
             {
                 _Dictionary[key] = value;
@@ -110,10 +110,10 @@ public abstract class DictionaryDrawer<TK, TV> : PropertyDrawer
         if (_Dictionary == null)
         {
             var target = property.serializedObject.targetObject;
-            _Dictionary = fieldInfo.GetValue(target) as SerializableDictionary<TK, TV>;
+            _Dictionary = fieldInfo.GetValue(target) as SerializableDictionary<TK>;
             if (_Dictionary == null)
             {
-                _Dictionary = new SerializableDictionary<TK, TV>();
+                _Dictionary = new SerializableDictionary<TK>();
                 fieldInfo.SetValue(target, _Dictionary);
             }
 
@@ -162,7 +162,7 @@ public abstract class DictionaryDrawer<TK, TV> : PropertyDrawer
             key = (TK)(object)"";
         else key = default(TK);
 
-        var value = default(TV);
+        var value = default(int);
         try
         {
             _Dictionary.Add(key, value);
@@ -176,4 +176,4 @@ public abstract class DictionaryDrawer<TK, TV> : PropertyDrawer
 
 // add here for each dictionary
 [CustomPropertyDrawer(typeof(StatsDictionary))]
-public class MyDictionaryDrawer1 : DictionaryDrawer<Stat, int> { }
+public class MyDictionaryDrawer1 : DictionaryDrawer<Stat> { }

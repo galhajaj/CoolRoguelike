@@ -2,7 +2,7 @@
 using System;
 
 [Serializable]
-public class StatsDictionary : SerializableDictionary<Stat, int> { }
+public class StatsDictionary : SerializableDictionary<Stat> { }
 
 public enum SocketType
 {
