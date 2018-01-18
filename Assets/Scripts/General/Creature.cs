@@ -15,6 +15,14 @@ public class Creature : MonoBehaviour
 
     public bool IsAlive { get { return Stats[Stat.HEARTS] > 0; } }
 
+    // if monster chasing party
+    private bool _isChasing = false;
+    public bool IsChasing
+    {
+        get { return _isChasing; }
+        set { _isChasing = value; }
+    }
+
     // action units
     [SerializeField]
     private int _actionUnits = 12;

@@ -38,6 +38,15 @@ public class DungeonTurnManager : MonoBehaviour
             if (!creature.IsAlive)
                 continue;
 
+            // check is see party & starting to chase them
+            if (!creature.IsChasing)
+                if (SightAlgorithm.CanSee(creature.Position, Party.Instance.Position))
+                    creature.IsChasing = true;
+
+            // continue if not chasing
+            if (!creature.IsChasing)
+                continue;
+
             // if close to party - melee
             if (creature.Position.DistanceTo(Party.Instance.Position) == 1)
             {

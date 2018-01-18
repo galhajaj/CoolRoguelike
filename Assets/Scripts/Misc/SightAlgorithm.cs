@@ -7,7 +7,8 @@ public class SightAlgorithm
     public static bool CanSee(Position source, Position target)
     {
         // TODO: implement
-        return true;
+        // to delete, stupid implemnentation
+        return stupidCanSee(source, target);
     }
 
     public static List<Position> GetSight(Position source)
@@ -15,4 +16,16 @@ public class SightAlgorithm
         // TODO: implement
         return null;
     }
+
+    // ====================================================================================== //
+    // stupid implementation... to be deleted...
+    // ====================================================================================== //
+    private static bool stupidCanSee(Position source, Position target)
+    {
+        int range = 6;
+        if (source.DistanceTo(target) <= range)
+            return true;
+        return false;
+    }
+    // ====================================================================================== //
 }
