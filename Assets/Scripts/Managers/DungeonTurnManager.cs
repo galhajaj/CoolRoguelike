@@ -47,7 +47,7 @@ public class DungeonTurnManager : MonoBehaviour
             }
             else // otherwise, move toward party
             {
-                DungeonTile nextTile = Dungeon.Instance.GetNextStupidTile(creature.Position, Party.Instance.Position);
+                DungeonTile nextTile = WalkingAlgorithm.GetNextPosition(creature.Position, Party.Instance.Position).DungeonTile;
                 if (nextTile != null)
                 {
                     Debug.Log(creature.name + " move");

@@ -43,4 +43,13 @@ public struct Position
     public Position UpLeft { get { return new Position(X - 1, Y - 1); } }
     public Position DownRight { get { return new Position(X + 1, Y + 1); } }
     public Position DownLeft { get { return new Position(X - 1, Y + 1); } }
+
+    // the correlated dungeon tile in dungeon
+    public DungeonTile DungeonTile
+    {
+        get { return Dungeon.Instance.GetTile(this); }
+    }
+
+    // null position (-1, -1)
+    public static Position NullPosition { get { return new Position(-1, -1); } }
 }

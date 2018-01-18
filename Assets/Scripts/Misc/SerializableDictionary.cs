@@ -108,11 +108,11 @@ public class SerializableDictionary<TKey> : IDictionary<TKey, int>
 
     public bool ContainsValue(int value)
     {
-        if (value == null)
+        if (value == 0)
         {
             for (int i = 0; i < _Count; i++)
             {
-                if (_HashCodes[i] >= 0 && _Values[i] == null)
+                if (_HashCodes[i] >= 0 && _Values[i] == 0)
                     return true;
             }
         }

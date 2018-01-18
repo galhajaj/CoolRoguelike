@@ -104,6 +104,8 @@ public class Dungeon : Singleton<Dungeon>
     // ======================================================================================================================================== //
     public DungeonTile GetTile(Position pos)
     {
+        if (pos == Position.NullPosition)
+            return null;
         return _grid.GetElement(pos) as DungeonTile;
     }
     // ======================================================================================================================================== //
@@ -201,7 +203,7 @@ public class Dungeon : Singleton<Dungeon>
         return sightMap;
     }
     // ======================================================================================================================================== //
-    // stupid path - to be deleted! :-)
+    /*// stupid path - to be deleted! :-)
     public DungeonTile GetNextStupidTile(Position from, Position to)
     {
         Position nextPos = new Position(-1, -1);
@@ -229,6 +231,6 @@ public class Dungeon : Singleton<Dungeon>
             nextPos = from;
             minDistance = from.DistanceTo(to);
         }
-    }
+    }*/
     // ======================================================================================================================================== //
 }
