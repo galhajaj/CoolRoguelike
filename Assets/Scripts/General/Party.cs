@@ -22,6 +22,25 @@ public class Party : Singleton<Party>
         set { _location = value; }
     }
 
+    // peace mode - TODO: performance (can be triggered each turn by the monsters & can be only a bool)
+    public bool IsInPeaceMode
+    {
+        get
+        {
+            foreach (Creature creature in Dungeon.Instance.GetCreatures())
+            {
+                // continue if dead
+                if (!creature.IsAlive)
+                    continue;
+                // if creature chasing... the party are during battle
+                if (creature.IsChasing)
+                    return false;
+            }
+
+            return true;
+        }
+    }
+
     private List<Creature> _members = new List<Creature>();
 
     private Creature _selectedMember = null;
