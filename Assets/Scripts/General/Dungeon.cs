@@ -203,34 +203,4 @@ public class Dungeon : Singleton<Dungeon>
         return sightMap;
     }
     // ======================================================================================================================================== //
-    /*// stupid path - to be deleted! :-)
-    public DungeonTile GetNextStupidTile(Position from, Position to)
-    {
-        Position nextPos = new Position(-1, -1);
-        int minDistance = 10000;
-
-        helper4GetNextStupidTile(from.Up, to, ref nextPos, ref minDistance);
-        helper4GetNextStupidTile(from.Down, to, ref nextPos, ref minDistance);
-        helper4GetNextStupidTile(from.Right, to, ref nextPos, ref minDistance);
-        helper4GetNextStupidTile(from.Left, to, ref nextPos, ref minDistance);
-        helper4GetNextStupidTile(from.UpRight, to, ref nextPos, ref minDistance);
-        helper4GetNextStupidTile(from.UpLeft, to, ref nextPos, ref minDistance);
-        helper4GetNextStupidTile(from.DownLeft, to, ref nextPos, ref minDistance);
-        helper4GetNextStupidTile(from.DownRight, to, ref nextPos, ref minDistance);
-
-        if (nextPos.X == -1)
-            return null;
-
-        return this.GetTile(nextPos);
-    }
-    // helper ////////
-    private void helper4GetNextStupidTile(Position from, Position to, ref Position nextPos, ref int minDistance)
-    {
-        if (from.DistanceTo(to) < minDistance && !GetTile(from).IsBlockPath)
-        {
-            nextPos = from;
-            minDistance = from.DistanceTo(to);
-        }
-    }*/
-    // ======================================================================================================================================== //
 }
