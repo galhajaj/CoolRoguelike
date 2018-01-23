@@ -7,16 +7,17 @@ public class StatsDictionary : SerializableDictionary<Stat> { }
 public enum SocketType
 {
     NONE,
-    HEAD,
+    HEAD, // for helmet
     NECK, // for necklace
-    TORSO,
+    TORSO, // for armor
     BACK, // for clock
+    WRIST, // for bracers
     HAND, // X2
     WAIST, // for belt
-    FEET,
+    FEET, // for boots
     FINGER, // X10
-    RANGED,
-    AMMO,
+    RANGED, // bow/crossbow/sling
+    AMMO, // quiver for arrows/bolts or stones
     BELT // for potion/throwing knife/scroll/wand
 }
 

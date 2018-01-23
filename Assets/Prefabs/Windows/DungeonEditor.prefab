@@ -641,6 +641,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _grid: {fileID: 114315245019285254}
   _textNumber: {fileID: 114957437406558590}
+  _inputField: {fileID: 114929216907595262}
 --- !u!114 &114957437406558590
 MonoBehaviour:
   m_ObjectHideFlags: 1

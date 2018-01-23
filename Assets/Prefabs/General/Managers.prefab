@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1431348205435918}
+  m_IsPrefabParent: 1
+--- !u!1 &1431348205435918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4459046645890270}
+  - component: {fileID: 114461376781810336}
+  - component: {fileID: 114274146017067240}
+  - component: {fileID: 114130669575880494}
+  - component: {fileID: 114865799222118380}
+  m_Layer: 0
+  m_Name: Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4459046645890270
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1431348205435918}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 483.15988, y: 768.2172, z: -16.356056}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114130669575880494
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1431348205435918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4750f2e6b668eb44a8af1bfd07d30e46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114274146017067240
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1431348205435918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8850317abb53fe3449bf87522c716ef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showWindowPosition: {x: -72, y: 34}
+  _windows: []
+--- !u!114 &114461376781810336
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1431348205435918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e580c05b4d10b8b4d9643ebe0482cb3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LootOnGroundSprite: {fileID: 21300000, guid: 57a5c8c5e613ada4bb7aa9ed3d4255fc, type: 3}
+  WallPrefab: {fileID: 1301272116306438, guid: 857e587602effdc439501ecb088b3b63, type: 2}
+  StairsPrefab: {fileID: 1585354456136492, guid: 4b1916bf2d8434c4ab330973f4745198,
+    type: 2}
+  SwordItemPrefab: {fileID: 1552110050588252, guid: 9260e8356d2974b41a92ce757ee6a4b1,
+    type: 2}
+  DragonPrefab: {fileID: 1191348109513958, guid: 13cdcf2ecc4177d46aabdeb713275053,
+    type: 2}
+--- !u!114 &114865799222118380
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1431348205435918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3a36ad0a643fd446b353d845e2e1b9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

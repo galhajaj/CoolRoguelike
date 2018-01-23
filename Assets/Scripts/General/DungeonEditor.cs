@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +11,10 @@ public class DungeonEditor : Singleton<DungeonEditor>
     private Grid _grid = null;
     [SerializeField]
     private Text _textNumber = null;
+    [SerializeField]
+    private InputField _inputField = null;
+
+    private DungeonData _dungeonData = new DungeonData();
 
     private int _number = 1;
 
@@ -30,7 +36,12 @@ public class DungeonEditor : Singleton<DungeonEditor>
 
     public void ClickSave()
     {
+        string path = Application.dataPath + "/dungeons";
 
+        if (!Directory.Exists(path))
+            Directory.CreateDirectory(path);
+
+        Utils.WriteToBinaryFile<DungeonData>(path + "/" + _inputField.text + ".dat", _dungeonData);
     }
 
     public void ClickLoad()

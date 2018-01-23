@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[Serializable]
 public struct Position
 {
     public int X, Y;
