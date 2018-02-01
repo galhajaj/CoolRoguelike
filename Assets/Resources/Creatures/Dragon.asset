@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8ea129bd1f0f67448311222356d2b9e, type: 3}
+  m_Name: Dragon
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 393c5bcd3745ee749b6ae0fca7db4461, type: 3}
+  Image: {fileID: 0}
+  Stats:
+    _Buckets: 0300000004000000050000000600000002000000ffffffffffffffff
+    _HashCodes: 01000000020000000b0000000700000008000000090000000a000000
+    _Next: ffffffffffffffffffffffffffffffff0000000001000000ffffffff
+    _Count: 7
+    _Version: 31
+    _FreeList: -1
+    _FreeCount: 0
+    _Keys: 01000000020000000b0000000700000008000000090000000a000000
+    _Values: 04000000040000004100000001000000030000000100000001000000

@@ -12,4 +12,9 @@ public class ResourcesManager : Singleton<ResourcesManager>
     public GameObject SwordItemPrefab;
 
     public GameObject DragonPrefab;
+
+    public GameObject GenericDungeonObject;
+    public GameObject GenericPortal;
+    public GameObject GenericCreature;
+    public GameObject GenericItem;
 }

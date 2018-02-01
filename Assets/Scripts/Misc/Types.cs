@@ -2,7 +2,16 @@
 using System;
 
 [Serializable]
-public class StatsDictionary : SerializableDictionary<Stat> { }
+public class StatsDictionary : SerializableDictionary<Stat>
+{
+    // overloading + operator
+    public static StatsDictionary operator +(StatsDictionary d1, StatsDictionary d2)
+    {
+        foreach (Stat stat in d2.Keys)
+            d1[stat] += d2[stat];
+        return d1;
+    }
+}
 
 public enum SocketType
 {

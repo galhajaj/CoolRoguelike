@@ -98,8 +98,9 @@ public class Creature : MonoBehaviour
         _equippedItems[item.SocketType] = item;
 
         // add stats
-        foreach (Stat stat in item.Stats.Keys)
-            this.Stats[stat] += item.Stats[stat];
+        this.Stats += item.Stats;
+        /*foreach (Stat stat in item.Stats.Keys)
+            this.Stats[stat] += item.Stats[stat];*/
     }
     // =================================================================================== //
     public void RemoveItem(Item item)
