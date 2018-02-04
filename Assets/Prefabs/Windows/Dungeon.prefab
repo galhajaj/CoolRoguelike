@@ -59,6 +59,8 @@ MonoBehaviour:
   _sizeY: 23
   _offsetX: -320
   _offsetY: 184
+  _spacing: 0
+  _invertYAxis: 0
   _elementPrefab: {fileID: 4632854040261538, guid: 2bdecde9f2ded4c499cb452ce3215037,
     type: 2}
 --- !u!114 &114090111388826972

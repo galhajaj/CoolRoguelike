@@ -28,10 +28,6 @@ public class DungeonEditor : Singleton<DungeonEditor>
 
     void Update()
     {
-        // return if not in dungeon
-        if (WindowManager.Instance.CurrentWindowName != "DungeonEditor")
-            return;
-
         checkLeftClickOnTile();
         checkRightClickOnTile();
         checkPressNumber();
