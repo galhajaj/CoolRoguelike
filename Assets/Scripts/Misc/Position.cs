@@ -51,6 +51,6 @@ public struct Position
         get { return Dungeon.Instance.GetTile(this); }
     }
 
-    // null position (-1, -1)
-    public static Position NullPosition { get { return new Position(-1, -1); } }
+    // null position (int MinValue, int MinValue)
+    public static Position NullPosition { get { return new Position(int.MinValue, int.MinValue); } }
 }

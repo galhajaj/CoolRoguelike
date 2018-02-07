@@ -16,16 +16,44 @@ public class DungeonEditor : Singleton<DungeonEditor>
     private InputField _inputField = null;
 
     private DungeonSaveData _dungeonSaveData = new DungeonSaveData();
+    private Position _currentShownAreaPosition;
 
     void Start()
     {
-
+        showArea(new Position(0, 0));
     }
 
     void Update()
     {
         checkLeftClickOnTile();
         checkRightClickOnTile();
+    }
+
+    private void showArea(Position position) // return the area index
+    {
+        // create new area if not exist
+        if (!_dungeonSaveData.Areas.ContainsKey(position))
+        {
+            AreaSaveData newArea = new AreaSaveData();
+            newArea.Position = position;
+            _dungeonSaveData.Areas[position] = newArea;
+        }
+
+        // clear current grid
+        clear();
+
+        // get the area
+        AreaSaveData areaToShow = _dungeonSaveData.Areas[position];
+
+        // put area stuff in grid
+        foreach (StuffSaveData stuff in areaToShow.Stuff)
+        {
+            DungeonTile tile = _grid.GetElement(stuff.Position) as DungeonTile;
+            putObjectInTile("Stuff", stuff.Name, tile);
+        }
+
+        // update current area index
+        _currentShownAreaPosition = position;
     }
 
     public void ClickSave()
@@ -40,7 +68,7 @@ public class DungeonEditor : Singleton<DungeonEditor>
 
     public void ClickLoad()
     {
-        clear();
+        //clear();
     }
 
     private void checkRightClickOnTile()
@@ -58,6 +86,8 @@ public class DungeonEditor : Singleton<DungeonEditor>
             return;
 
         targetTile.Clear();
+
+        updateCurrentAreaSaveData();
     }
 
     private void checkLeftClickOnTile()
@@ -80,7 +110,14 @@ public class DungeonEditor : Singleton<DungeonEditor>
         if (ObjectSelector.Instance.SelectedObjectName == "")
             return;
 
-        string objectPath = ObjectSelector.Instance.ObjectsFolderName + "/" + ObjectSelector.Instance.SelectedObjectName;
+        putObjectInTile(ObjectSelector.Instance.ObjectsFolderName, ObjectSelector.Instance.SelectedObjectName, targetTile);
+
+        updateCurrentAreaSaveData();
+    }
+
+    private void putObjectInTile(string category, string objectName, DungeonTile targetTile)
+    {
+        string objectPath = category + "/" + objectName;
         GameObject prefabToCreate = Resources.Load<GameObject>(objectPath);
         if (prefabToCreate == null)
         {
@@ -97,5 +134,41 @@ public class DungeonEditor : Singleton<DungeonEditor>
     {
         foreach (DungeonTile tile in _grid.Elements)
             tile.Clear();
+    }
+
+    public void ShowAreaInDirection(string direction)
+    {
+        AreaSaveData currentArea = _dungeonSaveData.Areas[_currentShownAreaPosition];
+
+        if (direction == "North")
+            showArea(currentArea.Position.Up);
+        else if (direction == "South")
+            showArea(currentArea.Position.Down);
+        else if (direction == "West")
+            showArea(currentArea.Position.Left);
+        else if (direction == "East")
+            showArea(currentArea.Position.Right);
+        else if (direction == "Origin")
+            showArea(new Position(0, 0));
+        else
+            Debug.LogError("not exist area direction: " + direction);
+    }
+
+    private void updateCurrentAreaSaveData()
+    {
+        AreaSaveData currentArea = _dungeonSaveData.Areas[_currentShownAreaPosition];
+
+        currentArea.Stuff.Clear();
+
+        foreach (DungeonTile tile in _grid.Elements)
+        {
+            foreach (Transform obj in tile.transform)
+            {
+                StuffSaveData stuff = new StuffSaveData();
+                stuff.Name = obj.name.Split('(')[0].Trim();
+                stuff.Position = tile.Position;
+                currentArea.Stuff.Add(stuff);
+            }
+        }
     }
 }

@@ -35,8 +35,6 @@ public class ObjectSelector : Singleton<ObjectSelector>
     public void ToggleObjectType()
     {
         if (ObjectsFolderName == "Stuff")
-            ObjectsFolderName = "Portals";
-        else if (ObjectsFolderName == "Portals")
             ObjectsFolderName = "Items";
         else if (ObjectsFolderName == "Items")
             ObjectsFolderName = "Creatures";

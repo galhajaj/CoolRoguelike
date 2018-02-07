@@ -13,6 +13,21 @@ public class StatsDictionary : SerializableDictionary<Stat>
     }
 }
 
+public enum Direction
+{
+    NONE,
+    UP,
+    DOWN,
+    NORTH,
+    NORTH_WEST,
+    NORTH_EAST,
+    SOUTH,
+    SOUTH_WEST,
+    SOUTH_EAST,
+    WEST,
+    EAST
+}
+
 public enum SocketType
 {
     NONE,
