@@ -29,9 +29,8 @@ public class DungeonEditor : Singleton<DungeonEditor>
         checkRightClickOnTile();
     }
 
-    private void showArea(Position position) // return the area index
+    private AreaSaveData getArea(Position position)
     {
-        // create new area if not exist
         if (!_dungeonSaveData.Areas.ContainsKey(position))
         {
             AreaSaveData newArea = new AreaSaveData();
@@ -39,11 +38,16 @@ public class DungeonEditor : Singleton<DungeonEditor>
             _dungeonSaveData.Areas[position] = newArea;
         }
 
+        return _dungeonSaveData.Areas[position];
+    }
+
+    private void showArea(Position position) // return the area index
+    {
         // clear current grid
         clear();
 
         // get the area
-        AreaSaveData areaToShow = _dungeonSaveData.Areas[position];
+        AreaSaveData areaToShow = getArea(position);
 
         // put area stuff in grid
         foreach (StuffSaveData stuff in areaToShow.Stuff)
@@ -68,7 +72,8 @@ public class DungeonEditor : Singleton<DungeonEditor>
 
     public void ClickLoad()
     {
-        //clear();
+        _dungeonSaveData = Utils.ReadFromBinaryFile<DungeonSaveData>(SAVE_FILE_PATH + "/" + _inputField.text + ".dat");
+        showArea(new Position(0, 0));
     }
 
     private void checkRightClickOnTile()
@@ -138,7 +143,7 @@ public class DungeonEditor : Singleton<DungeonEditor>
 
     public void ShowAreaInDirection(string direction)
     {
-        AreaSaveData currentArea = _dungeonSaveData.Areas[_currentShownAreaPosition];
+        AreaSaveData currentArea = getArea(_currentShownAreaPosition);
 
         if (direction == "North")
             showArea(currentArea.Position.North);
@@ -160,7 +165,7 @@ public class DungeonEditor : Singleton<DungeonEditor>
 
     private void updateCurrentAreaSaveData()
     {
-        AreaSaveData currentArea = _dungeonSaveData.Areas[_currentShownAreaPosition];
+        AreaSaveData currentArea = getArea(_currentShownAreaPosition);
 
         currentArea.Stuff.Clear();
 
