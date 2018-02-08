@@ -105,21 +105,21 @@ public class DungeonTurnManager : MonoBehaviour
         Position targetPosition = Party.Instance.Position;
 
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Keypad8) || Input.GetKeyDown(KeyCode.UpArrow))
-            targetPosition = Party.Instance.Position.Up;
+            targetPosition = Party.Instance.Position.North;
         else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.DownArrow))
-            targetPosition = Party.Instance.Position.Down;
+            targetPosition = Party.Instance.Position.South;
         else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.LeftArrow))
-            targetPosition = Party.Instance.Position.Left;
+            targetPosition = Party.Instance.Position.West;
         else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.Keypad6) || Input.GetKeyDown(KeyCode.RightArrow))
-            targetPosition = Party.Instance.Position.Right;
+            targetPosition = Party.Instance.Position.East;
         else if (Input.GetKeyDown(KeyCode.Keypad7))
-            targetPosition = Party.Instance.Position.UpLeft;
+            targetPosition = Party.Instance.Position.NorthWest;
         else if (Input.GetKeyDown(KeyCode.Keypad9))
-            targetPosition = Party.Instance.Position.UpRight;
+            targetPosition = Party.Instance.Position.NorthEast;
         else if (Input.GetKeyDown(KeyCode.Keypad1))
-            targetPosition = Party.Instance.Position.DownLeft;
+            targetPosition = Party.Instance.Position.SouthWest;
         else if (Input.GetKeyDown(KeyCode.Keypad3))
-            targetPosition = Party.Instance.Position.DownRight;
+            targetPosition = Party.Instance.Position.SouthEast;
 
         // return if no change in position
         if (targetPosition == Party.Instance.Position)

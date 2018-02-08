@@ -141,13 +141,17 @@ public class DungeonEditor : Singleton<DungeonEditor>
         AreaSaveData currentArea = _dungeonSaveData.Areas[_currentShownAreaPosition];
 
         if (direction == "North")
-            showArea(currentArea.Position.Up);
+            showArea(currentArea.Position.North);
         else if (direction == "South")
-            showArea(currentArea.Position.Down);
+            showArea(currentArea.Position.South);
         else if (direction == "West")
-            showArea(currentArea.Position.Left);
+            showArea(currentArea.Position.West);
         else if (direction == "East")
-            showArea(currentArea.Position.Right);
+            showArea(currentArea.Position.East);
+        else if (direction == "Up")
+            showArea(currentArea.Position.Up);
+        else if (direction == "Down")
+            showArea(currentArea.Position.Down);
         else if (direction == "Origin")
             showArea(new Position(0, 0));
         else

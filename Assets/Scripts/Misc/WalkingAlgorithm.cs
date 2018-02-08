@@ -28,14 +28,14 @@ public class WalkingAlgorithm
         Position nextPos = new Position(-1, -1);
         int minDistance = 10000;
 
-        helper4GetNextStupidTile(from.Up, to, ref nextPos, ref minDistance);
-        helper4GetNextStupidTile(from.Down, to, ref nextPos, ref minDistance);
-        helper4GetNextStupidTile(from.Right, to, ref nextPos, ref minDistance);
-        helper4GetNextStupidTile(from.Left, to, ref nextPos, ref minDistance);
-        helper4GetNextStupidTile(from.UpRight, to, ref nextPos, ref minDistance);
-        helper4GetNextStupidTile(from.UpLeft, to, ref nextPos, ref minDistance);
-        helper4GetNextStupidTile(from.DownLeft, to, ref nextPos, ref minDistance);
-        helper4GetNextStupidTile(from.DownRight, to, ref nextPos, ref minDistance);
+        helper4GetNextStupidTile(from.North, to, ref nextPos, ref minDistance);
+        helper4GetNextStupidTile(from.South, to, ref nextPos, ref minDistance);
+        helper4GetNextStupidTile(from.East, to, ref nextPos, ref minDistance);
+        helper4GetNextStupidTile(from.West, to, ref nextPos, ref minDistance);
+        helper4GetNextStupidTile(from.NorthEast, to, ref nextPos, ref minDistance);
+        helper4GetNextStupidTile(from.NorthWest, to, ref nextPos, ref minDistance);
+        helper4GetNextStupidTile(from.SouthWest, to, ref nextPos, ref minDistance);
+        helper4GetNextStupidTile(from.SouthEast, to, ref nextPos, ref minDistance);
 
         if (nextPos.X == -1)
             return Position.NullPosition;
