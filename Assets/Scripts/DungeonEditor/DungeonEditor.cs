@@ -7,9 +7,6 @@ using UnityEngine.UI;
 
 public class DungeonEditor : Singleton<DungeonEditor>
 {
-    private const string CURRENT_PLAYER = "Player1"; // temp...hard coded in the meantime. get it from text somehow
-    private const string SAVE_FILE_PATH = @"c:/temp"; // change location and name to be for the current player
-
     [SerializeField]
     private Grid _grid = null;
     [SerializeField]
@@ -67,12 +64,12 @@ public class DungeonEditor : Singleton<DungeonEditor>
         if (!Directory.Exists(path))
             Directory.CreateDirectory(path);*/
 
-        Utils.WriteToBinaryFile(SAVE_FILE_PATH + "/" + _inputField.text + ".dat", _dungeonSaveData);
+        Utils.WriteToBinaryFile(Consts.DUNGEON_FILES_PATH + "/" + _inputField.text + ".dat", _dungeonSaveData);
     }
 
     public void ClickLoad()
     {
-        _dungeonSaveData = Utils.ReadFromBinaryFile<DungeonSaveData>(SAVE_FILE_PATH + "/" + _inputField.text + ".dat");
+        _dungeonSaveData = Utils.ReadFromBinaryFile<DungeonSaveData>(Consts.DUNGEON_FILES_PATH + "/" + _inputField.text + ".dat");
         showArea(new Position(0, 0));
     }
 

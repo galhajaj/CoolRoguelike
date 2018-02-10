@@ -1,7 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+
+[Serializable]
+public class PlayerSaveData
+{
+    public List<DungeonSaveData> Dungeons = new List<DungeonSaveData>();
+}
 
 [Serializable]
 public class DungeonSaveData
@@ -46,5 +53,39 @@ public class ItemSaveData
 
 public class SaveAndLoad : Singleton<SaveAndLoad>
 {
-    
+    public PlayerSaveData PlayerSaveData = new PlayerSaveData();
+
+    public void GenerateNewSaveGame()
+    {
+        // clean save data
+        PlayerSaveData.Dungeons.Clear();
+
+        // load all dungeon files into save data
+        DirectoryInfo d = new DirectoryInfo(Consts.DUNGEON_FILES_PATH);
+        FileInfo[] files = d.GetFiles("*.dat");
+        foreach (FileInfo file in files)
+        {
+            DungeonSaveData dungeonSaveData = Utils.ReadFromBinaryFile<DungeonSaveData>(Consts.DUNGEON_FILES_PATH + "/" + file.Name);
+            PlayerSaveData.Dungeons.Add(dungeonSaveData);
+        }
+
+        // save to file with player name
+        this.Save();
+
+        // library
+        Library.Instance.BuildLibrary();
+    }
+
+    public void Save()
+    {
+        Utils.WriteToBinaryFile(Consts.SAVE_FILES_PATH + "/" + Consts.CURRENT_PLAYER + ".sav", PlayerSaveData);
+    }
+
+    public void Load()
+    {
+        PlayerSaveData = Utils.ReadFromBinaryFile<PlayerSaveData>(Consts.SAVE_FILES_PATH + "/" + Consts.CURRENT_PLAYER + ".sav");
+
+        // library
+        Library.Instance.BuildLibrary();
+    }
 }

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4702318148829426}
   - component: {fileID: 212734756931127158}
   - component: {fileID: 61184330866925064}
-  - component: {fileID: 114795158533611108}
+  - component: {fileID: 114868741495321298}
   m_Layer: 0
   m_Name: Edit
   m_TagString: Untagged
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 4664537336220860}
   - component: {fileID: 212194496279812710}
   - component: {fileID: 61790853937222556}
-  - component: {fileID: 114210571476805284}
+  - component: {fileID: 114415090647572060}
   m_Layer: 0
   m_Name: New
   m_TagString: Untagged
@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 4284877088438006}
   - component: {fileID: 212402415201641584}
   - component: {fileID: 61661923703767276}
+  - component: {fileID: 114105123264023846}
   m_Layer: 0
   m_Name: Continue
   m_TagString: Untagged
@@ -268,18 +269,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 32, y: 32}
   m_EdgeRadius: 0
---- !u!114 &114210571476805284
+--- !u!114 &114105123264023846
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1260664019387874}
+  m_GameObject: {fileID: 1330718806582078}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5944684936cbfc842aaa03439449c9a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c88a362a70c118499609ec6bfe5ae56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _windowName: Village
 --- !u!114 &114344319409991514
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -292,6 +292,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isShownAtStart: 1
+--- !u!114 &114415090647572060
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1260664019387874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e131b5db3fb212a47a10ce846b3505eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114608195369674814
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -303,7 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd9ae2dd1e000f488cab32e0e8ea26d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114795158533611108
+--- !u!114 &114868741495321298
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -311,10 +322,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1247182162357622}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5944684936cbfc842aaa03439449c9a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 644378b86a87e6a40a904af99708313b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _windowName: Edit
+  _sceneName: editorScene
 --- !u!212 &212194496279812710
 SpriteRenderer:
   m_ObjectHideFlags: 1
