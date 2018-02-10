@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class ObjectSelector : Singleton<ObjectSelector>
 {
-    public string ObjectsFolderName = "Stuff";
     public string SelectedObjectName { get; private set; }
 
     [SerializeField]
@@ -14,6 +13,7 @@ public class ObjectSelector : Singleton<ObjectSelector>
     [SerializeField]
     private Text _textSelected = null;
 
+    private string _objectsFolderName = "Stuff";
 
     void Start()
     {
@@ -34,14 +34,14 @@ public class ObjectSelector : Singleton<ObjectSelector>
     // toggle between stuff/portals/items/creatures
     public void ToggleObjectType()
     {
-        if (ObjectsFolderName == "Stuff")
-            ObjectsFolderName = "Items";
-        else if (ObjectsFolderName == "Items")
-            ObjectsFolderName = "Creatures";
-        else if (ObjectsFolderName == "Creatures")
-            ObjectsFolderName = "Stuff";
+        if (_objectsFolderName == "Stuff")
+            _objectsFolderName = "Items";
+        else if (_objectsFolderName == "Items")
+            _objectsFolderName = "Creatures";
+        else if (_objectsFolderName == "Creatures")
+            _objectsFolderName = "Stuff";
 
-        Debug.Log("Loading " + ObjectsFolderName);
+        Debug.Log("Loading " + _objectsFolderName);
 
         fillGridWithSelectedObjects();
     }
@@ -54,7 +54,7 @@ public class ObjectSelector : Singleton<ObjectSelector>
                 Destroy(tile.transform.GetChild(0).gameObject);
 
         // get all object from resources folder
-        GameObject[] allObjects = Resources.LoadAll<GameObject>(ObjectsFolderName);
+        GameObject[] allObjects = Resources.LoadAll<GameObject>(_objectsFolderName);
 
         // create instance of each object and place it inside the grid
         for (int i = 0; i < allObjects.Length; ++i)

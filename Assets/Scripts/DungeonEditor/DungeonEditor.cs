@@ -53,7 +53,7 @@ public class DungeonEditor : Singleton<DungeonEditor>
         foreach (StuffSaveData stuff in areaToShow.Stuff)
         {
             DungeonTile tile = _grid.GetElement(stuff.Position) as DungeonTile;
-            putObjectInTile("Stuff", stuff.Name, tile);
+            putObjectInTile(stuff.Name, tile);
         }
 
         // update current area index
@@ -115,21 +115,27 @@ public class DungeonEditor : Singleton<DungeonEditor>
         if (ObjectSelector.Instance.SelectedObjectName == "")
             return;
 
-        putObjectInTile(ObjectSelector.Instance.ObjectsFolderName, ObjectSelector.Instance.SelectedObjectName, targetTile);
+        putObjectInTile(ObjectSelector.Instance.SelectedObjectName, targetTile);
 
         updateCurrentAreaSaveData();
     }
 
-    private void putObjectInTile(string category, string objectName, DungeonTile targetTile)
+    private void putObjectInTile(string objectName, DungeonTile targetTile)
     {
-        string objectPath = category + "/" + objectName;
-        GameObject prefabToCreate = Resources.Load<GameObject>(objectPath);
+        // get object from resources folder
+        var allResources = Resources.LoadAll<GameObject>("");
+        GameObject prefabToCreate = null;
+        foreach (GameObject obj in allResources)
+            if (obj.name == objectName)
+                prefabToCreate = obj;
+
         if (prefabToCreate == null)
         {
-            Debug.LogError(objectPath + " resource not exists");
+            Debug.LogError(objectName + " resource doesn't exist");
             return;
         }
 
+        // instantiate it in tile
         GameObject instance = Instantiate(prefabToCreate);
         instance.transform.position = targetTile.transform.position;
         instance.transform.parent = targetTile.transform;
