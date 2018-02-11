@@ -11,17 +11,16 @@ public class Dungeon : Singleton<Dungeon>
     private DungeonSaveData _dungeonSaveData = null;
     private Position _currentShownAreaPosition;
 
-    // ======================================================================================================================================== //
+    public bool IsInOriginArea { get { return _currentShownAreaPosition == new Position(0, 0, 0); } }
+
+    // ================================================================================================== //
     void Start() 
 	{
 
 	}
-    // ======================================================================================================================================== //
+    // ================================================================================================== //
     public void Load(string dungeonName)
     {
-        // un-parent the party to prevent deletion
-        Party.Instance.transform.parent = null;
-
         // clean all dungeon
         this.clear();
 
@@ -39,66 +38,8 @@ public class Dungeon : Singleton<Dungeon>
         }
 
         // TODO: in the meantime... show always first...
-        showArea(new Position(0, 0, 0));
+        ShowArea(new Position(0, 0, 0));
 
-        // TODO: implement taking from files or something else...
-        // ###############################################################
-        /*if (dungeonName == "Ancient_Castle_Level_1")
-        {
-            putDungeonObject(3, 5, ResourcesManager.Instance.WallPrefab);
-            putDungeonObject(3, 6, ResourcesManager.Instance.WallPrefab);
-            putDungeonObject(3, 7, ResourcesManager.Instance.WallPrefab);
-            putDungeonObject(3, 8, ResourcesManager.Instance.WallPrefab);
-
-            putDungeonObject(4, 5, ResourcesManager.Instance.WallPrefab);
-            putDungeonObject(5, 5, ResourcesManager.Instance.WallPrefab);
-            putDungeonObject(6, 5, ResourcesManager.Instance.WallPrefab);
-
-            putDungeonObject(8, 8, ResourcesManager.Instance.SwordItemPrefab);
-
-            putDungeonObject(10, 10, ResourcesManager.Instance.DragonPrefab);
-            putDungeonObject(13, 13, ResourcesManager.Instance.DragonPrefab);
-
-
-            putPortal(0, 0, "Village");
-            putPortal(15, 15, "Ancient_Castle_Level_2");
-        }
-        else if (dungeonName == "Ancient_Castle_Level_2")
-        {
-            putDungeonObject(9, 5, ResourcesManager.Instance.WallPrefab);
-            putDungeonObject(9, 6, ResourcesManager.Instance.WallPrefab);
-            putDungeonObject(9, 7, ResourcesManager.Instance.WallPrefab);
-            putDungeonObject(9, 8, ResourcesManager.Instance.WallPrefab);
-
-            putPortal(12, 12, "Ancient_Castle_Level_1");
-            putPortal(15, 17, "Ancient_Castle_Level_3");
-        }
-        else if (dungeonName == "Ancient_Castle_Level_3")
-        {
-            putDungeonObject(20, 5, ResourcesManager.Instance.WallPrefab);
-            putDungeonObject(20, 6, ResourcesManager.Instance.WallPrefab);
-            putDungeonObject(20, 7, ResourcesManager.Instance.WallPrefab);
-            putDungeonObject(20, 8, ResourcesManager.Instance.WallPrefab);
-
-            putPortal(12, 19, "Ancient_Castle_Level_2");
-        }
-        else if (dungeonName == "Village")
-        {
-            // nothing
-        }
-        else
-        {
-            Debug.LogError("dungeonName: [" + dungeonName + "] not found!");
-        }*/
-        // ###############################################################
-
-        // find the stairs that lead to the location that the party came from it
-        DungeonTile startStairs = findPortalTile(Party.Instance.Loaction);
-
-        if (startStairs == null && dungeonName != "Village")
-        {
-            Debug.LogError("cannot find stairs that lead to " + Party.Instance.Loaction);
-        }
         // place the party
         if (dungeonName != "Village")
         {
@@ -108,15 +49,21 @@ public class Dungeon : Singleton<Dungeon>
         // update the location of the party
         Party.Instance.Loaction = dungeonName;
     }
-
-    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-    private void showArea(Position position) // return the area index
+    // ================================================================================================== //
+    public void ShowArea(Position position)
     {
+        // check valid area
+        if (!_dungeonSaveData.Areas.ContainsKey(position))
+        {
+            Debug.LogError("area doesn't exist in that position: " + position.ToString());
+            return;
+        }
+
         // clear current grid
         clear();
 
         // get the area
-        AreaSaveData areaToShow = getArea(position);
+        AreaSaveData areaToShow = _dungeonSaveData.Areas[position];
 
         // put area stuff in grid.TODO: why only from stuff... it's a mistake, it contains also the creatures etc.
         foreach (StuffSaveData stuff in areaToShow.Stuff)
@@ -128,7 +75,25 @@ public class Dungeon : Singleton<Dungeon>
         // update current area index
         _currentShownAreaPosition = position;
     }
-
+    // ================================================================================================== //
+    public void ShowArea(Direction direction)
+    {
+        if (direction == Direction.NORTH)
+            ShowArea(_currentShownAreaPosition.North);
+        else if (direction == Direction.SOUTH)
+            ShowArea(_currentShownAreaPosition.South);
+        else if (direction == Direction.WEST)
+            ShowArea(_currentShownAreaPosition.West);
+        else if (direction == Direction.EAST)
+            ShowArea(_currentShownAreaPosition.East);
+        else if (direction == Direction.UP)
+            ShowArea(_currentShownAreaPosition.Up);
+        else if (direction == Direction.DOWN)
+            ShowArea(_currentShownAreaPosition.Down);
+        else
+            Debug.LogError("area doesn't exist in that direction: " + direction.ToString());
+    }
+    // ================================================================================================== //
     private void putObjectInTile(string objectName, DungeonTile targetTile)
     {
         // get object from resources folder
@@ -149,43 +114,14 @@ public class Dungeon : Singleton<Dungeon>
         instance.transform.position = targetTile.transform.position;
         instance.transform.parent = targetTile.transform;
     }
-
-    private AreaSaveData getArea(Position position)
-    {
-        if (!_dungeonSaveData.Areas.ContainsKey(position))
-        {
-            AreaSaveData newArea = new AreaSaveData();
-            newArea.Position = position;
-            _dungeonSaveData.Areas[position] = newArea;
-        }
-
-        return _dungeonSaveData.Areas[position];
-    }
-    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-
-    // ======================================================================================================================================== //
-    private DungeonTile findPortalTile(string leadTo)
-    {
-        foreach (DungeonTile tile in _grid.Elements)
-        {
-            Portal portal = tile.GetComponentInChildren<Portal>();
-            if (portal != null)
-            {
-                if (portal.LeadTo == leadTo)
-                    return tile;
-            }
-        }
-
-        return null;
-    }
-    // ======================================================================================================================================== //
+    // ================================================================================================== //
     public DungeonTile GetTile(Position pos)
     {
         if (pos == Position.NullPosition)
             return null;
         return _grid.GetElement(pos) as DungeonTile;
     }
-    // ======================================================================================================================================== //
+    // ================================================================================================== //
     public List<Creature> GetCreatures()
     {
         List<Creature> creatures = new List<Creature>();
@@ -199,7 +135,7 @@ public class Dungeon : Singleton<Dungeon>
 
         return creatures;
     }
-    // ======================================================================================================================================== //
+    // ================================================================================================== //
     // good for party, creature, chests and another things that can be only one of them in tile and can be move from there 
     // or has a special interaction
     public void PutDungeonObjectInTile(DungeonObject obj, DungeonTile tile)
@@ -213,37 +149,13 @@ public class Dungeon : Singleton<Dungeon>
         obj.transform.position = tile.transform.position;
         obj.transform.parent = tile.transform;
     }
-    // ======================================================================================================================================== //
-    /*private DungeonObject putDungeonObject(int x, int y, GameObject prefab)
-    {
-        GameObject obj = Instantiate(prefab);
-        DungeonObject dungeonObject = obj.GetComponent<DungeonObject>();
-        Position pos = new Position(x, y);
-        DungeonTile targetTile = GetTile(pos);
-        PutDungeonObjectInTile(dungeonObject, targetTile);
-
-        // if item, set sprite to loot icon
-        Item item = obj.GetComponent<Item>();
-        if (item != null)
-            item.State = ItemState.GROUND;
-
-        return dungeonObject;
-    }*/
-    // ======================================================================================================================================== //
-    /*private void putPortal(int x, int y, string leadTo)
-    {
-        DungeonObject portalObj = putDungeonObject(x, y, ResourcesManager.Instance.StairsPrefab);
-
-        Portal portal = portalObj.GetComponent<Portal>();
-        portal.LeadTo = leadTo;
-    }*/
-    // ======================================================================================================================================== //
+    // ================================================================================================== //
     private void clear()
     {
         foreach (DungeonTile tile in _grid.Elements)
             tile.Clear();
     }
-    // ======================================================================================================================================== //
+    // ================================================================================================== //
     public List<List<bool>> GetWalkingMap()
     {
         List<List<bool>> walkingMap = new List<List<bool>>();
@@ -261,7 +173,7 @@ public class Dungeon : Singleton<Dungeon>
 
         return walkingMap;
     }
-    // ======================================================================================================================================== //
+    // ================================================================================================== //
     public List<List<bool>> GetSightMap()
     {
         List<List<bool>> sightMap = new List<List<bool>>();
@@ -279,5 +191,5 @@ public class Dungeon : Singleton<Dungeon>
 
         return sightMap;
     }
-    // ======================================================================================================================================== //
+    // ================================================================================================== //
 }

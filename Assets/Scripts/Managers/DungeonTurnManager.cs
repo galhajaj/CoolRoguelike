@@ -125,16 +125,46 @@ public class DungeonTurnManager : MonoBehaviour
         if (targetPosition == Party.Instance.Position)
             return;
 
+        // ################################################
+        // leave to adjacent area at borders or leave to village if in origin area
+        if (targetPosition.IsOutsideDungeonArea)
+        {
+            if (Dungeon.Instance.IsInOriginArea)
+            {
+                WindowManager.Instance.LoadWindow("Village");
+                return;
+            }
+            else
+            {
+                // 1. show adjacent area
+                if (targetPosition == Party.Instance.Position.North)
+                    Dungeon.Instance.ShowArea(Direction.NORTH);
+                else if (targetPosition == Party.Instance.Position.South)
+                    Dungeon.Instance.ShowArea(Direction.SOUTH);
+                else if (targetPosition == Party.Instance.Position.West)
+                    Dungeon.Instance.ShowArea(Direction.WEST);
+                else if (targetPosition == Party.Instance.Position.East)
+                    Dungeon.Instance.ShowArea(Direction.EAST);
+                else
+                    return;
+                // 2. update targetPosition to be legal in adjacent tile
+                targetPosition = targetPosition.CyclicPosition;
+
+                // TODO: consider the situation where a creature is on that tile... move it to another one
+            }
+        }
+        // ################################################
+
         DungeonTile targetTile = Dungeon.Instance.GetTile(targetPosition);
         Creature targetCreature = targetTile.GetContainedCreature();
         Creature activePartyMember = Party.Instance.SelectedMember;
 
         // choose action by the tile content
-        if (targetCreature != null)
+        if (targetCreature != null) // attack if creature in there
         {
             activePartyMember.MeleeAttack(targetCreature);
         }
-        else if (!targetTile.IsBlockPath)
+        else if (!targetTile.IsBlockPath) // move to that location if free
         {
             Debug.Log("party move");
             Dungeon.Instance.PutDungeonObjectInTile(Party.Instance.DungeonObject, targetTile);
@@ -159,10 +189,7 @@ public class DungeonTurnManager : MonoBehaviour
         if (!partyTile.IsPortal)
             return;
 
-        if (partyTile.LeadTo == "Village")
-            WindowManager.Instance.LoadWindow("Village");
-
-        Dungeon.Instance.Load(partyTile.LeadTo);
+        Dungeon.Instance.ShowArea(partyTile.LeadTo);
     }
     // ====================================================================================================== //
     private void checkPickupKey()

@@ -51,6 +51,25 @@ public struct Position
     public Position Up { get { return new Position(X, Y, Z + 1); } }
     public Position Down { get { return new Position(X, Y, Z - 1); } }
 
+    public bool IsOutsideDungeonArea
+    {
+        get { return !(X >= 0 && X < Consts.DUNGEON_AREA_WIDTH && Y >= 0 && Y < Consts.DUNGEON_AREA_HEIGHT); }
+    }
+
+    public Position CyclicPosition
+    {
+        get
+        {
+            int x = X;
+            int y = Y;
+            if (x < 0) x = Consts.DUNGEON_AREA_WIDTH - 1;
+            if (x >= Consts.DUNGEON_AREA_WIDTH) x = 0;
+            if (y < 0) y = Consts.DUNGEON_AREA_HEIGHT - 1;
+            if (y >= Consts.DUNGEON_AREA_HEIGHT) y = 0;
+            return new Position(x, y);
+        }
+    }
+
     // the correlated dungeon tile in dungeon
     public DungeonTile DungeonTile
     {

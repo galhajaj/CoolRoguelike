@@ -22,12 +22,12 @@ public class DungeonTile : GridElement
     {
         get { return (this.transform.GetComponentInChildren<Portal>() != null); }
     }
-    public string LeadTo
+    public Direction LeadTo
     {
         get
         {
             if (!IsPortal)
-                return "";
+                return Direction.NONE;
             return this.transform.GetComponentInChildren<Portal>().LeadTo;
         }
     }
@@ -65,9 +65,10 @@ public class DungeonTile : GridElement
     // ======================================================================================================================================== //
     public void Clear()
     {
-        // delete object inside tile
+        // delete object inside tile, unless it's the Party
         foreach (Transform child in this.transform)
-            Destroy(child.gameObject);
+            if (child.GetComponent<Party>() == null)
+                Destroy(child.gameObject);
     }
     // ======================================================================================================================================== //
     public void AddObject(GameObject obj)

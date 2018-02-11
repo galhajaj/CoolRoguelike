@@ -54,6 +54,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4750f2e6b668eb44a8af1bfd07d30e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerSaveData:
+    Dungeons: []
 --- !u!114 &114274146017067240
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -78,14 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e580c05b4d10b8b4d9643ebe0482cb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LootOnGroundSprite: {fileID: 21300000, guid: 57a5c8c5e613ada4bb7aa9ed3d4255fc, type: 3}
-  WallPrefab: {fileID: 1301272116306438, guid: 857e587602effdc439501ecb088b3b63, type: 2}
-  StairsPrefab: {fileID: 1585354456136492, guid: 4b1916bf2d8434c4ab330973f4745198,
-    type: 2}
-  SwordItemPrefab: {fileID: 1552110050588252, guid: 9260e8356d2974b41a92ce757ee6a4b1,
-    type: 2}
-  DragonPrefab: {fileID: 1191348109513958, guid: 13cdcf2ecc4177d46aabdeb713275053,
-    type: 2}
+  LootOnGroundSprite: {fileID: 21300036, guid: 3cae6461ba9240f4197982d0ef2c01e1, type: 3}
 --- !u!114 &114865799222118380
 MonoBehaviour:
   m_ObjectHideFlags: 1

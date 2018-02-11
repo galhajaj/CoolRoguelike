@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
-    public string LeadTo;
+    public Direction LeadTo;
+    public GameObject CorespondingPortal;
 }
