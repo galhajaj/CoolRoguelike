@@ -64,6 +64,7 @@ public class DungeonEditor : Singleton<DungeonEditor>
         if (!Directory.Exists(path))
             Directory.CreateDirectory(path);*/
 
+        _dungeonSaveData.Name = _inputField.text;
         Utils.WriteToBinaryFile(Consts.DUNGEON_FILES_PATH + "/" + _inputField.text + ".dat", _dungeonSaveData);
     }
 

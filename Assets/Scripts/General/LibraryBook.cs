@@ -4,5 +4,13 @@ using UnityEngine;
 
 public class LibraryBook : GridElement
 {
-    public string Name = "";
+    public string StoryName = "";
+    public string DungeonName = "";
+
+    private void OnMouseDown()
+    {
+        Debug.Log("Loading " + DungeonName + "...");
+        Dungeon.Instance.Load(DungeonName);
+        WindowManager.Instance.LoadWindow("Dungeon");
+    }
 }

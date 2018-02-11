@@ -6,7 +6,7 @@ public class ResourcesManager : Singleton<ResourcesManager>
 {
     public Sprite LootOnGroundSprite;
 
-    public GameObject WallPrefab;
+    /*public GameObject WallPrefab;
     public GameObject StairsPrefab;
 
     public GameObject SwordItemPrefab;
@@ -16,5 +16,5 @@ public class ResourcesManager : Singleton<ResourcesManager>
     public GameObject GenericDungeonObject;
     public GameObject GenericPortal;
     public GameObject GenericCreature;
-    public GameObject GenericItem;
+    public GameObject GenericItem;*/
 }
