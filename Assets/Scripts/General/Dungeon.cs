@@ -65,7 +65,8 @@ public class Dungeon : Singleton<Dungeon>
         // get the area
         AreaSaveData areaToShow = _dungeonSaveData.Areas[position];
 
-        // put area stuff in grid.TODO: why only from stuff... it's a mistake, it contains also the creatures etc.
+        // put area stuff in grid.
+        // TODO: why only from stuff... it's a mistake, it contains also the creatures etc.
         foreach (StuffSaveData stuff in areaToShow.Stuff)
         {
             DungeonTile tile = _grid.GetElement(stuff.Position) as DungeonTile;

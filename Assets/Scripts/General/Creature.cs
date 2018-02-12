@@ -11,6 +11,8 @@ public class Creature : MonoBehaviour
     private DungeonObject _dungeonObject = null;
     public DungeonObject DungeonObject { get { return _dungeonObject; } }
 
+    public GameObject Treasure;
+
     public StatsDictionary Stats = new StatsDictionary();
 
     public bool IsAlive { get { return Stats[Stat.HEARTS] > 0; } }

@@ -62,6 +62,9 @@ public class ObjectSelector : Singleton<ObjectSelector>
             GameObject objInstance = Instantiate(allObjects[i]);
             objInstance.transform.position = _grid.Elements[i].transform.position;
             objInstance.transform.parent = _grid.Elements[i].transform;
+            // if item, make it in ground state, so the sprite will change to icon
+            if (objInstance.GetComponent<Item>() != null)
+                objInstance.GetComponent<Item>().State = ItemState.GROUND;
         }
     }
 
@@ -75,7 +78,7 @@ public class ObjectSelector : Singleton<ObjectSelector>
         if (hit.collider == null)
             return;
 
-        SelectedObjectName = hit.collider.transform.GetChild(0).name.Split('(')[0].Trim();
+        SelectedObjectName = Utils.GetCleanName(hit.collider.transform.GetChild(0).name);
         _textSelected.text = SelectedObjectName;
     }
 }

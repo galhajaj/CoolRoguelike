@@ -9,10 +9,11 @@ public class Library : Singleton<Library>
 
     public void BuildLibrary()
     {
+        // rebuild the books grid to match the number of dungeons
         int numberOfDungeons = SaveAndLoad.Instance.PlayerSaveData.Dungeons.Count;
         _grid.Rebuild(numberOfDungeons);
 
-        // TODO: add things for each book in library - so the dungeon of it will load
+        // set dungeon for each book
         for (int i = 0; i < numberOfDungeons; ++i)
         {
             string dungeonName = SaveAndLoad.Instance.PlayerSaveData.Dungeons[i].Name;

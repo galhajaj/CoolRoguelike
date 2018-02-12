@@ -88,4 +88,10 @@ public class Utils
         }
     }
     // =========================================================================================== //
+    // remove the (clone) addition that adds to an instantiate obj
+    public static string GetCleanName(string rawName)
+    {
+        return rawName.Split('(')[0].Trim();
+    }
+    // =========================================================================================== //
 }

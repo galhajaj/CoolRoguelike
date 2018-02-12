@@ -22,7 +22,8 @@ public class Party : Singleton<Party>
         set { _location = value; }
     }
 
-    // peace mode - TODO: performance (can be triggered each turn by the monsters & can be only a bool)
+    // peace mode - 
+    // TODO: performance (can be triggered each turn by the monsters & can be only a bool)
     public bool IsInPeaceMode
     {
         get

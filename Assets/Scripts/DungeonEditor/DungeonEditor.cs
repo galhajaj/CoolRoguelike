@@ -137,6 +137,9 @@ public class DungeonEditor : Singleton<DungeonEditor>
         GameObject instance = Instantiate(prefabToCreate);
         instance.transform.position = targetTile.transform.position;
         instance.transform.parent = targetTile.transform;
+        // if item, make it in ground state, so the sprite will change to icon
+        if (instance.GetComponent<Item>() != null)
+            instance.GetComponent<Item>().State = ItemState.GROUND;
     }
 
     private void clear()
@@ -178,7 +181,7 @@ public class DungeonEditor : Singleton<DungeonEditor>
             foreach (Transform obj in tile.transform)
             {
                 StuffSaveData stuff = new StuffSaveData();
-                stuff.Name = obj.name.Split('(')[0].Trim();
+                stuff.Name = Utils.GetCleanName(obj.name);
                 stuff.Position = tile.Position;
                 currentArea.Stuff.Add(stuff);
             }

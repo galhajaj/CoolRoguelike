@@ -33,7 +33,7 @@ public class MouseHovering : MonoBehaviour
         _textHovering.text = "";
         foreach (Transform transform in hit.collider.transform)
         {
-            _textHovering.text += transform.name;
+            _textHovering.text += "[" + Utils.GetCleanName(transform.name) + "]";
         }
     }
 }
