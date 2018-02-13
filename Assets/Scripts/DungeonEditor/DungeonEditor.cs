@@ -15,17 +15,18 @@ public class DungeonEditor : Singleton<DungeonEditor>
     private DungeonSaveData _dungeonSaveData = new DungeonSaveData();
     private Position _currentShownAreaPosition;
 
+    // ================================================================================================== //
     void Start()
     {
         showArea(new Position(0, 0));
     }
-
+    // ================================================================================================== //
     void Update()
     {
         checkLeftClickOnTile();
         checkRightClickOnTile();
     }
-
+    // ================================================================================================== //
     private AreaSaveData getArea(Position position)
     {
         if (!_dungeonSaveData.Areas.ContainsKey(position))
@@ -37,7 +38,7 @@ public class DungeonEditor : Singleton<DungeonEditor>
 
         return _dungeonSaveData.Areas[position];
     }
-
+    // ================================================================================================== //
     private void showArea(Position position) // return the area index
     {
         // clear current grid
@@ -46,17 +47,35 @@ public class DungeonEditor : Singleton<DungeonEditor>
         // get the area
         AreaSaveData areaToShow = getArea(position);
 
-        // put area stuff in grid
+        // put stuff in grid
         foreach (StuffSaveData stuff in areaToShow.Stuff)
         {
             DungeonTile tile = _grid.GetElement(stuff.Position) as DungeonTile;
             putObjectInTile(stuff.Name, tile);
         }
+        // put items in grid
+        foreach (ItemSaveData item in areaToShow.Items)
+        {
+            DungeonTile tile = _grid.GetElement(item.Position) as DungeonTile;
+            putObjectInTile(item.Name, tile);
+        }
+        // put random treasures in grid
+        foreach (RandomTreasureSaveData randomTreasure in areaToShow.RandomTreasures)
+        {
+            DungeonTile tile = _grid.GetElement(randomTreasure.Position) as DungeonTile;
+            putObjectInTile(randomTreasure.Name, tile);
+        }
+        // put creatures in grid
+        foreach (CreatureSaveData creature in areaToShow.Creatures)
+        {
+            DungeonTile tile = _grid.GetElement(creature.Position) as DungeonTile;
+            putObjectInTile(creature.Name, tile);
+        }
 
         // update current area index
         _currentShownAreaPosition = position;
     }
-
+    // ================================================================================================== //
     public void ClickSave()
     {
         /*string path = Application.dataPath + "/dungeons";
@@ -67,13 +86,13 @@ public class DungeonEditor : Singleton<DungeonEditor>
         _dungeonSaveData.Name = _inputField.text;
         Utils.WriteToBinaryFile(Consts.DUNGEON_FILES_PATH + "/" + _inputField.text + ".dat", _dungeonSaveData);
     }
-
+    // ================================================================================================== //
     public void ClickLoad()
     {
         _dungeonSaveData = Utils.ReadFromBinaryFile<DungeonSaveData>(Consts.DUNGEON_FILES_PATH + "/" + _inputField.text + ".dat");
         showArea(new Position(0, 0));
     }
-
+    // ================================================================================================== //
     private void checkRightClickOnTile()
     {
         if (!Input.GetMouseButton(1))
@@ -92,7 +111,7 @@ public class DungeonEditor : Singleton<DungeonEditor>
 
         updateCurrentAreaSaveData();
     }
-
+    // ================================================================================================== //
     private void checkLeftClickOnTile()
     {
         if (!Input.GetMouseButton(0))
@@ -117,7 +136,7 @@ public class DungeonEditor : Singleton<DungeonEditor>
 
         updateCurrentAreaSaveData();
     }
-
+    // ================================================================================================== //
     private void putObjectInTile(string objectName, DungeonTile targetTile)
     {
         // get object from resources folder
@@ -141,13 +160,13 @@ public class DungeonEditor : Singleton<DungeonEditor>
         if (instance.GetComponent<Item>() != null)
             instance.GetComponent<Item>().State = ItemState.GROUND;
     }
-
+    // ================================================================================================== //
     private void clear()
     {
         foreach (DungeonTile tile in _grid.Elements)
             tile.Clear();
     }
-
+    // ================================================================================================== //
     public void ShowAreaInDirection(string direction)
     {
         AreaSaveData currentArea = getArea(_currentShownAreaPosition);
@@ -169,22 +188,57 @@ public class DungeonEditor : Singleton<DungeonEditor>
         else
             Debug.LogError("not exist area direction: " + direction);
     }
-
+    // ================================================================================================== //
     private void updateCurrentAreaSaveData()
     {
         AreaSaveData currentArea = getArea(_currentShownAreaPosition);
 
+        // clear all before save
         currentArea.Stuff.Clear();
+        currentArea.Items.Clear();
+        currentArea.RandomTreasures.Clear();
+        currentArea.Creatures.Clear();
 
         foreach (DungeonTile tile in _grid.Elements)
         {
             foreach (Transform obj in tile.transform)
             {
-                StuffSaveData stuff = new StuffSaveData();
-                stuff.Name = Utils.GetCleanName(obj.name);
-                stuff.Position = tile.Position;
-                currentArea.Stuff.Add(stuff);
+                string objectName = Utils.GetCleanName(obj.name);
+
+                // creature
+                if (obj.GetComponent<Creature>() != null)
+                {
+                    CreatureSaveData creature = new CreatureSaveData();
+                    creature.Name = objectName;
+                    creature.Position = tile.Position;
+                    currentArea.Creatures.Add(creature);
+                }
+                // item
+                else if (obj.GetComponent<Item>() != null)
+                {
+                    ItemSaveData item = new ItemSaveData();
+                    item.Name = objectName;
+                    item.Position = tile.Position;
+                    currentArea.Items.Add(item);
+                }
+                // random item
+                else if (obj.GetComponent<RandomTreasure>() != null)
+                {
+                    RandomTreasureSaveData randomTreasure = new RandomTreasureSaveData();
+                    randomTreasure.Name = objectName;
+                    randomTreasure.Position = tile.Position;
+                    currentArea.RandomTreasures.Add(randomTreasure);
+                }
+                // stuff
+                else
+                {
+                    StuffSaveData stuff = new StuffSaveData();
+                    stuff.Name = objectName;
+                    stuff.Position = tile.Position;
+                    currentArea.Stuff.Add(stuff);
+                }
             }
         }
     }
+    // ================================================================================================== //
 }

@@ -62,6 +62,24 @@ public enum ItemType
     POTION
 }
 
+public enum ItemCondition
+{
+    OK,
+    SLIGHTLY_DAMAGED,
+    DAMAGED,
+    BROKEN
+}
+
+public enum ItemDurability
+{
+    FRAGILE,
+    BAD,
+    NORMAL,
+    GOOD,
+    EXCELLENT,
+    UNBREAKABLE
+}
+
 public enum Stat
 {
     NULL,

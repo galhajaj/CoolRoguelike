@@ -65,12 +65,23 @@ public class Dungeon : Singleton<Dungeon>
         // get the area
         AreaSaveData areaToShow = _dungeonSaveData.Areas[position];
 
-        // put area stuff in grid.
-        // TODO: why only from stuff... it's a mistake, it contains also the creatures etc.
+        // put stuff in grid.
         foreach (StuffSaveData stuff in areaToShow.Stuff)
         {
             DungeonTile tile = _grid.GetElement(stuff.Position) as DungeonTile;
             putObjectInTile(stuff.Name, tile);
+        }
+        // put items in grid
+        foreach (ItemSaveData item in areaToShow.Items)
+        {
+            DungeonTile tile = _grid.GetElement(item.Position) as DungeonTile;
+            putObjectInTile(item.Name, tile);
+        }
+        // put creatures in grid
+        foreach (CreatureSaveData creature in areaToShow.Creatures)
+        {
+            DungeonTile tile = _grid.GetElement(creature.Position) as DungeonTile;
+            putObjectInTile(creature.Name, tile);
         }
 
         // update current area index
@@ -114,6 +125,9 @@ public class Dungeon : Singleton<Dungeon>
         GameObject instance = Instantiate(prefabToCreate);
         instance.transform.position = targetTile.transform.position;
         instance.transform.parent = targetTile.transform;
+        // if item, make it in ground state, so the sprite will change to icon
+        if (instance.GetComponent<Item>() != null)
+            instance.GetComponent<Item>().State = ItemState.GROUND;
     }
     // ================================================================================================== //
     public DungeonTile GetTile(Position pos)
