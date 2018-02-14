@@ -6,7 +6,7 @@ using System.IO;
 using UnityEngine;
 
 [Serializable]
-public class SaveData
+public abstract class SaveData
 {
     public string Name;
     public Position Position;
@@ -64,6 +64,8 @@ public class SaveAndLoad : Singleton<SaveAndLoad>
     // ================================================================================================== //
     public void GenerateNewSaveGame()
     {
+        Debug.Log("Generate new save game...");
+
         // clean save data
         PlayerSaveData.Dungeons.Clear();
 
@@ -100,10 +102,8 @@ public class SaveAndLoad : Singleton<SaveAndLoad>
                     }
                 }
 
-                Debug.Log("number = " + areaSaveData.Objects.Count);
                 // delete all random treasure objects in area (they are just templates, the items from them already created)
                 areaSaveData.Objects.RemoveAll(s => s is RandomTreasureSaveData);
-                Debug.Log("number = " + areaSaveData.Objects.Count);
             }
 
             // add it

@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 212329792536377584}
   - component: {fileID: 114531520469102514}
   - component: {fileID: 61667387669220170}
-  - component: {fileID: 114683892464884238}
   m_Layer: 8
   m_Name: Quiver
   m_TagString: Untagged
@@ -79,6 +78,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084ccba231090fc4c97c730672c8be17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isBlockPath: 0
+  _isBlockView: 0
   Stats:
     _Buckets: ffffffffffffffffffffffff
     _HashCodes: 000000000000000000000000
@@ -92,19 +93,6 @@ MonoBehaviour:
   SocketType: 10
   Type: 9
   _state: 0
---- !u!114 &114683892464884238
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1678466347740926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 956b7287b6ef939458807c67266b8436, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isBlockPath: 0
-  _isBlockView: 0
 --- !u!212 &212329792536377584
 SpriteRenderer:
   m_ObjectHideFlags: 1

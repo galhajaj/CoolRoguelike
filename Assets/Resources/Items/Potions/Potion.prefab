@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 212961195474823856}
   - component: {fileID: 114569815360446266}
   - component: {fileID: 61943843271557226}
-  - component: {fileID: 114112120114469462}
   m_Layer: 8
   m_Name: Potion
   m_TagString: Untagged
@@ -68,19 +67,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 18, y: 37}
   m_EdgeRadius: 0
---- !u!114 &114112120114469462
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1452288819167240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 956b7287b6ef939458807c67266b8436, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isBlockPath: 0
-  _isBlockView: 0
 --- !u!114 &114569815360446266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -92,6 +78,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084ccba231090fc4c97c730672c8be17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isBlockPath: 0
+  _isBlockView: 0
   Stats:
     _Buckets: ffffffffffffffffffffffff
     _HashCodes: 000000000000000000000000

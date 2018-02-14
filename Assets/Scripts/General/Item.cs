@@ -11,7 +11,7 @@ public enum ItemState
     ON_BELT
 }
 
-public class Item : MonoBehaviour
+public class Item : DungeonObject
 {
     public StatsDictionary Stats = new StatsDictionary();
 
@@ -45,5 +45,12 @@ public class Item : MonoBehaviour
             _spriteRenderer.sprite = ResourcesManager.Instance.LootOnGroundSprite;
         else
             _spriteRenderer.sprite = _originalSprite;
+    }
+
+    public override SaveData GetSaveData()
+    {
+        ItemSaveData saveData = new ItemSaveData();
+        saveData.Name = Utils.GetCleanName(gameObject.name);
+        return saveData;
     }
 }

@@ -3,13 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Creature : MonoBehaviour
+public class Creature : DungeonObject
 {
     public Position Position { get { return this.GetComponentInParent<DungeonTile>().Position; } }
-
-    [SerializeField]
-    private DungeonObject _dungeonObject = null;
-    public DungeonObject DungeonObject { get { return _dungeonObject; } }
 
     public GameObject Treasure;
 
@@ -48,6 +44,13 @@ public class Creature : MonoBehaviour
     // items on belt
     private Dictionary<int, Item> _itemsOnBelt = new Dictionary<int, Item>();
     public Dictionary<int, Item> ItemsOnBelt { get { return _itemsOnBelt; } }
+
+    public override SaveData GetSaveData()
+    {
+        CreatureSaveData saveData = new CreatureSaveData();
+        saveData.Name = Utils.GetCleanName(gameObject.name);
+        return saveData;
+    }
 
     // =================================================================================== //
     public void MeleeAttack(Creature target)

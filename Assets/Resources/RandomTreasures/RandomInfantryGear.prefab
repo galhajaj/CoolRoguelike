@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4327560636620364}
   - component: {fileID: 212269209431958310}
-  - component: {fileID: 114876033622542220}
   - component: {fileID: 114996107168153142}
   m_Layer: 0
   m_Name: RandomInfantryGear
@@ -42,19 +41,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114876033622542220
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1970698813413966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 956b7287b6ef939458807c67266b8436, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isBlockPath: 0
-  _isBlockView: 0
 --- !u!114 &114996107168153142
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -66,6 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb1a623fac6185b4d8b93d2eceefed85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isBlockPath: 0
+  _isBlockView: 0
   Categories:
   - Swords
   - Shields

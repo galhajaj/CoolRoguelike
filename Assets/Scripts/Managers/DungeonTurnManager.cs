@@ -60,7 +60,7 @@ public class DungeonTurnManager : MonoBehaviour
                 if (nextTile != null)
                 {
                     Debug.Log(creature.name + " move");
-                    Dungeon.Instance.PutDungeonObjectInTile(creature.DungeonObject, nextTile);
+                    Dungeon.Instance.PutDungeonObjectInTile(creature, nextTile);
                     creature.PayWalkCost();
                 }
             }
@@ -71,6 +71,16 @@ public class DungeonTurnManager : MonoBehaviour
     }
     // ====================================================================================================== //
     private void playerTurn()
+    {
+        playerContinuesInput();
+        playerTriggerInput();
+
+        // check if all party members have no action units left = end turn
+        if (!Party.Instance.IsContainActiveMember)
+            finishPlayerTurn();
+    }
+    // ====================================================================================================== //
+    private void playerContinuesInput()
     {
         // make sure for nice timly equal interval between inputs
         if (_timeToNextMove >= 0.0F)
@@ -83,13 +93,13 @@ public class DungeonTurnManager : MonoBehaviour
         // waiting for player input
         checkDirectionKeys();
         checkWaitKey();
+    }
+    private void playerTriggerInput()
+    {
+        // waiting for player input
         checkUsePortalKey();
         checkPickupKey();
         checkShootButton();
-
-        // check if all party members have no action units left = end turn
-        if (!Party.Instance.IsContainActiveMember)
-            finishPlayerTurn();
     }
     // ====================================================================================================== //
     private void finishPlayerTurn()

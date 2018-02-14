@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 212425059061372048}
   - component: {fileID: 114655246803596972}
   - component: {fileID: 61071913858143840}
-  - component: {fileID: 114468349343667012}
   m_Layer: 8
   m_Name: Bow
   m_TagString: Untagged
@@ -68,19 +67,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 63, y: 96}
   m_EdgeRadius: 0
---- !u!114 &114468349343667012
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1420628475211080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 956b7287b6ef939458807c67266b8436, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isBlockPath: 0
-  _isBlockView: 0
 --- !u!114 &114655246803596972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -92,6 +78,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084ccba231090fc4c97c730672c8be17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isBlockPath: 0
+  _isBlockView: 0
   Stats:
     _Buckets: 0000000001000000ffffffff
     _HashCodes: 090000000a00000000000000

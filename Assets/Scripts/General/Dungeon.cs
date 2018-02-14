@@ -25,7 +25,6 @@ public class Dungeon : Singleton<Dungeon>
         this.clear();
 
         // find matching dungeon save data from player data by its name
-        
         foreach (DungeonSaveData data in SaveAndLoad.Instance.PlayerSaveData.Dungeons)
             if (data.Name == dungeonName)
                 _dungeonSaveData = data;

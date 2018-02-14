@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4633633778293540}
   - component: {fileID: 212067359378842436}
-  - component: {fileID: 114547720117384676}
   - component: {fileID: 114215957541504038}
   m_Layer: 0
   m_Name: Dragon
@@ -53,7 +52,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 169468c06fb74d74d854b7cc8962162a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dungeonObject: {fileID: 114547720117384676}
+  _isBlockPath: 1
+  _isBlockView: 0
+  Treasure: {fileID: 0}
   Stats:
     _Buckets: ffffffff0000000001000000
     _HashCodes: 010000000200000000000000
@@ -65,19 +66,6 @@ MonoBehaviour:
     _Keys: 010000000200000000000000
     _Values: 040000000400000000000000
   _actionUnits: 0
---- !u!114 &114547720117384676
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1191348109513958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 956b7287b6ef939458807c67266b8436, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isBlockPath: 1
-  _isBlockView: 0
 --- !u!212 &212067359378842436
 SpriteRenderer:
   m_ObjectHideFlags: 1
