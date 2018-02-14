@@ -25,7 +25,8 @@ public enum Direction
     SOUTH_WEST,
     SOUTH_EAST,
     WEST,
-    EAST
+    EAST,
+    ORIGIN
 }
 
 public enum SocketType

@@ -78,6 +78,7 @@ public class DungeonTurnManager : MonoBehaviour
             _timeToNextMove -= Time.deltaTime;
             return;
         }
+        _timeToNextMove = _moveInterval;
 
         // waiting for player input
         checkDirectionKeys();
@@ -104,21 +105,21 @@ public class DungeonTurnManager : MonoBehaviour
     {
         Position targetPosition = Party.Instance.Position;
 
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Keypad8) || Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Keypad8) || Input.GetKey(KeyCode.UpArrow))
             targetPosition = Party.Instance.Position.North;
-        else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.Keypad2) || Input.GetKey(KeyCode.DownArrow))
             targetPosition = Party.Instance.Position.South;
-        else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.Keypad4) || Input.GetKey(KeyCode.LeftArrow))
             targetPosition = Party.Instance.Position.West;
-        else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.Keypad6) || Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.Keypad6) || Input.GetKey(KeyCode.RightArrow))
             targetPosition = Party.Instance.Position.East;
-        else if (Input.GetKeyDown(KeyCode.Keypad7))
+        else if (Input.GetKey(KeyCode.Keypad7))
             targetPosition = Party.Instance.Position.NorthWest;
-        else if (Input.GetKeyDown(KeyCode.Keypad9))
+        else if (Input.GetKey(KeyCode.Keypad9))
             targetPosition = Party.Instance.Position.NorthEast;
-        else if (Input.GetKeyDown(KeyCode.Keypad1))
+        else if (Input.GetKey(KeyCode.Keypad1))
             targetPosition = Party.Instance.Position.SouthWest;
-        else if (Input.GetKeyDown(KeyCode.Keypad3))
+        else if (Input.GetKey(KeyCode.Keypad3))
             targetPosition = Party.Instance.Position.SouthEast;
 
         // return if no change in position
@@ -127,6 +128,7 @@ public class DungeonTurnManager : MonoBehaviour
 
         // ################################################
         // leave to adjacent area at borders or leave to village if in origin area
+        // TODO: need refacturing - leave to adjacent area in turn manager
         if (targetPosition.IsOutsideDungeonArea)
         {
             if (Dungeon.Instance.IsInOriginArea)
@@ -174,7 +176,7 @@ public class DungeonTurnManager : MonoBehaviour
     // ====================================================================================================== //
     private void checkWaitKey()
     {
-        if (!Input.GetKeyDown(KeyCode.Keypad5))
+        if (!Input.GetKey(KeyCode.Keypad5))
             return;
 
         Party.Instance.WaitTurn();

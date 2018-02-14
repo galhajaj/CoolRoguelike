@@ -94,4 +94,33 @@ public class Utils
         return rawName.Split('(')[0].Trim();
     }
     // =========================================================================================== //
+    public static Direction GetDirectionByName(string name)
+    {
+        if (name == "North")
+            return Direction.NORTH;
+        if (name == "South")
+            return Direction.SOUTH;
+        if (name == "West")
+            return Direction.WEST;
+        if (name == "East")
+            return Direction.EAST;
+        if (name == "Up")
+            return Direction.UP;
+        if (name == "Down")
+            return Direction.DOWN;
+        if (name == "Origin")
+            return Direction.ORIGIN;
+
+        if (name == "NorthWest")
+            return Direction.NORTH_WEST;
+        if (name == "SouthWest")
+            return Direction.SOUTH_WEST;
+        if (name == "NorthEast")
+            return Direction.NORTH_EAST;
+        if (name == "SouthEast")
+            return Direction.SOUTH_EAST;
+
+        return Direction.NONE;
+    }
+    // =========================================================================================== //
 }

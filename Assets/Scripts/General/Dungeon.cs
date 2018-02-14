@@ -38,7 +38,7 @@ public class Dungeon : Singleton<Dungeon>
         }
 
         // TODO: in the meantime... show always first...
-        ShowArea(new Position(0, 0, 0));
+        ShowArea(Position.OriginPosition);
 
         // place the party
         if (dungeonName != "Village")
@@ -50,7 +50,7 @@ public class Dungeon : Singleton<Dungeon>
         Party.Instance.Loaction = dungeonName;
     }
     // ================================================================================================== //
-    public void ShowArea(Position position)
+    private void ShowArea(Position position)
     {
         // check valid area
         if (!_dungeonSaveData.Areas.ContainsKey(position))
@@ -65,23 +65,11 @@ public class Dungeon : Singleton<Dungeon>
         // get the area
         AreaSaveData areaToShow = _dungeonSaveData.Areas[position];
 
-        // put stuff in grid.
-        foreach (StuffSaveData stuff in areaToShow.Stuff)
+        // put area objects in grid.
+        foreach (SaveData objSaveData in areaToShow.Objects)
         {
-            DungeonTile tile = _grid.GetElement(stuff.Position) as DungeonTile;
-            putObjectInTile(stuff.Name, tile);
-        }
-        // put items in grid
-        foreach (ItemSaveData item in areaToShow.Items)
-        {
-            DungeonTile tile = _grid.GetElement(item.Position) as DungeonTile;
-            putObjectInTile(item.Name, tile);
-        }
-        // put creatures in grid
-        foreach (CreatureSaveData creature in areaToShow.Creatures)
-        {
-            DungeonTile tile = _grid.GetElement(creature.Position) as DungeonTile;
-            putObjectInTile(creature.Name, tile);
+            DungeonTile tile = _grid.GetElement(objSaveData.Position) as DungeonTile;
+            putObjectInTile(objSaveData.Name, tile);
         }
 
         // update current area index
@@ -90,20 +78,8 @@ public class Dungeon : Singleton<Dungeon>
     // ================================================================================================== //
     public void ShowArea(Direction direction)
     {
-        if (direction == Direction.NORTH)
-            ShowArea(_currentShownAreaPosition.North);
-        else if (direction == Direction.SOUTH)
-            ShowArea(_currentShownAreaPosition.South);
-        else if (direction == Direction.WEST)
-            ShowArea(_currentShownAreaPosition.West);
-        else if (direction == Direction.EAST)
-            ShowArea(_currentShownAreaPosition.East);
-        else if (direction == Direction.UP)
-            ShowArea(_currentShownAreaPosition.Up);
-        else if (direction == Direction.DOWN)
-            ShowArea(_currentShownAreaPosition.Down);
-        else
-            Debug.LogError("area doesn't exist in that direction: " + direction.ToString());
+        Position areaPosition = _currentShownAreaPosition.GetPositionInDirection(direction);
+        ShowArea(areaPosition);
     }
     // ================================================================================================== //
     private void putObjectInTile(string objectName, DungeonTile targetTile)
@@ -163,6 +139,9 @@ public class Dungeon : Singleton<Dungeon>
 
         obj.transform.position = tile.transform.position;
         obj.transform.parent = tile.transform;
+        // if item, make it in ground state, so the sprite will change to icon
+        if (obj.GetComponent<Item>() != null)
+            obj.GetComponent<Item>().State = ItemState.GROUND;
     }
     // ================================================================================================== //
     private void clear()

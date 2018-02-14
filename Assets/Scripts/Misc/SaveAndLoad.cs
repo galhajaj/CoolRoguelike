@@ -1,72 +1,60 @@
 ﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
 [Serializable]
-public class PlayerSaveData
+public class SaveData
+{
+    public string Name;
+    public Position Position;
+}
+
+[Serializable]
+public class PlayerSaveData : SaveData
 {
     public List<DungeonSaveData> Dungeons = new List<DungeonSaveData>();
 }
 
 [Serializable]
-public class DungeonSaveData
+public class DungeonSaveData : SaveData
 {
-    public string Name;
     public Dictionary<Position, AreaSaveData> Areas = new Dictionary<Position, AreaSaveData>();
 }
 
 [Serializable]
-public class AreaSaveData
+public class AreaSaveData : SaveData
 {
-    public string Name;
-    public Position Position;
-    public List<StuffSaveData> Stuff = new List<StuffSaveData>();
-    public List<CreatureSaveData> Creatures = new List<CreatureSaveData>();
-    public List<ItemSaveData> Items = new List<ItemSaveData>();
-    public List<RandomTreasureSaveData> RandomTreasures = new List<RandomTreasureSaveData>();
+    public List<SaveData> Objects = new List<SaveData>();
 }
 
-/*[Serializable]
-public class TiledSaveData
-{
-    public string Name;
-    public Position Position;
-}*/
-
 [Serializable]
-public class StuffSaveData
+public class StuffSaveData : SaveData
 {
-    public string Name;
-    public Position Position;
     // public Rotation... add possibility to rotate object in map
 }
 
 [Serializable]
-public class CreatureSaveData
+public class CreatureSaveData : SaveData
 {
-    public string Name;
-    public Position Position;
     public List<ItemSaveData> EquipedItems;
     public List<ItemSaveData> CarriedItems;
     public int Hearts;
 }
 
 [Serializable]
-public class ItemSaveData
+public class ItemSaveData : SaveData
 {
-    public string Name;
-    public Position Position;
     public ItemDurability Durability;
     public ItemCondition Condition;
 }
 
 [Serializable]
-public class RandomTreasureSaveData
+public class RandomTreasureSaveData : SaveData
 {
-    public string Name;
-    public Position Position;
+
 }
 
 public class SaveAndLoad : Singleton<SaveAndLoad>
@@ -87,30 +75,35 @@ public class SaveAndLoad : Singleton<SaveAndLoad>
             // current dungeon data from file
             DungeonSaveData dungeonSaveData = Utils.ReadFromBinaryFile<DungeonSaveData>(Consts.DUNGEON_FILES_PATH + "/" + file.Name);
 
-            // update creatures & items
+            // for all areas
             foreach (AreaSaveData areaSaveData in dungeonSaveData.Areas.Values)
             {
-                // creatures - add items from its defined treasure
-                foreach (CreatureSaveData creatureSaveData in areaSaveData.Creatures)
+                // for all objects inside area
+                foreach (SaveData objSaveData in areaSaveData.Objects)
                 {
-
+                    // TODO: for creature - add items from its defined treasure
+                    if (objSaveData is CreatureSaveData)
+                    {
+                        // imp
+                    }
+                    // for item - update items parameters
+                    else if (objSaveData is ItemSaveData)
+                    {
+                        ItemSaveData itemSaveData = objSaveData as ItemSaveData;
+                        itemSaveData.Durability = getRandomItemDurability();
+                        itemSaveData.Condition = getRandomItemCondition();
+                    }
+                    // TODO: random treasure - turn random treasure objects to actual items
+                    else if (objSaveData is RandomTreasureSaveData)
+                    {
+                        // imp
+                    }
                 }
 
-                // update items parameters
-                foreach (ItemSaveData itemSaveData in areaSaveData.Items)
-                {
-                    itemSaveData.Durability = getRandomItemDurability();
-                    itemSaveData.Condition = getRandomItemCondition();
-                }
-
-                // turn random treasure objects to actual items
-                foreach (RandomTreasureSaveData randomTreasureSaveData in areaSaveData.RandomTreasures)
-                {
-
-                }
-
-                // clear the random treasure list, it's not needed anymore
-                areaSaveData.RandomTreasures.Clear();
+                Debug.Log("number = " + areaSaveData.Objects.Count);
+                // delete all random treasure objects in area (they are just templates, the items from them already created)
+                areaSaveData.Objects.RemoveAll(s => s is RandomTreasureSaveData);
+                Debug.Log("number = " + areaSaveData.Objects.Count);
             }
 
             // add it
