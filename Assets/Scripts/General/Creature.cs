@@ -7,7 +7,7 @@ public class Creature : DungeonObject
 {
     public Position Position { get { return this.GetComponentInParent<DungeonTile>().Position; } }
 
-    public GameObject Treasure;
+    public List<GameObject> Treasures;
 
     public StatsDictionary Stats = new StatsDictionary();
 

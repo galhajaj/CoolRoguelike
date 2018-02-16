@@ -178,20 +178,4 @@ public class DungeonEditor : Singleton<DungeonEditor>
         }
     }
     // ================================================================================================== //
-    private SaveData CreateSaveDataForObject(GameObject obj)
-    {
-        if (obj.GetComponent<Item>() != null)
-            return new ItemSaveData();
-        if (obj.GetComponent<RandomTreasure>() != null)
-            return new RandomTreasureSaveData();
-        if (obj.GetComponent<Creature>() != null)
-            return new CreatureSaveData();
-        // should be the last, if only contains the DungeonObject it's a "stuff"
-        if (obj.GetComponent<DungeonObject>() != null)
-            return new StuffSaveData();
-
-        Debug.LogError("There's no save data type for object " + obj.name);
-        return null;
-    }
-    // ================================================================================================== //
 }

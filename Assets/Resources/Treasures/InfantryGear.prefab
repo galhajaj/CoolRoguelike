@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212269209431958310}
   - component: {fileID: 114996107168153142}
   m_Layer: 0
-  m_Name: RandomInfantryGear
+  m_Name: InfantryGear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,11 +54,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isBlockPath: 0
   _isBlockView: 0
-  Categories:
-  - Swords
-  - Shields
-  - Helms
-  Quality: 0
+  Chance2Create: 100
+  Chance2CreateEachMemebr: 100
+  Chance4EachMagicProperty: 0
+  Quality: 1
+  Paths:
+  - Standard/Armors
+  - Standard/Swords
+  - Standard/Helms
 --- !u!212 &212269209431958310
 SpriteRenderer:
   m_ObjectHideFlags: 1

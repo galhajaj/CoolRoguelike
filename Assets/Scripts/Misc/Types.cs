@@ -81,6 +81,13 @@ public enum ItemDurability
     UNBREAKABLE
 }
 
+public enum ItemQuality
+{
+    LOW,
+    NORMAL,
+    HIGH
+}
+
 public enum Stat
 {
     NULL,

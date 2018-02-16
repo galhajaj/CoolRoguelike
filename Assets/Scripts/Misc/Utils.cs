@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
+using UnityEngine;
 
 public class Utils
 {
@@ -121,6 +122,20 @@ public class Utils
             return Direction.SOUTH_EAST;
 
         return Direction.NONE;
+    }
+    // =========================================================================================== //
+    public static int Dice(int number, int sides)
+    {
+        int counter = 0;
+        for (int i = 0; i < number; ++i)
+            counter += Random.Range(1, sides + 1);
+        return counter;
+    }
+    // =========================================================================================== //
+    public static bool IsChanceOccured(int chancePercent)
+    {
+        int rand = Dice(1, 100);
+        return (rand <= chancePercent);
     }
     // =========================================================================================== //
 }

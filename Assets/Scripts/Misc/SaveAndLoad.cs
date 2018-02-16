@@ -52,7 +52,7 @@ public class ItemSaveData : SaveData
 }
 
 [Serializable]
-public class RandomTreasureSaveData : SaveData
+public class TreasureSaveData : SaveData
 {
 
 }
@@ -80,6 +80,8 @@ public class SaveAndLoad : Singleton<SaveAndLoad>
             // for all areas
             foreach (AreaSaveData areaSaveData in dungeonSaveData.Areas.Values)
             {
+                List<ItemSaveData> itemsSaveDataFromTreasures = new List<ItemSaveData>();
+
                 // for all objects inside area
                 foreach (SaveData objSaveData in areaSaveData.Objects)
                 {
@@ -92,18 +94,32 @@ public class SaveAndLoad : Singleton<SaveAndLoad>
                     else if (objSaveData is ItemSaveData)
                     {
                         ItemSaveData itemSaveData = objSaveData as ItemSaveData;
-                        itemSaveData.Durability = getRandomItemDurability();
-                        itemSaveData.Condition = getRandomItemCondition();
+                        Item.AddRandomness(ref itemSaveData);
                     }
-                    // TODO: random treasure - turn random treasure objects to actual items
-                    else if (objSaveData is RandomTreasureSaveData)
+                    // random treasure - turn random treasure objects to actual items
+                    else if (objSaveData is TreasureSaveData)
                     {
-                        // imp
+                        GameObject treasurePrefab = Resources.Load<GameObject>("Treasures/" + objSaveData.Name);
+                        GameObject treasureObj = Instantiate(treasurePrefab);
+
+                        // generate items save data from treasure and add them to area
+                        List<ItemSaveData> itemsSaveData = treasureObj.GetComponent<Treasure>().GenerateItems();
+                        foreach (ItemSaveData itemSaveData in itemsSaveData)
+                        {
+                            itemSaveData.Position = objSaveData.Position;
+                            itemsSaveDataFromTreasures.Add(itemSaveData);
+                        }
+
+                        Destroy(treasureObj.gameObject);
                     }
                 }
 
+                // add all items generated from treasures objects
+                foreach (ItemSaveData itemSaveData in itemsSaveDataFromTreasures)
+                    areaSaveData.Objects.Add(itemSaveData);
+
                 // delete all random treasure objects in area (they are just templates, the items from them already created)
-                areaSaveData.Objects.RemoveAll(s => s is RandomTreasureSaveData);
+                areaSaveData.Objects.RemoveAll(s => s is TreasureSaveData);
             }
 
             // add it
@@ -128,34 +144,6 @@ public class SaveAndLoad : Singleton<SaveAndLoad>
 
         // library
         Library.Instance.BuildLibrary();
-    }
-    // ================================================================================================== //
-    private ItemDurability getRandomItemDurability()
-    {
-        int rand = UnityEngine.Random.Range(0, 100);
-        if (rand < 2)
-            return ItemDurability.UNBREAKABLE; // 2%
-        if (rand < 7)
-            return ItemDurability.FRAGILE; // 5%
-        if (rand < 12)
-            return ItemDurability.EXCELLENT; // 5%
-        if (rand < 27)
-            return ItemDurability.BAD; // 15%
-        if (rand < 42)
-            return ItemDurability.GOOD; // 15%
-        return ItemDurability.NORMAL; // 58%
-    }
-    // ================================================================================================== //
-    private ItemCondition getRandomItemCondition()
-    {
-        int rand = UnityEngine.Random.Range(0, 100);
-        if (rand < 10)
-            return ItemCondition.BROKEN; // 10%
-        if (rand < 30)
-            return ItemCondition.DAMAGED; // 20%
-        if (rand < 60)
-            return ItemCondition.SLIGHTLY_DAMAGED; // 30%
-        return ItemCondition.OK; // 40%
     }
     // ================================================================================================== //
 }
