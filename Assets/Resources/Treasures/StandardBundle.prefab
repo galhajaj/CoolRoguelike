@@ -54,8 +54,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isBlockPath: 0
   _isBlockView: 0
-  Chance2Create: 50
-  Chance2CreateEachMemebr: 25
+  Chance2Create: 75
+  Chance2CreateEachMemebr: 50
   Chance4EachMagicProperty: 0
   Quality: 1
   Paths:
