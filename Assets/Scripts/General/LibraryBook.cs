@@ -11,6 +11,6 @@ public class LibraryBook : GridElement
     {
         Debug.Log("Loading " + DungeonName + "...");
         Dungeon.Instance.Load(DungeonName);
-        WindowManager.Instance.LoadWindow("Dungeon");
+        WindowManager.Instance.LoadWindow(Consts.DUNGEON);
     }
 }

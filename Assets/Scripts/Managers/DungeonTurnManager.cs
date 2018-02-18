@@ -18,7 +18,7 @@ public class DungeonTurnManager : MonoBehaviour
 	void Update ()
     {
         // return if not in dungeon
-        if (WindowManager.Instance.CurrentWindowName != "Dungeon")
+        if (!WindowManager.Instance.IsCurrentWindow(Consts.DUNGEON))
             return;
 
         creaturesTurn();
@@ -143,7 +143,7 @@ public class DungeonTurnManager : MonoBehaviour
         {
             if (Dungeon.Instance.IsInOriginArea)
             {
-                WindowManager.Instance.LoadWindow("Village");
+                WindowManager.Instance.LoadWindow(Consts.VILLAGE);
                 return;
             }
             else

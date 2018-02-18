@@ -10,6 +10,6 @@ public class Click2LoadGame : MonoBehaviour
 
         SaveAndLoad.Instance.Load();
         // TODO: maybe it will be in another place than the village... even inside a dungeon during battle
-        WindowManager.Instance.LoadWindow("Village");
+        WindowManager.Instance.LoadWindow(Consts.VILLAGE);
     }
 }

@@ -12,7 +12,8 @@ public class WindowManager : Singleton<WindowManager>
     [SerializeField]
     private List<Window> _windows = new List<Window>();
 
-    public string CurrentWindowName { get; private set; }
+    private string _currentWindowName;
+    public bool IsCurrentWindow(string windowName) { return _currentWindowName.Equals(windowName); }
 
     protected override void AfterAwake()
     {
@@ -41,7 +42,7 @@ public class WindowManager : Singleton<WindowManager>
         selectedWindow.Show();
 
         // update current window name
-        CurrentWindowName = name;
+        _currentWindowName = name;
     }
 
     private void hideAllWindows()

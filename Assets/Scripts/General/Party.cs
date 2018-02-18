@@ -15,7 +15,7 @@ public class Party : Singleton<Party>
         }
     }
 
-    private string _location = "Village";
+    private string _location = Consts.VILLAGE;
     public string Loaction
     {
         get { return _location; }

@@ -9,6 +9,6 @@ public class Click2NewGame : MonoBehaviour
         Debug.Log("New Game...");
 
         SaveAndLoad.Instance.GenerateNewSaveGame();
-        WindowManager.Instance.LoadWindow("Village");
+        WindowManager.Instance.LoadWindow(Consts.VILLAGE);
     }
 }

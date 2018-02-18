@@ -40,7 +40,7 @@ public class Dungeon : Singleton<Dungeon>
         ShowArea(Position.OriginPosition);
 
         // place the party
-        if (dungeonName != "Village")
+        if (dungeonName != Consts.VILLAGE)
         {
             DungeonTile tile = GetTile(new Position(0, 0)); // TODO: change that
             PutDungeonObjectInTile(Party.Instance.DungeonObject, tile);
