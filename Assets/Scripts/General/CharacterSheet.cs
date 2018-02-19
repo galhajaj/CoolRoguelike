@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CharacterSheet : MonoBehaviour
 {
+    [SerializeField]
+    private TextMesh _textCharacterName = null;
 
 	void Start ()
     {
@@ -14,5 +16,7 @@ public class CharacterSheet : MonoBehaviour
     {
         if (!WindowManager.Instance.IsCurrentWindow(Consts.CHARACTER_SHEET))
             return;
+
+        _textCharacterName.text = Party.Instance.SelectedMember.name;
 	}
 }

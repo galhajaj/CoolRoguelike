@@ -1,22 +1,23 @@
 fileFormatVersion: 2
-guid: f770632a9c9253b4cba225c53a80b909
-timeCreated: 1513274334
+guid: 4bc8549981066274397bf4c4d2191eba
+timeCreated: 1519051498
 licenseType: Free
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
   fontSize: 16
-  forceTextureCase: -2
+  forceTextureCase: -1
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Copperplate Gothic Bold
+  fontName: Press Start K
   fontNames:
-  - Copperplate Gothic Bold
+  - Press Start K
   fallbackFontReferences: []
   customCharacters: 
-  fontRenderingMode: 0
+  fontRenderingMode: 2
   ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
