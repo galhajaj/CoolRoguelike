@@ -257,9 +257,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1975207556881466}
-  m_Text: 'Life
-
-    Souls'
+  m_Text: 
   m_OffsetZ: 0
   m_CharacterSize: 10
   m_LineSpacing: 1
@@ -285,6 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textCharacterName: {fileID: 102845466436917916}
+  _textCharacterParams: {fileID: 102860960795841592}
 --- !u!114 &114592384308459764
 MonoBehaviour:
   m_ObjectHideFlags: 1

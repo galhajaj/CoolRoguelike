@@ -103,5 +103,17 @@ public enum Stat
     MAX_RANGED_DAMAGE,
     ARMOR,
     BELT_SLOTS_NUMBER,
-    WEIGHT
+    WEIGHT,
+    // attributes
+    STRENGTH,
+    ENDURANCE,
+    AGILITY,
+    INTELLECT,
+    WILL,
+    ACCURACY,
+    //
+    EXPERIENCE_POINTS,
+    TO_HIT_MELEE,
+    TO_HIT_RANGED,
+    MAX_RINGS_ALLOWED,
 }

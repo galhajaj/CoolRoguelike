@@ -12,12 +12,12 @@ public class TextDisplayer : Singleton<TextDisplayer>
     private TextMesh _sideBarText = null;
 
     [SerializeField]
-    private float _sideBarWidth = 150;
+    private int _sideBarWordWrapWidth = 25;
 
     void Start ()
     {
-
-	}
+        SetSideBarText("sdfsdf sdfsfdsfsdf <color=green>green</color> sdf <color=blue>sdfsdf</color> dsf sdf dsf df dsf sdfsdf dsfdfd fd df dfdfsdfsfdf dfdfdfdfdf dfdfdf dfd df df dfdfd df dfdfdf dfdfdfd dfdf df d");
+    }
 	
 	void Update ()
     {
@@ -31,8 +31,9 @@ public class TextDisplayer : Singleton<TextDisplayer>
 
     public void SetSideBarText(string text)
     {
+        text = WrapText(text, _sideBarWordWrapWidth);
         _sideBarText.text = text;
-        FitToWidth(_sideBarWidth, _sideBarText);
+        //FitToWidth(_sideBarWidth, _sideBarText);
     }
 
     // ########################################################################################
@@ -120,6 +121,66 @@ public class TextDisplayer : Singleton<TextDisplayer>
         return newText;
     }
     // ########################################################################################
+    // Wrap text by line height
+    private string WrapText(string input, int lineLength)
+    {
+
+        // Split string by char " "         
+        string[] words = input.Split(" "[0]);
+
+        // Prepare result
+        string result = "";
+
+        // Temp line string
+        string line = "";
+
+        // for each all words        
+        foreach (string s in words)
+        {
+            // Append current word into line
+            string temp = line + " " + s;
+
+            // If line length is bigger than lineLength
+            if (temp.Length > lineLength)
+            {
+
+                // Append current line into result
+                result += line + "\n";
+                // Remain word append into new line
+                line = s;
+            }
+            // Append current word into current line
+            else
+            {
+                line = temp;
+            }
+        }
+
+        // Append last line into result        
+        result += line;
+
+        // Remove first " " char
+        return result.Substring(1, result.Length - 1);
+    }
     // ########################################################################################
+    // great function - need to use it!
+    int CalculateLengthOfMessage(string message, TextMesh textMesh)
+    {
+        int totalLength = 0;
+
+        Font myFont = textMesh.font;  //chatText is my Text component
+        CharacterInfo characterInfo = new CharacterInfo();
+
+        char[] arr = message.ToCharArray();
+
+        foreach (char c in arr)
+        {
+            myFont.GetCharacterInfo(c, out characterInfo, textMesh.fontSize);
+
+            totalLength += characterInfo.advance;
+        }
+
+        return totalLength;
+    }
     // ########################################################################################
 }
