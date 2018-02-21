@@ -21,7 +21,12 @@ public class TextDisplayer : Singleton<TextDisplayer>
 	
 	void Update ()
     {
-        _mainCaption.text = WindowManager.Instance.CurrentWindowName;
+        
+    }
+
+    public void SetMainCaption(string text)
+    {
+        _mainCaption.text = text;
     }
 
     public void SetDescriptionLine(string text)

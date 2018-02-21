@@ -12,34 +12,17 @@ public class WindowManager : Singleton<WindowManager>
     private List<Window> _windows = new List<Window>();
 
     private string _currentWindowName = "";
-    public string CurrentWindowName { get { return _currentWindowName; } }
     public bool IsCurrentWindow(string windowName) { return _currentWindowName.Equals(windowName); }
 
     protected override void AfterAwake()
     {
-        Window windowToShowAtStart = null;
-
         // init windows list
         var windows = GameObject.FindObjectsOfType<Window>();
         for (int i = 0; i < windows.Length; ++i)
         {
             Window currentWindow = windows[i];
             _windows.Add(currentWindow);
-            // show at start?
-            if (currentWindow.IsShownAtStart)
-            {
-                if (windowToShowAtStart == null)
-                    windowToShowAtStart = currentWindow;
-                else
-                    Debug.LogError(windowToShowAtStart.name + " window is already shown at start");
-            }
         }
-
-        // show first window
-        if (windowToShowAtStart == null)
-            Debug.LogError("no window defined to show at start!");
-        else
-            windowToShowAtStart.Show();
     }
 
     public void LoadWindow(string name)

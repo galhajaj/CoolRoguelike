@@ -297,7 +297,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: 5375bd343d56230418c25ba75b6e6423, type: 2}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!114 &114592334391799730
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -312,4 +312,4 @@ MonoBehaviour:
   _mainCaption: {fileID: 102505661143751404}
   _descriptionLine: {fileID: 102922263124699352}
   _sideBarText: {fileID: 102962322976280228}
-  _sideBarWidth: 150
+  _sideBarWordWrapWidth: 25

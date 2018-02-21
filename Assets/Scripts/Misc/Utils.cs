@@ -138,4 +138,25 @@ public class Utils
         return (rand <= chancePercent);
     }
     // =========================================================================================== //
+    public static GameObject GetObjectUnderCursor(params string[] layers)
+    {
+        if (layers.Length <= 0)
+        {
+            Debug.LogError("GetRaycastHitUnderCursor function should contain at least one layer");
+            return null;
+        }
+
+        LayerMask layerMask = 0;
+        foreach (string layer in layers)
+            layerMask |= (1 << LayerMask.NameToLayer(layer));
+
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0.0F, layerMask);
+
+        if (!hit)
+            return null;
+        if (hit.collider == null)
+            return null;
+        return hit.collider.gameObject;
+    }
+    // =========================================================================================== //
 }

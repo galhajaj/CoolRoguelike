@@ -6,6 +6,7 @@ public class Portrait : MonoBehaviour
 {
     [SerializeField]
     private Creature _creature = null;
+    public Creature Creature { get { return _creature; } }
 
     [SerializeField]
     private Grid _lifeUnitsGrid = null;
