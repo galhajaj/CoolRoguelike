@@ -63,7 +63,10 @@ public class MiniatureManager : Singleton<MiniatureManager>
             return;
 
         Creature creature = dungeonTile.GetContainedCreature();
-        ShowCreature(creature);
+        if (creature != null)
+            ShowCreature(creature);
+        else
+            ShowImage(dungeonTile.GetImage());
     }
 
     private void cursorOverPortrait()

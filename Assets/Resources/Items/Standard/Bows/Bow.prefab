@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084ccba231090fc4c97c730672c8be17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Image: {fileID: 21300000, guid: f9343156c2362754fa4994b5e6b449b8, type: 3}
   _isBlockPath: 0
   _isBlockView: 0
   Stats:

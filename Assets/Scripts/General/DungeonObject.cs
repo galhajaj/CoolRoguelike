@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class DungeonObject : MonoBehaviour
 {
+    public Sprite Image;
+
     [SerializeField]
     private bool _isBlockPath = false;
     public bool IsBlockPath { get { return _isBlockPath; } }

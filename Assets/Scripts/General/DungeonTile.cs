@@ -63,6 +63,17 @@ public class DungeonTile : GridElement
         return this.transform.GetComponentInChildren<Creature>();
     }
     // ======================================================================================================================================== //
+    public Sprite GetImage()
+    {
+        foreach (DungeonObject obj in transform.GetComponentsInChildren<DungeonObject>())
+        {
+            if (obj.Image != null)
+                return obj.Image;
+        }
+
+        return null;
+    }
+    // ======================================================================================================================================== //
     public void Clear()
     {
         // delete object inside tile, unless it's the Party
