@@ -11,6 +11,13 @@ public class StatsDictionary : SerializableDictionary<Stat>
             d1[stat] += d2[stat];
         return d1;
     }
+    // overloading - operator
+    public static StatsDictionary operator -(StatsDictionary d1, StatsDictionary d2)
+    {
+        foreach (Stat stat in d2.Keys)
+            d1[stat] -= d2[stat];
+        return d1;
+    }
 }
 
 public enum Direction

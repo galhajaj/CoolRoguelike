@@ -8,39 +8,70 @@ public class MiniatureManager : Singleton<MiniatureManager>
     [SerializeField]
     private SpriteRenderer _spriteRenderer = null;
 
+    private Creature _currentCreature;
+
     void Update()
     {
-        // TODO: improve performance?
-        List<Item> selectedMemberItems = Party.Instance.SelectedMember.EquippedItems.Values.ToList();
 
-        foreach (Transform itemTransform in this.transform)
-        {
-            Item item = itemTransform.GetComponent<Item>();
-            itemTransform.gameObject.SetActive(selectedMemberItems.Contains(item));
-        }
     }
 
-    public void AddItem(Item item)
+    void LateUpdate()
     {
-        //item.transform.position = this.transform.position;
-        item.transform.parent = this.transform;
-        item.State = ItemState.EQUIPPED;
-    }
+        // default miniature show (in inventory it's the current selected member, otherwise - it's null)
+        if (WindowManager.Instance.IsCurrentWindow(Consts.INVENTORY))
+            ShowCreature(Party.Instance.SelectedMember);
+        else
+            ShowCreature(null);
 
-    public void SetMiniatureImage(Sprite image)
-    {
-        _spriteRenderer.sprite = image;
+        cursorOverDungeonTile();
+        cursorOverPortrait();
     }
 
     public void ShowCreature(Creature creature)
     {
-        // TODO: implement
-        // show it's image (use the function this.ShowImage(...))
-        // show it's equipped items (in inventory can hold them and return them to inventory)
+        // show creature image (or set to null if the creature is null)
+        Sprite imageToShow = (creature != null) ? creature.Image : null;
+        this.ShowImage(imageToShow);
+
+        // hide previous creature items
+        if (_currentCreature != null)
+            foreach (Item item in _currentCreature.EquippedItems.Values)
+                item.Hide();
+
+        // show creature equipped items
+        if (creature != null)
+            foreach (Item item in creature.EquippedItems.Values)
+            {
+                //item.transform.position = this.transform.position;
+                item.transform.parent = this.transform;
+                item.Show();
+            }
+
+        // update current creature
+        _currentCreature = creature;
     }
 
     public void ShowImage(Sprite image)
     {
-        // TODO: implement
+        _spriteRenderer.sprite = image;
+    }
+
+    private void cursorOverDungeonTile()
+    {
+        DungeonTile dungeonTile = Utils.GetObjectUnderCursor<DungeonTile>("DungeonTile");
+        if (dungeonTile == null)
+            return;
+
+        Creature creature = dungeonTile.GetContainedCreature();
+        ShowCreature(creature);
+    }
+
+    private void cursorOverPortrait()
+    {
+        Portrait portrait = Utils.GetObjectUnderCursor<Portrait>("Portrait");
+        if (portrait == null)
+            return;
+
+        ShowCreature(portrait.Creature);
     }
 }

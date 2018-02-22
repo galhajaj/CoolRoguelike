@@ -98,16 +98,14 @@ public class Creature : DungeonObject
         if (_equippedItems.ContainsKey(item.SocketType))
             RemoveItem(_equippedItems[item.SocketType]);
 
-        // put in miniature
-        MiniatureManager.Instance.AddItem(item);
+        // change item state to equipped
+        item.State = ItemState.EQUIPPED;
 
         // add it
         _equippedItems[item.SocketType] = item;
 
         // add stats
         this.Stats += item.Stats;
-        /*foreach (Stat stat in item.Stats.Keys)
-            this.Stats[stat] += item.Stats[stat];*/
     }
     // =================================================================================== //
     public void RemoveItem(Item item)
@@ -119,8 +117,7 @@ public class Creature : DungeonObject
         Inventory.Instance.AddItem(item);
 
         // remove stats
-        foreach (Stat stat in item.Stats.Keys)
-            this.Stats[stat] -= item.Stats[stat];
+        this.Stats -= item.Stats;
     }
     // =================================================================================== //
     public void InsertItemToBelt(Item item, GameObject beltSocket)

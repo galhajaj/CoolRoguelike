@@ -138,12 +138,12 @@ public class Utils
         return (rand <= chancePercent);
     }
     // =========================================================================================== //
-    public static GameObject GetObjectUnderCursor(params string[] layers)
+    public static T GetObjectUnderCursor<T>(params string[] layers)
     {
         if (layers.Length <= 0)
         {
             Debug.LogError("GetRaycastHitUnderCursor function should contain at least one layer");
-            return null;
+            return default(T);
         }
 
         LayerMask layerMask = 0;
@@ -153,10 +153,10 @@ public class Utils
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0.0F, layerMask);
 
         if (!hit)
-            return null;
+            return default(T);
         if (hit.collider == null)
-            return null;
-        return hit.collider.gameObject;
+            return default(T);
+        return hit.collider.gameObject.GetComponent<T>();
     }
     // =========================================================================================== //
 }

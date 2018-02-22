@@ -31,12 +31,26 @@ public class Item : DungeonObject
     }
 
     private SpriteRenderer _spriteRenderer;
+    private Collider2D _collider;
     private Sprite _originalSprite;
 
     void Awake()
     {
         _spriteRenderer = this.GetComponent<SpriteRenderer>();
+        _collider = this.GetComponent<Collider2D>();
         _originalSprite = _spriteRenderer.sprite;
+    }
+
+    public void Hide()
+    {
+        _spriteRenderer.enabled = false;
+        _collider.enabled = false;
+    }
+
+    public void Show()
+    {
+        _spriteRenderer.enabled = true;
+        _collider.enabled = true;
     }
 
     private void setItemSprite()
