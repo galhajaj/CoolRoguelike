@@ -91,7 +91,7 @@ MonoBehaviour:
     _FreeCount: 0
     _Keys: 070000000800000000000000
     _Values: 010000000600000000000000
-  SocketType: 5
+  SocketType: 6
   Type: 4
   _state: 0
 --- !u!212 &212157906366539840

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 [Serializable]
 public struct Position
@@ -37,6 +38,11 @@ public struct Position
     public override string ToString()
     {
         return string.Format("[{0},{1},{2}]", X, Y, Z);
+    }
+
+    public Vector3 ToVector3()
+    {
+        return new Vector3(X, Y, Z);
     }
 
     public int DistanceTo(Position p)

@@ -44,13 +44,14 @@ public enum SocketType
     TORSO, // for armor
     BACK, // for clock
     WRIST, // for bracers
-    HAND, // X2
+    MAIN_HAND, // weapon/shield
+    OFF_HAND, // the same
     WAIST, // for belt
     FEET, // for boots
     FINGER, // X10
     RANGED, // bow/crossbow/sling
     AMMO, // quiver for arrows/bolts or stones
-    BELT // for potion/throwing knife/scroll/wand
+    POCKET // for potion/throwing knife/scroll/wand
 }
 
 public enum ItemType

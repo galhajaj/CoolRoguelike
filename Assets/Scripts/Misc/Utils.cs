@@ -159,4 +159,41 @@ public class Utils
         return hit.collider.gameObject.GetComponent<T>();
     }
     // =========================================================================================== //
+    // get the offset from central position for each socket
+    public static Position GetSocketOffset(SocketType socketType)
+    {
+        switch (socketType)
+        {
+            case SocketType.HEAD:
+                return new Position(0, 60);
+            case SocketType.NECK:
+                return new Position(0, 40);
+            case SocketType.TORSO:
+                return new Position(0, 0);
+            case SocketType.BACK:
+                return new Position(0, 0);
+            case SocketType.WRIST:
+                return new Position(0, -10);
+            case SocketType.MAIN_HAND:
+                return new Position(-20, 0);
+            case SocketType.OFF_HAND:
+                return new Position(20, 0);
+            case SocketType.WAIST:
+                return new Position(0, -20);
+            case SocketType.FEET:
+                return new Position(0, -60);
+            /*case SocketType.FINGER:
+                break;*/
+            case SocketType.RANGED:
+                return new Position(-20, 10);
+            case SocketType.AMMO:
+                return new Position(20, 10);
+            /*case SocketType.POCKET:
+                return new Position(0, -);*/
+            default:
+                Debug.LogError("Unknown socket type " + socketType.ToString());
+                return Position.NullPosition;
+        }
+    }
+    // =========================================================================================== //
 }

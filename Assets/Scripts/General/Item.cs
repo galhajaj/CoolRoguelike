@@ -16,6 +16,7 @@ public class Item : DungeonObject
     public StatsDictionary Stats = new StatsDictionary();
 
     public SocketType SocketType;
+
     public ItemType Type;
 
     [SerializeField]

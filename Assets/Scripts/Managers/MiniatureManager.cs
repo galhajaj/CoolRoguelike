@@ -40,9 +40,12 @@ public class MiniatureManager : Singleton<MiniatureManager>
 
         // show creature equipped items
         if (creature != null)
-            foreach (Item item in creature.EquippedItems.Values)
+            foreach (var socketAndItem in creature.EquippedItems)
             {
-                //item.transform.position = this.transform.position;
+                SocketType socket = socketAndItem.Key;
+                Item item = socketAndItem.Value;
+
+                item.transform.position = this.transform.position + Utils.GetSocketOffset(socket).ToVector3();
                 item.transform.parent = this.transform;
                 item.Show();
             }
