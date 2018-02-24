@@ -29,7 +29,7 @@ public class Portrait : MonoBehaviour
         _frameRenderer.enabled = isSelectedMember;
 
         // units visibility & color of grid units
-        _lifeUnitsGrid.UpdateElementsVisibility(_creature.Stats[Stat.HEARTS], _creature.Stats[Stat.MAX_HEARTS]);
+        _lifeUnitsGrid.UpdateElementsVisibility(_creature.Stats[Stat.HEARTS], _creature.Stats[Stat.MAX_HEARTS], (float)_creature.Stats[Stat.HIT_POINTS] / _creature.Stats[Stat.MAX_HIT_POINTS]);
         _spellUnitsGrid.UpdateElementsVisibility(_creature.Stats[Stat.MANA], _creature.Stats[Stat.MAX_MANA]);
         _actionUnitsGrid.UpdateElementsVisibility(_creature.ActionUnits, Consts.MAX_ACTION_UNITS);
     }

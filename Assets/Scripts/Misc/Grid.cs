@@ -128,7 +128,8 @@ public class Grid : MonoBehaviour
     // elements that are active will has white sprite renderer - normal
     // above max will be invisible & uncollidable (if has collider)
     // from active to max they will be black (black sprite renderer)
-    public void UpdateElementsVisibility(int activeElements, int maxElements)
+    // topElementGrayscale (1.0 by default) is for grayscale of the top element
+    public void UpdateElementsVisibility(int activeElements, int maxElements, float topElementGrayscale = 1.0F)
     {
         for (int i = 0; i < Elements.Count; ++i)
         {
@@ -154,6 +155,13 @@ public class Grid : MonoBehaviour
             if (i >= activeElements)
             {
                 currentSpriteRenderer.color = Color.black;
+                continue;
+            }
+
+            // top element grayscale
+            if (i == activeElements - 1)
+            {
+                currentSpriteRenderer.color = new Color(topElementGrayscale, topElementGrayscale, topElementGrayscale);
                 continue;
             }
 

@@ -65,8 +65,15 @@ public class Creature : DungeonObject
     // take damage and check for death
     public void TakeDamage(int amount, DamageType damageType)
     {
-        // TODO: implement take damage from any type of damage
-        Stats[Stat.HEARTS] -= amount;
+        // remove from hit points
+        Stats[Stat.HIT_POINTS] -= amount;
+
+        // if finish hit points - remove from hearts & init the hp
+        if (Stats[Stat.HIT_POINTS] <= 0)
+        {
+            Stats[Stat.HIT_POINTS] = Stats[Stat.MAX_HIT_POINTS];
+            Stats[Stat.HEARTS]--;
+        }
 
         Debug.Log(name + " got " + amount.ToString() + " " + damageType.ToString() + "damage");
 
