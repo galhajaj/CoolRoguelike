@@ -26,15 +26,21 @@ public class Treasure : DungeonObject
         return saveData;
     }
 
-    public List<ItemSaveData> GenerateItems()
+    // static function to generate items from treasure save data
+    public static List<ItemSaveData> GenerateItems(TreasureSaveData saveData)
     {
         List<ItemSaveData> itemsSaveData = new List<ItemSaveData>();
 
+        // get treasure object from resources
+        GameObject treasurePrefab = Resources.Load<GameObject>("Treasures/" + saveData.Name);
+        GameObject treasureObj = Instantiate(treasurePrefab);
+        Treasure treasure = treasureObj.GetComponent<Treasure>();
+
         // check if create treasure
-        if (!Utils.IsChanceOccured(Chance2Create))
+        if (!Utils.IsChanceOccured(treasure.Chance2Create))
             return itemsSaveData;
 
-        foreach (string path in Paths)
+        foreach (string path in treasure.Paths)
         {
             // get rnadom item from current resources path
             GameObject[] itemPrefabs = Resources.LoadAll<GameObject>("Items/" + path);
@@ -43,7 +49,7 @@ public class Treasure : DungeonObject
             GameObject randomItemPrefab = itemPrefabs[Random.Range(0, itemPrefabs.Length)];
 
             // check the chance to create the current item
-            if (!Utils.IsChanceOccured(Chance2CreateEachMemebr))
+            if (!Utils.IsChanceOccured(treasure.Chance2CreateEachMemebr))
                 continue;
 
             GameObject itemObj = Instantiate(randomItemPrefab);
@@ -55,6 +61,28 @@ public class Treasure : DungeonObject
             Destroy(itemObj.gameObject);
         }
 
+        Destroy(treasureObj.gameObject);
+        return itemsSaveData;
+    }
+
+    // overloading for creature which is containing treasures...
+    public static List<ItemSaveData> GenerateItems(CreatureSaveData saveData)
+    {
+        List<ItemSaveData> itemsSaveData = new List<ItemSaveData>();
+
+        // get creature object from resources
+        GameObject creaturePrefab = Resources.Load<GameObject>("Creatures/" + saveData.Name);
+        GameObject creatureObj = Instantiate(creaturePrefab);
+        Creature creature = creatureObj.GetComponent<Creature>();
+
+        foreach (GameObject treasureObj in creature.Treasures)
+        {
+            Treasure treasure = treasureObj.GetComponent<Treasure>();
+            List<ItemSaveData> itemsSaveDataFromTreasure = GenerateItems(treasure.GetSaveData() as TreasureSaveData);
+            itemsSaveData.AddRange(itemsSaveDataFromTreasure);
+        }
+
+        Destroy(creatureObj.gameObject);
         return itemsSaveData;
     }
 }

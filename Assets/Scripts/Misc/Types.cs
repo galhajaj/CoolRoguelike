@@ -125,3 +125,13 @@ public enum Stat
     TO_HIT_RANGED,
     MAX_RINGS_ALLOWED,
 }
+
+public enum DamageType
+{
+    PHYSICAL,
+    MIND,
+    FIRE,
+    COLD,
+    LIGHTNING,
+    POISON
+}

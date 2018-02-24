@@ -206,6 +206,7 @@ MonoBehaviour:
   Image: {fileID: 21300000, guid: 2ec037fc3c56fc746898e75bdfc85e17, type: 3}
   _isBlockPath: 0
   _isBlockView: 0
+  isPartyMember: 1
   Treasures: []
   Stats:
     _Buckets: ffffffff000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c000000ffffffffffffffffffffffff
@@ -232,6 +233,7 @@ MonoBehaviour:
   Image: {fileID: 21300000, guid: 2ec037fc3c56fc746898e75bdfc85e17, type: 3}
   _isBlockPath: 0
   _isBlockView: 0
+  isPartyMember: 1
   Treasures: []
   Stats:
     _Buckets: ffffffff000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -285,6 +287,7 @@ MonoBehaviour:
   Image: {fileID: 21300000, guid: 2ec037fc3c56fc746898e75bdfc85e17, type: 3}
   _isBlockPath: 0
   _isBlockView: 0
+  isPartyMember: 1
   Treasures: []
   Stats:
     _Buckets: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -311,6 +314,7 @@ MonoBehaviour:
   Image: {fileID: 21300000, guid: 2ec037fc3c56fc746898e75bdfc85e17, type: 3}
   _isBlockPath: 0
   _isBlockView: 0
+  isPartyMember: 1
   Treasures: []
   Stats:
     _Buckets: ffffffff000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c000000ffffffffffffffffffffffff
@@ -337,6 +341,7 @@ MonoBehaviour:
   Image: {fileID: 21300000, guid: 2ec037fc3c56fc746898e75bdfc85e17, type: 3}
   _isBlockPath: 0
   _isBlockView: 0
+  isPartyMember: 1
   Treasures: []
   Stats:
     _Buckets: ffffffff000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c000000ffffffffffffffffffffffff

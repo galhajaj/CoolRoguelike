@@ -68,7 +68,18 @@ public class Dungeon : Singleton<Dungeon>
         foreach (SaveData objSaveData in areaToShow.Objects)
         {
             DungeonTile tile = _grid.GetElement(objSaveData.Position) as DungeonTile;
-            putObjectInTile(objSaveData.Name, tile);
+            GameObject createdObj = createObjectInTile(objSaveData.Name, tile);
+
+            // add crried items on creature
+            if (objSaveData is CreatureSaveData)
+            {
+                CreatureSaveData creatureSaveData = objSaveData as CreatureSaveData;
+                Creature creature = createdObj.GetComponent<Creature>();
+                foreach (ItemSaveData itemSaveData in creatureSaveData.CarriedItems)
+                {
+                    createObjectInCreature(itemSaveData.Name, creature);
+                }
+            }
         }
 
         // update current area index
@@ -81,7 +92,33 @@ public class Dungeon : Singleton<Dungeon>
         ShowArea(areaPosition);
     }
     // ================================================================================================== //
-    private void putObjectInTile(string objectName, DungeonTile targetTile)
+    private GameObject createObjectInTile(string objectName, DungeonTile targetTile)
+    {
+        // get object from resources folder
+        var allResources = Resources.LoadAll<GameObject>("");
+        GameObject prefabToCreate = null;
+        foreach (GameObject obj in allResources)
+            if (obj.name == objectName)
+                prefabToCreate = obj;
+
+        if (prefabToCreate == null)
+        {
+            Debug.LogError(objectName + " resource doesn't exist");
+            return null;
+        }
+
+        // instantiate it in tile
+        GameObject instance = Instantiate(prefabToCreate);
+        instance.transform.position = targetTile.transform.position;
+        instance.transform.parent = targetTile.transform;
+        // if item, make it in ground state, so the sprite will change to icon
+        if (instance.GetComponent<Item>() != null)
+            instance.GetComponent<Item>().State = ItemState.GROUND;
+
+        return instance;
+    }
+    // ================================================================================================== //
+    private void createObjectInCreature(string objectName, Creature creature)
     {
         // get object from resources folder
         var allResources = Resources.LoadAll<GameObject>("");
@@ -98,11 +135,20 @@ public class Dungeon : Singleton<Dungeon>
 
         // instantiate it in tile
         GameObject instance = Instantiate(prefabToCreate);
-        instance.transform.position = targetTile.transform.position;
-        instance.transform.parent = targetTile.transform;
-        // if item, make it in ground state, so the sprite will change to icon
-        if (instance.GetComponent<Item>() != null)
-            instance.GetComponent<Item>().State = ItemState.GROUND;
+        instance.transform.position = creature.transform.position;
+        instance.transform.parent = creature.transform;
+
+        Item item = instance.GetComponent<Item>();
+
+        // add to creature carried items
+        creature.CarriedItems.Add(item);
+
+        // its a carried item - hide it and change its state to carried
+        item.Hide();
+        item.State = ItemState.EQUIPPED;
+
+        // try to put it on
+        creature.EquipItem(item);
     }
     // ================================================================================================== //
     public DungeonTile GetTile(Position pos)

@@ -39,8 +39,8 @@ public class StuffSaveData : SaveData
 [Serializable]
 public class CreatureSaveData : SaveData
 {
-    public List<ItemSaveData> EquipedItems;
-    public List<ItemSaveData> CarriedItems;
+    //public List<ItemSaveData> EquipedItems = new List<ItemSaveData>();
+    public List<ItemSaveData> CarriedItems = new List<ItemSaveData>();
     public int Hearts;
 }
 
@@ -85,10 +85,14 @@ public class SaveAndLoad : Singleton<SaveAndLoad>
                 // for all objects inside area
                 foreach (SaveData objSaveData in areaSaveData.Objects)
                 {
-                    // TODO: for creature - add items from its defined treasure
+                    // for creature - add items from its defined treasure
                     if (objSaveData is CreatureSaveData)
                     {
-                        // imp
+                        CreatureSaveData creatureSaveData = objSaveData as CreatureSaveData;
+
+                        // generate items from creature treasures
+                        List<ItemSaveData> itemsSaveData = Treasure.GenerateItems(objSaveData as CreatureSaveData);
+                        creatureSaveData.CarriedItems.AddRange(itemsSaveData);
                     }
                     // for item - update items parameters
                     else if (objSaveData is ItemSaveData)
@@ -99,18 +103,13 @@ public class SaveAndLoad : Singleton<SaveAndLoad>
                     // random treasure - turn random treasure objects to actual items
                     else if (objSaveData is TreasureSaveData)
                     {
-                        GameObject treasurePrefab = Resources.Load<GameObject>("Treasures/" + objSaveData.Name);
-                        GameObject treasureObj = Instantiate(treasurePrefab);
-
                         // generate items save data from treasure and add them to area
-                        List<ItemSaveData> itemsSaveData = treasureObj.GetComponent<Treasure>().GenerateItems();
+                        List<ItemSaveData> itemsSaveData = Treasure.GenerateItems(objSaveData as TreasureSaveData);
                         foreach (ItemSaveData itemSaveData in itemsSaveData)
                         {
                             itemSaveData.Position = objSaveData.Position;
                             itemsSaveDataFromTreasures.Add(itemSaveData);
                         }
-
-                        Destroy(treasureObj.gameObject);
                     }
                 }
 

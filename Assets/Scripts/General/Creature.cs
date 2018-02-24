@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Creature : DungeonObject
 {
+    [SerializeField]
+    private bool isPartyMember = false;
+
     public Position Position { get { return this.GetComponentInParent<DungeonTile>().Position; } }
 
     //public new Sprite Image;
@@ -39,6 +42,10 @@ public class Creature : DungeonObject
     public int MeleeAttackCost { get { return Consts.MAX_ACTION_UNITS; } }
     public int RangedAttackCost { get { return Consts.MAX_ACTION_UNITS; } }
 
+    // carried items
+    private List<Item> _carriedItems = new List<Item>();
+    public List<Item> CarriedItems { get { return _carriedItems; } }
+
     // equipped items
     private Dictionary<SocketType, Item> _equippedItems = new Dictionary<SocketType, Item>();
     public Dictionary<SocketType, Item> EquippedItems { get { return _equippedItems; } }
@@ -55,6 +62,37 @@ public class Creature : DungeonObject
     }
 
     // =================================================================================== //
+    // take damage and check for death
+    public void TakeDamage(int amount, DamageType damageType)
+    {
+        // TODO: implement take damage from any type of damage
+        Stats[Stat.HEARTS] -= amount;
+
+        Debug.Log(name + " got " + amount.ToString() + " " + damageType.ToString() + "damage");
+
+        // if not party member and dead - destroy it
+        if (!isPartyMember && !IsAlive)
+            kill();
+    }
+    // =================================================================================== //
+    private void kill()
+    {
+        // get last stand tile
+        DungeonTile tile = this.Position.DungeonTile;
+
+        // put all carried items on the ground
+        foreach (Item item in CarriedItems)
+        {
+            item.Show();
+            item.State = ItemState.GROUND;
+            item.transform.position = tile.transform.position;
+            item.transform.parent = tile.transform;
+        }
+        
+        // destroy itself
+        Destroy(gameObject);
+    }
+    // =================================================================================== //
     public void MeleeAttack(Creature target)
     {
         // pay action units
@@ -66,8 +104,11 @@ public class Creature : DungeonObject
             Debug.Log(this.name + " missed " + target.name);
             return;
         }
+        
         // hit
-        target.Stats[Stat.HEARTS]--;
+        int damage = UnityEngine.Random.Range(Stats[Stat.MIN_DAMAGE], Stats[Stat.MAX_DAMAGE] + 1);
+        target.TakeDamage(damage, DamageType.PHYSICAL);
+
         Debug.Log(this.name + " hit " + target.name);
     }
     // =================================================================================== //
@@ -82,8 +123,11 @@ public class Creature : DungeonObject
             Debug.Log(this.name + " missed " + target.name);
             return;
         }
+
         // hit
-        target.Stats[Stat.HEARTS]--;
+        int damage = UnityEngine.Random.Range(Stats[Stat.MIN_RANGED_DAMAGE], Stats[Stat.MAX_RANGED_DAMAGE] + 1);
+        target.TakeDamage(damage, DamageType.PHYSICAL);
+
         Debug.Log(this.name + " hit " + target.name);
     }
     // =================================================================================== //
