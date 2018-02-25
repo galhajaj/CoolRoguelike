@@ -10,6 +10,8 @@ public class DungeonTurnManager : MonoBehaviour
 
     private bool _creaturesTurn = true;
 
+    private Position _partyTargetPosition = Position.NullPosition;
+
 	void Start ()
     {
 		
@@ -47,6 +49,9 @@ public class DungeonTurnManager : MonoBehaviour
             if (!creature.IsChasing)
                 continue;
 
+            // cancel the travel of the party
+            _partyTargetPosition = Position.NullPosition;
+
             // if close to party - melee
             if (creature.Position.DistanceTo(Party.Instance.Position) == 1)
             {
@@ -56,12 +61,16 @@ public class DungeonTurnManager : MonoBehaviour
             }
             else // otherwise, move toward party
             {
-                DungeonTile nextTile = WalkingAlgorithm.GetNextPosition(creature.Position, Party.Instance.Position).DungeonTile;
-                if (nextTile != null)
+                Position nextPosition = WalkingAlgorithm.GetNextPosition(creature.Position, Party.Instance.Position);
+                if (nextPosition != Position.NullPosition)
                 {
-                    Debug.Log(creature.name + " move");
-                    Dungeon.Instance.PutDungeonObjectInTile(creature, nextTile);
-                    creature.PayWalkCost();
+                    DungeonTile nextTile = nextPosition.DungeonTile;
+                    if (nextTile != null)
+                    {
+                        Debug.Log(creature.name + " move");
+                        Dungeon.Instance.PutDungeonObjectInTile(creature, nextTile);
+                        creature.PayWalkCost();
+                    }
                 }
             }
         }
@@ -90,6 +99,25 @@ public class DungeonTurnManager : MonoBehaviour
         }
         _timeToNextMove = _moveInterval;
 
+        // if target position is not null - continue going there
+        if (_partyTargetPosition != Position.NullPosition)
+        {
+            Position nextPosition = WalkingAlgorithm.GetNextPosition(Party.Instance.Position, _partyTargetPosition);
+            if (nextPosition != Position.NullPosition)
+            {
+                DungeonTile nextTile = nextPosition.DungeonTile;
+                if (nextTile != null)
+                {
+                    Dungeon.Instance.PutDungeonObjectInTile(Party.Instance.DungeonObject, nextTile);
+                    Party.Instance.PayWalkCost();
+
+                    // stop when reach target
+                    if (nextPosition == _partyTargetPosition)
+                        _partyTargetPosition = Position.NullPosition;
+                }
+            }
+        }
+
         // waiting for player input
         checkDirectionKeys();
         checkWaitKey();
@@ -100,6 +128,7 @@ public class DungeonTurnManager : MonoBehaviour
         checkUsePortalKey();
         checkPickupKey();
         checkShootButton();
+        checkTravelButton();
     }
     // ====================================================================================================== //
     private void finishPlayerTurn()
@@ -218,20 +247,44 @@ public class DungeonTurnManager : MonoBehaviour
         if (!Input.GetMouseButtonDown(0))
             return;
 
+        // return if not click on dungeon tile
         LayerMask layerMask = (1 << LayerMask.NameToLayer("DungeonTile"));
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0.0F, layerMask);
         if (hit.collider == null)
             return;
 
+        // return if not click on monster
         DungeonTile targetTile = hit.collider.GetComponent<DungeonTile>();
         Creature targetCreature = targetTile.GetContainedCreature();
         if (targetCreature == null)
             return;
 
+        // shoot by selected party member
         Creature activePartyMember = Party.Instance.SelectedMember;
         activePartyMember.RangedAttack(targetCreature);
 
         Debug.Log("SHOOT!!!");
+    }
+    // ====================================================================================================== //
+    private void checkTravelButton()
+    {
+        if (!Input.GetMouseButtonDown(0))
+            return;
+
+        // return if not click on dungeon tile
+        LayerMask layerMask = (1 << LayerMask.NameToLayer("DungeonTile"));
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0.0F, layerMask);
+        if (hit.collider == null)
+            return;
+
+        // return if not click on monster
+        DungeonTile targetTile = hit.collider.GetComponent<DungeonTile>();
+        Creature targetCreature = targetTile.GetContainedCreature();
+        if (targetCreature != null)
+            return;
+
+        // set target position
+        _partyTargetPosition = targetTile.Position;
     }
     // ====================================================================================================== //
     private void rangedAttack(Creature attacker, Creature defender, DungeonTile targetTile)

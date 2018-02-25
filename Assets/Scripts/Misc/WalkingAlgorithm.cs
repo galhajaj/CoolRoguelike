@@ -25,7 +25,7 @@ public class WalkingAlgorithm
     // ====================================================================================== //
     private static Position getNextStupidTile(Position from, Position to)
     {
-        Position nextPos = new Position(-1, -1);
+        Position nextPos = Position.NullPosition;
         int minDistance = 10000;
 
         helper4GetNextStupidTile(from.North, to, ref nextPos, ref minDistance);
@@ -37,14 +37,14 @@ public class WalkingAlgorithm
         helper4GetNextStupidTile(from.SouthWest, to, ref nextPos, ref minDistance);
         helper4GetNextStupidTile(from.SouthEast, to, ref nextPos, ref minDistance);
 
-        if (nextPos.X == -1)
-            return Position.NullPosition;
-
         return nextPos;
     }
     // helper ////////
     private static void helper4GetNextStupidTile(Position from, Position to, ref Position nextPos, ref int minDistance)
     {
+        if (Dungeon.Instance.GetTile(from) == null)
+            return;
+
         if (from.DistanceTo(to) < minDistance && !Dungeon.Instance.GetTile(from).IsBlockPath)
         {
             nextPos = from;

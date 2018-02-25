@@ -155,6 +155,10 @@ public class Dungeon : Singleton<Dungeon>
     {
         if (pos == Position.NullPosition)
             return null;
+
+        if (pos.X < 0 || pos.X >= Consts.DUNGEON_AREA_WIDTH || pos.Y < 0 || pos.Y >= Consts.DUNGEON_AREA_HEIGHT)
+            return null;
+
         return _grid.GetElement(pos) as DungeonTile;
     }
     // ================================================================================================== //
