@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class BeltManager : Singleton<BeltManager>
+public class PocketManager : Singleton<PocketManager>
 {
     [SerializeField]
     private Grid _beltGrid = null;
@@ -16,7 +16,7 @@ public class BeltManager : Singleton<BeltManager>
 	void Update ()
     {
         // units visibility & color of grid units
-        _beltGrid.UpdateElementsVisibility(Party.Instance.SelectedMember.Stats[Stat.BELT_SLOTS_NUMBER]);
+        _beltGrid.UpdateElementsVisibility(Party.Instance.SelectedMember.Stats[Stat.POCKETS]);
 
         // hide/show items on belt by the selected member
         // TODO: improve performance?
@@ -31,10 +31,10 @@ public class BeltManager : Singleton<BeltManager>
         }
     }
 
-    public void AddItem(Item item, GameObject beltSocket)
+    public void AddItem(Item item, GameObject pocket)
     {
-        //item.transform.position = this.transform.position;
-        item.transform.parent = beltSocket.transform;
+        item.transform.position = pocket.transform.position;
+        item.transform.parent = pocket.transform;
         item.State = ItemState.ON_BELT;
     }
 }

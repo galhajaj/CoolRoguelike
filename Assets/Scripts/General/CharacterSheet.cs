@@ -49,7 +49,7 @@ public class CharacterSheet : MonoBehaviour
 
         // belt slots & rings
         _textCharacterParams.text += "\n";
-        _textCharacterParams.text += "\nBelt Slots: " + hero.Stats[Stat.BELT_SLOTS_NUMBER];
+        _textCharacterParams.text += "\nPockets: " + hero.Stats[Stat.POCKETS];
         _textCharacterParams.text += "\nMax Rings Allowed: " + hero.Stats[Stat.MAX_RINGS_ALLOWED];
     }
 }

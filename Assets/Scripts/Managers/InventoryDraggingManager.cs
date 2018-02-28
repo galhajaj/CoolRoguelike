@@ -61,7 +61,7 @@ public class InventoryDraggingManager : MonoBehaviour
             {
                 Item item = _draggedObject.GetComponent<Item>();
                 Collider2D miniatureCollider = GetColliderUnderCursor("Miniature");
-                Collider2D beltCollider = GetColliderUnderCursor("Belt");
+                Collider2D pocketCollider = GetColliderUnderCursor("Pocket");
 
                 // release on miniature
                 if (miniatureCollider != null)
@@ -70,10 +70,10 @@ public class InventoryDraggingManager : MonoBehaviour
                     Party.Instance.SelectedMember.EquipItem(item);
                 }
                 // release on belt
-                else if (beltCollider != null)
+                else if (pocketCollider != null)
                 {
                     // insert item to pocket
-                    Party.Instance.SelectedMember.InsertItemToBelt(item, beltCollider.gameObject);
+                    Party.Instance.SelectedMember.InsertItemToBelt(item, pocketCollider.gameObject);
                 }
                 // release on somewhere else
                 else
@@ -84,6 +84,7 @@ public class InventoryDraggingManager : MonoBehaviour
 
                 setItemSortingLayer(false);
                 _draggedObject = null;
+                Inventory.Instance.ReorderOutOfBorderItems();
             }
         }
     }

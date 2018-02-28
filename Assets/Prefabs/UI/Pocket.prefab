@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114104490090616630}
   - component: {fileID: 61221420184884446}
   m_Layer: 11
-  m_Name: BeltSlot
+  m_Name: Pocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

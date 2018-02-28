@@ -110,7 +110,7 @@ public enum Stat
     MIN_RANGED_DAMAGE,
     MAX_RANGED_DAMAGE,
     ARMOR,
-    BELT_SLOTS_NUMBER,
+    POCKETS,
     WEIGHT,
     // attributes
     STRENGTH,

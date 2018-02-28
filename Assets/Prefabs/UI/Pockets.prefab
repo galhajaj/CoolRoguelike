@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114459818425063118}
   - component: {fileID: 114923005467853592}
   m_Layer: 0
-  m_Name: Belt
+  m_Name: Pockets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

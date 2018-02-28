@@ -183,7 +183,7 @@ public class Creature : DungeonObject
                 RemoveItemFromBelt(_itemsOnBelt[beltSocketIndex]);
 
         // put in belt slot
-        BeltManager.Instance.AddItem(item, beltSocket);
+        PocketManager.Instance.AddItem(item, beltSocket);
 
         // add it
         _itemsOnBelt[beltSocketIndex] = item;
