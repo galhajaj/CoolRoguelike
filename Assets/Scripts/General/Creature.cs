@@ -145,6 +145,10 @@ public class Creature : DungeonObject
     // =================================================================================== //
     public void EquipItem(Item item)
     {
+        // not equip if pocket type
+        if (item.SocketType == SocketType.POCKET)
+            return;
+
         // remove if item type exists
         if (_equippedItems.ContainsKey(item.SocketType))
             RemoveItem(_equippedItems[item.SocketType]);
