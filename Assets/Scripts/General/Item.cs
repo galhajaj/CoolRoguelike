@@ -8,7 +8,8 @@ public enum ItemState
     GROUND,
     INVENTORY,
     EQUIPPED,
-    ON_BELT
+    ON_BELT,
+    DRAGGED
 }
 
 public class Item : DungeonObject
@@ -27,7 +28,7 @@ public class Item : DungeonObject
         set
         {
             _state = value;
-            setItemSprite();
+            setItemSpriteAndSortingLayer();
         }
     }
 
@@ -54,12 +55,36 @@ public class Item : DungeonObject
         _collider.enabled = true;
     }
 
-    private void setItemSprite()
+    private void setItemSpriteAndSortingLayer()
     {
         if (_state == ItemState.GROUND)
+        {
             _spriteRenderer.sprite = ResourcesManager.Instance.LootOnGroundSprite;
+            _spriteRenderer.sortingLayerName = "ItemOnGround";
+            _spriteRenderer.sortingOrder = 0;
+        }
         else
+        {
             _spriteRenderer.sprite = _originalSprite;
+            if (_state == ItemState.INVENTORY)
+            {
+                _spriteRenderer.sortingLayerName = "ItemInInventory";
+                _spriteRenderer.sortingOrder = 0;
+            }
+            else if (_state == ItemState.DRAGGED)
+            {
+                _spriteRenderer.sortingLayerName = "ItemDragged";
+            }
+            else if (_state == ItemState.EQUIPPED)
+            {
+                _spriteRenderer.sortingLayerName = "OverMiniature";
+                _spriteRenderer.sortingOrder = 0;
+                if (SocketType == SocketType.MAIN_HAND || SocketType == SocketType.OFF_HAND)
+                    _spriteRenderer.sortingOrder = 1;
+                if (SocketType == SocketType.AMMO || SocketType == SocketType.RANGED)
+                    _spriteRenderer.sortingLayerName = "UnderMiniature";
+            }
+        }
     }
 
     public override SaveData GetSaveData()

@@ -32,7 +32,6 @@ public class InventoryDraggingManager : MonoBehaviour
             if (hit.collider != null)
             {
                 _draggedObject = hit.collider.gameObject;
-                setItemSortingLayer(true);
                 _originalPosition = _draggedObject.transform.position;
 
                 Item item = _draggedObject.GetComponent<Item>();
@@ -46,6 +45,8 @@ public class InventoryDraggingManager : MonoBehaviour
                     // remove item if equipped
                     Party.Instance.SelectedMember.RemoveItemFromBelt(item);
                 }
+
+                item.State = ItemState.DRAGGED;
 
                 // save to file
                 //DataManager.Instance.SaveDataToFile();
@@ -82,7 +83,6 @@ public class InventoryDraggingManager : MonoBehaviour
                     _draggedObject.transform.parent = Inventory.Instance.transform;
                 }
 
-                setItemSortingLayer(false);
                 _draggedObject = null;
                 Inventory.Instance.ReorderOutOfBorderItems();
             }
@@ -97,15 +97,6 @@ public class InventoryDraggingManager : MonoBehaviour
         mousePos.z = 5.0F;
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
         _draggedObject.transform.position = worldPos;
-    }
-
-    private void setItemSortingLayer(bool isDragged)
-    {
-        if (_draggedObject == null)
-            return;
-
-        string sortingLayerName = isDragged ? "ItemDraggedInInventory" : "ItemInInventory";
-        _draggedObject.GetComponent<SpriteRenderer>().sortingLayerName = sortingLayerName;
     }
 
     private Collider2D GetColliderUnderCursor(string layer)

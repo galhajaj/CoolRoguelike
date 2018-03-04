@@ -68,9 +68,18 @@ TagManager:
   - name: ItemInInventory
     uniqueID: 1870598677
     locked: 0
+  - name: UnderMiniature
+    uniqueID: 166229113
+    locked: 0
+  - name: Miniature
+    uniqueID: 3825663763
+    locked: 0
+  - name: OverMiniature
+    uniqueID: 4208453221
+    locked: 0
   - name: UI
     uniqueID: 1756370125
     locked: 0
-  - name: ItemDraggedInInventory
+  - name: ItemDragged
     uniqueID: 1146551167
     locked: 0

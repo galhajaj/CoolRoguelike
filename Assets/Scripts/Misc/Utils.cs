@@ -165,17 +165,17 @@ public class Utils
         switch (socketType)
         {
             case SocketType.HEAD:
-                return new Position(0, 60);
+                return new Position(-8, 75);
             case SocketType.NECK:
                 return new Position(0, 40);
             case SocketType.TORSO:
-                return new Position(0, 0);
+                return new Position(-3, 25);
             case SocketType.BACK:
                 return new Position(0, 0);
             case SocketType.WRIST:
                 return new Position(0, -10);
             case SocketType.MAIN_HAND:
-                return new Position(-20, 0);
+                return new Position(-41, 26);
             case SocketType.OFF_HAND:
                 return new Position(20, 0);
             case SocketType.WAIST:
@@ -185,9 +185,9 @@ public class Utils
             /*case SocketType.FINGER:
                 break;*/
             case SocketType.RANGED:
-                return new Position(-20, 10);
+                return new Position(-19, 46);
             case SocketType.AMMO:
-                return new Position(20, 10);
+                return new Position(20, 35);
             /*case SocketType.POCKET:
                 return new Position(0, -);*/
             default:
