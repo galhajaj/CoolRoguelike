@@ -18,10 +18,15 @@ public class MiniatureManager : Singleton<MiniatureManager>
     void LateUpdate()
     {
         // default miniature show (in inventory it's the current selected member, otherwise - it's null)
-        if (WindowManager.Instance.IsCurrentWindow(Consts.INVENTORY))
+        if (WindowManager.Instance.IsCurrentWindow(Consts.INVENTORY) || WindowManager.Instance.IsCurrentWindow(Consts.CHARACTER_SHEET))
+        {
             ShowCreature(Party.Instance.SelectedMember);
+            return;
+        }
         else
+        {
             ShowCreature(null);
+        }
 
         cursorOverDungeonTile();
         cursorOverPortrait();
