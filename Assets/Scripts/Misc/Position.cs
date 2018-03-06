@@ -95,7 +95,7 @@ public struct Position
 
     public bool IsOutsideDungeonArea
     {
-        get { return !(X >= 0 && X < Consts.DUNGEON_AREA_WIDTH && Y >= 0 && Y < Consts.DUNGEON_AREA_HEIGHT); }
+        get { return !(X >= 0 && X < Dungeon.Instance.Width && Y >= 0 && Y < Dungeon.Instance.Height); }
     }
 
     public Position CyclicPosition
@@ -104,10 +104,10 @@ public struct Position
         {
             int x = X;
             int y = Y;
-            if (x < 0) x = Consts.DUNGEON_AREA_WIDTH - 1;
-            if (x >= Consts.DUNGEON_AREA_WIDTH) x = 0;
-            if (y < 0) y = Consts.DUNGEON_AREA_HEIGHT - 1;
-            if (y >= Consts.DUNGEON_AREA_HEIGHT) y = 0;
+            if (x < 0) x = Dungeon.Instance.Width - 1;
+            if (x >= Dungeon.Instance.Width) x = 0;
+            if (y < 0) y = Dungeon.Instance.Height - 1;
+            if (y >= Dungeon.Instance.Height) y = 0;
             return new Position(x, y);
         }
     }

@@ -4,9 +4,6 @@ using UnityEngine;
 
 public static class Consts
 {
-    public static readonly int DUNGEON_AREA_WIDTH = 40;
-    public static readonly int DUNGEON_AREA_HEIGHT = 23;
-
     public static readonly int MAX_ACTION_UNITS = 20;
     //public static readonly int MAX_BELT_SLOTS = 6;
 

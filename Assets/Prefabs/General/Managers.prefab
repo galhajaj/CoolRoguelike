@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114461376781810336}
   - component: {fileID: 114274146017067240}
   - component: {fileID: 114130669575880494}
+  - component: {fileID: 114688761631844064}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -71,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8850317abb53fe3449bf87522c716ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showWindowPosition: {x: -72, y: 34}
+  _showWindowPosition: {x: -40, y: 34}
 --- !u!114 &114461376781810336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -84,3 +85,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LootOnGroundSprite: {fileID: 21300036, guid: 3cae6461ba9240f4197982d0ef2c01e1, type: 3}
+--- !u!114 &114688761631844064
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1431348205435918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f5103c524d01f4d9f800fbb6fbae94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

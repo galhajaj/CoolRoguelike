@@ -55,9 +55,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3518cb0452f2fae49ba0065da4b7c3f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sizeX: 40
+  _sizeX: 36
   _sizeY: 23
-  _offsetX: -320
+  _offsetX: -288
   _offsetY: 184
   _spacing: 0
   _invertYAxis: 0

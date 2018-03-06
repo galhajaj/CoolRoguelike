@@ -13,6 +13,9 @@ public class Dungeon : Singleton<Dungeon>
 
     public bool IsInOriginArea { get { return _currentShownAreaPosition == new Position(0, 0, 0); } }
 
+    public int Width { get { return _grid.SizeX; } }
+    public int Height { get { return _grid.SizeY; } }
+
     // ================================================================================================== //
     void Start() 
 	{
@@ -156,7 +159,7 @@ public class Dungeon : Singleton<Dungeon>
         if (pos == Position.NullPosition)
             return null;
 
-        if (pos.X < 0 || pos.X >= Consts.DUNGEON_AREA_WIDTH || pos.Y < 0 || pos.Y >= Consts.DUNGEON_AREA_HEIGHT)
+        if (pos.X < 0 || pos.X >= Width || pos.Y < 0 || pos.Y >= Height)
             return null;
 
         return _grid.GetElement(pos) as DungeonTile;
