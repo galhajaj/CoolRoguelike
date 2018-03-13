@@ -126,9 +126,10 @@ public class DungeonTurnManager : MonoBehaviour
     {
         // waiting for player input
         checkUsePortalKey();
-        checkPickupKey();
+        checkPickupKey(); // TODO: merge the pickup/shoot/walk to one function
         checkShootButton();
         checkTravelButton();
+        //checkUsePocketItemButton();
     }
     // ====================================================================================================== //
     private void finishPlayerTurn()

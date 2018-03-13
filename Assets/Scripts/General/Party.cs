@@ -1,9 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Party : Singleton<Party>
 {
+    public event Action Event_PartyMemberSelected;
+
     // position in dungeon, by its tile parent
     public Position Position
     {
@@ -57,7 +60,11 @@ public class Party : Singleton<Party>
                     return member;
             return null;
         }
-        set { _selectedMember = value; }
+        set
+        {
+            _selectedMember = value;
+            Event_PartyMemberSelected();
+        }
     }
 
     public bool IsContainActiveMember
@@ -98,7 +105,7 @@ public class Party : Singleton<Party>
         if (liveMembers.Count == 0)
             return null;
 
-        int rand = Random.Range(0, liveMembers.Count);
+        int rand = UnityEngine.Random.Range(0, liveMembers.Count);
         return liveMembers[rand];
     }
     // ====================================================================================================== //

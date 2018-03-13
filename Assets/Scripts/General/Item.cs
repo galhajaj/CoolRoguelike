@@ -8,7 +8,7 @@ public enum ItemState
     GROUND,
     INVENTORY,
     EQUIPPED,
-    ON_BELT,
+    IN_POCKET,
     DRAGGED
 }
 

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class DungeonEditor : Singleton<DungeonEditor>
 {
     [SerializeField]
-    private Grid _grid = null;
+    private GenericGrid _grid = null;
     [SerializeField]
     private InputField _inputField = null;
 

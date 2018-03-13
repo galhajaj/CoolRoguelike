@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class Dungeon : Singleton<Dungeon> 
 {
     [SerializeField]
-    private Grid _grid = null;
+    private GenericGrid _grid = null;
 
     private DungeonSaveData _dungeonSaveData = null;
     private Position _currentShownAreaPosition;

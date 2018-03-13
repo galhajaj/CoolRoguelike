@@ -202,6 +202,7 @@ MonoBehaviour:
   _lifeUnitsGrid: {fileID: 114094296593945052}
   _spellUnitsGrid: {fileID: 114559437732131804}
   _actionUnitsGrid: {fileID: 114931216053137422}
+  _spriteRenderer: {fileID: 212189408229288176}
   _frameRenderer: {fileID: 212372803540803536}
 --- !u!114 &114094296593945052
 MonoBehaviour:

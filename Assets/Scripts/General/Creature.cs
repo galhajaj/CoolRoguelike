@@ -51,8 +51,8 @@ public class Creature : DungeonObject
     public Dictionary<SocketType, Item> EquippedItems { get { return _equippedItems; } }
 
     // items on belt
-    private Dictionary<int, Item> _itemsOnBelt = new Dictionary<int, Item>();
-    public Dictionary<int, Item> ItemsOnBelt { get { return _itemsOnBelt; } }
+    private Dictionary<int, Item> _itemsInPockets = new Dictionary<int, Item>();
+    public Dictionary<int, Item> ItemsInPockets { get { return _itemsInPockets; } }
 
     public override SaveData GetSaveData()
     {
@@ -175,29 +175,29 @@ public class Creature : DungeonObject
         this.Stats -= item.Stats;
     }
     // =================================================================================== //
-    public void InsertItemToBelt(Item item, GameObject beltSocket)
+    public void InsertItemInPocket(Item item, GameObject pocket)
     {
-        int beltSocketIndex = beltSocket.GetComponent<GridElement>().Index;
+        int beltSocketIndex = pocket.GetComponent<GridElement>().Index;
 
         //Debug.Log("INDEX: " + beltSocketIndex);
 
         // remove if item type exists
-        if (_itemsOnBelt.ContainsKey(beltSocketIndex))
-            if (_itemsOnBelt[beltSocketIndex] != null)
-                RemoveItemFromBelt(_itemsOnBelt[beltSocketIndex]);
+        if (_itemsInPockets.ContainsKey(beltSocketIndex))
+            if (_itemsInPockets[beltSocketIndex] != null)
+                RemoveItemFromBelt(_itemsInPockets[beltSocketIndex]);
 
         // put in belt slot
-        PocketManager.Instance.AddItem(item, beltSocket);
+        PocketManager.Instance.AddItem(item, pocket);
 
         // add it
-        _itemsOnBelt[beltSocketIndex] = item;
+        _itemsInPockets[beltSocketIndex] = item;
     }
     // =================================================================================== //
     public void RemoveItemFromBelt(Item item)
     {
         // remove from map
         GridElement beltSocket = item.transform.parent.GetComponent<GridElement>();
-        _itemsOnBelt[beltSocket.Index] = null;
+        _itemsInPockets[beltSocket.Index] = null;
 
         // put in inventory
         Inventory.Instance.AddItem(item);

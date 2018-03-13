@@ -68,7 +68,8 @@ public enum ItemType
     QUIVER,
     NECKLACE,
     RING,
-    POTION
+    POTION,
+    SCROLL
 }
 
 public enum ItemCondition
@@ -112,18 +113,36 @@ public enum Stat
     ARMOR,
     POCKETS,
     WEIGHT,
+    EXPERIENCE_POINTS,
+    TO_HIT_MELEE,
+    TO_HIT_RANGED,
+    MAX_RINGS_ALLOWED,
     // attributes
-    STRENGTH,
+    STRENGTH = 100,
     ENDURANCE,
     AGILITY,
     INTELLECT,
     WILL,
     ACCURACY,
-    //
-    EXPERIENCE_POINTS,
-    TO_HIT_MELEE,
-    TO_HIT_RANGED,
-    MAX_RINGS_ALLOWED,
+    // skills
+    DAGGERS = 200,
+    SHORT_SWORDS,
+    LONG_SWORDS,
+    TWO_HANDED_SWORDS,
+    SPERAS,
+    HALBERDS,
+    CLUBS,
+    MACES,
+    FLAILS,
+    HAND_AXES,
+    TWO_HANDED_AXES,
+    STAVES,
+    WHIPS,
+    BOWS,
+    CROSSBOWS,
+    SMALL_SHIELDS,
+    MEDIUM_SHIELDS,
+    LARGE_SHIELDS
 }
 
 public enum DamageType

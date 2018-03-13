@@ -8,7 +8,7 @@ public class ObjectSelector : Singleton<ObjectSelector>
     public string SelectedObjectName { get; private set; }
 
     [SerializeField]
-    private Grid _grid = null;
+    private GenericGrid _grid = null;
 
     [SerializeField]
     private Text _textSelected = null;

@@ -40,7 +40,7 @@ public class InventoryDraggingManager : MonoBehaviour
                     // remove item if equipped
                     Party.Instance.SelectedMember.RemoveItem(item);
                 }
-                else if (item.State == ItemState.ON_BELT)
+                else if (item.State == ItemState.IN_POCKET)
                 {
                     // remove item if equipped
                     Party.Instance.SelectedMember.RemoveItemFromBelt(item);
@@ -61,20 +61,21 @@ public class InventoryDraggingManager : MonoBehaviour
             if (_draggedObject != null)
             {
                 Item item = _draggedObject.GetComponent<Item>();
-                Collider2D miniatureCollider = GetColliderUnderCursor("Miniature");
-                Collider2D pocketCollider = GetColliderUnderCursor("Pocket");
+
+                MiniatureManager miniatureManager = Utils.GetObjectUnderCursor<MiniatureManager>("Miniature");
+                Pocket pocket = Utils.GetObjectUnderCursor<Pocket>("Pocket");
 
                 // release on miniature
-                if (miniatureCollider != null)
+                if (miniatureManager != null)
                 {
                     // equip item
                     Party.Instance.SelectedMember.EquipItem(item);
                 }
-                // release on belt
-                else if (pocketCollider != null)
+                // release on pocket
+                else if (pocket != null)
                 {
                     // insert item to pocket
-                    Party.Instance.SelectedMember.InsertItemToBelt(item, pocketCollider.gameObject);
+                    Party.Instance.SelectedMember.InsertItemInPocket(item, pocket.gameObject);
                 }
                 // release on somewhere else
                 else
@@ -97,15 +98,5 @@ public class InventoryDraggingManager : MonoBehaviour
         mousePos.z = 5.0F;
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
         _draggedObject.transform.position = worldPos;
-    }
-
-    private Collider2D GetColliderUnderCursor(string layer)
-    {
-        int layerIndex = LayerMask.NameToLayer(layer);
-        if (layerIndex == -1)
-            Debug.LogError(layer + " layer not found!");
-        LayerMask layerMask = (1 << layerIndex);
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0.0F, layerMask);
-        return hit.collider;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Library : Singleton<Library>
 {
     [SerializeField]
-    private Grid _grid = null;
+    private GenericGrid _grid = null;
 
     public void BuildLibrary()
     {

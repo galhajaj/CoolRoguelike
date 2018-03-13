@@ -9,11 +9,11 @@ public class Portrait : MonoBehaviour
     public Creature Creature { get { return _creature; } }
 
     [SerializeField]
-    private Grid _lifeUnitsGrid = null;
+    private GenericGrid _lifeUnitsGrid = null;
     [SerializeField]
-    private Grid _spellUnitsGrid = null;
+    private GenericGrid _spellUnitsGrid = null;
     [SerializeField]
-    private Grid _actionUnitsGrid = null;
+    private GenericGrid _actionUnitsGrid = null;
     [SerializeField]
     private SpriteRenderer _frameRenderer = null;
 

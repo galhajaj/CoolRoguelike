@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grid : MonoBehaviour
+public class GenericGrid : MonoBehaviour
 {
     [SerializeField]
     private int _sizeX = 0;

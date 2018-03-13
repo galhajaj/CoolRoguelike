@@ -6,21 +6,69 @@ using UnityEngine;
 public class PocketManager : Singleton<PocketManager>
 {
     [SerializeField]
-    private Grid _beltGrid = null;
+    private GenericGrid _pocketGrid = null;
 
-	void Start ()
+    private GridElement _selectedPocket = null;
+    public GridElement SelectedPocket
     {
-		
-	}
-	
-	void Update ()
+        get { return _selectedPocket; }
+        set
+        {
+            _selectedPocket = value;
+            setPocketSelectedAppearance();
+        }
+    }
+    // ====================================================================================================== //
+    void Start ()
+    {
+        Party.Instance.Event_PartyMemberSelected += OnMemberSelected;
+    }
+    // ====================================================================================================== //
+    void Update()
+    {
+        checkClickOnPocket();
+    }
+    // ====================================================================================================== //
+    private void checkClickOnPocket()
+    {
+        if (WindowManager.Instance.IsCurrentWindow(Consts.DUNGEON) && Input.GetMouseButtonDown(0))
+        {
+            Pocket pocket = Utils.GetObjectUnderCursor<Pocket>("Pocket");
+            if (pocket != null)
+            {
+                Debug.Log("Pocket selected!");
+                SelectedPocket = pocket;
+            }
+        }
+    }
+    // ====================================================================================================== //
+    public void AddItem(Item item, GameObject pocket)
+    {
+        item.transform.position = pocket.transform.position;
+        item.transform.parent = pocket.transform;
+        item.State = ItemState.IN_POCKET;
+    }
+    // ====================================================================================================== //
+    private void setPocketSelectedAppearance()
+    {
+        foreach (GridElement pocket in _pocketGrid.Elements)
+        {
+            pocket.GetComponent<SpriteRenderer>().color = (pocket == _selectedPocket) ? Color.red : Color.white;
+        }
+    }
+    // ====================================================================================================== //
+    private void OnMemberSelected()
+    {
+        showSelectedMemberPockets();
+    }
+    // ====================================================================================================== //
+    private void showSelectedMemberPockets()
     {
         // units visibility & color of grid units
-        _beltGrid.UpdateElementsVisibility(Party.Instance.SelectedMember.Stats[Stat.POCKETS]);
+        _pocketGrid.UpdateElementsVisibility(Party.Instance.SelectedMember.Stats[Stat.POCKETS]);
 
         // hide/show items on belt by the selected member
-        // TODO: improve performance?
-        List<Item> selectedMemberBeltItems = Party.Instance.SelectedMember.ItemsOnBelt.Values.ToList();
+        List<Item> selectedMemberBeltItems = Party.Instance.SelectedMember.ItemsInPockets.Values.ToList();
         foreach (Transform beltSlotTransform in this.transform)
         {
             foreach (Transform itemTransform in beltSlotTransform)
@@ -29,12 +77,9 @@ public class PocketManager : Singleton<PocketManager>
                 itemTransform.gameObject.SetActive(selectedMemberBeltItems.Contains(item));
             }
         }
-    }
 
-    public void AddItem(Item item, GameObject pocket)
-    {
-        item.transform.position = pocket.transform.position;
-        item.transform.parent = pocket.transform;
-        item.State = ItemState.ON_BELT;
+        // init to non-selected pockets
+        SelectedPocket = null;
     }
+    // ====================================================================================================== //
 }
