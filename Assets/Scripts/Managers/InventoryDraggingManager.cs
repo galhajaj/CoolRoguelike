@@ -14,7 +14,7 @@ public class InventoryDraggingManager : MonoBehaviour
 	
 	void Update ()
     {
-        if (!WindowManager.Instance.IsCurrentWindow(Consts.INVENTORY))
+        if (!WindowManager.Instance.IsCurrentWindow(Consts.WINDOW_INVENTORY))
             return;
 
         updataMouseDown();

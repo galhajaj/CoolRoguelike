@@ -18,7 +18,7 @@ public class Party : Singleton<Party>
         }
     }
 
-    private string _location = Consts.VILLAGE;
+    private string _location = Consts.WINDOW_VILLAGE;
     public string Loaction
     {
         get { return _location; }

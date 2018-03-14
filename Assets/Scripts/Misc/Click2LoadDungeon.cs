@@ -10,6 +10,6 @@ public class Click2LoadDungeon : MonoBehaviour
     void OnMouseDown()
     {
         Dungeon.Instance.Load(_dungeonName);
-        WindowManager.Instance.LoadWindow(Consts.DUNGEON);
+        WindowManager.Instance.LoadWindow(Consts.WINDOW_DUNGEON);
     }
 }

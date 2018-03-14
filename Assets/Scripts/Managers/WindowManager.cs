@@ -1,9 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WindowManager : Singleton<WindowManager>
 {
+    public event Action Event_WindowLoaded;
+
     // the position where the selected window move to be shown
     [SerializeField]
     private Vector2 _showWindowPosition = Vector2.zero;
@@ -12,6 +15,7 @@ public class WindowManager : Singleton<WindowManager>
     private List<Window> _windows = new List<Window>();
 
     private string _currentWindowName = "";
+    public string CurrentWindowName { get { return _currentWindowName; } }
     public bool IsCurrentWindow(string windowName) { return _currentWindowName.Equals(windowName); }
 
     protected override void AfterAwake()
@@ -42,6 +46,9 @@ public class WindowManager : Singleton<WindowManager>
 
         // update current window name
         _currentWindowName = name;
+
+        // raise window loaded event
+        Event_WindowLoaded();
     }
 
     private void hideAllWindows()

@@ -6,9 +6,9 @@ public class ClickBack : MonoBehaviour
 {
     void OnMouseDown()
     {
-        if (Party.Instance.Loaction == Consts.VILLAGE)
-            WindowManager.Instance.LoadWindow(Consts.VILLAGE);
+        if (Party.Instance.Loaction == Consts.WINDOW_VILLAGE)
+            WindowManager.Instance.LoadWindow(Consts.WINDOW_VILLAGE);
         else
-            WindowManager.Instance.LoadWindow(Consts.DUNGEON);
+            WindowManager.Instance.LoadWindow(Consts.WINDOW_DUNGEON);
     }
 }

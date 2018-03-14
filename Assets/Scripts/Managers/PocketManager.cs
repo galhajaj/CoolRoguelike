@@ -31,7 +31,7 @@ public class PocketManager : Singleton<PocketManager>
     // ====================================================================================================== //
     private void checkClickOnPocket()
     {
-        if (WindowManager.Instance.IsCurrentWindow(Consts.DUNGEON) && Input.GetMouseButtonDown(0))
+        if (WindowManager.Instance.IsCurrentWindow(Consts.WINDOW_DUNGEON) && Input.GetMouseButtonDown(0))
         {
             Pocket pocket = Utils.GetObjectUnderCursor<Pocket>("Pocket");
             if (pocket != null)
