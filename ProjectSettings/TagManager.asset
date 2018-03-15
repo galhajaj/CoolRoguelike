@@ -21,7 +21,7 @@ TagManager:
   - Creature
   - Party
   - Portrait
-  - 
+  - Currency
   - 
   - 
   - 
@@ -64,6 +64,9 @@ TagManager:
     locked: 0
   - name: Creature
     uniqueID: 952736375
+    locked: 0
+  - name: CurrencyItemInInventory
+    uniqueID: 526016579
     locked: 0
   - name: ItemInInventory
     uniqueID: 1870598677

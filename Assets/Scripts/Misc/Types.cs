@@ -69,7 +69,8 @@ public enum ItemType
     NECKLACE,
     RING,
     POTION,
-    SCROLL
+    SCROLL,
+    CURRENCY
 }
 
 public enum ItemCondition

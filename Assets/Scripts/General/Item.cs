@@ -65,6 +65,13 @@ public class Item : DungeonObject
         }
         else
         {
+            // if currency - behind all in inventory
+            if (Type == ItemType.CURRENCY)
+            {
+                _spriteRenderer.sortingLayerName = "CurrencyItemInInventory";
+                return;
+            }
+
             _spriteRenderer.sprite = _originalSprite;
             if (_state == ItemState.INVENTORY)
             {

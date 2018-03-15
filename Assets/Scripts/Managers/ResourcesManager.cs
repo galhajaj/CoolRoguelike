@@ -5,4 +5,5 @@ using UnityEngine;
 public class ResourcesManager : Singleton<ResourcesManager>
 {
     public Sprite LootOnGroundSprite;
+    public GameObject GoldCoinPrefab;
 }

@@ -29,6 +29,12 @@ public class DungeonTurnManager : MonoBehaviour
 	// ====================================================================================================== //
 	void Update ()
     {
+        // TODO: delete this line - add 100 gold pieces to party
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            Party.Instance.AddGoldPieces(100);
+        }
+
         // return if not in dungeon
         if (!WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.DUNGEON))
             return;
