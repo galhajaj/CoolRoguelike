@@ -54,6 +54,14 @@ public class Creature : DungeonObject
     private Dictionary<int, Item> _itemsInPockets = new Dictionary<int, Item>();
     public Dictionary<int, Item> ItemsInPockets { get { return _itemsInPockets; } }
 
+    // selected pocket
+    private int _selectedPocketIndex = -1;
+    public int SelectedPocketIndex
+    {
+        get { return _selectedPocketIndex; }
+        set { _selectedPocketIndex = value; }
+    }
+
     public override SaveData GetSaveData()
     {
         CreatureSaveData saveData = new CreatureSaveData();
@@ -184,7 +192,7 @@ public class Creature : DungeonObject
         // remove if item type exists
         if (_itemsInPockets.ContainsKey(beltSocketIndex))
             if (_itemsInPockets[beltSocketIndex] != null)
-                RemoveItemFromBelt(_itemsInPockets[beltSocketIndex]);
+                RemoveItemFromPockets(_itemsInPockets[beltSocketIndex]);
 
         // put in belt slot
         PocketManager.Instance.AddItem(item, pocket);
@@ -193,11 +201,11 @@ public class Creature : DungeonObject
         _itemsInPockets[beltSocketIndex] = item;
     }
     // =================================================================================== //
-    public void RemoveItemFromBelt(Item item)
+    public void RemoveItemFromPockets(Item item)
     {
         // remove from map
-        GridElement beltSocket = item.transform.parent.GetComponent<GridElement>();
-        _itemsInPockets[beltSocket.Index] = null;
+        GridElement pocket = item.transform.parent.GetComponent<GridElement>();
+        _itemsInPockets.Remove(pocket.Index);
 
         // put in inventory
         Inventory.Instance.AddItem(item);

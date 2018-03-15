@@ -43,7 +43,7 @@ public class InventoryDraggingManager : MonoBehaviour
                 else if (item.State == ItemState.IN_POCKET)
                 {
                     // remove item if equipped
-                    Party.Instance.SelectedMember.RemoveItemFromBelt(item);
+                    Party.Instance.SelectedMember.RemoveItemFromPockets(item);
                 }
 
                 item.State = ItemState.DRAGGED;

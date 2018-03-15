@@ -8,24 +8,15 @@ public class PocketManager : Singleton<PocketManager>
     [SerializeField]
     private GenericGrid _pocketGrid = null;
 
-    private GridElement _selectedPocket = null;
-    public GridElement SelectedPocket
-    {
-        get { return _selectedPocket; }
-        set
-        {
-            _selectedPocket = value;
-            setPocketSelectedAppearance();
-        }
-    }
     // ====================================================================================================== //
     void Start ()
     {
-        Party.Instance.Event_SelectedPartyMemberChanged += onSelectedPartyMemberChanged;
+        
     }
     // ====================================================================================================== //
     void Update()
     {
+        updatePockets();
         checkClickOnPocket();
     }
     // ====================================================================================================== //
@@ -36,8 +27,11 @@ public class PocketManager : Singleton<PocketManager>
             Pocket pocket = Utils.GetObjectUnderCursor<Pocket>("Pocket");
             if (pocket != null)
             {
-                Debug.Log("Pocket selected!");
-                SelectedPocket = pocket;
+                if (pocket.Index < Party.Instance.SelectedMember.Stats[Stat.POCKETS])
+                {
+                    Debug.Log("Pocket selected!");
+                    Party.Instance.SelectedMember.SelectedPocketIndex = pocket.Index;
+                }
             }
         }
     }
@@ -49,38 +43,35 @@ public class PocketManager : Singleton<PocketManager>
         item.State = ItemState.IN_POCKET;
     }
     // ====================================================================================================== //
-    private void setPocketSelectedAppearance()
-    {
-        foreach (GridElement pocket in _pocketGrid.Elements)
-        {
-            pocket.GetComponent<SpriteRenderer>().color = (pocket == _selectedPocket) ? Color.red : Color.white;
-        }
-    }
-    // ====================================================================================================== //
-    // triggered on Party -> Event_SelectedPartyMemberChanged event
-    private void onSelectedPartyMemberChanged()
-    {
-        showSelectedMemberPockets();
-    }
-    // ====================================================================================================== //
-    private void showSelectedMemberPockets()
+    // update pockets for the selected party member
+    private void updatePockets()
     {
         // units visibility & color of grid units
         _pocketGrid.UpdateElementsVisibility(Party.Instance.SelectedMember.Stats[Stat.POCKETS]);
 
-        // hide/show items on belt by the selected member
-        List<Item> selectedMemberBeltItems = Party.Instance.SelectedMember.ItemsInPockets.Values.ToList();
+        // hide (deactivate) all items on pockets
         foreach (Transform beltSlotTransform in this.transform)
-        {
             foreach (Transform itemTransform in beltSlotTransform)
-            {
-                Item item = itemTransform.GetComponent<Item>();
-                itemTransform.gameObject.SetActive(selectedMemberBeltItems.Contains(item));
-            }
-        }
+                itemTransform.gameObject.SetActive(false);
 
-        // init to non-selected pockets
-        SelectedPocket = null;
+        // show (activate) items in selected member pockets
+        List<Item> selectedMemberBeltItems = Party.Instance.SelectedMember.ItemsInPockets.Values.ToList();
+        foreach (Item item in selectedMemberBeltItems)
+        {
+            item.gameObject.SetActive(true);
+
+            // remove items from pockets when are placed in not exist pocket
+            if (item.transform.parent.GetComponent<Pocket>().Index >= Party.Instance.SelectedMember.Stats[Stat.POCKETS])
+                Party.Instance.SelectedMember.RemoveItemFromPockets(item);
+        }
+            
+
+        // mark selected pocket
+        foreach (GridElement pocket in _pocketGrid.Elements)
+        {
+            pocket.GetComponent<SpriteRenderer>().color =
+                (pocket.Index == Party.Instance.SelectedMember.SelectedPocketIndex) ? Color.red : Color.white;
+        }
     }
     // ====================================================================================================== //
 }
