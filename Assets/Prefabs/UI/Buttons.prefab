@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4458904972716778}
   - component: {fileID: 212811118332828754}
   - component: {fileID: 61489011090557020}
-  - component: {fileID: 114506596961162876}
+  - component: {fileID: 114314851076353062}
   m_Layer: 0
   m_Name: InventoryButton
   m_TagString: Untagged
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 4985076220702466}
   - component: {fileID: 212329166020996986}
   - component: {fileID: 61620332293255222}
-  - component: {fileID: 114187654616800196}
+  - component: {fileID: 114221968212263956}
   m_Layer: 0
   m_Name: SettingsButton
   m_TagString: Untagged
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 4297506846623490}
   - component: {fileID: 212289905633481602}
   - component: {fileID: 61523170791400024}
-  - component: {fileID: 114112056355894160}
+  - component: {fileID: 114717877807116966}
   m_Layer: 0
   m_Name: CharacterButton
   m_TagString: Untagged
@@ -465,19 +465,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 24, y: 22}
   m_EdgeRadius: 0
---- !u!114 &114112056355894160
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1777223971778176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5944684936cbfc842aaa03439449c9a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _windowName: CharacterSheet
---- !u!114 &114187654616800196
+--- !u!114 &114221968212263956
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -485,11 +473,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1261882529658416}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5944684936cbfc842aaa03439449c9a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b1d09fecaa88c54e96302d2bf4d3443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _windowName: MainMenu
---- !u!114 &114506596961162876
+  _mouseOverColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _buttonDownColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  _loadWindowOnClick: MainMenu
+  LoadDungeonOnClick: 
+--- !u!114 &114314851076353062
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -497,10 +488,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 1147176597095970}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5944684936cbfc842aaa03439449c9a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b1d09fecaa88c54e96302d2bf4d3443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _windowName: Inventory
+  _mouseOverColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _buttonDownColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  _loadWindowOnClick: Inventory
+  LoadDungeonOnClick: 
+--- !u!114 &114717877807116966
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1777223971778176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b1d09fecaa88c54e96302d2bf4d3443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mouseOverColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _buttonDownColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  _loadWindowOnClick: CharacterSheet
+  LoadDungeonOnClick: 
 --- !u!114 &114855186871562014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -512,6 +521,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe0f4a1e0f0a7646bf60f2cb023ad8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mouseOverColor: {r: 0.5294118, g: 0.5294118, b: 0.5294118, a: 1}
+  _buttonDownColor: {r: 1, g: 0.3602941, b: 0.3602941, a: 1}
+  _loadWindowOnClick: 
+  LoadDungeonOnClick: 
   _iconRenderer: {fileID: 212745814583789130}
   _exitSprite: {fileID: 21300000, guid: 7d6f19490a9cae0448cae4e75afce330, type: 3}
   _meleeHitSprite: {fileID: 21300002, guid: 7d6f19490a9cae0448cae4e75afce330, type: 3}

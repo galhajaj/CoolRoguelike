@@ -12,11 +12,14 @@ public static class Consts
     public static readonly string DUNGEON_FILES_PATH = @"c:/temp/Dungeons"; // change location and name to be for the current player
 
     // windows names
-    public static readonly string WINDOW_MAIN_MENU = "MainMenu";
-    public static readonly string WINDOW_VILLAGE = "Village";
-    public static readonly string WINDOW_DUNGEON = "Dungeon";
-    public static readonly string WINDOW_INVENTORY = "Inventory";
-    public static readonly string WINDOW_LIBRARY = "Library";
-    public static readonly string WINDOW_CHARACTER_SHEET = "CharacterSheet";
-    public static readonly string WINDOW_UNIVERSITY = "University";
+    public struct WindowNames
+    {
+        public static readonly string MAIN_MENU         = "MainMenu";
+        public static readonly string VILLAGE           = "Village";
+        public static readonly string DUNGEON           = "Dungeon";
+        public static readonly string INVENTORY         = "Inventory";
+        public static readonly string LIBRARY           = "Library";
+        public static readonly string CHARACTER_SHEET   = "CharacterSheet";
+        public static readonly string UNIVERSITY        = "University";
+    }
 }

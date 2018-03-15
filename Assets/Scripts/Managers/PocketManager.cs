@@ -21,7 +21,7 @@ public class PocketManager : Singleton<PocketManager>
     // ====================================================================================================== //
     void Start ()
     {
-        Party.Instance.Event_PartyMemberSelected += OnMemberSelected;
+        Party.Instance.Event_SelectedPartyMemberChanged += onSelectedPartyMemberChanged;
     }
     // ====================================================================================================== //
     void Update()
@@ -31,7 +31,7 @@ public class PocketManager : Singleton<PocketManager>
     // ====================================================================================================== //
     private void checkClickOnPocket()
     {
-        if (WindowManager.Instance.IsCurrentWindow(Consts.WINDOW_DUNGEON) && Input.GetMouseButtonDown(0))
+        if (WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.DUNGEON) && Input.GetMouseButtonDown(0))
         {
             Pocket pocket = Utils.GetObjectUnderCursor<Pocket>("Pocket");
             if (pocket != null)
@@ -57,7 +57,8 @@ public class PocketManager : Singleton<PocketManager>
         }
     }
     // ====================================================================================================== //
-    private void OnMemberSelected()
+    // triggered on Party -> Event_SelectedPartyMemberChanged event
+    private void onSelectedPartyMemberChanged()
     {
         showSelectedMemberPockets();
     }

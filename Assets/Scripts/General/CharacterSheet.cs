@@ -16,7 +16,7 @@ public class CharacterSheet : MonoBehaviour
 	
 	void Update ()
     {
-        if (!WindowManager.Instance.IsCurrentWindow(Consts.WINDOW_CHARACTER_SHEET))
+        if (!WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.CHARACTER_SHEET))
             return;
 
         // reference for the current displayed character

@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 4543511254651424}
   - component: {fileID: 212164907571306402}
   - component: {fileID: 61473673341080184}
-  - component: {fileID: 114724733788529532}
+  - component: {fileID: 114437030818040680}
   m_Layer: 0
   m_Name: Library
   m_TagString: Untagged
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 4253379053466810}
   - component: {fileID: 212470193541296628}
   - component: {fileID: 61725777765441970}
-  - component: {fileID: 114813742463841966}
+  - component: {fileID: 114443457355468194}
   m_Layer: 0
   m_Name: University
   m_TagString: Untagged
@@ -497,7 +497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isShownAtStart: 0
---- !u!114 &114724733788529532
+--- !u!114 &114437030818040680
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -505,11 +505,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1482387115936800}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5944684936cbfc842aaa03439449c9a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b1d09fecaa88c54e96302d2bf4d3443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _windowName: Library
---- !u!114 &114813742463841966
+  _mouseOverColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _buttonDownColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  _loadWindowOnClick: Library
+  LoadDungeonOnClick: 
+--- !u!114 &114443457355468194
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -517,10 +520,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1714104237867802}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5944684936cbfc842aaa03439449c9a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b1d09fecaa88c54e96302d2bf4d3443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _windowName: University
+  _mouseOverColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _buttonDownColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  _loadWindowOnClick: University
+  LoadDungeonOnClick: 
 --- !u!212 &212009928266705144
 SpriteRenderer:
   m_ObjectHideFlags: 1

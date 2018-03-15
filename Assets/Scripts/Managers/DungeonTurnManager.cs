@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class DungeonTurnManager : MonoBehaviour
 {
+    public enum DungeonTurnState
+    {
+        NONE,
+        ENEMY_TURN,
+        PARTY_TURN,
+        ALLIES_TURN
+    }
+
+    private DungeonTurnState _state = DungeonTurnState.NONE;
+
     [SerializeField]
     private float _moveInterval = 0.75F;
     private float _timeToNextMove = 0.0F;
@@ -20,7 +30,7 @@ public class DungeonTurnManager : MonoBehaviour
 	void Update ()
     {
         // return if not in dungeon
-        if (!WindowManager.Instance.IsCurrentWindow(Consts.WINDOW_DUNGEON))
+        if (!WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.DUNGEON))
             return;
 
         creaturesTurn();
@@ -171,12 +181,15 @@ public class DungeonTurnManager : MonoBehaviour
         // TODO: need refacturing - leave to adjacent area in turn manager
         if (targetPosition.IsOutsideDungeonArea)
         {
+            // leave to town if in origin area and move behind its borders
             if (Dungeon.Instance.IsInOriginArea)
             {
-                WindowManager.Instance.LoadWindow(Consts.WINDOW_VILLAGE);
+                WindowManager.Instance.LoadWindow(Consts.WindowNames.VILLAGE);
+                // update the location of the party to the village
+                Party.Instance.Loaction = Consts.WindowNames.VILLAGE;
                 return;
             }
-            else
+            else // go to adjacent area
             {
                 // 1. show adjacent area
                 if (targetPosition == Party.Instance.Position.North)
