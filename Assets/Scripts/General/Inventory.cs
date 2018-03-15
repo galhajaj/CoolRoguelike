@@ -22,18 +22,19 @@ public class Inventory : Singleton<Inventory>
         AddRandomItems(_randomItemsNumber);
     }
     // =================================================================================== //
-    public void AddItems(Item[] items)
+    public void AddItem(Item item)
     {
-        foreach (Item item in items)
-        {
-            AddItem(item);
-        }
+        addItemInPosition(item, getRandomPositionInsideInventory());
     }
     // =================================================================================== //
-    public void AddItem(Item item, bool toRandomPlace = false)
+    private void addItemInPosition(Item item, Vector3 pos, int maxRadius = 0)
     {
         item.transform.parent = this.transform;
-        item.transform.position = toRandomPlace ? getRandomPositionInsideInventory() : this.transform.position;
+
+        Vector3 distanceFromCenter = Random.insideUnitCircle * Random.Range(0, maxRadius);
+        distanceFromCenter = new Vector3((int)distanceFromCenter.x, (int)distanceFromCenter.y, (int)distanceFromCenter.z);
+
+        item.transform.position = pos + distanceFromCenter;
 
         orderItem(item.transform);
         item.State = ItemState.INVENTORY;
@@ -49,16 +50,16 @@ public class Inventory : Singleton<Inventory>
             GameObject randomItemInstance = Instantiate(randomItemPrefab);
             Item randomItem = randomItemInstance.GetComponent<Item>();
 
-            AddItem(randomItem, true);
+            AddItem(randomItem);
         }
 
         ReorderOutOfBorderItems();
     }
     // =================================================================================== //
-    private Vector3 getRandomPositionInsideInventory()
+    private Vector3 getRandomPositionInsideInventory(int offset = 0)
     {
-        int halfInventoryWidth = (_inventoryWidth) / 2;
-        int halfInventoryHeight = (_inventoryHeight) / 2;
+        int halfInventoryWidth = (_inventoryWidth - offset) / 2;
+        int halfInventoryHeight = (_inventoryHeight - offset) / 2;
 
         return this.transform.position + new Vector3(
                 Random.Range(-halfInventoryWidth, halfInventoryWidth),
@@ -78,17 +79,34 @@ public class Inventory : Singleton<Inventory>
     {
         int itemWidth = (int)itemTransform.GetComponent<Collider2D>().bounds.size.x;
         int itemHeight = (int)itemTransform.GetComponent<Collider2D>().bounds.size.y;
-        int halfInventoryWidth = (_inventoryWidth - itemWidth) / 2;
-        int halfInventoryHeight = (_inventoryHeight - itemHeight) / 2;
 
-        if (itemTransform.localPosition.x < -(_inventoryWidth - itemWidth) / 2)
+        // the currency borders are in the bottom of the cheat
+        int currencyOffsetX = (itemTransform.GetComponent<Item>().Type == ItemType.CURRENCY) ? 120 : 0;
+        int currencyOffsetY = (itemTransform.GetComponent<Item>().Type == ItemType.CURRENCY) ? 120 : 0;
+
+        int halfInventoryWidth = (_inventoryWidth - itemWidth - currencyOffsetX) / 2;
+        int halfInventoryHeight = (_inventoryHeight - itemHeight - currencyOffsetY) / 2;
+
+        if (itemTransform.localPosition.x < -halfInventoryWidth)
             itemTransform.localPosition = new Vector3(-halfInventoryWidth, itemTransform.localPosition.y, itemTransform.localPosition.z);
-        if (itemTransform.localPosition.x > _inventoryWidth / 2 - itemWidth / 2)
+        if (itemTransform.localPosition.x > halfInventoryWidth)
             itemTransform.localPosition = new Vector3(halfInventoryWidth, itemTransform.localPosition.y, itemTransform.localPosition.z);
-        if (itemTransform.localPosition.y < -(_inventoryHeight - itemHeight) / 2)
+        if (itemTransform.localPosition.y < -halfInventoryHeight)
             itemTransform.localPosition = new Vector3(itemTransform.localPosition.x, -halfInventoryHeight, itemTransform.localPosition.z);
-        if (itemTransform.localPosition.y > (_inventoryHeight - itemHeight) / 2)
+        if (itemTransform.localPosition.y > halfInventoryHeight)
             itemTransform.localPosition = new Vector3(itemTransform.localPosition.x, halfInventoryHeight, itemTransform.localPosition.z);
+    }
+    // =================================================================================== //
+    public void AddCurrency(GameObject currencyPrefab, int amount)
+    {
+        Vector3 randomPosition = getRandomPositionInsideInventory(120);
+
+        for (int i = 0; i < amount; ++i)
+        {
+            GameObject currencyinstance = Instantiate(currencyPrefab);
+            Item currencyItem = currencyinstance.GetComponent<Item>();
+            addItemInPosition(currencyItem, randomPosition, amount);
+        }
     }
     // =================================================================================== //
 }

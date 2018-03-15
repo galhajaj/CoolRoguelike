@@ -29,11 +29,29 @@ public class DungeonTurnManager : MonoBehaviour
 	// ====================================================================================================== //
 	void Update ()
     {
+        // ######################################################
+        // ######################################################
+        // ######################################################
         // TODO: delete this line - add 100 gold pieces to party
         if (Input.GetKeyDown(KeyCode.U))
         {
-            Party.Instance.AddGoldPieces(100);
+            Inventory.Instance.AddCurrency(ResourcesManager.Instance.GoldCoinPrefab, 100);
         }
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            Inventory.Instance.AddCurrency(ResourcesManager.Instance.SilverCoinPrefab, 100);
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Inventory.Instance.AddCurrency(ResourcesManager.Instance.CopperCoinPrefab, 100);
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Inventory.Instance.AddCurrency(ResourcesManager.Instance.RubyPrefab, 100);
+        }
+        // ######################################################
+        // ######################################################
+        // ######################################################
 
         // return if not in dungeon
         if (!WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.DUNGEON))
@@ -259,7 +277,9 @@ public class DungeonTurnManager : MonoBehaviour
             return;
 
         DungeonTile partyTile = Dungeon.Instance.GetTile(Party.Instance.Position);
-        Inventory.Instance.AddItems(partyTile.Items);
+
+        foreach (Item item in partyTile.Items)
+            Inventory.Instance.AddItem(item);
     }
     // ====================================================================================================== //
     private void checkShootButton()

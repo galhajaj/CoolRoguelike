@@ -20,6 +20,8 @@ public class Item : DungeonObject
 
     public ItemType Type;
 
+    public int ValueInGold;
+
     [SerializeField]
     private ItemState _state = ItemState.GROUND;
     public ItemState State

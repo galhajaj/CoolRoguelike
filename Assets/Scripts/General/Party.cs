@@ -23,10 +23,6 @@ public class Party : Singleton<Party>
         set { _location = value; }
     }
 
-    private int _copperPieces = 0;
-    private int _silverPieces = 0;
-    private int _goldPieces = 0;
-
     // peace mode - 
     // TODO: performance (can be triggered each turn by the monsters & can be only a bool)
     public bool IsInPeaceMode
@@ -140,17 +136,6 @@ public class Party : Singleton<Party>
     {
         foreach (var member in _members)
             member.ActionUnits -= Consts.MAX_ACTION_UNITS;
-    }
-    // ====================================================================================================== //
-    public void AddGoldPieces(int amount)
-    {
-        _goldPieces += amount;
-        for (int i = 0; i < amount; ++i)
-        {
-            GameObject goldCoin = Instantiate(ResourcesManager.Instance.GoldCoinPrefab);
-            Item goldCoinItem = goldCoin.GetComponent<Item>();
-            Inventory.Instance.AddItem(goldCoinItem, true);
-        }
     }
     // ====================================================================================================== //
 }

@@ -87,6 +87,11 @@ MonoBehaviour:
   LootOnGroundSprite: {fileID: 21300036, guid: 3cae6461ba9240f4197982d0ef2c01e1, type: 3}
   GoldCoinPrefab: {fileID: 1154083398500566, guid: 06db5714da7fe954f8fd1ae2d035bd10,
     type: 2}
+  SilverCoinPrefab: {fileID: 1621352463540840, guid: 3ccd10eab4b1964458978e1eaacf2dfc,
+    type: 2}
+  CopperCoinPrefab: {fileID: 1767619768904212, guid: d1b117f06cd301744a8f4130ebf37e9b,
+    type: 2}
+  RubyPrefab: {fileID: 1420969249635358, guid: fbebf4be2f92adb4a80219cc98e6c96c, type: 2}
 --- !u!114 &114688761631844064
 MonoBehaviour:
   m_ObjectHideFlags: 1
