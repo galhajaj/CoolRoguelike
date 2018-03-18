@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ public class University : MonoBehaviour
 	void Start ()
     {
         WindowManager.Instance.Event_WindowLoaded += universityWindowLoaded;
+        Party.Instance.Event_PartyMemberSelected += universityWindowLoaded;
     }
 	
 	void Update ()
@@ -29,7 +31,10 @@ public class University : MonoBehaviour
         for (int i = 0; i < Skills.Count; ++i)
         {
             Sprite skillSprite = Resources.Load<Sprite>("Skills/" + Skills[i]);
-            _grid.GetElement(i).transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = skillSprite;
+            _grid.GetElement(i).transform.Find("Icon").GetComponent<SpriteRenderer>().sprite = skillSprite;
+            // match the level to the current player stat 
+            Stat stat = (Stat)Enum.Parse(typeof(Stat), Skills[i]); // get Stat by name
+            _grid.GetElement(i).transform.Find("Level").GetComponent<TextMesh>().text = Party.Instance.SelectedMember.Stats[stat].ToString();
         }
     }
 }

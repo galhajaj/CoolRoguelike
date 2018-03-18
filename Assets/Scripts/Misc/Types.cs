@@ -130,7 +130,7 @@ public enum Stat
     SHORT_SWORDS,
     LONG_SWORDS,
     TWO_HANDED_SWORDS,
-    SPERAS,
+    SPEARS,
     HALBERDS,
     CLUBS,
     MACES,
@@ -143,7 +143,11 @@ public enum Stat
     CROSSBOWS,
     SMALL_SHIELDS,
     MEDIUM_SHIELDS,
-    LARGE_SHIELDS
+    LARGE_SHIELDS,
+    FIRE_MAGIC,
+    AIR_MAGIC,
+    WATER_MAGIC,
+    EARTH_MAGIC
 }
 
 public enum DamageType

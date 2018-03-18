@@ -87,8 +87,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _grid: {fileID: 114051613880436330}
   Skills:
-  - Spears
-  - FireMagic
+  - SPEARS
+  - FIRE_MAGIC
 --- !u!212 &212020832606967170
 SpriteRenderer:
   m_ObjectHideFlags: 1

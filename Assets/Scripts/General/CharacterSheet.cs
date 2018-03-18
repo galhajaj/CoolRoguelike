@@ -11,8 +11,8 @@ public class CharacterSheet : MonoBehaviour
 
     void Start ()
     {
-		
-	}
+        
+    }
 	
 	void Update ()
     {

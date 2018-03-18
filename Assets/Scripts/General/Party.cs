@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Party : Singleton<Party>
 {
+    public Action Event_PartyMemberSelected;
+
     // position in dungeon, by its tile parent
     public Position Position
     {
@@ -61,6 +63,7 @@ public class Party : Singleton<Party>
         set
         {
             _selectedMember = value;
+            Event_PartyMemberSelected();
         }
     }
 

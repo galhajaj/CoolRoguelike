@@ -158,6 +158,7 @@ GameObject:
   - component: {fileID: 4489066436362712}
   - component: {fileID: 212830194705335312}
   - component: {fileID: 61068404134405566}
+  - component: {fileID: 114791928442265342}
   m_Layer: 0
   m_Name: SkillsButton
   m_TagString: Untagged
@@ -509,6 +510,21 @@ MonoBehaviour:
   _mouseOverColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   _buttonDownColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   _loadWindowOnClick: CharacterSheet
+  LoadDungeonOnClick: 
+--- !u!114 &114791928442265342
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1984698927400562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b1d09fecaa88c54e96302d2bf4d3443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mouseOverColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _buttonDownColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  _loadWindowOnClick: University
   LoadDungeonOnClick: 
 --- !u!114 &114855186871562014
 MonoBehaviour:

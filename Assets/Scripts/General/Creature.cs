@@ -185,6 +185,10 @@ public class Creature : DungeonObject
     // =================================================================================== //
     public void InsertItemInPocket(Item item, GameObject pocket)
     {
+        // not equip if not pocket type
+        if (item.SocketType != SocketType.POCKET)
+            return;
+
         int beltSocketIndex = pocket.GetComponent<GridElement>().Index;
 
         //Debug.Log("INDEX: " + beltSocketIndex);

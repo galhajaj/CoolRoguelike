@@ -13,6 +13,9 @@ public class Inventory : Singleton<Inventory>
     private int _inventoryWidth;
     private int _inventoryHeight;
 
+    public int Gold = 0;
+    private List<GameObject> goldObjects = new List<GameObject>();
+
     // =================================================================================== //
     void Start()
     {
@@ -97,15 +100,35 @@ public class Inventory : Singleton<Inventory>
             itemTransform.localPosition = new Vector3(itemTransform.localPosition.x, halfInventoryHeight, itemTransform.localPosition.z);
     }
     // =================================================================================== //
-    public void AddCurrency(GameObject currencyPrefab, int amount)
+    public void AddGold(int amount)
     {
+        this.Gold += amount;
+
         Vector3 randomPosition = getRandomPositionInsideInventory(120);
 
         for (int i = 0; i < amount; ++i)
         {
-            GameObject currencyinstance = Instantiate(currencyPrefab);
+            GameObject currencyinstance = Instantiate(ResourcesManager.Instance.GoldCoinPrefab);
             Item currencyItem = currencyinstance.GetComponent<Item>();
             addItemInPosition(currencyItem, randomPosition, amount);
+            goldObjects.Add(currencyinstance);
+        }
+    }
+    // =================================================================================== //
+    public void RemoveGold(int amount)
+    {
+        if (amount > Gold)
+        {
+            amount = Gold;
+            Debug.LogError("The amount of gold to remove is more than the current holdings...");
+        }
+
+        this.Gold -= amount;
+
+        for (int i = amount - 1; i >= 0; --i)
+        {
+            Destroy(goldObjects[i].gameObject);
+            goldObjects.RemoveAt(i);
         }
     }
     // =================================================================================== //
