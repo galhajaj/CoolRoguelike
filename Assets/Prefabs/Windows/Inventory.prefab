@@ -68,6 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _randomItemsNumber: 20
   _spriteRenderer: {fileID: 212813673918298088}
+  Gold: 0
 --- !u!114 &114682964231119072
 MonoBehaviour:
   m_ObjectHideFlags: 1

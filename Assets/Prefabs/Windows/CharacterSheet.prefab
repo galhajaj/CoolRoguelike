@@ -192,7 +192,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: 5375bd343d56230418c25ba75b6e6423, type: 2}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4278228628
 --- !u!102 &102860960795841592
 TextMesh:
   serializedVersion: 3
@@ -200,7 +200,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1975207556881466}
-  m_Text: 
+  m_Text: Check check check
   m_OffsetZ: 0
   m_CharacterSize: 10
   m_LineSpacing: 1
@@ -213,7 +213,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: 5375bd343d56230418c25ba75b6e6423, type: 2}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4282700496
 --- !u!114 &114251441345857692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -274,7 +274,7 @@ SpriteRenderer:
   m_SortingLayer: -5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 85fb5cbcb8ab8734e8f825fab3e26ef1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

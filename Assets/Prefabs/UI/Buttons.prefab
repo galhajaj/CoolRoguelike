@@ -481,6 +481,7 @@ MonoBehaviour:
   _buttonDownColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   _loadWindowOnClick: MainMenu
   LoadDungeonOnClick: 
+  IsActive: 1
 --- !u!114 &114314851076353062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -496,6 +497,7 @@ MonoBehaviour:
   _buttonDownColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   _loadWindowOnClick: Inventory
   LoadDungeonOnClick: 
+  IsActive: 1
 --- !u!114 &114717877807116966
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -511,6 +513,7 @@ MonoBehaviour:
   _buttonDownColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   _loadWindowOnClick: CharacterSheet
   LoadDungeonOnClick: 
+  IsActive: 1
 --- !u!114 &114791928442265342
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -526,6 +529,7 @@ MonoBehaviour:
   _buttonDownColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   _loadWindowOnClick: University
   LoadDungeonOnClick: 
+  IsActive: 1
 --- !u!114 &114855186871562014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -541,6 +545,7 @@ MonoBehaviour:
   _buttonDownColor: {r: 1, g: 0.3602941, b: 0.3602941, a: 1}
   _loadWindowOnClick: 
   LoadDungeonOnClick: 
+  IsActive: 1
   _iconRenderer: {fileID: 212745814583789130}
   _exitSprite: {fileID: 21300000, guid: 7d6f19490a9cae0448cae4e75afce330, type: 3}
   _meleeHitSprite: {fileID: 21300002, guid: 7d6f19490a9cae0448cae4e75afce330, type: 3}
