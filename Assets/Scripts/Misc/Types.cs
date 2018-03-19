@@ -159,3 +159,12 @@ public enum DamageType
     LIGHTNING,
     POISON
 }
+
+public enum SkillTitle
+{
+    BEGINNER,
+    INTERMEDIATE,
+    EXPERT,
+    MASTER,
+    GRANDMASTER
+}

@@ -47,13 +47,13 @@ public class MultiPurposeButton : GameButton
     {
         this.Show();
 
-        if (WindowManager.Instance.CurrentWindowName == Consts.WindowNames.DUNGEON) 
+        if (WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.DUNGEON)) 
         {
             _state = MultiPurposeButtonState.MELEE_ATTACK;
             _iconRenderer.sprite = _meleeHitSprite;
         }
-        else if (WindowManager.Instance.CurrentWindowName == Consts.WindowNames.VILLAGE ||
-            WindowManager.Instance.CurrentWindowName == Consts.WindowNames.MAIN_MENU)
+        else if (WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.VILLAGE) ||
+            WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.MAIN_MENU))
         {
             this.Hide();
         }
@@ -64,13 +64,13 @@ public class MultiPurposeButton : GameButton
         }
     }
     // ====================================================================================================== //
-    protected override void Clicked()
+    protected override void afterClicked()
     {
         Debug.Log("Clicked by " + name);
 
         if (_state == MultiPurposeButtonState.EXIT)
         {
-            if (Party.Instance.Loaction == Consts.WindowNames.VILLAGE)
+            if (Party.Instance.IsInVillage)
                 WindowManager.Instance.LoadWindow(Consts.WindowNames.VILLAGE);
             else
                 WindowManager.Instance.LoadWindow(Consts.WindowNames.DUNGEON);

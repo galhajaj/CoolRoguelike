@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 212639953524093710}
   - component: {fileID: 61418621106108896}
   - component: {fileID: 114822928594770846}
-  - component: {fileID: 114395843740771930}
+  - component: {fileID: 114317064286046148}
   m_Layer: 0
   m_Name: SkillTile
   m_TagString: Untagged
@@ -185,7 +185,7 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
---- !u!114 &114395843740771930
+--- !u!114 &114317064286046148
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -193,13 +193,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1423991611551084}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b1d09fecaa88c54e96302d2bf4d3443, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c4c81e44aac2574389d53ccf1a3628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _mouseOverColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   _buttonDownColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   _loadWindowOnClick: 
   LoadDungeonOnClick: 
+  IsActive: 1
 --- !u!114 &114608210348089706
 MonoBehaviour:
   m_ObjectHideFlags: 1

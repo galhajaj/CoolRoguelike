@@ -86,9 +86,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _grid: {fileID: 114051613880436330}
-  Skills:
-  - SPEARS
-  - FIRE_MAGIC
+  _skills: cc000000da000000
 --- !u!212 &212020832606967170
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -14,6 +14,8 @@ public class GameButton : MonoBehaviour
 
     public string LoadDungeonOnClick = "";
 
+    public bool IsActive = true;
+
     private SpriteRenderer _spriteRenderer;
     private Collider2D _collider;
 
@@ -50,31 +52,46 @@ public class GameButton : MonoBehaviour
     // ====================================================================================================== //
     void OnMouseDown()
     {
+        if (!IsActive)
+            return;
+
         _isMouseDownOnMe = true;
     }
     // ====================================================================================================== //
     void OnMouseUpAsButton()
     {
-        Clicked();
+        if (!IsActive)
+            return;
+
+        clicked();
         _isMouseDownOnMe = false;
     }
     // ====================================================================================================== //
     void OnMouseUp()
     {
+        if (!IsActive)
+            return;
+
         _isMouseDownOnMe = false;
     }
     // ====================================================================================================== //
     void OnMouseOver()
     {
+        if (!IsActive)
+            return;
+
         _spriteRenderer.color = _isMouseDownOnMe ? _buttonDownColor : _mouseOverColor;
     }
     // ====================================================================================================== //
     void OnMouseExit()
     {
+        if (!IsActive)
+            return;
+
         _spriteRenderer.color = Color.white;
     }
     // ====================================================================================================== //
-    protected virtual void Clicked()
+    private void clicked()
     {
         // open window
         if (_loadWindowOnClick != "")
@@ -88,6 +105,14 @@ public class GameButton : MonoBehaviour
             Dungeon.Instance.Load(LoadDungeonOnClick);
             WindowManager.Instance.LoadWindow(Consts.WindowNames.DUNGEON);
         }
+
+        // trigger virtual function afterClicked
+        afterClicked();
+    }
+    // ====================================================================================================== //
+    protected virtual void afterClicked()
+    {
+
     }
     // ====================================================================================================== //
 }
