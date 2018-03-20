@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Inventory : Singleton<Inventory>
@@ -14,7 +15,7 @@ public class Inventory : Singleton<Inventory>
     private int _inventoryHeight;
 
     public int Copper = 0;
-    private List<GameObject> currencyObjects = new List<GameObject>();
+    private List<Item> _currencyItems = new List<Item>();
 
     // =================================================================================== //
     void Start()
@@ -110,8 +111,11 @@ public class Inventory : Singleton<Inventory>
             Item currencyItem = currencyinstance.GetComponent<Item>();
             this.Copper += currencyItem.ValueInCopper;
             addItemInPosition(currencyItem, randomPosition, amount * amount * amount);
-            currencyObjects.Add(currencyinstance);
+            _currencyItems.Add(currencyItem);
         }
+
+        // sort by value, from higher to lower (to save game objects)
+        _currencyItems = _currencyItems.OrderByDescending(o => o.ValueInCopper).ToList();
     }
     // =================================================================================== //
     public void RemoveCopper(int amount)
@@ -122,13 +126,55 @@ public class Inventory : Singleton<Inventory>
             Debug.LogError("The amount of gold to remove is more than the current holdings...");
         }
 
-        this.Copper -= amount;
-
-        // TODO: implement correctly the remove currency objects in copper function
-        for (int i = amount - 1; i >= 0; --i)
+        for (int i = _currencyItems.Count - 1; i >= 0; --i)
         {
-            Destroy(currencyObjects[i].gameObject);
-            currencyObjects.RemoveAt(i);
+            Item item = _currencyItems[i];
+            // if the current currency is lower or equal - remove its copper value and destroy it
+            if (item.ValueInCopper <= amount)
+            {
+                this.Copper -= item.ValueInCopper;
+                amount -= item.ValueInCopper;
+                Destroy(item.gameObject);
+                _currencyItems.RemoveAt(i);
+            }
+            // if the current currency is higher... we need change
+            else
+            {
+                int change = item.ValueInCopper - amount;
+
+                this.Copper -= item.ValueInCopper;
+                amount -= item.ValueInCopper;
+                Destroy(item.gameObject);
+                _currencyItems.RemoveAt(i);
+
+                // add coins until get the change back
+                while (change > 0)
+                {
+                    if (change >= 100)
+                    {
+                        AddCurrency(ResourcesManager.Instance.GoldCoinPrefab, 1);
+                        change -= 100;
+                        continue;
+                    }
+                    if (change >= 10)
+                    {
+                        AddCurrency(ResourcesManager.Instance.SilverCoinPrefab, 1);
+                        change -= 10;
+                        continue;
+                    }
+                    if (change >= 1)
+                    {
+                        AddCurrency(ResourcesManager.Instance.CopperCoinPrefab, 1);
+                        change -= 1;
+                        continue;
+                    }
+                }
+
+                return;
+            }
+
+            if (amount <= 0)
+                return;
         }
     }
     // =================================================================================== //
