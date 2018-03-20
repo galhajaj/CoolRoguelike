@@ -42,6 +42,9 @@ public class Creature : DungeonObject
     public int MeleeAttackCost { get { return Consts.MAX_ACTION_UNITS; } }
     public int RangedAttackCost { get { return Consts.MAX_ACTION_UNITS; } }
 
+    [SerializeField]
+    private int _xPReward = 0;
+
     // carried items
     private List<Item> _carriedItems = new List<Item>();
     public List<Item> CarriedItems { get { return _carriedItems; } }
@@ -85,13 +88,22 @@ public class Creature : DungeonObject
 
         Debug.Log(name + " got " + amount.ToString() + " " + damageType.ToString() + "damage");
 
-        // if not party member and dead - destroy it
-        if (!isPartyMember && !IsAlive)
-            kill();
+        // kill if not alive
+        if (!IsAlive)
+        {
+            if (isPartyMember)
+                killAsPartyMember();
+            else
+                killAsCreature();
+        }
     }
     // =================================================================================== //
-    private void kill()
+    private void killAsCreature()
     {
+        // distribute xp points between alive party members
+        foreach (Creature member in Party.Instance.Members)
+            member.Stats[Stat.EXPERIENCE_POINTS] += _xPReward;
+
         // get last stand tile
         DungeonTile tile = this.Position.DungeonTile;
 
@@ -106,6 +118,11 @@ public class Creature : DungeonObject
         
         // destroy itself
         Destroy(gameObject);
+    }
+    // =================================================================================== //
+    private void killAsPartyMember()
+    {
+        // TODO: implement killAsPartyMember()
     }
     // =================================================================================== //
     public void MeleeAttack(Creature target)

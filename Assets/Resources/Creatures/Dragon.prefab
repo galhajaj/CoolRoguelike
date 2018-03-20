@@ -70,6 +70,7 @@ MonoBehaviour:
     _Keys: 010000000200000000000000
     _Values: 040000000400000000000000
   _actionUnits: 0
+  _xPReward: 15
 --- !u!212 &212067359378842436
 SpriteRenderer:
   m_ObjectHideFlags: 1

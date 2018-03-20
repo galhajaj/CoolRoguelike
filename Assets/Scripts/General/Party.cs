@@ -48,6 +48,7 @@ public class Party : Singleton<Party>
     }
 
     private List<Creature> _members = new List<Creature>();
+    public List<Creature> Members { get { return _members; } }
 
     private Creature _selectedMember = null;
     public Creature SelectedMember
