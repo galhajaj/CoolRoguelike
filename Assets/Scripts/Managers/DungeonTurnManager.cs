@@ -35,20 +35,20 @@ public class DungeonTurnManager : MonoBehaviour
         // TODO: delete this line - add 100 gold pieces to party
         if (Input.GetKeyDown(KeyCode.U))
         {
-            Inventory.Instance.AddGold(100);
+            Inventory.Instance.AddCurrency(ResourcesManager.Instance.GoldCoinPrefab, 3);
         }
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            Inventory.Instance.RemoveGold(25);
+            Inventory.Instance.AddCurrency(ResourcesManager.Instance.SilverCoinPrefab, 3);
         }
-        /*if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.T))
         {
-            Inventory.Instance.AddCurrency(ResourcesManager.Instance.CopperCoinPrefab, 100);
+            Inventory.Instance.AddCurrency(ResourcesManager.Instance.CopperCoinPrefab, 3);
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Inventory.Instance.AddCurrency(ResourcesManager.Instance.RubyPrefab, 100);
-        }*/
+            Inventory.Instance.RemoveCopper(25);
+        }
         // ######################################################
         // ######################################################
         // ######################################################

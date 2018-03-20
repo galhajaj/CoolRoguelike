@@ -13,8 +13,8 @@ public class Inventory : Singleton<Inventory>
     private int _inventoryWidth;
     private int _inventoryHeight;
 
-    public int Gold = 0;
-    private List<GameObject> goldObjects = new List<GameObject>();
+    public int Copper = 0;
+    private List<GameObject> currencyObjects = new List<GameObject>();
 
     // =================================================================================== //
     void Start()
@@ -100,35 +100,35 @@ public class Inventory : Singleton<Inventory>
             itemTransform.localPosition = new Vector3(itemTransform.localPosition.x, halfInventoryHeight, itemTransform.localPosition.z);
     }
     // =================================================================================== //
-    public void AddGold(int amount)
+    public void AddCurrency(GameObject currencyPrefab, int amount)
     {
-        this.Gold += amount;
-
         Vector3 randomPosition = getRandomPositionInsideInventory(120);
 
         for (int i = 0; i < amount; ++i)
         {
-            GameObject currencyinstance = Instantiate(ResourcesManager.Instance.GoldCoinPrefab);
+            GameObject currencyinstance = Instantiate(currencyPrefab);
             Item currencyItem = currencyinstance.GetComponent<Item>();
-            addItemInPosition(currencyItem, randomPosition, amount);
-            goldObjects.Add(currencyinstance);
+            this.Copper += currencyItem.ValueInCopper;
+            addItemInPosition(currencyItem, randomPosition, amount * amount * amount);
+            currencyObjects.Add(currencyinstance);
         }
     }
     // =================================================================================== //
-    public void RemoveGold(int amount)
+    public void RemoveCopper(int amount)
     {
-        if (amount > Gold)
+        if (amount > Copper)
         {
-            amount = Gold;
+            amount = Copper;
             Debug.LogError("The amount of gold to remove is more than the current holdings...");
         }
 
-        this.Gold -= amount;
+        this.Copper -= amount;
 
+        // TODO: implement correctly the remove currency objects in copper function
         for (int i = amount - 1; i >= 0; --i)
         {
-            Destroy(goldObjects[i].gameObject);
-            goldObjects.RemoveAt(i);
+            Destroy(currencyObjects[i].gameObject);
+            currencyObjects.RemoveAt(i);
         }
     }
     // =================================================================================== //

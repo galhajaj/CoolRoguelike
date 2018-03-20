@@ -21,14 +21,14 @@ public class SkillButton : GameButton
     {
         int statLevel = Party.Instance.SelectedMember.Stats[Stat];
         int experienceCostForNextLevel = statLevel + 1;
-        int goldCostForNextTitle = 100 * (1 + (statLevel / Consts.LEVELS_PER_SKILL_TITLE));
+        int copperCostForNextTitle = 100 * (1 + (statLevel / Consts.LEVELS_PER_SKILL_TITLE));
 
         // if divided in LEVELS_PER_SKILL_TITLE need to pay gold
         if (statLevel % Consts.LEVELS_PER_SKILL_TITLE == 0)
         {
-            if (Inventory.Instance.Gold >= goldCostForNextTitle)
+            if (Inventory.Instance.Copper >= copperCostForNextTitle)
             {
-                Inventory.Instance.RemoveGold(goldCostForNextTitle);
+                Inventory.Instance.RemoveCopper(copperCostForNextTitle);
                 Party.Instance.SelectedMember.Stats[Stat]++;
             }
         }
