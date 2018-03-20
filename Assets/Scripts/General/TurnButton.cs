@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MultiPurposeButton : GameButton
+public class TurnButton : GameButton
 {
     public enum MultiPurposeButtonState
     {
         NONE,
-        EXIT,
         MELEE_ATTACK,
         RANGED_ATTACK,
         SKIP_TURN,
@@ -19,8 +18,6 @@ public class MultiPurposeButton : GameButton
     [SerializeField]
     private SpriteRenderer _iconRenderer = null;
 
-    [SerializeField]
-    private Sprite _exitSprite = null;
     [SerializeField]
     private Sprite _meleeHitSprite = null;
     [SerializeField]
@@ -52,28 +49,9 @@ public class MultiPurposeButton : GameButton
             _state = MultiPurposeButtonState.MELEE_ATTACK;
             _iconRenderer.sprite = _meleeHitSprite;
         }
-        else if (WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.VILLAGE) ||
-            WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.MAIN_MENU))
-        {
-            this.Hide();
-        }
         else
         {
-            _state = MultiPurposeButtonState.EXIT;
-            _iconRenderer.sprite = _exitSprite;
-        }
-    }
-    // ====================================================================================================== //
-    protected override void afterClicked()
-    {
-        Debug.Log("Clicked by " + name);
-
-        if (_state == MultiPurposeButtonState.EXIT)
-        {
-            if (Party.Instance.IsInVillage)
-                WindowManager.Instance.LoadWindow(Consts.WindowNames.VILLAGE);
-            else
-                WindowManager.Instance.LoadWindow(Consts.WindowNames.DUNGEON);
+            this.Hide();
         }
     }
     // ====================================================================================================== //

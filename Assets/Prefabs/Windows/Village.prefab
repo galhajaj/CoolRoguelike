@@ -197,6 +197,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isShownAtStart: 0
+  IsContainBackButton: 0
+  IsContainSettingsButton: 1
+  IsContainTabButtons: 1
 --- !u!114 &114437030818040680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,9 +213,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mouseOverColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   _buttonDownColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  _buttonInactiveColor: {r: 1, g: 0, b: 0, a: 1}
   _loadWindowOnClick: Library
   LoadDungeonOnClick: 
-  IsActive: 1
+  _isPushButton: 0
 --- !u!114 &114443457355468194
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -226,9 +230,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mouseOverColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   _buttonDownColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  _buttonInactiveColor: {r: 1, g: 0, b: 0, a: 1}
   _loadWindowOnClick: University
   LoadDungeonOnClick: 
-  IsActive: 1
+  _isPushButton: 0
 --- !u!212 &212009928266705144
 SpriteRenderer:
   m_ObjectHideFlags: 1

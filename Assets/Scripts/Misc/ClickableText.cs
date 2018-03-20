@@ -26,6 +26,9 @@ public class ClickableText : MonoBehaviour
     [SerializeField]
     private bool _exitGameOnClick = false;
 
+    [SerializeField]
+    private bool _loadPreviousWindow = false;
+
     private TextMesh _textMesh;
     private Collider2D _collider;
 
@@ -106,6 +109,10 @@ public class ClickableText : MonoBehaviour
         if (_exitGameOnClick)
         {
             Application.Quit();
+        }
+        if (_loadPreviousWindow)
+        {
+            WindowManager.Instance.LoadPreviousWindow();
         }
     }
     // ====================================================================================================== //

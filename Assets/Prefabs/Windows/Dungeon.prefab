@@ -87,6 +87,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isShownAtStart: 0
+  IsContainBackButton: 0
+  IsContainSettingsButton: 1
+  IsContainTabButtons: 1
 --- !u!114 &114681984057976522
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -93,7 +93,7 @@ MonoBehaviour:
     _Values: 000000000000000000000000
   SocketType: 0
   Type: 14
-  ValueInGold: 1
+  ValueInCopper: 100
   _state: 0
 --- !u!212 &212621294614729454
 SpriteRenderer:

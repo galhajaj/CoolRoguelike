@@ -16,7 +16,7 @@ public class TextDisplayer : Singleton<TextDisplayer>
 
     void Start ()
     {
-        SetSideBarText("sdfsdf sdfsfdsfsdf <color=green>green</color> sdf <color=blue>sdfsdf</color> dsf sdf dsf df dsf sdfsdf dsfdfd fd df dfdfsdfsfdf dfdfdfdfdf dfdfdf dfd df df dfdfd df dfdfdf dfdfdfd dfdf df d");
+        //SetSideBarText("sdfsdf sdfsfdsfsdf <color=green>green</color> sdf <color=blue>sdfsdf</color> dsf sdf dsf df dsf sdfsdf dsfdfd fd df dfdfsdfsfdf dfdfdfdfdf dfdfdf dfd df df dfdfd df dfdfdf dfdfdfd dfdf df d");
     }
 	
 	void Update ()

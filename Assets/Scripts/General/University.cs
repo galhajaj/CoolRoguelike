@@ -3,13 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class University : MonoBehaviour
+public class University : Singleton<University>
 {
     [SerializeField]
     private GenericGrid _grid = null;
+    [SerializeField]
+    private TextMesh _textMeshExperience = null;
 
     [SerializeField]
     private List<Stat> _skills = new List<Stat>();
+    public List<Stat> Skills { get { return _skills; } }
 
     // =========================================================================================== //
     void Start ()
@@ -20,8 +23,8 @@ public class University : MonoBehaviour
     // =========================================================================================== //
     void Update ()
     {
-        
-	}
+        _textMeshExperience.text = "Experience Points: " + Party.Instance.SelectedMember.Stats[Stat.EXPERIENCE_POINTS].ToString();
+    }
     // =========================================================================================== //
     public void AddSkill(Stat skillStat)
     {
@@ -33,28 +36,19 @@ public class University : MonoBehaviour
         if (!WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.UNIVERSITY))
             return;
 
-        // create the stats to display list, if in village show all, if not - show only the skills with more than 0
-        List<Stat> statsToDisplay = new List<Stat>();
-        foreach (Stat stat in _skills)
-        {
-            int playerLevelInCurrentStat = Party.Instance.SelectedMember.Stats[stat];
-            if (!Party.Instance.IsInVillage && playerLevelInCurrentStat <= 0)
-                continue;
-            statsToDisplay.Add(stat);
-        }
-
+        displaySkills();
+    }
+    // =========================================================================================== //
+    private void displaySkills()
+    {
         // rebuild skills grid
-        _grid.Rebuild(statsToDisplay.Count);
+        _grid.Rebuild(_skills.Count);
 
         // display skills
-        for (int i = 0; i < statsToDisplay.Count; ++i)
+        for (int i = 0; i < _skills.Count; ++i)
         {
-            Stat stat = statsToDisplay[i];
+            Stat stat = _skills[i];
             _grid.GetElement(i).GetComponent<SkillButton>().Stat = stat;
-            
-            // disable clicking if not in town
-            if (!Party.Instance.IsInVillage)
-                _grid.GetElement(i).GetComponent<SkillButton>().IsActive = false;
         }
     }
     // =========================================================================================== //

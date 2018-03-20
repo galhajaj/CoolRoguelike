@@ -511,6 +511,7 @@ MonoBehaviour:
   _newGameOnClick: 1
   _loadGameOnClick: 0
   _exitGameOnClick: 0
+  _loadPreviousWindow: 0
 --- !u!114 &114344319409991514
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -523,6 +524,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isShownAtStart: 1
+  IsContainBackButton: 0
+  IsContainSettingsButton: 0
+  IsContainTabButtons: 0
 --- !u!114 &114361285834856402
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -541,6 +545,7 @@ MonoBehaviour:
   _newGameOnClick: 0
   _loadGameOnClick: 0
   _exitGameOnClick: 1
+  _loadPreviousWindow: 0
 --- !u!114 &114553778627827154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -559,6 +564,7 @@ MonoBehaviour:
   _newGameOnClick: 0
   _loadGameOnClick: 0
   _exitGameOnClick: 0
+  _loadPreviousWindow: 0
 --- !u!114 &114625848476318378
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -577,6 +583,7 @@ MonoBehaviour:
   _newGameOnClick: 0
   _loadGameOnClick: 1
   _exitGameOnClick: 0
+  _loadPreviousWindow: 0
 --- !u!212 &212521937526890090
 SpriteRenderer:
   m_ObjectHideFlags: 1

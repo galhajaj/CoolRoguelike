@@ -8,13 +8,29 @@ public class GameButton : MonoBehaviour
     private Color _mouseOverColor = Color.yellow;
     [SerializeField]
     private Color _buttonDownColor = Color.gray;
+    [SerializeField]
+    private Color _buttonInactiveColor = Color.red;
+
+    private Color _originalColor;
 
     [SerializeField]
     private string _loadWindowOnClick = "";
 
     public string LoadDungeonOnClick = "";
 
-    public bool IsActive = true;
+    private bool _isActive = true;
+    public bool IsActive
+    {
+        get { return _isActive; }
+        set
+        {
+            _isActive = value;
+            _spriteRenderer.color = _isActive ? _originalColor : _buttonInactiveColor;
+        }
+    }
+
+    [SerializeField]
+    private bool _isPushButton = false;
 
     private SpriteRenderer _spriteRenderer;
     private Collider2D _collider;
@@ -26,6 +42,7 @@ public class GameButton : MonoBehaviour
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _collider = GetComponent<Collider2D>();
+        _originalColor = _spriteRenderer.color;
     }
     // ====================================================================================================== //
     void Start ()
@@ -88,11 +105,21 @@ public class GameButton : MonoBehaviour
         if (!IsActive)
             return;
 
-        _spriteRenderer.color = Color.white;
+        _spriteRenderer.color = _originalColor;
     }
     // ====================================================================================================== //
     private void clicked()
     {
+        // back to original color
+        _spriteRenderer.color = _originalColor;
+
+        if (_isPushButton)
+        {
+            foreach (Transform buttonTransform in transform.parent)
+                buttonTransform.GetComponent<GameButton>().IsActive = true;
+            this.IsActive = false;
+        }
+
         // open window
         if (_loadWindowOnClick != "")
         {
