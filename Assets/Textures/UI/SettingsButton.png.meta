@@ -1,17 +1,9 @@
 fileFormatVersion: 2
-guid: 4f28ea595c9fee04cb567493ac7b475d
-timeCreated: 1521571522
+guid: 2d44dbf53f17cd84aa68d118f803f3d2
+timeCreated: 1521567449
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: PushButtons_0
-    21300002: PushButtons_1
-    21300004: PushButtons_2
-    21300006: PushButtons_3
-    21300008: PushButtons_4
-    21300010: PushButtons_5
-    21300012: PushButtons_6
-    21300014: PushButtons_7
+  fileIDToRecycleName: {}
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -48,7 +40,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -96,63 +88,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: PushButtons_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 48
-        width: 136
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PushButtons_1
-      rect:
-        serializedVersion: 2
-        x: 136
-        y: 48
-        width: 136
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PushButtons_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 136
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PushButtons_3
-      rect:
-        serializedVersion: 2
-        x: 136
-        y: 0
-        width: 136
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
+    sprites: []
     outline: []
     physicsShape: []
   spritePackingTag: 

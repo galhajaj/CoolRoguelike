@@ -52,8 +52,8 @@ public class GameButton : MonoBehaviour
     // ====================================================================================================== //
     void Update ()
     {
-		
-	}
+        
+    }
     // ====================================================================================================== //
     public void Show()
     {
@@ -123,7 +123,17 @@ public class GameButton : MonoBehaviour
         // open window
         if (_loadWindowOnClick != "")
         {
-            WindowManager.Instance.LoadWindow(_loadWindowOnClick);
+            if (_loadWindowOnClick == "Home")
+            {
+                if (Party.Instance.IsInVillage)
+                    WindowManager.Instance.LoadWindow(Consts.WindowNames.VILLAGE);
+                else
+                    WindowManager.Instance.LoadWindow(Consts.WindowNames.DUNGEON);
+            }
+            else
+            {
+                WindowManager.Instance.LoadWindow(_loadWindowOnClick);
+            }
         }
         // load dungeon
         if (LoadDungeonOnClick != "")

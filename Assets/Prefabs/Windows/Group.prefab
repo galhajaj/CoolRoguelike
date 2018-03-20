@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4245753029658514}
   - component: {fileID: 212205885885740466}
   - component: {fileID: 114651857771913682}
+  - component: {fileID: 114833901143753842}
   m_Layer: 0
   m_Name: Group
   m_TagString: Untagged
@@ -53,6 +54,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isShownAtStart: 0
+  IsContainBackButton: 0
+  IsContainSettingsButton: 1
+  IsContainTabButtons: 1
+--- !u!114 &114833901143753842
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1468331209759710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0914bf31f910204f83b3658103d62ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212205885885740466
 SpriteRenderer:
   m_ObjectHideFlags: 1
