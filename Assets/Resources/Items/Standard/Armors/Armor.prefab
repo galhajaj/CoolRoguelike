@@ -82,17 +82,18 @@ MonoBehaviour:
   _isBlockPath: 0
   _isBlockView: 0
   Stats:
-    _Buckets: ffffffff00000000ffffffff
-    _HashCodes: 010000000000000000000000
-    _Next: ffffffff0000000000000000
-    _Count: 1
-    _Version: 4
+    _Buckets: 0100000000000000ffffffff
+    _HashCodes: 010000000c00000000000000
+    _Next: ffffffffffffffff00000000
+    _Count: 2
+    _Version: 8
     _FreeList: -1
     _FreeCount: 0
-    _Keys: 010000000000000000000000
-    _Values: 020000000000000000000000
+    _Keys: 010000000c00000000000000
+    _Values: 020000000200000000000000
   SocketType: 3
   Type: 2
+  ValueInCopper: 0
   _state: 0
 --- !u!212 &212691757334668732
 SpriteRenderer:

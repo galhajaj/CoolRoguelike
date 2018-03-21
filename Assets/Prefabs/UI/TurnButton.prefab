@@ -52,7 +52,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1375473071960158}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -360, y: -208, z: 0}
+  m_LocalPosition: {x: -364, y: -208, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4732804143928180}
@@ -88,14 +88,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 64, y: 64}
+    oldSize: {x: 56, y: 68}
     newSize: {x: 64, y: 64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 64, y: 64}
+  m_Size: {x: 56, y: 68}
   m_EdgeRadius: 0
 --- !u!114 &114376716345500874
 MonoBehaviour:
@@ -115,7 +115,6 @@ MonoBehaviour:
   LoadDungeonOnClick: 
   _isPushButton: 0
   _iconRenderer: {fileID: 212304104216756408}
-  _exitSprite: {fileID: 21300000, guid: 7d6f19490a9cae0448cae4e75afce330, type: 3}
   _meleeHitSprite: {fileID: 21300002, guid: 7d6f19490a9cae0448cae4e75afce330, type: 3}
   _rangedHitSprite: {fileID: 21300004, guid: 7d6f19490a9cae0448cae4e75afce330, type: 3}
   _skipTurnSprite: {fileID: 21300006, guid: 7d6f19490a9cae0448cae4e75afce330, type: 3}
