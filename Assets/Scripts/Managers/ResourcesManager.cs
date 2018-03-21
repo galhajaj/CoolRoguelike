@@ -6,6 +6,9 @@ public class ResourcesManager : Singleton<ResourcesManager>
 {
     public Sprite LootOnGroundSprite;
 
+    public Sprite FloorDungeonTileSprite;
+    public Sprite OutdoorDungeonTileSprite;
+
     // currency
     public GameObject GoldCoinPrefab;
     public GameObject SilverCoinPrefab;

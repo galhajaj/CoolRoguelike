@@ -5,7 +5,7 @@ using UnityEngine;
 public static class Consts
 {
     public static readonly int MAX_ACTION_UNITS = 20;
-    //public static readonly int MAX_BELT_SLOTS = 6;
+    public static readonly int MAX_POCKETS_NUMBER = 10;
     public static readonly int LEVELS_PER_SKILL_TITLE = 10; // Beginner, Intermediate, Expert, Master, Grandmaster
 
     public static readonly string CURRENT_PLAYER = "Player1"; // temp...hard coded in the meantime. get it from text somehow

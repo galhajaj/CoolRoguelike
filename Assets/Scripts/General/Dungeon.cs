@@ -11,7 +11,7 @@ public class Dungeon : Singleton<Dungeon>
     private DungeonSaveData _dungeonSaveData = null;
     private Position _currentShownAreaPosition;
 
-    public bool IsInOriginArea { get { return _currentShownAreaPosition == new Position(0, 0, 0); } }
+    public bool IsInOriginArea { get { return _currentShownAreaPosition == Position.OriginPosition; } }
 
     public int Width { get { return _grid.SizeX; } }
     public int Height { get { return _grid.SizeY; } }
@@ -87,6 +87,15 @@ public class Dungeon : Singleton<Dungeon>
 
         // update current area index
         _currentShownAreaPosition = position;
+
+        // update the dungeon tile sprite - grass or floor
+        foreach (DungeonTile tile in _grid.Elements)
+        {
+            if (IsInOriginArea)
+                tile.GetComponent<SpriteRenderer>().sprite = ResourcesManager.Instance.OutdoorDungeonTileSprite;
+            else
+                tile.GetComponent<SpriteRenderer>().sprite = ResourcesManager.Instance.FloorDungeonTileSprite;
+        }
     }
     // ================================================================================================== //
     public void ShowArea(Direction direction)
