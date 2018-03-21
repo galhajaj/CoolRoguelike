@@ -169,7 +169,7 @@ public class Utils
             case SocketType.NECK:
                 return new Position(0, 40);
             case SocketType.TORSO:
-                return new Position(-3, 25);
+                return new Position(-6, 16);
             case SocketType.BACK:
                 return new Position(0, 0);
             case SocketType.WRIST:
