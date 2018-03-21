@@ -26,9 +26,9 @@ public class SkillButton : GameButton
         // if divided in LEVELS_PER_SKILL_TITLE need to pay gold
         if (statLevel % Consts.LEVELS_PER_SKILL_TITLE == 0)
         {
-            if (Inventory.Instance.Copper >= copperCostForNextTitle)
+            if (Bag.Instance.Copper >= copperCostForNextTitle)
             {
-                Inventory.Instance.RemoveCopper(copperCostForNextTitle);
+                Bag.Instance.RemoveCopper(copperCostForNextTitle);
                 Party.Instance.SelectedMember.Stats[Stat]++;
             }
         }

@@ -19,6 +19,7 @@ public static class Consts
         public static readonly string VILLAGE           = "Village";
         public static readonly string DUNGEON           = "Dungeon";
         public static readonly string INVENTORY         = "Inventory";
+        public static readonly string BAG               = "Bag";
         public static readonly string LIBRARY           = "Library";
         public static readonly string CHARACTER_SHEET   = "CharacterSheet";
         public static readonly string UNIVERSITY        = "University";

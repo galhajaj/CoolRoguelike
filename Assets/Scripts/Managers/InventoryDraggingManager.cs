@@ -14,7 +14,8 @@ public class InventoryDraggingManager : MonoBehaviour
 	
 	void Update ()
     {
-        if (!WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.INVENTORY))
+        if (!WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.INVENTORY) && 
+            !WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.BAG))
             return;
 
         updataMouseDown();
@@ -81,10 +82,11 @@ public class InventoryDraggingManager : MonoBehaviour
                 else
                 {
                     // change parent to inventory
-                    _draggedObject.transform.parent = Inventory.Instance.transform;
+                    _draggedObject.transform.parent = (item.Type == ItemType.CURRENCY) ? Bag.Instance.transform : Inventory.Instance.transform;
                 }
 
                 _draggedObject = null;
+                Bag.Instance.ReorderOutOfBorderItems();
                 Inventory.Instance.ReorderOutOfBorderItems();
             }
         }

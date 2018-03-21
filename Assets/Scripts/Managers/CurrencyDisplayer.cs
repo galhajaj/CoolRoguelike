@@ -14,6 +14,6 @@ public class CurrencyDisplayer : Singleton<CurrencyDisplayer>
 	
 	void Update ()
     {
-        _textAmount.text = Inventory.Instance.Copper.ToString() + " Copper Coins";
+        _textAmount.text = string.Format("{0:n0}", Bag.Instance.Copper);;
     }
 }

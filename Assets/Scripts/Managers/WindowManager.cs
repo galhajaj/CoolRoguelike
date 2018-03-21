@@ -48,7 +48,8 @@ public class WindowManager : Singleton<WindowManager>
         selectedWindow.Show();
 
         // update previous window name
-        _previousWindowName = _currentWindowName;
+        if (name != _currentWindowName) // prevent stuck in window
+            _previousWindowName = _currentWindowName;
 
         // update current window name
         _currentWindowName = name;

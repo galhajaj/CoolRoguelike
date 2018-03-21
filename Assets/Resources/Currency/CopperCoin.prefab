@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212867103965273206}
   - component: {fileID: 114559188008728298}
   - component: {fileID: 61283794645794898}
-  m_Layer: 16
+  m_Layer: 8
   m_Name: CopperCoin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,14 +58,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 8, y: 8}
+    oldSize: {x: 32, y: 32}
     newSize: {x: 18, y: 37}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8, y: 8}
+  m_Size: {x: 32, y: 32}
   m_EdgeRadius: 0
 --- !u!114 &114559188008728298
 MonoBehaviour:
@@ -129,7 +129,7 @@ SpriteRenderer:
   m_SortingLayerID: -147250613
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 34dcf44f4d333f44da928ecda2503e7c, type: 3}
+  m_Sprite: {fileID: 21300004, guid: cc07caab2b848be42b64f8829a14e892, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
