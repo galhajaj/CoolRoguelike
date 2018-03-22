@@ -61,6 +61,10 @@ public class DungeonTurnManager : MonoBehaviour
         if (!WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.DUNGEON))
             return;
 
+        // return if there are projectile in the air
+        if (ProjectileManager.Instance.IsFlownProjectileExist)
+            return;
+
         creaturesTurn();
         playerTurn();
 	}
@@ -304,8 +308,8 @@ public class DungeonTurnManager : MonoBehaviour
             return;
 
         // shoot by selected party member
-        Creature activePartyMember = Party.Instance.SelectedMember;
-        activePartyMember.RangedAttack(targetCreature);
+        Creature member = Party.Instance.SelectedMember;
+        member.RangedAttack(targetCreature);
 
         Debug.Log("SHOOT!!!");
     }

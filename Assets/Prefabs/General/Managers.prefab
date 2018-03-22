@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114130669575880494}
   - component: {fileID: 114688761631844064}
   - component: {fileID: 114111987792537340}
+  - component: {fileID: 114182712736895750}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -73,6 +74,17 @@ MonoBehaviour:
       Y: 0
       Z: 0
     Dungeons: []
+--- !u!114 &114182712736895750
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1431348205435918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54690f93de6ffa748bb6c16a858cc65c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114274146017067240
 MonoBehaviour:
   m_ObjectHideFlags: 1

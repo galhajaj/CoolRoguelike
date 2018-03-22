@@ -22,6 +22,8 @@ public class Item : DungeonObject
 
     public int ValueInCopper;
 
+    public GameObject Projectile;
+
     [SerializeField]
     private ItemState _state = ItemState.GROUND;
     public ItemState State

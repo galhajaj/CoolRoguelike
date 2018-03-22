@@ -92,13 +92,13 @@ public class Creature : DungeonObject
         if (!IsAlive)
         {
             if (isPartyMember)
-                killAsPartyMember();
+                dieAsPartyMember();
             else
-                killAsCreature();
+                dieAsCreature();
         }
     }
     // =================================================================================== //
-    private void killAsCreature()
+    private void dieAsCreature()
     {
         // distribute xp points between alive party members
         foreach (Creature member in Party.Instance.Members)
@@ -120,7 +120,7 @@ public class Creature : DungeonObject
         Destroy(gameObject);
     }
     // =================================================================================== //
-    private void killAsPartyMember()
+    private void dieAsPartyMember()
     {
         // TODO: implement killAsPartyMember()
     }
@@ -146,21 +146,24 @@ public class Creature : DungeonObject
     // =================================================================================== //
     public void RangedAttack(Creature target)
     {
+        // return if not have ranged weapon and proper quiver
+        if (_equippedItems[SocketType.RANGED] == null)
+            return;
+        if (_equippedItems[SocketType.AMMO] == null)
+            return;
+        // TODO: add check if ammo type in quiver is fit to the ranged weapon
+
         // pay action units
         this.ActionUnits -= RangedAttackCost;
-        // check if hit
-        int rand = UnityEngine.Random.Range(0, 101);
-        if (rand <= target.Stats[Stat.ARMOR])
-        {
-            Debug.Log(this.name + " missed " + target.name);
-            return;
-        }
 
-        // hit
-        int damage = UnityEngine.Random.Range(Stats[Stat.MIN_RANGED_DAMAGE], Stats[Stat.MAX_RANGED_DAMAGE] + 1);
-        target.TakeDamage(damage, DamageType.PHYSICAL);
-
-        Debug.Log(this.name + " hit " + target.name);
+        // create projectile
+        GameObject projectile = Instantiate(_equippedItems[SocketType.AMMO].Projectile);
+        projectile.transform.position = this.transform.position;
+        projectile.transform.right = target.transform.position - transform.position;
+        Projectile projectileScript = projectile.GetComponent<Projectile>();
+        projectileScript.Target = target;
+        projectileScript.MinDamage = Stats[Stat.MIN_RANGED_DAMAGE];
+        projectileScript.MaxDamage = Stats[Stat.MAX_RANGED_DAMAGE];
     }
     // =================================================================================== //
     public void PayWalkCost()

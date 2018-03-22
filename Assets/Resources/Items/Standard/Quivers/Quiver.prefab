@@ -93,6 +93,8 @@ MonoBehaviour:
     _Values: 000000000000000000000000
   SocketType: 12
   Type: 9
+  ValueInCopper: 0
+  Projectile: {fileID: 1121508384111748, guid: 82f686e797889554883be190147d20a7, type: 2}
   _state: 0
 --- !u!212 &212329792536377584
 SpriteRenderer:

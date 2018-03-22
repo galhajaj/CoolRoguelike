@@ -9,73 +9,59 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1199454285134478}
+  m_RootGameObject: {fileID: 1121508384111748}
   m_IsPrefabParent: 1
---- !u!1 &1199454285134478
+--- !u!1 &1121508384111748
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4399569410712142}
-  - component: {fileID: 212813673918298088}
-  - component: {fileID: 114323859532289794}
-  - component: {fileID: 114210760645902194}
+  - component: {fileID: 4795488372017686}
+  - component: {fileID: 212002111287554488}
+  - component: {fileID: 114238664506084698}
   m_Layer: 0
-  m_Name: Inventory
+  m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4399569410712142
+--- !u!4 &4795488372017686
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1199454285134478}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -743.33496, y: -11.004034, z: 9.720784}
+  m_GameObject: {fileID: 1121508384111748}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114210760645902194
+--- !u!114 &114238664506084698
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1199454285134478}
+  m_GameObject: {fileID: 1121508384111748}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c07b02f6b8cc19048a7ecc5da76def80, type: 3}
+  m_Script: {fileID: 11500000, guid: 88e5d53573390a94998c1299302d95d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isShownAtStart: 0
-  IsContainBackButton: 0
-  IsContainSettingsButton: 1
-  IsContainTabButtons: 1
---- !u!114 &114323859532289794
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1199454285134478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d2cdddcebd16a443896dad363a58c1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _randomItemsNumber: 60
-  _spriteRenderer: {fileID: 212813673918298088}
---- !u!212 &212813673918298088
+  Speed: 350
+  Target: {fileID: 0}
+  MinDamage: 0
+  MaxDamage: 0
+--- !u!212 &212002111287554488
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1199454285134478}
+  m_GameObject: {fileID: 1121508384111748}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -101,15 +87,15 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1200196113
-  m_SortingLayer: -5
+  m_SortingLayerID: 1412532177
+  m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cd4a14d2bfbf06b4c96663716841c63a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ab2f7befdfa95c4429699d33c60f19f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 640, y: 384}
+  m_Size: {x: 5, y: 13}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

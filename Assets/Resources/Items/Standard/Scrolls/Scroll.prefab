@@ -94,6 +94,7 @@ MonoBehaviour:
   SocketType: 13
   Type: 13
   ValueInCopper: 0
+  Projectile: {fileID: 1087161929638190, guid: ac1e6eebccb47fd45849d230666c5177, type: 2}
   _state: 0
 --- !u!212 &212794562884159774
 SpriteRenderer:
