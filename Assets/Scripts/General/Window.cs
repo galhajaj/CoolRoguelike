@@ -7,8 +7,6 @@ public class Window : MonoBehaviour
     [SerializeField]
     private bool _isShownAtStart = false;
 
-    public bool IsContainBackButton = true;
-    public bool IsContainSettingsButton = true;
     public bool IsContainTabButtons = true;
 
     private Vector2 _hidePosition; // original position
@@ -38,8 +36,6 @@ public class Window : MonoBehaviour
         TextDisplayer.Instance.SetMainCaption(this.name);
 
         // set buttons
-        ButtonManager.Instance.SetBackButtonVisibility(this.IsContainBackButton);
-        ButtonManager.Instance.SetSettingsButtonVisibility(this.IsContainSettingsButton);
         ButtonManager.Instance.SetTabButtonsVisibility(this.IsContainTabButtons);
     }
 }

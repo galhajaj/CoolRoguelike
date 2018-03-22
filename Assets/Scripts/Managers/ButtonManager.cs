@@ -5,8 +5,6 @@ using UnityEngine;
 public class ButtonManager : Singleton<ButtonManager>
 {
     [SerializeField]
-    private GameObject _backButton = null;
-    [SerializeField]
     private GameObject _settingsButton = null;
     [SerializeField]
     private GameObject _tabButtons = null; // inventory, characterSheet & group
@@ -20,11 +18,6 @@ public class ButtonManager : Singleton<ButtonManager>
     {
 		
 	}
-
-    public void SetBackButtonVisibility(bool isVisible)
-    {
-        _backButton.SetActive(isVisible);
-    }
 
     public void SetSettingsButtonVisibility(bool isVisible)
     {

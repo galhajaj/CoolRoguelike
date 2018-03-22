@@ -14,6 +14,9 @@ public class Inventory : Singleton<Inventory>
     private int _inventoryWidth;
     private int _inventoryHeight;
 
+    private const int X_OFFSET = 45;
+    private const int Y_OFFSET = 45;
+
     // =================================================================================== //
     void Start()
     {
@@ -59,8 +62,8 @@ public class Inventory : Singleton<Inventory>
     // =================================================================================== //
     private Vector3 getRandomPositionInsideInventory()
     {
-        int halfInventoryWidth = (_inventoryWidth) / 2;
-        int halfInventoryHeight = (_inventoryHeight) / 2;
+        int halfInventoryWidth = (_inventoryWidth - X_OFFSET) / 2;
+        int halfInventoryHeight = (_inventoryHeight - Y_OFFSET) / 2;
 
         return this.transform.position + new Vector3(
                 Random.Range(-halfInventoryWidth, halfInventoryWidth),
@@ -70,10 +73,15 @@ public class Inventory : Singleton<Inventory>
     // all child items of inventory will get inside its borders
     public void ReorderOutOfBorderItems()
     {
-        foreach (Transform itemTransform in this.transform)
+        foreach (Item item in this.transform.GetComponentsInChildren<Item>())
+        {
+            orderItem(item.transform);
+        }
+
+        /*foreach (Transform itemTransform in this.transform)
         {
             orderItem(itemTransform);
-        }
+        }*/
     }
     // =================================================================================== //
     private void orderItem(Transform itemTransform)
@@ -81,8 +89,8 @@ public class Inventory : Singleton<Inventory>
         int itemWidth = (int)itemTransform.GetComponent<Collider2D>().bounds.size.x;
         int itemHeight = (int)itemTransform.GetComponent<Collider2D>().bounds.size.y;
 
-        int halfInventoryWidth = (_inventoryWidth - itemWidth) / 2;
-        int halfInventoryHeight = (_inventoryHeight - itemHeight) / 2;
+        int halfInventoryWidth = (_inventoryWidth - itemWidth - X_OFFSET) / 2;
+        int halfInventoryHeight = (_inventoryHeight - itemHeight - Y_OFFSET) / 2;
 
         if (itemTransform.localPosition.x < -halfInventoryWidth)
             itemTransform.localPosition = new Vector3(-halfInventoryWidth, itemTransform.localPosition.y, itemTransform.localPosition.z);

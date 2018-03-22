@@ -55,10 +55,15 @@ public class Bag : Singleton<Bag>
     // all child items of inventory will get inside its borders
     public void ReorderOutOfBorderItems()
     {
-        foreach (Transform itemTransform in this.transform)
+        foreach (Item item in this.transform.GetComponentsInChildren<Item>())
+        {
+            orderItem(item.transform);
+        }
+
+        /*foreach (Transform itemTransform in this.transform)
         {
             orderItem(itemTransform);
-        }
+        }*/
     }
     // =================================================================================== //
     private void orderItem(Transform itemTransform)

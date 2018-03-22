@@ -29,9 +29,6 @@ public class GameButton : MonoBehaviour
         }
     }
 
-    [SerializeField]
-    private bool _isPushButton = false;
-
     private SpriteRenderer _spriteRenderer;
     private Collider2D _collider;
 
@@ -113,17 +110,11 @@ public class GameButton : MonoBehaviour
         // back to original color
         _spriteRenderer.color = _originalColor;
 
-        if (_isPushButton)
-        {
-            foreach (Transform buttonTransform in transform.parent)
-                buttonTransform.GetComponent<GameButton>().IsActive = true;
-            this.IsActive = false;
-        }
-
         // open window
         if (_loadWindowOnClick != "")
         {
-            if (_loadWindowOnClick == "Home")
+            // if click on already oppened window button - exit to home
+            if (_loadWindowOnClick == WindowManager.Instance.CurrentWindowName)
             {
                 if (Party.Instance.IsInVillage)
                     WindowManager.Instance.LoadWindow(Consts.WindowNames.VILLAGE);
