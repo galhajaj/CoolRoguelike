@@ -17,10 +17,10 @@ public class PocketManager : Singleton<PocketManager>
     void Update()
     {
         updatePockets();
-        checkClickOnPocket();
+        //checkClickOnPocket();
     }
     // ====================================================================================================== //
-    private void checkClickOnPocket()
+    /*private void checkClickOnPocket()
     {
         if (WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.DUNGEON) && Input.GetMouseButtonDown(0))
         {
@@ -29,12 +29,12 @@ public class PocketManager : Singleton<PocketManager>
             {
                 if (pocket.Index < Party.Instance.SelectedMember.Stats[Stat.POCKETS])
                 {
-                    Debug.Log("Pocket selected!");
+                    Debug.Log("Pocket selected! " + pocket.Index);
                     Party.Instance.SelectedMember.SelectedPocketIndex = pocket.Index;
                 }
             }
         }
-    }
+    }*/
     // ====================================================================================================== //
     public void AddItem(Item item, GameObject pocket)
     {
@@ -49,29 +49,30 @@ public class PocketManager : Singleton<PocketManager>
         // units visibility & color of grid units
         _pocketGrid.UpdateElementsVisibility(Party.Instance.SelectedMember.Stats[Stat.POCKETS]);
 
-        // hide (deactivate) all items on pockets
-        foreach (Transform beltSlotTransform in this.transform)
-            foreach (Transform itemTransform in beltSlotTransform)
-                itemTransform.gameObject.SetActive(false);
-
-        // show (activate) items in selected member pockets
-        List<Item> selectedMemberBeltItems = Party.Instance.SelectedMember.ItemsInPockets.Values.ToList();
-        foreach (Item item in selectedMemberBeltItems)
+        // move over all members, deactivate pocket items of the non-selected members & activate the selected member pocket items
+        foreach (Creature member in Party.Instance.Members)
         {
-            item.gameObject.SetActive(true);
+            List<Item> currentMemberBeltItems = member.ItemsInPockets.Values.ToList();
+            foreach (Item item in currentMemberBeltItems)
+            {
+                // set active if selected member, inactive otherwise
+                item.gameObject.SetActive(Party.Instance.SelectedMember == member);
 
-            // remove items from pockets when are placed in not exist pocket
-            if (item.transform.parent.GetComponent<Pocket>().Index >= Party.Instance.SelectedMember.Stats[Stat.POCKETS])
-                Party.Instance.SelectedMember.RemoveItemFromPockets(item);
+                // remove items from pockets when are placed in not exist pocket
+                if (item.transform.parent.GetComponent<Pocket>().Index >= member.Stats[Stat.POCKETS])
+                    member.RemoveItemFromPockets(item);
+            }
         }
             
 
         // mark selected pocket
-        foreach (GridElement pocket in _pocketGrid.Elements)
+        /*foreach (GridElement pocket in _pocketGrid.Elements)
         {
-            pocket.GetComponent<SpriteRenderer>().color =
-                (pocket.Index == Party.Instance.SelectedMember.SelectedPocketIndex) ? Color.red : Color.white;
-        }
+            pocket.transform.Find("Frame").GetComponent<SpriteRenderer>().enabled =
+                (pocket.Index == Party.Instance.SelectedMember.SelectedPocketIndex && // the selected
+                pocket.Index < Party.Instance.SelectedMember.Stats[Stat.POCKETS])  // in exist pockets
+                ? true : false;
+        }*/
     }
     // ====================================================================================================== //
 }

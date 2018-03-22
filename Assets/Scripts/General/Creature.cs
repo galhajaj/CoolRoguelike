@@ -45,7 +45,8 @@ public class Creature : DungeonObject
     [SerializeField]
     private int _xPReward = 0;
 
-    // carried items
+    // carried items (relevant only for creatures that are not the party members. 
+    // the items the creature carried in its bag and not equipped on it - a key for example)
     private List<Item> _carriedItems = new List<Item>();
     public List<Item> CarriedItems { get { return _carriedItems; } }
 
@@ -57,12 +58,12 @@ public class Creature : DungeonObject
     private Dictionary<int, Item> _itemsInPockets = new Dictionary<int, Item>();
     public Dictionary<int, Item> ItemsInPockets { get { return _itemsInPockets; } }
 
-    // selected pocket
-    private int _selectedPocketIndex = -1;
-    public int SelectedPocketIndex
+    // selected pocket item
+    private Item _selectedPocketItem = null;
+    public Item SelectedPocketItem
     {
-        get { return _selectedPocketIndex; }
-        set { _selectedPocketIndex = value; }
+        get { return _selectedPocketItem; }
+        set { _selectedPocketItem = value; }
     }
 
     public override SaveData GetSaveData()

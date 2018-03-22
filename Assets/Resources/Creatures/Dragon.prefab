@@ -56,9 +56,7 @@ MonoBehaviour:
   _isBlockPath: 1
   _isBlockView: 0
   isPartyMember: 0
-  Treasures:
-  - {fileID: 1317119557125308, guid: 54888284d28d1c544a7dba5c1b387f3a, type: 2}
-  - {fileID: 1317119557125308, guid: 54888284d28d1c544a7dba5c1b387f3a, type: 2}
+  Treasures: []
   Stats:
     _Buckets: ffffffff0000000001000000
     _HashCodes: 010000000200000000000000
