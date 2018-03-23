@@ -68,9 +68,12 @@ public enum ItemType
     QUIVER,
     NECKLACE,
     RING,
-    POTION,
+    POTION_PERMANENT,
+    POTION_TEMPORARY,
     SCROLL,
-    CURRENCY
+    CURRENCY,
+    THROWING_AMMO,
+    THROWING_POTION
 }
 
 public enum ItemCondition

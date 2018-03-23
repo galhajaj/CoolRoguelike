@@ -17,24 +17,7 @@ public class PocketManager : Singleton<PocketManager>
     void Update()
     {
         updatePockets();
-        //checkClickOnPocket();
     }
-    // ====================================================================================================== //
-    /*private void checkClickOnPocket()
-    {
-        if (WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.DUNGEON) && Input.GetMouseButtonDown(0))
-        {
-            Pocket pocket = Utils.GetObjectUnderCursor<Pocket>("Pocket");
-            if (pocket != null)
-            {
-                if (pocket.Index < Party.Instance.SelectedMember.Stats[Stat.POCKETS])
-                {
-                    Debug.Log("Pocket selected! " + pocket.Index);
-                    Party.Instance.SelectedMember.SelectedPocketIndex = pocket.Index;
-                }
-            }
-        }
-    }*/
     // ====================================================================================================== //
     public void AddItem(Item item, GameObject pocket)
     {

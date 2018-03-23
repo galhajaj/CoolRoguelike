@@ -171,6 +171,8 @@ public class DungeonTurnManager : MonoBehaviour
         checkPickupKey(); // TODO: merge the pickup/shoot/walk to one function
         checkShootButton();
         checkTravelButton();
+        checkClickOnPocketItem(); // quaff potion, use not-directed spell (buff all party or turn into a bear...) or select item in pocket
+        checkUseSelectedPocketItem(); // throw throwing potion/ammo or use magic spell on creature
         //checkUsePocketItemButton();
     }
     // ====================================================================================================== //
@@ -180,6 +182,9 @@ public class DungeonTurnManager : MonoBehaviour
         _creaturesTurn = true;
         // refill action units
         Party.Instance.FillActionUnitsForNextTurn();
+        // temp effect items - 1 turn reduction
+        foreach (Creature member in Party.Instance.Members)
+            member.ExecuteEndTurnForTemporaryEffectItem();
     }
     // ====================================================================================================== //
     // can be move/ attack/ open door/ open chest...
@@ -335,9 +340,50 @@ public class DungeonTurnManager : MonoBehaviour
         _partyTargetPosition = targetTile.Position;
     }
     // ====================================================================================================== //
-    private void rangedAttack(Creature attacker, Creature defender, DungeonTile targetTile)
+    private void checkClickOnPocketItem()
     {
-        // imp
+        // allow left click
+        if (!Input.GetMouseButtonDown(0))
+            return;
+
+        // allow only in dungeon window
+        if (!WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.DUNGEON))
+            return;
+
+        // make sure click on pocket
+        Pocket pocket = Utils.GetObjectUnderCursor<Pocket>("Pocket");
+        if (pocket == null)
+            return;
+
+        // only on active pocket
+        if (pocket.Index >= Party.Instance.SelectedMember.Stats[Stat.POCKETS])
+            return;
+
+        // return if pocket is empty
+        Item itemInPocket = pocket.transform.GetComponentInChildren<Item>();
+        if (itemInPocket == null)
+            return;
+
+        // if potion - quaff it
+        if (itemInPocket.Type == ItemType.POTION_PERMANENT)
+        {
+            Party.Instance.SelectedMember.ConsumeItemFromPocket(itemInPocket);
+            return;
+        }
+        else if (itemInPocket.Type == ItemType.POTION_TEMPORARY)
+        {
+            Party.Instance.SelectedMember.ConsumeItemFromPocket(itemInPocket, true);
+            return;
+        }
+
+        // otherwise - select the item
+        Debug.Log("Item " + itemInPocket.name + " selected! ");
+        Party.Instance.SelectedMember.SelectedPocketItem = itemInPocket;
+    }
+    // ====================================================================================================== //
+    private void checkUseSelectedPocketItem()
+    {
+
     }
     // ====================================================================================================== //
     private void openDoor(DungeonTile targetTile)

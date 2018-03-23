@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Creature : DungeonObject
@@ -63,8 +64,18 @@ public class Creature : DungeonObject
     public Item SelectedPocketItem
     {
         get { return _selectedPocketItem; }
-        set { _selectedPocketItem = value; }
+        set
+        {
+            // TODO: cancel the colorize selected pocket item with red... it's a meantime shit
+            if (_selectedPocketItem != null)
+                _selectedPocketItem.GetComponent<SpriteRenderer>().color = Color.white;
+            _selectedPocketItem = value;
+            _selectedPocketItem.GetComponent<SpriteRenderer>().color = Color.red;
+        }
     }
+
+    // dictionary of temporary item effects with number of turns for the effect
+    private Dictionary<Item, int> _temporaryEffectItems = new Dictionary<Item, int>();
 
     public override SaveData GetSaveData()
     {
@@ -234,6 +245,58 @@ public class Creature : DungeonObject
 
         // put in inventory
         Inventory.Instance.AddItem(item);
+    }
+    // =================================================================================== //
+    public void ConsumeItemFromPocket(Item item, bool isTemporaryEffect = false)
+    {
+        // get stats
+        this.Stats += item.Stats;
+
+        // remove from map
+        GridElement pocket = item.transform.parent.GetComponent<GridElement>();
+        _itemsInPockets.Remove(pocket.Index);
+
+        // if temp - insert to temp effect list
+        if (isTemporaryEffect)
+        {
+            // TODO: improve formula for number of turns for temp effect item
+            int turns = 30 - this.Stats[Stat.ENDURANCE]; // set number of turns due to Endurance 
+            _temporaryEffectItems[item] = turns;
+            item.GetComponent<SpriteRenderer>().enabled = false;
+            item.GetComponent<Collider2D>().enabled = false;
+        }
+        // if permanent - destroy
+        else
+        {
+            // destroy
+            Destroy(item.gameObject);
+        }
+    }
+    // =================================================================================== //
+    public void ExecuteEndTurnForTemporaryEffectItem()
+    {
+        if (_temporaryEffectItems == null)
+            return;
+        if (_temporaryEffectItems.Count <= 0)
+            return;
+
+        // reduce 1 turn for each
+        foreach (var item in _temporaryEffectItems.Keys.ToList())
+            _temporaryEffectItems[item]--;
+
+        // if turns finished - remove from list and remove effect
+        var itemsToRemove = _temporaryEffectItems.Where(f => f.Value <= 0).ToArray();
+
+        foreach (var element in itemsToRemove)
+        {
+            // remove stats
+            this.Stats -= element.Key.Stats;
+
+            _temporaryEffectItems.Remove(element.Key);
+
+            // destroy
+            Destroy(element.Key.gameObject);
+        }
     }
     // =================================================================================== //
 }
