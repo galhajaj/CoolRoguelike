@@ -290,6 +290,10 @@ public class DungeonTurnManager : Singleton<DungeonTurnManager>
         if (!Input.GetMouseButtonDown(0))
             return;
 
+        // return if has selected pocket item
+        if (Party.Instance.SelectedMember.SelectedPocketItem != null)
+            return;
+
         // return if not click on dungeon tile
         LayerMask layerMask = (1 << LayerMask.NameToLayer("DungeonTile"));
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0.0F, layerMask);
@@ -365,15 +369,84 @@ public class DungeonTurnManager : Singleton<DungeonTurnManager>
             Party.Instance.SelectedMember.ConsumeItemFromPocket(itemInPocket, true);
             return;
         }
+        // if scroll with no target type - activate it
+        else if (itemInPocket.Type == ItemType.SCROLL)
+        {
+            Scroll scroll = (itemInPocket as Scroll);
+            if (scroll.TargetType == Scroll.ScrollTargetType.NONE)
+            {
+                scroll.Activate();
+                return;
+            }
+        }
 
-        // otherwise - select the item
-        Debug.Log("Item " + itemInPocket.name + " selected! ");
-        Party.Instance.SelectedMember.SelectedPocketItem = itemInPocket;
+        // otherwise - select the item, if selected already - unselect it
+        if (Party.Instance.SelectedMember.SelectedPocketItem == itemInPocket)
+        {
+            Party.Instance.SelectedMember.SelectedPocketItem = null; // unselect
+        }
+        else
+        {
+            Debug.Log("Item " + itemInPocket.name + " selected! ");
+            Party.Instance.SelectedMember.SelectedPocketItem = itemInPocket;
+        }
     }
     // ====================================================================================================== //
     private void checkUseSelectedPocketItem()
     {
+        // allow left click
+        if (!Input.GetMouseButtonDown(0))
+            return;
 
+        // allow only in dungeon window
+        if (!WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.DUNGEON))
+            return;
+
+        // allow if selected pocket item is not null
+        Item itemInPocket = Party.Instance.SelectedMember.SelectedPocketItem;
+        if (itemInPocket == null)
+            return;
+
+        // scroll
+        if (itemInPocket.Type == ItemType.SCROLL)
+        {
+            Scroll scroll = (itemInPocket as Scroll);
+
+            // dungeon tile target
+            if (scroll.TargetType == Scroll.ScrollTargetType.DUNGEON_TILE)
+            {
+                DungeonTile tile = Utils.GetObjectUnderCursor<DungeonTile>("DungeonTile");
+                if (tile == null)
+                    return;
+                scroll.TargetDungeonTile = tile;
+                scroll.Activate();
+                return;
+            }
+            // creature target
+            else if (scroll.TargetType == Scroll.ScrollTargetType.CREATURE)
+            {
+                DungeonTile tile = Utils.GetObjectUnderCursor<DungeonTile>("DungeonTile");
+                if (tile == null)
+                    return;
+                Creature creature = tile.GetContainedCreature();
+                if (creature == null)
+                    return;
+                scroll.TargetDungeonTile = tile;
+                scroll.TargetCreature = creature;
+                scroll.Activate();
+                return;
+            }
+            // party member target
+            else if (scroll.TargetType == Scroll.ScrollTargetType.PARTY_MEMBER)
+            {
+                Portrait portrait = Utils.GetObjectUnderCursor<Portrait>("Portrait");
+                if (portrait == null)
+                    return;
+                scroll.TargetCreature = portrait.Creature;
+                scroll.Activate();
+                return;
+            }
+        }
     }
     // ====================================================================================================== //
     private void openDoor(DungeonTile targetTile)

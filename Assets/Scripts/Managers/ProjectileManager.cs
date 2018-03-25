@@ -23,4 +23,16 @@ public class ProjectileManager : Singleton<ProjectileManager>
     {
         get { return (_flownProjectilesNumber > 0); }
     }
+
+    public void ShootProjectile(GameObject projectilePrefab, Vector3 origin, Creature target, int minDamage, int maxDamage)
+    {
+        // create projectile
+        GameObject projectile = Instantiate(projectilePrefab);
+        projectile.transform.position = origin;
+        projectile.transform.right = target.transform.position - transform.position;
+        Projectile projectileScript = projectile.GetComponent<Projectile>();
+        projectileScript.Target = target;
+        projectileScript.MinDamage = minDamage;
+        projectileScript.MaxDamage = maxDamage;
+    }
 }

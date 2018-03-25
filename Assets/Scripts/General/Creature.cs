@@ -83,7 +83,8 @@ public class Creature : DungeonObject
             if (_selectedPocketItem != null)
                 _selectedPocketItem.GetComponent<SpriteRenderer>().color = Color.white;
             _selectedPocketItem = value;
-            _selectedPocketItem.GetComponent<SpriteRenderer>().color = Color.red;
+            if (_selectedPocketItem != null)
+                _selectedPocketItem.GetComponent<SpriteRenderer>().color = Color.red;
         }
     }
 
@@ -181,14 +182,9 @@ public class Creature : DungeonObject
         // pay action units
         this.ActionUnits -= RangedAttackCost;
 
-        // create projectile
-        GameObject projectile = Instantiate(_equippedItems[SocketType.AMMO].Projectile);
-        projectile.transform.position = this.transform.position;
-        projectile.transform.right = target.transform.position - transform.position;
-        Projectile projectileScript = projectile.GetComponent<Projectile>();
-        projectileScript.Target = target;
-        projectileScript.MinDamage = Stats[Stat.MIN_RANGED_DAMAGE];
-        projectileScript.MaxDamage = Stats[Stat.MAX_RANGED_DAMAGE];
+        // shoot
+        ProjectileManager.Instance.ShootProjectile(_equippedItems[SocketType.AMMO].Projectile,
+            this.transform.position, target, Stats[Stat.MIN_RANGED_DAMAGE], Stats[Stat.MAX_RANGED_DAMAGE]);
     }
     // =================================================================================== //
     public void PayWalkCost()
@@ -272,6 +268,7 @@ public class Creature : DungeonObject
         // if temp - insert to temp effect list
         if (isTemporaryEffect)
         {
+            // if temporary effect item - move to special list where it will delete and lose effect after certain turns
             // TODO: improve formula for number of turns for temp effect item
             int turns = 30 - this.Stats[Stat.ENDURANCE]; // set number of turns due to Endurance 
             _temporaryEffectItems[item] = turns;

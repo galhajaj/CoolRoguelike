@@ -9,45 +9,45 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1294872605130106}
+  m_RootGameObject: {fileID: 1696032181421922}
   m_IsPrefabParent: 1
---- !u!1 &1294872605130106
+--- !u!1 &1696032181421922
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4315856086737796}
-  - component: {fileID: 212794562884159774}
-  - component: {fileID: 114946052664170402}
-  - component: {fileID: 61587550120169526}
+  - component: {fileID: 4816826590889992}
+  - component: {fileID: 212406948967226652}
+  - component: {fileID: 61000421786439830}
+  - component: {fileID: 114834740548222852}
   m_Layer: 8
-  m_Name: Scroll
+  m_Name: FireballScroll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4315856086737796
+--- !u!4 &4816826590889992
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1294872605130106}
+  m_GameObject: {fileID: 1696032181421922}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -940.1438, y: -96.95131, z: 0}
+  m_LocalPosition: {x: -979.4, y: -96.95131, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61587550120169526
+--- !u!61 &61000421786439830
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1294872605130106}
+  m_GameObject: {fileID: 1696032181421922}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -67,18 +67,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 34, y: 34}
   m_EdgeRadius: 0
---- !u!114 &114946052664170402
+--- !u!114 &114834740548222852
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1294872605130106}
+  m_GameObject: {fileID: 1696032181421922}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 084ccba231090fc4c97c730672c8be17, type: 3}
+  m_Script: {fileID: 11500000, guid: 29a11ba8c3d06804bb1e0096732ab952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Image: {fileID: 21300000, guid: f9343156c2362754fa4994b5e6b449b8, type: 3}
+  Image: {fileID: 0}
   _isBlockPath: 0
   _isBlockView: 0
   Stats:
@@ -92,16 +92,23 @@ MonoBehaviour:
     _Keys: 000000000000000000000000
     _Values: 000000000000000000000000
   SocketType: 13
-  Type: 13
+  Type: 14
   ValueInCopper: 0
   Projectile: {fileID: 1087161929638190, guid: ac1e6eebccb47fd45849d230666c5177, type: 2}
   _state: 0
---- !u!212 &212794562884159774
+  TargetType: 2
+  TargetDungeonTile: {fileID: 0}
+  TargetCreature: {fileID: 0}
+  _manaCost: 1
+  _actionUnitsCost: 15
+  MinDamage: 10
+  MaxDamage: 30
+--- !u!212 &212406948967226652
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1294872605130106}
+  m_GameObject: {fileID: 1696032181421922}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -130,7 +137,7 @@ SpriteRenderer:
   m_SortingLayerID: -147250613
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dd7ed6b238ed41b49a101a4f70a9bac1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4ee9d5c47bd689a48bb9280bc0b54c33, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
