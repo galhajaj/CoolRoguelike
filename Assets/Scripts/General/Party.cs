@@ -29,7 +29,8 @@ public class Party : Singleton<Party>
 
     // peace mode - 
     // TODO: performance (can be triggered each turn by the monsters & can be only a bool)
-    public bool IsInPeaceMode
+    // NOTE: now this function is in DungeonTurnManager and it's lighter and fasterrr
+    /*public bool IsInPeaceMode
     {
         get
         {
@@ -45,7 +46,7 @@ public class Party : Singleton<Party>
 
             return true;
         }
-    }
+    }*/
 
     private List<Creature> _members = new List<Creature>();
     public List<Creature> Members { get { return _members; } }
@@ -112,16 +113,22 @@ public class Party : Singleton<Party>
         return liveMembers[rand];
     }
     // ====================================================================================================== //
-    // add maximum amount, but not higher
-    public void FillActionUnitsForNextTurn()
+    public void ResetActionUnits()
     {
         foreach (var member in _members)
-        {
-            member.ActionUnits += Consts.MAX_ACTION_UNITS;
-            // normalize to max
-            if (member.ActionUnits > Consts.MAX_ACTION_UNITS)
-                member.ActionUnits = Consts.MAX_ACTION_UNITS;
-        }
+            member.ResetActionUnits();
+    }
+    // ====================================================================================================== //
+    public void RecoverOneTurnActionUnits()
+    {
+        foreach (var member in _members)
+            member.RecoverOneTurnActionUnits();
+    }
+    // ====================================================================================================== //
+    public void ExecuteEndTurnForTemporaryEffectItem()
+    {
+        foreach (Creature member in _members)
+            member.ExecuteEndTurnForTemporaryEffectItem();
     }
     // ====================================================================================================== //
     // init to maximum amount of action units
@@ -142,6 +149,34 @@ public class Party : Singleton<Party>
     {
         foreach (var member in _members)
             member.ActionUnits -= Consts.MAX_ACTION_UNITS;
+    }
+    // ====================================================================================================== //
+    // select the member after the selected member that is active
+    // used for the turn manager where there is a situation of member not doing anything but still has action units
+    // so its turn passes and the next member selected without returning to the previous
+    public void SelectNextInTurnMember()
+    {
+        Creature selectedMember = this.SelectedMember;
+        if (selectedMember == null)
+            return;
+        bool selectedFound = false;
+        foreach (var member in _members)
+        {
+            if (!selectedFound)
+                continue;
+
+            if (member == selectedMember)
+            {
+                selectedFound = true;
+                continue;
+            }
+
+            if (member.IsActive)
+            {
+                SelectedMember = member;
+                return;
+            }
+        }
     }
     // ====================================================================================================== //
 }

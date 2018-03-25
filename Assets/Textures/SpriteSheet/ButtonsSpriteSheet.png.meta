@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 7d6f19490a9cae0448cae4e75afce330
-timeCreated: 1521039398
+timeCreated: 1521972988
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -9,6 +9,7 @@ TextureImporter:
     21300004: ButtonsSpriteSheet_2
     21300006: ButtonsSpriteSheet_3
     21300008: ButtonsSpriteSheet_4
+    21300010: ButtonsSpriteSheet_5
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -155,6 +156,20 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 132
+        y: 66
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ButtonsSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 165
         y: 66
         width: 32
         height: 32

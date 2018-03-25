@@ -89,7 +89,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 56, y: 68}
-    newSize: {x: 64, y: 64}
+    newSize: {x: 56, y: 68}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -108,17 +108,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe0f4a1e0f0a7646bf60f2cb023ad8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mouseOverColor: {r: 0.5294118, g: 0.5294118, b: 0.5294118, a: 1}
-  _buttonDownColor: {r: 1, g: 0.3602941, b: 0.3602941, a: 1}
-  _buttonInactiveColor: {r: 1, g: 0, b: 0, a: 1}
+  _mouseOverColor: {r: 0.78039217, g: 0.78039217, b: 0.78039217, a: 1}
+  _buttonDownColor: {r: 1, g: 1, b: 1, a: 1}
+  _buttonInactiveColor: {r: 1, g: 1, b: 1, a: 1}
   _loadWindowOnClick: 
   LoadDungeonOnClick: 
-  _isPushButton: 0
-  _iconRenderer: {fileID: 212304104216756408}
-  _meleeHitSprite: {fileID: 21300002, guid: 7d6f19490a9cae0448cae4e75afce330, type: 3}
-  _rangedHitSprite: {fileID: 21300004, guid: 7d6f19490a9cae0448cae4e75afce330, type: 3}
-  _skipTurnSprite: {fileID: 21300006, guid: 7d6f19490a9cae0448cae4e75afce330, type: 3}
-  _endTurnSprite: {fileID: 21300008, guid: 7d6f19490a9cae0448cae4e75afce330, type: 3}
 --- !u!212 &212304104216756408
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -152,16 +146,16 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300010, guid: 7d6f19490a9cae0448cae4e75afce330, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 24, y: 22}
+  m_Size: {x: 32, y: 32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
 --- !u!212 &212447286500910210
 SpriteRenderer:
@@ -197,12 +191,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 379ac145b9af92a43a61fd25259414e5, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0b15cd21862bf584ea758561810a5558, type: 3}
+  m_Color: {r: 0.64705884, g: 0.64705884, b: 0.64705884, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 64, y: 64}
+  m_Size: {x: 56, y: 68}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

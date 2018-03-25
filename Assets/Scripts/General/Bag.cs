@@ -24,6 +24,36 @@ public class Bag : Singleton<Bag>
         _inventoryHeight = (int)_spriteRenderer.bounds.size.y;
     }
     // =================================================================================== //
+    void Update()
+    {
+        tempFunctionToAddCurrency_DELETE_ME();
+    }
+    // =================================================================================== //
+    private void tempFunctionToAddCurrency_DELETE_ME()
+    {
+        // TODO: delete this line - add 100 gold pieces to party
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            AddCurrency(ResourcesManager.Instance.GoldCoinPrefab, 3);
+        }
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            AddCurrency(ResourcesManager.Instance.SilverCoinPrefab, 3);
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            AddCurrency(ResourcesManager.Instance.CopperCoinPrefab, 3);
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            AddCurrency(ResourcesManager.Instance.RubyPrefab, 3);
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RemoveCopper(25);
+        }
+    }
+    // =================================================================================== //
     public void AddItem(Item item)
     {
         addItemInPosition(item, getRandomPositionInsideInventory());

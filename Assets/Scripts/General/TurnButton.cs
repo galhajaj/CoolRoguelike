@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class TurnButton : GameButton
 {
-    public enum MultiPurposeButtonState
+    /*public enum MultiPurposeButtonState
     {
         NONE,
         MELEE_ATTACK,
         RANGED_ATTACK,
         SKIP_TURN,
         END_TURN
-    }
+    }*/
 
-    private MultiPurposeButtonState _state = MultiPurposeButtonState.NONE;
+    /*private MultiPurposeButtonState _state = MultiPurposeButtonState.NONE;
 
     [SerializeField]
     private SpriteRenderer _iconRenderer = null;
@@ -25,13 +25,13 @@ public class TurnButton : GameButton
     [SerializeField]
     private Sprite _skipTurnSprite = null;
     [SerializeField]
-    private Sprite _endTurnSprite = null;
+    private Sprite _endTurnSprite = null;*/
 
     // ====================================================================================================== //
     void Start ()
     {
         WindowManager.Instance.Event_WindowLoaded += onWindowLoaded;
-        Hide();
+        gameObject.SetActive(false);
 	}
     // ====================================================================================================== //
     void Update ()
@@ -42,17 +42,22 @@ public class TurnButton : GameButton
     // triggered on WindowManager -> Event_WindowLoaded
     private void onWindowLoaded()
     {
-        this.Show();
+        gameObject.SetActive(true);
 
         if (WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.DUNGEON)) 
         {
-            _state = MultiPurposeButtonState.MELEE_ATTACK;
-            _iconRenderer.sprite = _meleeHitSprite;
+            /*_state = MultiPurposeButtonState.MELEE_ATTACK;
+            _iconRenderer.sprite = _meleeHitSprite;*/
         }
         else
         {
-            this.Hide();
+            gameObject.SetActive(false);
         }
+    }
+    // ====================================================================================================== //
+    protected override void afterClicked()
+    {
+        // TODO: implement auto turn button
     }
     // ====================================================================================================== //
 }

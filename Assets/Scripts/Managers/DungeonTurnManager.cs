@@ -2,25 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DungeonTurnManager : MonoBehaviour
+public class DungeonTurnManager : Singleton<DungeonTurnManager>
 {
-    public enum DungeonTurnState
-    {
-        NONE,
-        ENEMY_TURN,
-        PARTY_TURN,
-        ALLIES_TURN
-    }
-
-    private DungeonTurnState _state = DungeonTurnState.NONE;
-
     [SerializeField]
     private float _moveInterval = 0.75F;
     private float _timeToNextMove = 0.0F;
 
+
     private bool _creaturesTurn = true;
 
     private Position _partyTargetPosition = Position.NullPosition;
+    
+    // light weight peace mode function - get from creature turn, if no creature is chasing = peace!
+    private bool _isPartyInPeaceMode = true;
+    public bool IsPartyInPeaceMode { get { return _isPartyInPeaceMode; } } 
 
 	void Start ()
     {
@@ -29,34 +24,6 @@ public class DungeonTurnManager : MonoBehaviour
 	// ====================================================================================================== //
 	void Update ()
     {
-        // ######################################################
-        // ######################################################
-        // ######################################################
-        // TODO: delete this line - add 100 gold pieces to party
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            Bag.Instance.AddCurrency(ResourcesManager.Instance.GoldCoinPrefab, 3);
-        }
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            Bag.Instance.AddCurrency(ResourcesManager.Instance.SilverCoinPrefab, 3);
-        }
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            Bag.Instance.AddCurrency(ResourcesManager.Instance.CopperCoinPrefab, 3);
-        }
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            Bag.Instance.AddCurrency(ResourcesManager.Instance.RubyPrefab, 3);
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Bag.Instance.RemoveCopper(25);
-        }
-        // ######################################################
-        // ######################################################
-        // ######################################################
-
         // return if not in dungeon
         if (!WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.DUNGEON))
             return;
@@ -76,7 +43,9 @@ public class DungeonTurnManager : MonoBehaviour
 
         Debug.Log("Creatures turn");
 
-        foreach(Creature creature in Dungeon.Instance.GetCreatures())
+        _isPartyInPeaceMode = true;
+
+        foreach (Creature creature in Dungeon.Instance.GetCreatures())
         {
             // continue if dead
             if (!creature.IsAlive)
@@ -89,7 +58,12 @@ public class DungeonTurnManager : MonoBehaviour
 
             // continue if not chasing
             if (!creature.IsChasing)
+            {
+                creature.ResetActionUnits(); // if not chasing, fill all action points
                 continue;
+            }
+
+            _isPartyInPeaceMode = false;
 
             // cancel the travel of the party
             _partyTargetPosition = Position.NullPosition;
@@ -119,6 +93,9 @@ public class DungeonTurnManager : MonoBehaviour
 
         // end of creatures turn...
         _creaturesTurn = false;
+
+        // TODO: prepare party should be after monsters turn.. but it blinks - deal with it!
+        // preparePartyForNextTurn();
     }
     // ====================================================================================================== //
     private void playerTurn()
@@ -180,11 +157,24 @@ public class DungeonTurnManager : MonoBehaviour
     {
         Debug.Log("finish player turn");
         _creaturesTurn = true;
-        // refill action units
-        Party.Instance.FillActionUnitsForNextTurn();
-        // temp effect items - 1 turn reduction
-        foreach (Creature member in Party.Instance.Members)
-            member.ExecuteEndTurnForTemporaryEffectItem();
+        preparePartyForNextTurn();
+    }
+    // ====================================================================================================== //
+    private void preparePartyForNextTurn()
+    {
+        if (_isPartyInPeaceMode)
+        {
+            // reset action units
+            Party.Instance.ResetActionUnits();
+            // TODO: right now, temporary effect items like potions are losing turns only during battle - in peace mode it stopped decreasing
+        }
+        else
+        {
+            // refill action units for one turn
+            Party.Instance.RecoverOneTurnActionUnits();
+            // temp effect items - 1 turn reduction
+            Party.Instance.ExecuteEndTurnForTemporaryEffectItem();
+        }
     }
     // ====================================================================================================== //
     // can be move/ attack/ open door/ open chest...

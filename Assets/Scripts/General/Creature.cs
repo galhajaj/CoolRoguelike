@@ -36,6 +36,19 @@ public class Creature : DungeonObject
         set { _actionUnits = value; }
     }
 
+    public void ResetActionUnits()
+    {
+        _actionUnits = Consts.MAX_ACTION_UNITS;
+    }
+
+    public void RecoverOneTurnActionUnits()
+    {
+        _actionUnits += Consts.MAX_ACTION_UNITS;
+        // normalize to max
+        if (_actionUnits > Consts.MAX_ACTION_UNITS)
+            _actionUnits = Consts.MAX_ACTION_UNITS;
+    }
+
     // is active = has action units left
     public bool IsActive { get { return _actionUnits > 0; } }
 
@@ -134,7 +147,7 @@ public class Creature : DungeonObject
     // =================================================================================== //
     private void dieAsPartyMember()
     {
-        // TODO: implement killAsPartyMember()
+        // TODO: implement dieAsPartyMember()
     }
     // =================================================================================== //
     public void MeleeAttack(Creature target)
