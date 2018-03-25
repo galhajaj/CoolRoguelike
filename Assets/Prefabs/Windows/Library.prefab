@@ -141,8 +141,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isShownAtStart: 0
-  IsContainBackButton: 1
-  IsContainSettingsButton: 0
   IsContainTabButtons: 0
 --- !u!114 &114833239032230236
 MonoBehaviour:
@@ -157,9 +155,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sizeX: 10
   _sizeY: 1
-  _offsetX: 0
-  _offsetY: 0
-  _spacing: 5
+  _offsetX: -273
+  _offsetY: 147
+  _spacing: 4
   _invertYAxis: 0
   _elementPrefab: {fileID: 4887514840328314, guid: 88e968b94a7acc74baea766e7f634e8f,
     type: 2}
@@ -241,7 +239,7 @@ SpriteRenderer:
   m_SortingLayerID: 1200196113
   m_SortingLayer: -5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 85fb5cbcb8ab8734e8f825fab3e26ef1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 240358c0bcf273a44adeead26f0fb51c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
