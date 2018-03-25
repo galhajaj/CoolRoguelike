@@ -18,7 +18,9 @@ public class MiniatureManager : Singleton<MiniatureManager>
     void LateUpdate()
     {
         // default miniature show (in inventory it's the current selected member, otherwise - it's null)
-        if (WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.INVENTORY) || WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.CHARACTER_SHEET))
+        if (WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.INVENTORY) 
+            || WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.CHARACTER_SHEET)
+            || WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.UNIVERSITY))
         {
             ShowCreature(Party.Instance.SelectedMember);
             return;

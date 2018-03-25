@@ -8,6 +8,7 @@ public class Window : MonoBehaviour
     private bool _isShownAtStart = false;
 
     public bool IsContainTabButtons = true;
+    public bool IsContainPortraits = true;
 
     private Vector2 _hidePosition; // original position
 
@@ -37,5 +38,7 @@ public class Window : MonoBehaviour
 
         // set buttons
         ButtonManager.Instance.SetTabButtonsVisibility(this.IsContainTabButtons);
+        // set portraits
+        ButtonManager.Instance.SetPortraitsVisibility(this.IsContainPortraits);
     }
 }

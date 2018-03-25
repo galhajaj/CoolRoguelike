@@ -5,9 +5,9 @@ using UnityEngine;
 public class ButtonManager : Singleton<ButtonManager>
 {
     [SerializeField]
-    private GameObject _settingsButton = null;
+    private GameObject _portarits = null;
     [SerializeField]
-    private GameObject _tabButtons = null; // inventory, characterSheet & group
+    private GameObject _tabButtons = null; // inventory, characterSheet, group, settings & treasure bag
 
     void Start ()
     {
@@ -19,21 +19,13 @@ public class ButtonManager : Singleton<ButtonManager>
 		
 	}
 
-    public void SetSettingsButtonVisibility(bool isVisible)
+    public void SetPortraitsVisibility(bool isVisible)
     {
-        _settingsButton.SetActive(isVisible);
+        _portarits.SetActive(isVisible);
     }
 
     public void SetTabButtonsVisibility(bool isVisible)
     {
         _tabButtons.SetActive(isVisible);
-    }
-
-    public void ActivateAllTabButtons()
-    {
-        foreach (Transform buttonTransform in _tabButtons.transform)
-        {
-            buttonTransform.GetComponent<GameButton>().IsActive = true;
-        }
     }
 }
