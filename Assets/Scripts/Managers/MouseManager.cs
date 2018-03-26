@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CursorManager : Singleton<CursorManager>
+public class MouseManager : Singleton<MouseManager>
 {
     [SerializeField]
     private Texture2D _defaultCursor = null;
@@ -22,24 +22,19 @@ public class CursorManager : Singleton<CursorManager>
     // TODO: cursor manager to work with events rather than update...
     void Update()
     {
-        /*if (Party.Instance.SelectedMember.SelectedPocketItem != null)
+        if (Party.Instance.SelectedMember.SelectedPocketItem != null)
         {
-            setCursorLala(_selectedPocketItemCursor);
+            setCursor(_selectedPocketItemCursor);
         }
         else
         {
-            setCursorLala(_defaultCursor);
-        }*/
+            setCursor(_defaultCursor);
+        }
     }
     // ====================================================================================================== //
-    private void setCursor(Sprite sprite)
+    private void setCursor(Texture2D texture)
     {
-        Cursor.SetCursor(sprite.texture, Vector2.zero, CursorMode.ForceSoftware);
-    }
-    // ====================================================================================================== //
-    private void setCursorLala(Texture2D texture)
-    {
-        Cursor.SetCursor(texture, Vector2.zero, CursorMode.Auto);
+        Cursor.SetCursor(texture, Vector2.zero, CursorMode.ForceSoftware);
     }
     // ====================================================================================================== //
 }
