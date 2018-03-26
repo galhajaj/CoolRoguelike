@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class LibraryBook : GameButton
 {
+    public override string Description
+    {
+        get
+        {
+            return DungeonName;
+        }
+    }
+
     public string DungeonName;
 
     protected override void beforeClicked()

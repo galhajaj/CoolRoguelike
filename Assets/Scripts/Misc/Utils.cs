@@ -140,11 +140,11 @@ public class Utils
     // =========================================================================================== //
     public static T GetObjectUnderCursor<T>(params string[] layers)
     {
-        if (layers.Length <= 0)
+        /*if (layers.Length <= 0)
         {
             Debug.LogError("GetRaycastHitUnderCursor function should contain at least one layer");
             return default(T);
-        }
+        }*/
 
         LayerMask layerMask = 0;
         foreach (string layer in layers)

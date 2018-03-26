@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212687960432249592}
   - component: {fileID: 61073563932722352}
   - component: {fileID: 114129134314057706}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BorrowedBookButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 212205007428897296}
   - component: {fileID: 61383188278052920}
   - component: {fileID: 114685297411671612}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: GroupButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 212479814788008354}
   - component: {fileID: 114056435838594954}
   - component: {fileID: 61260987824080954}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: GoldSack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 212997444244907102}
   - component: {fileID: 61242351665721034}
   - component: {fileID: 114851389900745374}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: InventoryButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 212600449202174466}
   - component: {fileID: 61524742041920496}
   - component: {fileID: 114347969109148954}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: CharacterButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 212258008873967366}
   - component: {fileID: 61013218951030176}
   - component: {fileID: 114909157152197748}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: SettingsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1977464815710610}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -34, y: -128, z: 0}
+  m_LocalPosition: {x: 207, y: -128, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4462453463359084}
@@ -246,7 +246,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1799538939446724}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -91, y: -128, z: 0}
+  m_LocalPosition: {x: 150, y: -128, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4462453463359084}
@@ -274,7 +274,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1834498910156630}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -145, y: -128, z: 0}
+  m_LocalPosition: {x: 96, y: -128, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4462453463359084}
@@ -287,7 +287,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1932674857895412}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -118, y: -128, z: 0}
+  m_LocalPosition: {x: 123, y: -128, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4462453463359084}
@@ -513,6 +513,7 @@ MonoBehaviour:
   _buttonDownColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   _buttonInactiveColor: {r: 1, g: 0, b: 0, a: 1}
   _loadWindowOnClick: Bag
+  _description: Treasure
 --- !u!114 &114129134314057706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -528,6 +529,7 @@ MonoBehaviour:
   _buttonDownColor: {r: 1, g: 1, b: 1, a: 1}
   _buttonInactiveColor: {r: 1, g: 1, b: 1, a: 1}
   _loadWindowOnClick: OpenBook
+  _description: Current Adventure Book
 --- !u!114 &114347969109148954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -543,6 +545,7 @@ MonoBehaviour:
   _buttonDownColor: {r: 1, g: 1, b: 1, a: 1}
   _buttonInactiveColor: {r: 1, g: 1, b: 1, a: 1}
   _loadWindowOnClick: CharacterSheet
+  _description: Character Sheet
 --- !u!114 &114569224156342368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -583,6 +586,7 @@ MonoBehaviour:
   _buttonDownColor: {r: 1, g: 1, b: 1, a: 1}
   _buttonInactiveColor: {r: 1, g: 1, b: 1, a: 1}
   _loadWindowOnClick: Group
+  _description: Party Settings
 --- !u!114 &114851389900745374
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -598,6 +602,7 @@ MonoBehaviour:
   _buttonDownColor: {r: 1, g: 1, b: 1, a: 1}
   _buttonInactiveColor: {r: 1, g: 1, b: 1, a: 1}
   _loadWindowOnClick: Inventory
+  _description: Inventory
 --- !u!114 &114909157152197748
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -613,6 +618,7 @@ MonoBehaviour:
   _buttonDownColor: {r: 1, g: 1, b: 1, a: 1}
   _buttonInactiveColor: {r: 1, g: 1, b: 1, a: 1}
   _loadWindowOnClick: Settings
+  _description: Game Settings
 --- !u!212 &212205007428897296
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -645,7 +651,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1756370125
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300006, guid: 4f28ea595c9fee04cb567493ac7b475d, type: 3}
   m_Color: {r: 0.64705884, g: 0.64705884, b: 0.64705884, a: 1}
@@ -689,7 +695,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1756370125
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4f28ea595c9fee04cb567493ac7b475d, type: 3}
   m_Color: {r: 0.64705884, g: 0.64705884, b: 0.64705884, a: 1}
@@ -733,7 +739,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1756370125
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: dbeda6a64dac8d7408161d872234a497, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -777,7 +783,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1756370125
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300002, guid: 4f28ea595c9fee04cb567493ac7b475d, type: 3}
   m_Color: {r: 0.64705884, g: 0.64705884, b: 0.64705884, a: 1}
@@ -821,7 +827,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1756370125
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 9f4dfb8b4f0285d45895279318f5c341, type: 3}
   m_Color: {r: 0.64705884, g: 0.64705884, b: 0.64705884, a: 1}
@@ -865,7 +871,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1756370125
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300004, guid: 4f28ea595c9fee04cb567493ac7b475d, type: 3}
   m_Color: {r: 0.64705884, g: 0.64705884, b: 0.64705884, a: 1}

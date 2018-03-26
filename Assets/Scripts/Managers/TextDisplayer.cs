@@ -30,6 +30,9 @@ public class TextDisplayer : Singleton<TextDisplayer>
         showCreatureDetails();
         showPartyMemberDetails();
         showItemDetails();
+
+        _descriptionLine.text = "";
+        showButtonDescription();
     }
     // ====================================================================================================== //
     public void SetMainCaption(string text)
@@ -96,6 +99,15 @@ public class TextDisplayer : Singleton<TextDisplayer>
         {
             _sideBarText.text += obj.Key.ToString() + ": " + obj.Value.ToString() + "\n";
         }
+    }
+    // ====================================================================================================== //
+    private void showButtonDescription()
+    {
+        GameButton gameButton = Utils.GetObjectUnderCursor<GameButton>("GameButton");
+        if (gameButton == null)
+            return;
+
+        _descriptionLine.text = gameButton.Description;
     }
     // ====================================================================================================== //
     // ########################################################################################

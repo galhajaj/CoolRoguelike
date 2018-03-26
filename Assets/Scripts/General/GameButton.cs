@@ -32,6 +32,10 @@ public class GameButton : MonoBehaviour
 
     private bool _isMouseDownOnMe = false;
 
+    [SerializeField]
+    private string _description = "";
+    public virtual string Description { get { return _description; } } 
+
     // ====================================================================================================== //
     void Awake()
     {

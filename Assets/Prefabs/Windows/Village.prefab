@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 212164907571306402}
   - component: {fileID: 61473673341080184}
   - component: {fileID: 114437030818040680}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Library
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 212470193541296628}
   - component: {fileID: 61725777765441970}
   - component: {fileID: 114443457355468194}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: University
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ MonoBehaviour:
   _buttonDownColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   _buttonInactiveColor: {r: 1, g: 0, b: 0, a: 1}
   _loadWindowOnClick: Library
-  LoadDungeonOnClick: 
+  _description: Library
 --- !u!114 &114443457355468194
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -230,7 +230,7 @@ MonoBehaviour:
   _buttonDownColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   _buttonInactiveColor: {r: 1, g: 0, b: 0, a: 1}
   _loadWindowOnClick: University
-  LoadDungeonOnClick: 
+  _description: University
 --- !u!212 &212009928266705144
 SpriteRenderer:
   m_ObjectHideFlags: 1

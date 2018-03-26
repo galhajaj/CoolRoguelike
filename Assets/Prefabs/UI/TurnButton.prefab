@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212447286500910210}
   - component: {fileID: 114376716345500874}
   - component: {fileID: 61987516241203926}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: TurnButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4732804143928180}
   - component: {fileID: 212304104216756408}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ MonoBehaviour:
   _buttonDownColor: {r: 1, g: 1, b: 1, a: 1}
   _buttonInactiveColor: {r: 1, g: 1, b: 1, a: 1}
   _loadWindowOnClick: 
-  LoadDungeonOnClick: 
+  _description: Auto-Attack
 --- !u!212 &212304104216756408
 SpriteRenderer:
   m_ObjectHideFlags: 1

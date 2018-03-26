@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 212720872950618412}
   - component: {fileID: 61921744408859820}
   - component: {fileID: 114808125301462168}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,9 +217,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isShownAtStart: 0
-  IsContainBackButton: 1
-  IsContainSettingsButton: 0
   IsContainTabButtons: 0
+  IsContainPortraits: 1
 --- !u!114 &114808125301462168
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -235,8 +234,8 @@ MonoBehaviour:
   _buttonDownColor: {r: 1, g: 0.72794116, b: 0.72794116, a: 1}
   _buttonInactiveColor: {r: 1, g: 0.7294118, b: 0.7294118, a: 1}
   _loadWindowOnClick: 
-  LoadDungeonOnClick: 
-  _type: 0
+  _description: Back
+  Type: 0
 --- !u!114 &114830152651348200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -327,7 +326,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1756370125
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 93766d8bae40c2b42a988ee7be7cc151, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
