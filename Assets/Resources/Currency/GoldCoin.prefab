@@ -92,8 +92,9 @@ MonoBehaviour:
     _Keys: 000000000000000000000000
     _Values: 000000000000000000000000
   SocketType: 0
-  Type: 14
+  Type: 15
   ValueInCopper: 100
+  Projectile: {fileID: 0}
   _state: 0
 --- !u!212 &212621294614729454
 SpriteRenderer:
