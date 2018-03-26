@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4887514840328314}
   - component: {fileID: 212438692699223696}
   - component: {fileID: 61401083709636946}
+  - component: {fileID: 114807329763713860}
   - component: {fileID: 114677254213240748}
-  - component: {fileID: 114690705246563624}
   m_Layer: 0
   m_Name: LibraryBook
   m_TagString: Untagged
@@ -109,10 +109,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad2dfc93c58d5d4493c70ad8e468d69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PosX: 0
-  PosY: 0
-  Index: 0
---- !u!114 &114690705246563624
+  _mouseOverColor: {r: 1, g: 0.9843137, b: 0.8, a: 1}
+  _buttonDownColor: {r: 1, g: 1, b: 1, a: 1}
+  _buttonInactiveColor: {r: 1, g: 1, b: 1, a: 1}
+  _loadWindowOnClick: OpenBook
+  DungeonName: 
+--- !u!114 &114807329763713860
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -120,14 +122,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1044855202786912}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b1d09fecaa88c54e96302d2bf4d3443, type: 3}
+  m_Script: {fileID: 11500000, guid: 04bdcd60eba66094f98d11ac6c538772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mouseOverColor: {r: 1, g: 0.9841809, b: 0.8014706, a: 1}
-  _buttonDownColor: {r: 1, g: 1, b: 1, a: 1}
-  _buttonInactiveColor: {r: 1, g: 1, b: 1, a: 1}
-  _loadWindowOnClick: 
-  LoadDungeonOnClick: 
+  PosX: 0
+  PosY: 0
+  Index: 0
 --- !u!212 &212438692699223696
 SpriteRenderer:
   m_ObjectHideFlags: 1

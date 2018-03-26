@@ -18,7 +18,7 @@ public class Library : Singleton<Library>
         {
             string dungeonName = SaveAndLoad.Instance.PlayerSaveData.Dungeons[i].Name;
             Debug.Log(dungeonName + " Loaded to book...");
-            _grid.GetElement(i).GetComponent<GameButton>().LoadDungeonOnClick = dungeonName;
+            _grid.GetElement(i).GetComponent<LibraryBook>().DungeonName = dungeonName;
         }
     }
 }

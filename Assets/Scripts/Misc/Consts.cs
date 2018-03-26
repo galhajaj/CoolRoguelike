@@ -12,6 +12,8 @@ public static class Consts
     public static readonly string SAVE_FILES_PATH = @"c:/temp/Saves"; // change location and name to be for the current player
     public static readonly string DUNGEON_FILES_PATH = @"c:/temp/Dungeons"; // change location and name to be for the current player
 
+    public static readonly string FIRST_DEFAULT_DUNGEON_NAME = "a";
+
     // windows names
     public struct WindowNames
     {
@@ -21,6 +23,7 @@ public static class Consts
         public static readonly string INVENTORY         = "Inventory";
         public static readonly string BAG               = "Bag";
         public static readonly string LIBRARY           = "Library";
+        public static readonly string OPEN_BOOK         = "OpenBook";
         public static readonly string CHARACTER_SHEET   = "CharacterSheet";
         public static readonly string UNIVERSITY        = "University";
     }

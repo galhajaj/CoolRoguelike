@@ -6,6 +6,7 @@ using UnityEngine;
 public class WindowManager : Singleton<WindowManager>
 {
     public event Action Event_WindowLoaded;
+    public event Action Event_BeforeWindowLoaded;
 
     // the position where the selected window move to be shown
     [SerializeField]
@@ -34,7 +35,7 @@ public class WindowManager : Singleton<WindowManager>
     // ====================================================================================================== //
     public void LoadWindow(string name)
     {
-        Window selectedWindow = getWindowByName(name);
+        Window selectedWindow = GetWindowByName(name);
 
         // check exist
         if (selectedWindow == null)
@@ -43,16 +44,19 @@ public class WindowManager : Singleton<WindowManager>
             return;
         }
 
-        // hide all & show selected
-        hideAllWindows();
-        selectedWindow.Show();
-
         // update previous window name
         if (name != _currentWindowName) // prevent stuck in window
             _previousWindowName = _currentWindowName;
 
         // update current window name
         _currentWindowName = name;
+
+        // raise before window loaded event
+        Event_BeforeWindowLoaded();
+
+        // hide all & show selected
+        hideAllWindows();
+        selectedWindow.Show();
 
         // raise window loaded event
         Event_WindowLoaded();
@@ -64,11 +68,11 @@ public class WindowManager : Singleton<WindowManager>
     }
     // ====================================================================================================== //
     // if window not contain the tab buttons, the back button will load the previous window
-    public bool IsCurrentWindowIsModal()
+    /*public bool IsCurrentWindowIsModal()
     {
-        Window currentWindow = getWindowByName(_currentWindowName);
+        Window currentWindow = GetWindowByName(_currentWindowName);
         return !currentWindow.IsContainTabButtons;
-    }
+    }*/
     // ====================================================================================================== //
     private void hideAllWindows()
     {
@@ -76,7 +80,7 @@ public class WindowManager : Singleton<WindowManager>
             window.Hide();
     }
     // ====================================================================================================== //
-    private Window getWindowByName(string name)
+    public Window GetWindowByName(string name)
     {
         Window window = null;
         for (int i = 0; i < _windows.Count; ++i)

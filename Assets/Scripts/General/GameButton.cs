@@ -16,8 +16,6 @@ public class GameButton : MonoBehaviour
     [SerializeField]
     private string _loadWindowOnClick = "";
 
-    public string LoadDungeonOnClick = "";
-
     private bool _isActive = true;
     public bool IsActive
     {
@@ -107,6 +105,9 @@ public class GameButton : MonoBehaviour
     // ====================================================================================================== //
     private void clicked()
     {
+        // trigger virtual function beforeClicked
+        beforeClicked();
+
         // back to original color
         _spriteRenderer.color = _originalColor;
 
@@ -126,16 +127,14 @@ public class GameButton : MonoBehaviour
                 WindowManager.Instance.LoadWindow(_loadWindowOnClick);
             }
         }
-        // load dungeon
-        if (LoadDungeonOnClick != "")
-        {
-            Debug.Log("Loading " + LoadDungeonOnClick + "...");
-            Dungeon.Instance.Load(LoadDungeonOnClick);
-            WindowManager.Instance.LoadWindow(Consts.WindowNames.DUNGEON);
-        }
 
         // trigger virtual function afterClicked
         afterClicked();
+    }
+    // ====================================================================================================== //
+    protected virtual void beforeClicked()
+    {
+
     }
     // ====================================================================================================== //
     protected virtual void afterClicked()
