@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class BookPage : GameButton
 {
+    public int PageNumber;
+
     protected override void afterClicked()
     {
-        // TODO: implement clicking on page to turn to page...
+        OpenBook.Instance.DisplayPage(PageNumber);
     }
 }

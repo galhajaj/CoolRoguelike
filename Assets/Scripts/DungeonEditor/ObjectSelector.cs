@@ -41,6 +41,8 @@ public class ObjectSelector : Singleton<ObjectSelector>
         else if (_objectsFolderName == "Creatures")
             _objectsFolderName = "Treasures";
         else if (_objectsFolderName == "Treasures")
+            _objectsFolderName = "BookPages";
+        else if (_objectsFolderName == "BookPages")
             _objectsFolderName = "Stuff";
 
         Debug.Log("Loading " + _objectsFolderName);

@@ -73,7 +73,8 @@ public enum ItemType
     SCROLL,
     CURRENCY,
     THROWING_AMMO,
-    THROWING_POTION
+    THROWING_POTION,
+    BOOK_PAGE
 }
 
 public enum ItemCondition

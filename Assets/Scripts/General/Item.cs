@@ -61,6 +61,15 @@ public class Item : DungeonObject
 
     private void setItemSpriteAndSortingLayer()
     {
+        // TODO: quick fix... should be here? book page sprite will be as original sprite on ground
+        if (Type == ItemType.BOOK_PAGE)
+        {
+            _spriteRenderer.sprite = _originalSprite;
+            _spriteRenderer.sortingLayerName = "ItemOnGround";
+            _spriteRenderer.sortingOrder = 0;
+            return;
+        }
+
         if (_state == ItemState.GROUND)
         {
             _spriteRenderer.sprite = ResourcesManager.Instance.LootOnGroundSprite;

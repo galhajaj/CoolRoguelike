@@ -282,7 +282,14 @@ public class DungeonTurnManager : Singleton<DungeonTurnManager>
         DungeonTile partyTile = Dungeon.Instance.GetTile(Party.Instance.Position);
 
         foreach (Item item in partyTile.Items)
-            Inventory.Instance.AddItem(item);
+        {
+
+            // if book page - go straight to the library, otherwise - pick it up!
+            if (item.Type == ItemType.BOOK_PAGE) 
+                Library.Instance.AddPageItem(item); 
+            else
+                Inventory.Instance.AddItem(item); 
+        }
     }
     // ====================================================================================================== //
     private void checkShootButton()
