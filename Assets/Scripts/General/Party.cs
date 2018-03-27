@@ -82,8 +82,6 @@ public class Party : Singleton<Party>
         }
     }
 
-    public string BorrowedBookName = "a";
-
     [SerializeField]
     private DungeonObject _dungeonObject = null;
     public DungeonObject DungeonObject { get { return _dungeonObject; } }
