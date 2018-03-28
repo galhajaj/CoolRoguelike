@@ -141,8 +141,17 @@ MonoBehaviour:
   _canWalkCursor: {fileID: 2800000, guid: 3bd99fe838e95c54cac297e2f66a65c0, type: 3}
   _canPickupCursor: {fileID: 2800000, guid: c80f5377452f4304da2e650896f8936c, type: 3}
   _canUseStairsCursor: {fileID: 2800000, guid: 5fd3ec3d8cfd8be44a722290897b3a97, type: 3}
+  _canWalkNorthCursor: {fileID: 2800000, guid: b5a727377804214488122af3d298689b, type: 3}
+  _canWalkSouthCursor: {fileID: 2800000, guid: 0a3f0e1190fa72148b5be7f69f2e0090, type: 3}
+  _canWalkWestCursor: {fileID: 2800000, guid: 628e1e0a4218dd74091609cd3d2fc967, type: 3}
+  _canWalkEastCursor: {fileID: 2800000, guid: 133fdd144d72eca4c9d8668e25ec4974, type: 3}
+  _canWalkVillageCursor: {fileID: 2800000, guid: 3c47269efef39c448a19c96001a0886d,
+    type: 3}
   DungeonTileUnderMouse: {fileID: 0}
   CreatureUnderMouse: {fileID: 0}
+  pocketUnderMouse: {fileID: 0}
+  ItemInPocketUnderMouse: {fileID: 0}
+  PortraitUnderMouse: {fileID: 0}
 --- !u!114 &114733686210903188
 MonoBehaviour:
   m_ObjectHideFlags: 1

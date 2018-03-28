@@ -20,6 +20,11 @@ public enum MouseState
     CAN_DRAG,
     DRAGGING,
     CAN_WALK,
+    CAN_WALK_NORTH,
+    CAN_WALK_SOUTH,
+    CAN_WALK_WEST,
+    CAN_WALK_EAST,
+    CAN_WALK_VILLAGE,
     CAN_PICKUP,
     CAN_USE_STAIRS,
     CAN_DRINK,
@@ -45,6 +50,16 @@ public class MouseManager : Singleton<MouseManager>
     private Texture2D _canPickupCursor = null;
     [SerializeField]
     private Texture2D _canUseStairsCursor = null;
+    [SerializeField]
+    private Texture2D _canWalkNorthCursor = null;
+    [SerializeField]
+    private Texture2D _canWalkSouthCursor = null;
+    [SerializeField]
+    private Texture2D _canWalkWestCursor = null;
+    [SerializeField]
+    private Texture2D _canWalkEastCursor = null;
+    [SerializeField]
+    private Texture2D _canWalkVillageCursor = null;
 
     // objects under mouse
     [Header("Objects Under Mouse")]
@@ -181,8 +196,23 @@ public class MouseManager : Singleton<MouseManager>
                                 // tile contain stairs
                                 if (DungeonTileUnderMouse.IsPortal)
                                     return MouseState.CAN_USE_STAIRS;
+                                // tile in origin area & on border
+                                if (Dungeon.Instance.IsInOriginArea && DungeonTileUnderMouse.Position.IsBorder)
+                                    return MouseState.CAN_WALK_VILLAGE;
+                                // tile on north border
+                                if (DungeonTileUnderMouse.Position.IsNorthBorder)
+                                    return MouseState.CAN_WALK_NORTH;
+                                // tile on south border
+                                if (DungeonTileUnderMouse.Position.IsSouthBorder)
+                                    return MouseState.CAN_WALK_SOUTH;
+                                // tile on west border
+                                if (DungeonTileUnderMouse.Position.IsWestBorder)
+                                    return MouseState.CAN_WALK_WEST;
+                                // tile on east border
+                                if (DungeonTileUnderMouse.Position.IsEastBorder)
+                                    return MouseState.CAN_WALK_EAST;
                             }
-                            
+
                             return MouseState.CAN_WALK;
                         }
                     }
@@ -259,6 +289,21 @@ public class MouseManager : Singleton<MouseManager>
             case MouseState.CAN_WALK:
                 cursorTexture = _canWalkCursor;
                 break;
+            case MouseState.CAN_WALK_NORTH:
+                cursorTexture = _canWalkNorthCursor;
+                break;
+            case MouseState.CAN_WALK_SOUTH:
+                cursorTexture = _canWalkSouthCursor;
+                break;
+            case MouseState.CAN_WALK_WEST:
+                cursorTexture = _canWalkWestCursor;
+                break;
+            case MouseState.CAN_WALK_EAST:
+                cursorTexture = _canWalkEastCursor;
+                break;
+            case MouseState.CAN_WALK_VILLAGE:
+                cursorTexture = _canWalkVillageCursor;
+                break;
             case MouseState.CAN_PICKUP:
                 cursorTexture = _canPickupCursor;
                 break;
@@ -293,7 +338,9 @@ public class MouseManager : Singleton<MouseManager>
         if (State == MouseState.CAN_RANGED_HIT)
             Party.Instance.SelectedMember.RangedAttack(CreatureUnderMouse);
         // walk
-        if (State == MouseState.CAN_WALK || State == MouseState.CAN_PICKUP || State == MouseState.CAN_USE_STAIRS)
+        if (State == MouseState.CAN_WALK || State == MouseState.CAN_WALK_NORTH || State == MouseState.CAN_WALK_SOUTH || 
+            State == MouseState.CAN_WALK_WEST || State == MouseState.CAN_WALK_EAST || State == MouseState.CAN_PICKUP || 
+            State == MouseState.CAN_USE_STAIRS || State == MouseState.CAN_WALK_VILLAGE)
             DungeonTurnManager.Instance.PartyTargetPosition = DungeonTileUnderMouse.Position;
         // potion drink
         if (State == MouseState.CAN_DRINK)

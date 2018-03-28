@@ -202,4 +202,37 @@ public class Party : Singleton<Party>
         Dungeon.Instance.ShowArea(partyTile.LeadTo);
     }
     // ====================================================================================================== //
+    public void MoveToAdjacentAreaInPosition()
+    {
+        // return if not in border
+        if (!this.Position.IsBorder)
+            return;
+
+        // leave to town if in origin area and move behind its borders
+        if (Dungeon.Instance.IsInOriginArea)
+        {
+            WindowManager.Instance.LoadWindow(Consts.WindowNames.VILLAGE);
+            // update the location of the party to the village
+            this.Loaction = Consts.WindowNames.VILLAGE;
+        }
+        else // go to adjacent area
+        {
+            if (this.Position.IsNorthBorder)
+                Dungeon.Instance.ShowArea(Direction.NORTH);
+            else if (this.Position.IsSouthBorder)
+                Dungeon.Instance.ShowArea(Direction.SOUTH);
+            else if (this.Position.IsWestBorder)
+                Dungeon.Instance.ShowArea(Direction.WEST);
+            else if (this.Position.IsEastBorder)
+                Dungeon.Instance.ShowArea(Direction.EAST);
+
+            Position targetPosition = this.Position.CyclicPosition;
+            DungeonTile targetTile = Dungeon.Instance.GetTile(targetPosition);
+            Dungeon.Instance.PutDungeonObjectInTile(this.DungeonObject, targetTile);
+            this.PayWalkCost();
+
+            // TODO: when party move to adjacent area - handle situation where the place is blocked or contain monster
+        }
+    }
+    // ====================================================================================================== //
 }

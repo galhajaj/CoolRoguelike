@@ -141,13 +141,15 @@ public class DungeonTurnManager : Singleton<DungeonTurnManager>
                     {
                         _partyTargetPosition = Position.NullPosition;
 
-                        // if in peace mode - collect loot or use stairs
+                        // if in peace mode - [collect loot] or [use stairs] or [move between areas]
                         if (IsPartyInPeaceMode)
                         {
                             // pickup
                             Party.Instance.PickupItemsInPosition();
                             // use stairs
                             Party.Instance.UseStairsInPosition();
+                            // move to adjacent area
+                            Party.Instance.MoveToAdjacentAreaInPosition();
                         }
                     }
                 }
@@ -155,7 +157,7 @@ public class DungeonTurnManager : Singleton<DungeonTurnManager>
         }
 
         // waiting for player input
-        checkDirectionKeys();
+        //checkDirectionKeys();
         checkWaitKey();
     }
     private void playerTriggerInput()
@@ -196,7 +198,7 @@ public class DungeonTurnManager : Singleton<DungeonTurnManager>
     }
     // ====================================================================================================== //
     // can be move/ attack/ open door/ open chest...
-    private void checkDirectionKeys()
+    /*private void checkDirectionKeys()
     {
         Position targetPosition = Party.Instance.Position;
 
@@ -270,7 +272,7 @@ public class DungeonTurnManager : Singleton<DungeonTurnManager>
             Dungeon.Instance.PutDungeonObjectInTile(Party.Instance.DungeonObject, targetTile);
             Party.Instance.PayWalkCost();
         }
-    }
+    }*/
     // ====================================================================================================== //
     private void checkWaitKey()
     {

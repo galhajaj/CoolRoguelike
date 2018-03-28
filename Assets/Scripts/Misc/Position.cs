@@ -63,6 +63,12 @@ public struct Position
     public Position Origin { get { return new Position(0, 0, 0); } }
     public Position None { get { return this; } }
 
+    public bool IsBorder { get { return ((Y == 0) || (Y == Dungeon.Instance.Height - 1) || (X == 0) || (X == Dungeon.Instance.Width - 1)); } }
+    public bool IsNorthBorder { get { return (Y == 0); } }
+    public bool IsSouthBorder { get { return (Y == Dungeon.Instance.Height - 1); } }
+    public bool IsWestBorder { get { return (X == 0); } }
+    public bool IsEastBorder { get { return (X == Dungeon.Instance.Width - 1); } }
+
     public Position GetPositionInDirection(Direction direction)
     {
         if (direction == Direction.NORTH)
@@ -104,13 +110,27 @@ public struct Position
         {
             int x = X;
             int y = Y;
+            if (x == 0) x = Dungeon.Instance.Width - 1;
+            else if (x == Dungeon.Instance.Width - 1) x = 0;
+            if (y == 0) y = Dungeon.Instance.Height - 1;
+            else if (y == Dungeon.Instance.Height - 1) y = 0;
+            return new Position(x, y);
+        }
+    }
+
+    /*public Position CyclicPosition
+    {
+        get
+        {
+            int x = X;
+            int y = Y;
             if (x < 0) x = Dungeon.Instance.Width - 1;
             if (x >= Dungeon.Instance.Width) x = 0;
             if (y < 0) y = Dungeon.Instance.Height - 1;
             if (y >= Dungeon.Instance.Height) y = 0;
             return new Position(x, y);
         }
-    }
+    }*/
 
     // the correlated dungeon tile in dungeon
     public DungeonTile DungeonTile
