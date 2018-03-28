@@ -10,9 +10,15 @@ public class DungeonTurnManager : Singleton<DungeonTurnManager>
 
 
     private bool _creaturesTurn = true;
+    public bool IsPartyTurn { get { return !_creaturesTurn; } }
 
     private Position _partyTargetPosition = Position.NullPosition;
-    
+    public Position PartyTargetPosition
+    {
+        get { return _partyTargetPosition; }
+        set { _partyTargetPosition = value; }
+    }
+
     // light weight peace mode function - get from creature turn, if no creature is chasing = peace!
     private bool _isPartyInPeaceMode = true;
     public bool IsPartyInPeaceMode { get { return _isPartyInPeaceMode; } } 
@@ -146,10 +152,11 @@ public class DungeonTurnManager : Singleton<DungeonTurnManager>
         // waiting for player input
         checkUsePortalKey();
         checkPickupKey(); // TODO: merge the pickup/shoot/walk to one function
-        checkShootButton();
-        checkTravelButton();
-        checkClickOnPocketItem(); // quaff potion, use not-directed spell (buff all party or turn into a bear...) or select item in pocket
-        checkUseSelectedPocketItem(); // throw throwing potion/ammo or use magic spell on creature
+        //checkShootButton();
+        //checkMeleeHitButton();
+        //checkTravelButton();
+        //checkClickOnPocketItem(); // quaff potion, use not-directed spell (buff all party or turn into a bear...) or select item in pocket
+        //checkUseSelectedPocketItem(); // throw throwing potion/ammo or use magic spell on creature
         //checkUsePocketItemButton();
     }
     // ====================================================================================================== //
@@ -292,169 +299,74 @@ public class DungeonTurnManager : Singleton<DungeonTurnManager>
         }
     }
     // ====================================================================================================== //
-    private void checkShootButton()
+    /*private void checkMeleeHitButton()
     {
         if (!Input.GetMouseButtonDown(0))
             return;
 
-        // return if has selected pocket item
-        if (Party.Instance.SelectedMember.SelectedPocketItem != null)
-            return;
-
-        // return if not click on dungeon tile
-        LayerMask layerMask = (1 << LayerMask.NameToLayer("DungeonTile"));
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0.0F, layerMask);
-        if (hit.collider == null)
-            return;
-
-        // return if not click on monster
-        DungeonTile targetTile = hit.collider.GetComponent<DungeonTile>();
-        Creature targetCreature = targetTile.GetContainedCreature();
-        if (targetCreature == null)
-            return;
-
-        // shoot by selected party member
-        Creature member = Party.Instance.SelectedMember;
-        member.RangedAttack(targetCreature);
-
-        Debug.Log("SHOOT!!!");
-    }
+        if (MouseManager.Instance.State == MouseState.CAN_MELEE_HIT)
+            Party.Instance.SelectedMember.MeleeAttack(MouseManager.Instance.CreatureUnderMouse);
+    }*/
     // ====================================================================================================== //
-    private void checkTravelButton()
+    /*private void checkShootButton()
     {
         if (!Input.GetMouseButtonDown(0))
             return;
 
-        // return if not click on dungeon tile
-        LayerMask layerMask = (1 << LayerMask.NameToLayer("DungeonTile"));
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0.0F, layerMask);
-        if (hit.collider == null)
-            return;
-
-        // return if not click on monster
-        DungeonTile targetTile = hit.collider.GetComponent<DungeonTile>();
-        Creature targetCreature = targetTile.GetContainedCreature();
-        if (targetCreature != null)
-            return;
-
-        // set target position
-        _partyTargetPosition = targetTile.Position;
-    }
+        if (MouseManager.Instance.State == MouseState.CAN_RANGED_HIT)
+            Party.Instance.SelectedMember.RangedAttack(MouseManager.Instance.CreatureUnderMouse);
+    }*/
     // ====================================================================================================== //
-    private void checkClickOnPocketItem()
+    /*private void checkTravelButton()
     {
-        // allow left click
         if (!Input.GetMouseButtonDown(0))
             return;
 
-        // allow only in dungeon window
-        if (!WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.DUNGEON))
-            return;
-
-        // make sure click on pocket
-        Pocket pocket = Utils.GetObjectUnderCursor<Pocket>("Pocket");
-        if (pocket == null)
-            return;
-
-        // only on active pocket
-        if (pocket.Index >= Party.Instance.SelectedMember.Stats[Stat.POCKETS])
-            return;
-
-        // return if pocket is empty
-        Item itemInPocket = pocket.transform.GetComponentInChildren<Item>();
-        if (itemInPocket == null)
-            return;
-
-        // if potion - quaff it
-        if (itemInPocket.Type == ItemType.POTION_PERMANENT)
-        {
-            Party.Instance.SelectedMember.ConsumeItemFromPocket(itemInPocket);
-            return;
-        }
-        else if (itemInPocket.Type == ItemType.POTION_TEMPORARY)
-        {
-            Party.Instance.SelectedMember.ConsumeItemFromPocket(itemInPocket, true);
-            return;
-        }
-        // if scroll with no target type - activate it
-        else if (itemInPocket.Type == ItemType.SCROLL)
-        {
-            Scroll scroll = (itemInPocket as Scroll);
-            if (scroll.TargetType == Scroll.ScrollTargetType.NONE)
-            {
-                scroll.Activate();
-                return;
-            }
-        }
-
-        // otherwise - select the item, if selected already - unselect it
-        if (Party.Instance.SelectedMember.SelectedPocketItem == itemInPocket)
-        {
-            Party.Instance.SelectedMember.SelectedPocketItem = null; // unselect
-        }
-        else
-        {
-            Debug.Log("Item " + itemInPocket.name + " selected! ");
-            Party.Instance.SelectedMember.SelectedPocketItem = itemInPocket;
-        }
-    }
+        if (MouseManager.Instance.State == MouseState.CAN_WALK)
+            _partyTargetPosition = MouseManager.Instance.DungeonTileUnderMouse.Position;
+    }*/
     // ====================================================================================================== //
-    private void checkUseSelectedPocketItem()
+    /*private void checkClickOnPocketItem()
     {
-        // allow left click
         if (!Input.GetMouseButtonDown(0))
             return;
 
-        // allow only in dungeon window
-        if (!WindowManager.Instance.IsCurrentWindow(Consts.WindowNames.DUNGEON))
+        // potion drink
+        if (MouseManager.Instance.State == MouseState.CAN_DRINK)
+            Party.Instance.SelectedMember.ConsumeItemFromPocket(MouseManager.Instance.ItemInPocketUnderMouse);
+
+        // activate scroll from pocket (when no need for target)
+        if (MouseManager.Instance.State == MouseState.CAN_CAST_FROM_POCKET)
+            (MouseManager.Instance.ItemInPocketUnderMouse as Scroll).Activate();
+    }*/
+    // ====================================================================================================== //
+    /*private void checkUseSelectedPocketItem()
+    {
+        if (!Input.GetMouseButtonDown(0))
             return;
 
-        // allow if selected pocket item is not null
-        Item itemInPocket = Party.Instance.SelectedMember.SelectedPocketItem;
-        if (itemInPocket == null)
-            return;
+        Scroll selectedScroll = (Party.Instance.SelectedMember.SelectedPocketItem as Scroll);
 
-        // scroll
-        if (itemInPocket.Type == ItemType.SCROLL)
+        // activate scroll on dungeon tile
+        if (MouseManager.Instance.State == MouseState.CAN_CAST_ON_DUNGEON_TILE)
         {
-            Scroll scroll = (itemInPocket as Scroll);
-
-            // dungeon tile target
-            if (scroll.TargetType == Scroll.ScrollTargetType.DUNGEON_TILE)
-            {
-                DungeonTile tile = Utils.GetObjectUnderCursor<DungeonTile>("DungeonTile");
-                if (tile == null)
-                    return;
-                scroll.TargetDungeonTile = tile;
-                scroll.Activate();
-                return;
-            }
-            // creature target
-            else if (scroll.TargetType == Scroll.ScrollTargetType.CREATURE)
-            {
-                DungeonTile tile = Utils.GetObjectUnderCursor<DungeonTile>("DungeonTile");
-                if (tile == null)
-                    return;
-                Creature creature = tile.GetContainedCreature();
-                if (creature == null)
-                    return;
-                scroll.TargetDungeonTile = tile;
-                scroll.TargetCreature = creature;
-                scroll.Activate();
-                return;
-            }
-            // party member target
-            else if (scroll.TargetType == Scroll.ScrollTargetType.PARTY_MEMBER)
-            {
-                Portrait portrait = Utils.GetObjectUnderCursor<Portrait>("Portrait");
-                if (portrait == null)
-                    return;
-                scroll.TargetCreature = portrait.Creature;
-                scroll.Activate();
-                return;
-            }
+            selectedScroll.TargetDungeonTile = MouseManager.Instance.DungeonTileUnderMouse;
+            selectedScroll.Activate();
         }
-    }
+        // activate scroll on creature
+        if (MouseManager.Instance.State == MouseState.CAN_CAST_ON_CREATURE)
+        {
+            selectedScroll.TargetDungeonTile = MouseManager.Instance.DungeonTileUnderMouse;
+            selectedScroll.TargetCreature = MouseManager.Instance.CreatureUnderMouse;
+            selectedScroll.Activate();
+        }
+        // activate scroll on party member
+        if (MouseManager.Instance.State == MouseState.CAN_CAST_ON_PORTRAIT)
+        {
+            selectedScroll.TargetCreature = MouseManager.Instance.PortraitUnderMouse.Creature;
+            selectedScroll.Activate();
+        }
+    }*/
     // ====================================================================================================== //
     private void openDoor(DungeonTile targetTile)
     {

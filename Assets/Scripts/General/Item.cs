@@ -24,6 +24,8 @@ public class Item : DungeonObject
 
     public GameObject Projectile;
 
+    public int NumberOfTurnsToExpire = -1; // -1 its the default for no expiration date
+
     [SerializeField]
     private ItemState _state = ItemState.GROUND;
     public ItemState State

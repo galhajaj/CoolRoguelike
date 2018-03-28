@@ -36,6 +36,9 @@ public class Portrait : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (MouseManager.Instance.State != MouseState.DEFAULT)
+            return;
+
         if (_creature.IsActive)
             Party.Instance.SelectedMember = _creature;
     }

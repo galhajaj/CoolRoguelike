@@ -133,10 +133,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultCursor: {fileID: 2800000, guid: 32f0044aac71cf94b822dfd1b90332e1, type: 3}
-  _selectedPocketItemCursor: {fileID: 2800000, guid: c9041ac93dbe87343a6ff69aa7567304,
-    type: 3}
-  _rangedCursor: {fileID: 2800000, guid: e59dd2d95ee0c5442a3393d83dda957d, type: 3}
-  _meleeCursor: {fileID: 2800000, guid: d95336ab9f3a3a7489fd54b3148a74ee, type: 3}
+  _waitingCursor: {fileID: 2800000, guid: 28e43fa5be907d942a9e7e7fd19116c8, type: 3}
+  _canRangedHitCursor: {fileID: 2800000, guid: e59dd2d95ee0c5442a3393d83dda957d, type: 3}
+  _canMeleeHitCursor: {fileID: 2800000, guid: d95336ab9f3a3a7489fd54b3148a74ee, type: 3}
+  _cannotCastCursor: {fileID: 2800000, guid: adc383e7d45fa554aac05cff7babe984, type: 3}
+  _canCastCursor: {fileID: 2800000, guid: c9041ac93dbe87343a6ff69aa7567304, type: 3}
+  _canWalkCursor: {fileID: 2800000, guid: 3bd99fe838e95c54cac297e2f66a65c0, type: 3}
+  _canPickupCursor: {fileID: 2800000, guid: c80f5377452f4304da2e650896f8936c, type: 3}
+  _canUseStairsCursor: {fileID: 2800000, guid: 5fd3ec3d8cfd8be44a722290897b3a97, type: 3}
+  DungeonTileUnderMouse: {fileID: 0}
+  CreatureUnderMouse: {fileID: 0}
 --- !u!114 &114733686210903188
 MonoBehaviour:
   m_ObjectHideFlags: 1

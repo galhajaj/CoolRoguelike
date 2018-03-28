@@ -46,16 +46,6 @@ public class PocketManager : Singleton<PocketManager>
                     member.RemoveItemFromPockets(item);
             }
         }
-            
-
-        // mark selected pocket
-        /*foreach (GridElement pocket in _pocketGrid.Elements)
-        {
-            pocket.transform.Find("Frame").GetComponent<SpriteRenderer>().enabled =
-                (pocket.Index == Party.Instance.SelectedMember.SelectedPocketIndex && // the selected
-                pocket.Index < Party.Instance.SelectedMember.Stats[Stat.POCKETS])  // in exist pockets
-                ? true : false;
-        }*/
     }
     // ====================================================================================================== //
 }

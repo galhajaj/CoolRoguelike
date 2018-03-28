@@ -56,6 +56,18 @@ public class Creature : DungeonObject
     public int MeleeAttackCost { get { return Consts.MAX_ACTION_UNITS; } }
     public int RangedAttackCost { get { return Consts.MAX_ACTION_UNITS; } }
 
+    // can shoot?
+    // TODO: add check if ammo type in quiver is fit to the ranged weapon
+    public bool IsCanShoot
+    {
+        get
+        {
+            if (_equippedItems.ContainsKey(SocketType.RANGED) && _equippedItems.ContainsKey(SocketType.AMMO))
+                return (_equippedItems[SocketType.RANGED] != null && _equippedItems[SocketType.AMMO] != null);
+            return false;
+        }
+    }
+
     [SerializeField]
     private int _xPReward = 0;
 
@@ -172,13 +184,6 @@ public class Creature : DungeonObject
     // =================================================================================== //
     public void RangedAttack(Creature target)
     {
-        // return if not have ranged weapon and proper quiver
-        if (_equippedItems[SocketType.RANGED] == null)
-            return;
-        if (_equippedItems[SocketType.AMMO] == null)
-            return;
-        // TODO: add check if ammo type in quiver is fit to the ranged weapon
-
         // pay action units
         this.ActionUnits -= RangedAttackCost;
 
@@ -256,7 +261,7 @@ public class Creature : DungeonObject
         Inventory.Instance.AddItem(item);
     }
     // =================================================================================== //
-    public void ConsumeItemFromPocket(Item item, bool isTemporaryEffect = false)
+    public void ConsumeItemFromPocket(Item item)
     {
         // get stats
         this.Stats += item.Stats;
@@ -266,11 +271,11 @@ public class Creature : DungeonObject
         _itemsInPockets.Remove(pocket.Index);
 
         // if temp - insert to temp effect list
-        if (isTemporaryEffect)
+        if (item.NumberOfTurnsToExpire > 0)
         {
             // if temporary effect item - move to special list where it will delete and lose effect after certain turns
             // TODO: improve formula for number of turns for temp effect item
-            int turns = 30 - this.Stats[Stat.ENDURANCE]; // set number of turns due to Endurance 
+            int turns = item.NumberOfTurnsToExpire - this.Stats[Stat.ENDURANCE]; // TODO: expiration of potions due to Endurance - re-think!
             _temporaryEffectItems[item] = turns;
             item.GetComponent<SpriteRenderer>().enabled = false;
             item.GetComponent<Collider2D>().enabled = false;

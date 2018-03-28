@@ -63,6 +63,11 @@ public class DungeonTile : GridElement
         return this.transform.GetComponentInChildren<Creature>();
     }
     // ======================================================================================================================================== //
+    public bool IsContainLoot
+    {
+        get { return this.transform.GetComponentsInChildren<Item>().Length > 0; }
+    }
+    // ======================================================================================================================================== //
     public Sprite GetImage()
     {
         foreach (DungeonObject obj in transform.GetComponentsInChildren<DungeonObject>())
