@@ -172,6 +172,17 @@ public class MouseManager : Singleton<MouseManager>
                         // tile is not blocked - walkable...
                         if (!DungeonTileUnderMouse.IsBlockPath)
                         {
+                            // in peace mode
+                            if (DungeonTurnManager.Instance.IsPartyInPeaceMode)
+                            {
+                                // tile contain loot
+                                if (DungeonTileUnderMouse.IsContainLoot)
+                                    return MouseState.CAN_PICKUP;
+                                // tile contain stairs
+                                if (DungeonTileUnderMouse.IsPortal)
+                                    return MouseState.CAN_USE_STAIRS;
+                            }
+                            
                             return MouseState.CAN_WALK;
                         }
                     }
@@ -282,7 +293,7 @@ public class MouseManager : Singleton<MouseManager>
         if (State == MouseState.CAN_RANGED_HIT)
             Party.Instance.SelectedMember.RangedAttack(CreatureUnderMouse);
         // walk
-        if (State == MouseState.CAN_WALK)
+        if (State == MouseState.CAN_WALK || State == MouseState.CAN_PICKUP || State == MouseState.CAN_USE_STAIRS)
             DungeonTurnManager.Instance.PartyTargetPosition = DungeonTileUnderMouse.Position;
         // potion drink
         if (State == MouseState.CAN_DRINK)

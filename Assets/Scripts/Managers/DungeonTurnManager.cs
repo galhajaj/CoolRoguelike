@@ -138,7 +138,18 @@ public class DungeonTurnManager : Singleton<DungeonTurnManager>
 
                     // stop when reach target
                     if (nextPosition == _partyTargetPosition)
+                    {
                         _partyTargetPosition = Position.NullPosition;
+
+                        // if in peace mode - collect loot or use stairs
+                        if (IsPartyInPeaceMode)
+                        {
+                            // pickup
+                            Party.Instance.PickupItemsInPosition();
+                            // use stairs
+                            Party.Instance.UseStairsInPosition();
+                        }
+                    }
                 }
             }
         }
@@ -150,8 +161,8 @@ public class DungeonTurnManager : Singleton<DungeonTurnManager>
     private void playerTriggerInput()
     {
         // waiting for player input
-        checkUsePortalKey();
-        checkPickupKey(); // TODO: merge the pickup/shoot/walk to one function
+        //checkUsePortalKey();
+        //checkPickupKey(); // TODO: merge the pickup/shoot/walk to one function
         //checkShootButton();
         //checkMeleeHitButton();
         //checkTravelButton();
@@ -269,7 +280,7 @@ public class DungeonTurnManager : Singleton<DungeonTurnManager>
         Party.Instance.WaitTurn();
     }
     // ====================================================================================================== //
-    private void checkUsePortalKey() // stairs etc.
+    /*private void checkUsePortalKey() // stairs etc.
     {
         if (!Input.GetKeyDown(KeyCode.Space))
             return;
@@ -279,9 +290,9 @@ public class DungeonTurnManager : Singleton<DungeonTurnManager>
             return;
 
         Dungeon.Instance.ShowArea(partyTile.LeadTo);
-    }
+    }*/
     // ====================================================================================================== //
-    private void checkPickupKey()
+    /*private void checkPickupKey()
     {
         if (!Input.GetKeyDown(KeyCode.P))
             return;
@@ -297,7 +308,7 @@ public class DungeonTurnManager : Singleton<DungeonTurnManager>
             else
                 Inventory.Instance.AddItem(item); 
         }
-    }
+    }*/
     // ====================================================================================================== //
     /*private void checkMeleeHitButton()
     {

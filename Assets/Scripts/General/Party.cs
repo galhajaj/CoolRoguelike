@@ -179,4 +179,27 @@ public class Party : Singleton<Party>
         }
     }
     // ====================================================================================================== //
+    public void PickupItemsInPosition()
+    {
+        DungeonTile partyTile = Dungeon.Instance.GetTile(this.Position);
+
+        foreach (Item item in partyTile.Items)
+        {
+            // if book page - go straight to the library, otherwise - pick it up!
+            if (item.Type == ItemType.BOOK_PAGE)
+                Library.Instance.AddPageItem(item);
+            else
+                Inventory.Instance.AddItem(item);
+        }
+    }
+    // ====================================================================================================== //
+    public void UseStairsInPosition()
+    {
+        DungeonTile partyTile = Dungeon.Instance.GetTile(this.Position);
+        if (!partyTile.IsPortal)
+            return;
+
+        Dungeon.Instance.ShowArea(partyTile.LeadTo);
+    }
+    // ====================================================================================================== //
 }
