@@ -93,10 +93,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2ba2481a92b68348b8db44727883f75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mouseOverColor: {r: 1, g: 0.9843137, b: 0.8, a: 1}
-  _buttonDownColor: {r: 1, g: 1, b: 1, a: 1}
-  _buttonInactiveColor: {r: 1, g: 1, b: 1, a: 1}
+  _mouseOverColor: {r: 0.75735295, g: 0.75735295, b: 0.75735295, a: 1}
+  _buttonDownColor: {r: 0.86764705, g: 0.86764705, b: 0.86764705, a: 1}
+  _buttonInactiveColor: {r: 1, g: 0.9907728, b: 0.88235295, a: 1}
   _loadWindowOnClick: 
+  _shortcutKey: 0
+  _description: 
+  PageNumber: 0
 --- !u!212 &212633985979634534
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -132,7 +135,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 343ebc966f5a8d849bdcedd815eef335, type: 3}
-  m_Color: {r: 0.7352941, g: 0.7352941, b: 0.7352941, a: 1}
+  m_Color: {r: 0.58823526, g: 0.58823526, b: 0.58823526, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

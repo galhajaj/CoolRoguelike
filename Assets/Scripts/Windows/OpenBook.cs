@@ -32,6 +32,13 @@ public class OpenBook : Singleton<OpenBook>
     {
         BookStory bookStory = Resources.Load<BookStory>("BookStories/" + DungeonName);
         _pageText.text = bookStory.Story[pageNumber];
+
+        // inactivate selected page (and activate the others)
+        foreach (GridElement bookElement in _pagesGrid.Elements)
+        {
+            BookPage bookPage = bookElement.GetComponent<BookPage>();
+            bookPage.IsActive = (bookPage.PageNumber != pageNumber);
+        }
     }
     // ================================================================================================== //
     private void onBeforeWindowLoaded()
