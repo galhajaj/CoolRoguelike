@@ -31,7 +31,7 @@ public class OpenBook : Singleton<OpenBook>
     public void DisplayPage(int pageNumber)
     {
         BookStory bookStory = Resources.Load<BookStory>("BookStories/" + DungeonName);
-        _pageText.text = bookStory.Story[pageNumber];
+        _pageText.text = bookStory.Story[pageNumber - 1];
 
         // inactivate selected page (and activate the others)
         foreach (GridElement bookElement in _pagesGrid.Elements)

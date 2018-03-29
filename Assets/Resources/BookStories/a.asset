@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Name: a
   m_EditorClassIdentifier: 
   Story:
-  - 0
-  - 1
-  - 2
-  - 3
-  - 4
-  - 5
-  - 6
+  - Once upon a time there was a dog!
+  - The dog was happy
+  - Until one day he didn't get food
+  - And then he turned to cat
+  - And as a cat he could catch its own food
+  - And suddenly, the food ate the cat
+  - And the cat turned to dog again
   - 7
   - 8
   - 9

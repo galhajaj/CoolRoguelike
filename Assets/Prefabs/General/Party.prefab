@@ -344,7 +344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amplitude: 0.2
-  frequency: 3
+  frequency: 5
 --- !u!114 &114767849462084620
 MonoBehaviour:
   m_ObjectHideFlags: 1
