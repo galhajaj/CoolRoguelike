@@ -112,6 +112,7 @@ MonoBehaviour:
   _buttonDownColor: {r: 1, g: 1, b: 1, a: 1}
   _buttonInactiveColor: {r: 1, g: 1, b: 1, a: 1}
   _loadWindowOnClick: 
+  _shortcutKey: 97
   _description: Auto-Attack
 --- !u!212 &212304104216756408
 SpriteRenderer:

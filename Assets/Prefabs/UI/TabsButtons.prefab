@@ -513,6 +513,7 @@ MonoBehaviour:
   _buttonDownColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   _buttonInactiveColor: {r: 1, g: 0, b: 0, a: 1}
   _loadWindowOnClick: Bag
+  _shortcutKey: 116
   _description: Treasure
 --- !u!114 &114277449713269218
 MonoBehaviour:
@@ -529,6 +530,7 @@ MonoBehaviour:
   _buttonDownColor: {r: 1, g: 1, b: 1, a: 1}
   _buttonInactiveColor: {r: 1, g: 1, b: 1, a: 1}
   _loadWindowOnClick: Inventory
+  _shortcutKey: 105
   _description: Inventory
 --- !u!114 &114347969109148954
 MonoBehaviour:
@@ -545,6 +547,7 @@ MonoBehaviour:
   _buttonDownColor: {r: 1, g: 1, b: 1, a: 1}
   _buttonInactiveColor: {r: 1, g: 1, b: 1, a: 1}
   _loadWindowOnClick: CharacterSheet
+  _shortcutKey: 99
   _description: Character Sheet
 --- !u!114 &114522260570609418
 MonoBehaviour:
@@ -561,6 +564,7 @@ MonoBehaviour:
   _buttonDownColor: {r: 1, g: 1, b: 1, a: 1}
   _buttonInactiveColor: {r: 1, g: 1, b: 1, a: 1}
   _loadWindowOnClick: OpenBook
+  _shortcutKey: 98
   _description: Adventure Book
 --- !u!114 &114569224156342368
 MonoBehaviour:
@@ -602,6 +606,7 @@ MonoBehaviour:
   _buttonDownColor: {r: 1, g: 1, b: 1, a: 1}
   _buttonInactiveColor: {r: 1, g: 1, b: 1, a: 1}
   _loadWindowOnClick: Group
+  _shortcutKey: 112
   _description: Party Settings
 --- !u!114 &114909157152197748
 MonoBehaviour:
@@ -618,6 +623,7 @@ MonoBehaviour:
   _buttonDownColor: {r: 1, g: 1, b: 1, a: 1}
   _buttonInactiveColor: {r: 1, g: 1, b: 1, a: 1}
   _loadWindowOnClick: Settings
+  _shortcutKey: 27
   _description: Game Settings
 --- !u!212 &212065553807364548
 SpriteRenderer:

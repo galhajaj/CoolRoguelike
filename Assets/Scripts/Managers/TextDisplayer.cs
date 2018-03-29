@@ -128,7 +128,9 @@ public class TextDisplayer : Singleton<TextDisplayer>
         if (gameButton == null)
             return;
 
-        _descriptionLine.text = gameButton.Description;
+        string shortcutKey = gameButton.ShortcutKey == KeyCode.None ? "" : " [ " + gameButton.ShortcutKey.ToString() + " ]";
+
+        _descriptionLine.text = gameButton.Description + shortcutKey;
     }
     // ====================================================================================================== //
     // ########################################################################################

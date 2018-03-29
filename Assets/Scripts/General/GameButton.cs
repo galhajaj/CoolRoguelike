@@ -16,6 +16,10 @@ public class GameButton : MonoBehaviour
     [SerializeField]
     private string _loadWindowOnClick = "";
 
+    [SerializeField]
+    private KeyCode _shortcutKey = KeyCode.None;
+    public KeyCode ShortcutKey { get { return _shortcutKey; } }
+
     private bool _isActive = true;
     public bool IsActive
     {
@@ -51,7 +55,20 @@ public class GameButton : MonoBehaviour
     // ====================================================================================================== //
     void Update ()
     {
-        
+        checkShortcutPressed();
+    }
+    // ====================================================================================================== //
+    private void checkShortcutPressed()
+    {
+        if (!Input.GetKeyDown(_shortcutKey))
+            return;
+
+        if (!IsActive)
+            return;
+
+        clicked();
+        _isMouseDownOnMe = false;
+        Debug.Log(_shortcutKey.ToString() + " pressed!!!");
     }
     // ====================================================================================================== //
     public void Show()
