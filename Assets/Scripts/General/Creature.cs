@@ -140,7 +140,13 @@ public class Creature : DungeonObject
     {
         // distribute xp points between alive party members
         foreach (Creature member in Party.Instance.Members)
-            member.Stats[Stat.EXPERIENCE_POINTS] += _xPReward;
+        {
+            if (member.IsAlive)
+            {
+                member.Stats[Stat.EXPERIENCE_POINTS] += _xPReward;
+                TextDisplayer.Instance.AddToLogger("<color=red>" + Utils.GetCleanName(member.name) + "</color> got <color=yellow>" + _xPReward.ToString() + "</color> xp");
+            }
+        }
 
         // get last stand tile
         DungeonTile tile = this.Position.DungeonTile;
@@ -177,9 +183,8 @@ public class Creature : DungeonObject
         
         // hit
         int damage = UnityEngine.Random.Range(Stats[Stat.MIN_DAMAGE], Stats[Stat.MAX_DAMAGE] + 1);
-        target.TakeDamage(damage, DamageType.PHYSICAL);
-
         TextDisplayer.Instance.AddToLogger("<color=blue>" + Utils.GetCleanName(this.name) + "</color> hit <color=red>" + Utils.GetCleanName(target.name) + "</color> for <color=red>" + damage.ToString() + "</color> damage");
+        target.TakeDamage(damage, DamageType.PHYSICAL);
     }
     // =================================================================================== //
     public void RangedAttack(Creature target)
