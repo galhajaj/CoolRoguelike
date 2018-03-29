@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 212442535582533952}
   - component: {fileID: 114585528430528530}
   - component: {fileID: 114466778984694956}
+  - component: {fileID: 114755596567578290}
   m_Layer: 14
   m_Name: Party
   m_TagString: Untagged
@@ -331,6 +332,19 @@ MonoBehaviour:
     _Values: 04000000020000000a000000050000000800000005000000010000000600000001000000040000003c000000030000000000000001000000320000000000000000000000
   _actionUnits: 20
   _xPReward: 0
+--- !u!114 &114755596567578290
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1900597609084844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32cc9c3ee64ca4145943a3f962929adb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 0.2
+  frequency: 3
 --- !u!114 &114767849462084620
 MonoBehaviour:
   m_ObjectHideFlags: 1
