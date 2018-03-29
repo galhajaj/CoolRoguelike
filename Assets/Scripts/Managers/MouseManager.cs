@@ -20,6 +20,7 @@ public enum MouseState
     CAN_DRAG,
     DRAGGING,
     CAN_WALK,
+    CAN_WALK_TO_KILL,
     CAN_WALK_NORTH,
     CAN_WALK_SOUTH,
     CAN_WALK_WEST,
@@ -179,6 +180,11 @@ public class MouseManager : Singleton<MouseManager>
                             {
                                 return MouseState.CAN_RANGED_HIT;
                             }
+                            // selected member cannot shoot - but it can go towards the monster to kill it!
+                            else
+                            {
+                                return MouseState.CAN_WALK_TO_KILL;
+                            }
                         }
                     }
                     // no monster on the tile
@@ -289,6 +295,9 @@ public class MouseManager : Singleton<MouseManager>
             case MouseState.CAN_WALK:
                 cursorTexture = _canWalkCursor;
                 break;
+            case MouseState.CAN_WALK_TO_KILL:
+                cursorTexture = _canMeleeHitCursor;
+                break;
             case MouseState.CAN_WALK_NORTH:
                 cursorTexture = _canWalkNorthCursor;
                 break;
@@ -340,7 +349,7 @@ public class MouseManager : Singleton<MouseManager>
         // walk
         if (State == MouseState.CAN_WALK || State == MouseState.CAN_WALK_NORTH || State == MouseState.CAN_WALK_SOUTH || 
             State == MouseState.CAN_WALK_WEST || State == MouseState.CAN_WALK_EAST || State == MouseState.CAN_PICKUP || 
-            State == MouseState.CAN_USE_STAIRS || State == MouseState.CAN_WALK_VILLAGE)
+            State == MouseState.CAN_USE_STAIRS || State == MouseState.CAN_WALK_VILLAGE || State == MouseState.CAN_WALK_TO_KILL)
             DungeonTurnManager.Instance.PartyTargetPosition = DungeonTileUnderMouse.Position;
         // potion drink
         if (State == MouseState.CAN_DRINK)
