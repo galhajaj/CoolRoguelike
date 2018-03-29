@@ -10,13 +10,19 @@ public class TextDisplayer : Singleton<TextDisplayer>
     private TextMesh _descriptionLine = null;
     [SerializeField]
     private TextMesh _sideBarText = null;
+    [SerializeField]
+    private TextMesh _loggerText = null;
+
+    [SerializeField]
+    private int _loggerLinesNumber = 5;
+    private List<string> _loggerLines = new List<string>();
 
     [SerializeField]
     private int _sideBarWordWrapWidth = 25;
     // ====================================================================================================== //
     void Start ()
     {
-        //SetSideBarText("sdfsdf sdfsfdsfsdf <color=green>green</color> sdf <color=blue>sdfsdf</color> dsf sdf dsf df dsf sdfsdf dsfdfd fd df dfdfsdfsfdf dfdfdfdfdf dfdfdf dfd df df dfdfd df dfdfdf dfdfdfd dfdf df d");
+        displayLoggerLines();
     }
     // ====================================================================================================== //
     void Update ()
@@ -33,6 +39,21 @@ public class TextDisplayer : Singleton<TextDisplayer>
 
         _descriptionLine.text = "";
         showButtonDescription();
+    }
+    // ====================================================================================================== //
+    public void AddToLogger(string message)
+    {
+        while (_loggerLines.Count >= _loggerLinesNumber)
+            _loggerLines.RemoveAt(0);
+        _loggerLines.Add(message);
+        displayLoggerLines();
+    }
+    // ====================================================================================================== //
+    private void displayLoggerLines()
+    {
+        _loggerText.text = "";
+        foreach (string line in _loggerLines)
+            _loggerText.text += line + "\n";
     }
     // ====================================================================================================== //
     public void SetMainCaption(string text)

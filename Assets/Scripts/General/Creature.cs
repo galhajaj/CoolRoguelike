@@ -171,7 +171,7 @@ public class Creature : DungeonObject
         int rand = UnityEngine.Random.Range(0, 101);
         if (rand <= target.Stats[Stat.ARMOR])
         {
-            Debug.Log(this.name + " missed " + target.name);
+            TextDisplayer.Instance.AddToLogger("<color=blue>" + Utils.GetCleanName(this.name) + "</color> missed <color=red>" + Utils.GetCleanName(target.name) + "</color>");
             return;
         }
         
@@ -179,7 +179,7 @@ public class Creature : DungeonObject
         int damage = UnityEngine.Random.Range(Stats[Stat.MIN_DAMAGE], Stats[Stat.MAX_DAMAGE] + 1);
         target.TakeDamage(damage, DamageType.PHYSICAL);
 
-        Debug.Log(this.name + " hit " + target.name);
+        TextDisplayer.Instance.AddToLogger("<color=blue>" + Utils.GetCleanName(this.name) + "</color> hit <color=red>" + Utils.GetCleanName(target.name) + "</color> for <color=red>" + damage.ToString() + "</color> damage");
     }
     // =================================================================================== //
     public void RangedAttack(Creature target)
