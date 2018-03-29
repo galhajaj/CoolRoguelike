@@ -29,7 +29,7 @@ public class ProjectileManager : Singleton<ProjectileManager>
         // create projectile
         GameObject projectile = Instantiate(projectilePrefab);
         projectile.transform.position = origin;
-        projectile.transform.right = target.transform.position - transform.position;
+        projectile.transform.right = target.transform.position - origin;
         Projectile projectileScript = projectile.GetComponent<Projectile>();
         projectileScript.Target = target;
         projectileScript.MinDamage = minDamage;
