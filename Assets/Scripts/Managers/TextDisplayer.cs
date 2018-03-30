@@ -1,24 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TextDisplayer : Singleton<TextDisplayer>
 {
     [SerializeField]
-    private TextMesh _mainCaption = null;
+    private Text _mainCaption = null;
     [SerializeField]
-    private TextMesh _descriptionLine = null;
+    private Text _descriptionLine = null;
     [SerializeField]
-    private TextMesh _sideBarText = null;
+    private Text _sideBarText = null;
     [SerializeField]
-    private TextMesh _loggerText = null;
+    private Text _loggerText = null;
 
     [SerializeField]
     private int _loggerLinesNumber = 5;
     private List<string> _loggerLines = new List<string>();
-
-    [SerializeField]
-    private int _sideBarWordWrapWidth = 25;
     // ====================================================================================================== //
     void Start ()
     {
@@ -133,151 +131,4 @@ public class TextDisplayer : Singleton<TextDisplayer>
         _descriptionLine.text = gameButton.Description + shortcutKey;
     }
     // ====================================================================================================== //
-    // ########################################################################################
-    // helper functions for text mesg word wrap
-    // ########################################################################################
-    public void FitToWidth(float wantedWidth, TextMesh textMesh)
-    {
-
-        //if (width <= wantedWidth) return;
-
-        string oldText = textMesh.text;
-        textMesh.text = "";
-
-        string[] lines = oldText.Split('\n');
-
-        foreach (string line in lines)
-        {
-            textMesh.text += wrapLine(line, wantedWidth, textMesh);
-            textMesh.text += "\n";
-        }
-    }
-    // ########################################################################################
-    private string wrapLine(string s, float w, TextMesh textMesh)
-    {
-        Dictionary<char, float> dict = new Dictionary<char, float>();
-
-        // need to check if smaller than maximum character length, really...
-        if (w == 0 || s.Length <= 0) return s;
-
-        char c;
-        char[] charList = s.ToCharArray();
-
-        float charWidth = 0;
-        float wordWidth = 0;
-        float currentWidth = 0;
-
-        string word = "";
-        string newText = "";
-        string oldText = textMesh.text;
-
-        for (int i = 0; i < charList.Length; i++)
-        {
-            c = charList[i];
-
-            if (dict.ContainsKey(c))
-            {
-                charWidth = (float)dict[c];
-            }
-            else
-            {
-                textMesh.text = "" + c;
-                charWidth = 5;//GetComponent<Renderer>().bounds.size.x;
-                dict.Add(c, charWidth);
-                //here check if max char length
-            }
-
-            if (c == ' ' || i == charList.Length - 1)
-            {
-                if (c != ' ')
-                {
-                    word += c.ToString();
-                    wordWidth += charWidth;
-                }
-
-                if (currentWidth + wordWidth < w)
-                {
-                    currentWidth += wordWidth;
-                    newText += word;
-                }
-                else
-                {
-                    currentWidth = wordWidth;
-                    newText += word.Replace(" ", "\n");
-                }
-
-                word = "";
-                wordWidth = 0;
-            }
-
-            word += c.ToString();
-            wordWidth += charWidth;
-        }
-
-        textMesh.text = oldText;
-        return newText;
-    }
-    // ########################################################################################
-    // Wrap text by line height
-    private string WrapText(string input, int lineLength)
-    {
-
-        // Split string by char " "         
-        string[] words = input.Split(" "[0]);
-
-        // Prepare result
-        string result = "";
-
-        // Temp line string
-        string line = "";
-
-        // for each all words        
-        foreach (string s in words)
-        {
-            // Append current word into line
-            string temp = line + " " + s;
-
-            // If line length is bigger than lineLength
-            if (temp.Length > lineLength)
-            {
-
-                // Append current line into result
-                result += line + "\n";
-                // Remain word append into new line
-                line = s;
-            }
-            // Append current word into current line
-            else
-            {
-                line = temp;
-            }
-        }
-
-        // Append last line into result        
-        result += line;
-
-        // Remove first " " char
-        return result.Substring(1, result.Length - 1);
-    }
-    // ########################################################################################
-    // great function - need to use it!
-    int CalculateLengthOfMessage(string message, TextMesh textMesh)
-    {
-        int totalLength = 0;
-
-        Font myFont = textMesh.font;  //chatText is my Text component
-        CharacterInfo characterInfo = new CharacterInfo();
-
-        char[] arr = message.ToCharArray();
-
-        foreach (char c in arr)
-        {
-            myFont.GetCharacterInfo(c, out characterInfo, textMesh.fontSize);
-
-            totalLength += characterInfo.advance;
-        }
-
-        return totalLength;
-    }
-    // ########################################################################################
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OpenBook : Singleton<OpenBook>
 {
@@ -10,7 +11,7 @@ public class OpenBook : Singleton<OpenBook>
     private GenericGrid _pagesGrid = null;
 
     [SerializeField]
-    private TextMesh _pageText = null;
+    private Text _pageText = null;
 
     [SerializeField]
     private GoToAdventureButton _goToAdventureButton = null;
