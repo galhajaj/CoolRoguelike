@@ -29,6 +29,7 @@ public enum MouseState
     CAN_PICKUP,
     CAN_USE_STAIRS,
     CAN_DRINK,
+    CAN_SELECT_OR_UNSELECT_SOCKET
 }
 
 public class MouseManager : Singleton<MouseManager>
@@ -67,7 +68,7 @@ public class MouseManager : Singleton<MouseManager>
     [Space]
     public DungeonTile DungeonTileUnderMouse;
     public Creature CreatureUnderMouse;
-    public Pocket pocketUnderMouse;
+    public Pocket PocketUnderMouse;
     public Item ItemInPocketUnderMouse;
     public Portrait PortraitUnderMouse;
 
@@ -107,8 +108,8 @@ public class MouseManager : Singleton<MouseManager>
         
 
         // pocket & item in it
-        pocketUnderMouse = Utils.GetObjectUnderCursor<Pocket>("Pocket");
-        ItemInPocketUnderMouse = (pocketUnderMouse != null) ? pocketUnderMouse.transform.GetComponentInChildren<Item>() : null;
+        PocketUnderMouse = Utils.GetObjectUnderCursor<Pocket>("Pocket");
+        ItemInPocketUnderMouse = (PocketUnderMouse != null) ? PocketUnderMouse.transform.GetComponentInChildren<Item>() : null;
 
         // party member portrait
         PortraitUnderMouse = Utils.GetObjectUnderCursor<Portrait>("Portrait");
@@ -224,7 +225,7 @@ public class MouseManager : Singleton<MouseManager>
                     }
                 }
                 // on pocket
-                else if (pocketUnderMouse != null)
+                else if (PocketUnderMouse != null)
                 {
                     // has item in pocket
                     if (ItemInPocketUnderMouse != null)
@@ -242,6 +243,16 @@ public class MouseManager : Singleton<MouseManager>
                             {
                                 return MouseState.CAN_CAST_FROM_POCKET;
                             }
+                            // the scroll is need to be targeted
+                            else
+                            {
+                                return MouseState.CAN_SELECT_OR_UNSELECT_SOCKET;
+                            }
+                        }
+                        // otherwise, it's an item that can be selected or unselected
+                        else
+                        {
+                            return MouseState.CAN_SELECT_OR_UNSELECT_SOCKET;
                         }
                     }
                 }
@@ -321,6 +332,8 @@ public class MouseManager : Singleton<MouseManager>
                 break;
             case MouseState.CAN_DRINK:
                 break;
+            case MouseState.CAN_SELECT_OR_UNSELECT_SOCKET:
+                break;
         }
 
         Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.ForceSoftware);
@@ -332,13 +345,11 @@ public class MouseManager : Singleton<MouseManager>
             return;
 
         // select unselect pocket with item in it
-        if (State == MouseState.DEFAULT && pocketUnderMouse != null && ItemInPocketUnderMouse != null)
+        if (State == MouseState.CAN_SELECT_OR_UNSELECT_SOCKET)
         {
-            if (Party.Instance.SelectedMember.SelectedPocketItem == ItemInPocketUnderMouse)
-                Party.Instance.SelectedMember.SelectedPocketItem = null; // unselect
-            else
-                Party.Instance.SelectedMember.SelectedPocketItem = ItemInPocketUnderMouse;
-            return;
+            bool isItemAlreadySelected = (Party.Instance.SelectedMember.SelectedPocketItem == ItemInPocketUnderMouse);
+            Party.Instance.SelectedMember.SelectedPocketItem = isItemAlreadySelected ? null : ItemInPocketUnderMouse;
+            return; // should return to prevent losing the selection of the selected item
         }
         // melee attack
         if (State == MouseState.CAN_MELEE_HIT)
