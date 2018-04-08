@@ -47,6 +47,10 @@ public class MouseManager : Singleton<MouseManager>
     [SerializeField]
     private Texture2D _canCastCursor = null;
     [SerializeField]
+    private Texture2D _cannotThrowCursor = null;
+    [SerializeField]
+    private Texture2D _canThrowCursor = null;
+    [SerializeField]
     private Texture2D _canWalkCursor = null;
     [SerializeField]
     private Texture2D _canPickupCursor = null;
@@ -155,9 +159,18 @@ public class MouseManager : Singleton<MouseManager>
                         if (PortraitUnderMouse != null)
                             return MouseState.CAN_CAST_ON_PORTRAIT;
                     }
-                }
 
-                return MouseState.CANNOT_CAST;
+                    return MouseState.CANNOT_CAST;
+                }
+                // the selected item is throwing ammo
+                else if (Party.Instance.SelectedMember.SelectedPocketItem.Type == ItemType.THROWING_AMMO)
+                {
+                    // mouse on creature in dungeon tile
+                    if (CreatureUnderMouse != null)
+                        return MouseState.CAN_THROW;
+
+                    return MouseState.CANNOT_THROW;
+                }
             }
             // no selected pocket item
             else
@@ -296,8 +309,10 @@ public class MouseManager : Singleton<MouseManager>
                 cursorTexture = _canCastCursor;
                 break;
             case MouseState.CANNOT_THROW:
+                cursorTexture = _cannotThrowCursor;
                 break;
             case MouseState.CAN_THROW:
+                cursorTexture = _canThrowCursor;
                 break;
             case MouseState.CAN_DRAG:
                 break;
@@ -388,6 +403,14 @@ public class MouseManager : Singleton<MouseManager>
         {
             selectedScroll.TargetCreature = PortraitUnderMouse.Creature;
             selectedScroll.Activate();
+        }
+        
+        // throw ammo
+        if (State == MouseState.CAN_THROW)
+        {
+            GameObject projectilePrefab = Party.Instance.SelectedMember.SelectedPocketItem.Projectile;
+            ProjectileManager.Instance.ShootProjectile(projectilePrefab,
+                Party.Instance.transform.position, CreatureUnderMouse, 1, 6); // TODO: define throwing ammo damage
         }
 
         // no matter what, after click - lose the selection

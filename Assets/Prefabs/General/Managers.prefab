@@ -138,6 +138,8 @@ MonoBehaviour:
   _canMeleeHitCursor: {fileID: 2800000, guid: d95336ab9f3a3a7489fd54b3148a74ee, type: 3}
   _cannotCastCursor: {fileID: 2800000, guid: adc383e7d45fa554aac05cff7babe984, type: 3}
   _canCastCursor: {fileID: 2800000, guid: c9041ac93dbe87343a6ff69aa7567304, type: 3}
+  _cannotThrowCursor: {fileID: 2800000, guid: ddb3a16a186d207479c6af96037740b1, type: 3}
+  _canThrowCursor: {fileID: 2800000, guid: f70660b82880a914d96f3d416fc108be, type: 3}
   _canWalkCursor: {fileID: 2800000, guid: 3bd99fe838e95c54cac297e2f66a65c0, type: 3}
   _canPickupCursor: {fileID: 2800000, guid: c80f5377452f4304da2e650896f8936c, type: 3}
   _canUseStairsCursor: {fileID: 2800000, guid: 5fd3ec3d8cfd8be44a722290897b3a97, type: 3}
@@ -149,7 +151,7 @@ MonoBehaviour:
     type: 3}
   DungeonTileUnderMouse: {fileID: 0}
   CreatureUnderMouse: {fileID: 0}
-  pocketUnderMouse: {fileID: 0}
+  PocketUnderMouse: {fileID: 0}
   ItemInPocketUnderMouse: {fileID: 0}
   PortraitUnderMouse: {fileID: 0}
 --- !u!114 &114733686210903188
