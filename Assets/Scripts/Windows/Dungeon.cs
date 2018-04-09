@@ -211,18 +211,16 @@ public class Dungeon : Singleton<Dungeon>
             tile.Clear();
     }
     // ================================================================================================== //
-    public List<List<bool>> GetWalkingMap()
+    public bool[,] GetWalkingMap()
     {
-        List<List<bool>> walkingMap = new List<List<bool>>();
+        bool[,] walkingMap = new bool[Width, Height];
 
-        for (int x = 0; x < _grid.SizeX; x++)
+        for (int x = 0; x < Width; x++)
         {
-            walkingMap.Add(new List<bool>());
-
-            for (int y = 0; y < _grid.SizeY; y++)
+            for (int y = 0; y < Height; y++)
             {
                 DungeonTile tile = GetTile(new Position(x, y));
-                walkingMap[x].Add(!tile.IsBlockPath);
+                walkingMap[x, y] = !tile.IsBlockPath;
             }
         }
 
