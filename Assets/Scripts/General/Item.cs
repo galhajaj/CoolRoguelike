@@ -106,6 +106,7 @@ public class Item : DungeonObject
     {
         ItemSaveData saveData = new ItemSaveData();
         saveData.Name = Utils.GetCleanName(gameObject.name);
+        saveData.Position = this.Position;
         return saveData;
     }
 

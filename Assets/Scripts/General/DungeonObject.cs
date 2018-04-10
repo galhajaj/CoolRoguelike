@@ -15,10 +15,21 @@ public class DungeonObject : MonoBehaviour
     private bool _isBlockView = false;
     public bool IsBlockView { get { return _isBlockView; } }
 
+    public Position Position
+    {
+        get
+        {
+            if (this.GetComponentInParent<DungeonTile>() == null)
+                return Position.NullPosition;
+            return this.GetComponentInParent<DungeonTile>().Position;
+        }
+    }
+
     public virtual SaveData GetSaveData()
     {
         StuffSaveData saveData = new StuffSaveData();
         saveData.Name = Utils.GetCleanName(gameObject.name);
+        saveData.Position = this.Position;
         return saveData;
     }
 }

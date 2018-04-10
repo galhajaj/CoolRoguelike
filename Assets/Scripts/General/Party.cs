@@ -8,7 +8,8 @@ public class Party : Singleton<Party>
     public Action Event_PartyMemberSelected;
 
     // position in dungeon, by its tile parent
-    public Position Position
+    public Position Position { get { return this.GetComponentInParent<DungeonTile>().Position; } }
+    /*public Position Position
     {
         get
         {
@@ -16,7 +17,7 @@ public class Party : Singleton<Party>
             Position position = new Position(parentTile.PosX, parentTile.PosY);
             return position;
         }
-    }
+    }*/
 
     private string _location = Consts.WindowNames.VILLAGE;
     public string Loaction

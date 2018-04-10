@@ -39,15 +39,16 @@ public class Dungeon : Singleton<Dungeon>
             return;
         }
 
-        // TODO: in the meantime... show always first...
-        ShowArea(Position.OriginPosition);
-
         // place the party
         if (dungeonName != Consts.WindowNames.VILLAGE)
         {
             DungeonTile tile = GetTile(new Position(0, 0)); // TODO: change that
             PutDungeonObjectInTile(Party.Instance.DungeonObject, tile);
         }
+
+        // TODO: in the meantime... show always first...
+        ShowArea(Position.OriginPosition);
+
         // update the location of the party
         Party.Instance.Loaction = dungeonName;
     }
@@ -96,6 +97,15 @@ public class Dungeon : Singleton<Dungeon>
             else
                 tile.GetComponent<SpriteRenderer>().sprite = ResourcesManager.Instance.FloorDungeonTileSprite;
         }
+
+        // make all area unrevealed - fog of war
+        foreach (DungeonTile dungeonTile in _grid.Elements)
+            dungeonTile.FogStatus = DungeonTile.TileFogStatus.UNREVEALED;
+
+        // lit around party
+        foreach (Position pos in SightAlgorithm.GetPositionsInSight(Party.Instance.Position))
+            if (pos.DungeonTile != null)
+                pos.DungeonTile.FogStatus = DungeonTile.TileFogStatus.IN_SIGHT;
     }
     // ================================================================================================== //
     public void ShowArea(Direction direction)
@@ -203,6 +213,24 @@ public class Dungeon : Singleton<Dungeon>
         // if item, make it in ground state, so the sprite will change to icon
         if (obj.GetComponent<Item>() != null)
             obj.GetComponent<Item>().State = ItemState.GROUND;
+
+        // fog of war!
+        if (obj.name == "Party")
+        {
+            // make all black or transparent
+            foreach (DungeonTile dungeonTile in _grid.Elements)
+            {
+                if (dungeonTile.FogStatus == DungeonTile.TileFogStatus.IN_SIGHT || dungeonTile.FogStatus == DungeonTile.TileFogStatus.REVEALED_BUT_NOT_IN_SIGHT)
+                    dungeonTile.FogStatus = DungeonTile.TileFogStatus.REVEALED_BUT_NOT_IN_SIGHT;
+                else
+                    dungeonTile.FogStatus = DungeonTile.TileFogStatus.UNREVEALED;
+            }
+
+            // lit around party
+            foreach (Position pos in SightAlgorithm.GetPositionsInSight(obj.GetComponent<Party>().Position))
+                if (pos.DungeonTile != null)
+                    pos.DungeonTile.FogStatus = DungeonTile.TileFogStatus.IN_SIGHT;
+        }
     }
     // ================================================================================================== //
     private void clear()
@@ -243,6 +271,30 @@ public class Dungeon : Singleton<Dungeon>
         }
 
         return sightMap;
+    }
+    // ================================================================================================== //
+    public void SaveCurrentArea()
+    {
+        AreaSaveData areaSaveData = new AreaSaveData();
+
+        areaSaveData.Position = _currentShownAreaPosition;
+
+        foreach (DungeonTile tile in _grid.Elements)
+        {
+            foreach (DungeonObject dungeonObj in tile.transform.GetComponentsInChildren<DungeonObject>())
+            {
+                if (dungeonObj is Creature)
+                    if ((dungeonObj as Creature).IsPartyMember)
+                        continue;
+
+                areaSaveData.Objects.Add(dungeonObj.GetSaveData());
+            }
+        }
+
+        // update current area in _dungeonSaveData
+        _dungeonSaveData.Areas[_currentShownAreaPosition] = areaSaveData;
+        // save to file
+        SaveAndLoad.Instance.Save();
     }
     // ================================================================================================== //
 }

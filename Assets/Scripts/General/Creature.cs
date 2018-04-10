@@ -8,8 +8,7 @@ public class Creature : DungeonObject
 {
     [SerializeField]
     private bool isPartyMember = false;
-
-    public Position Position { get { return this.GetComponentInParent<DungeonTile>().Position; } }
+    public bool IsPartyMember { get { return isPartyMember; } }
 
     //public new Sprite Image;
 
@@ -107,6 +106,7 @@ public class Creature : DungeonObject
     {
         CreatureSaveData saveData = new CreatureSaveData();
         saveData.Name = Utils.GetCleanName(gameObject.name);
+        saveData.Position = this.Position;
         return saveData;
     }
 

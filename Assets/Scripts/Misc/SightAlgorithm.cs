@@ -37,7 +37,7 @@ public class SightAlgorithm
         foreach (Position pointOnCircle in pointsOnCircle(center, SIGHT_RADIUS, ANGLE_STEP))
         {
             // check the line between the center to each point on circle
-            // get all positions until it stuck with view blocker
+            // get all positions until it stuck with view blocker (include the blocker)
             foreach (Position pointInLine in line(center.X, center.Y, pointOnCircle.X, pointOnCircle.Y))
             {
                 if (pointInLine.DungeonTile == null)
@@ -50,6 +50,7 @@ public class SightAlgorithm
                 }
                 else
                 {
+                    points.Add(pointInLine);
                     break;
                 }
             }

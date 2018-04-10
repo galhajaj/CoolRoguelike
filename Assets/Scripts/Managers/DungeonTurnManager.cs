@@ -100,6 +100,9 @@ public class DungeonTurnManager : Singleton<DungeonTurnManager>
         // end of creatures turn...
         _creaturesTurn = false;
 
+        // save area
+        Dungeon.Instance.SaveCurrentArea();
+
         // TODO: prepare party should be after monsters turn.. but it blinks - deal with it!
         // preparePartyForNextTurn();
     }

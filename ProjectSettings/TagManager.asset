@@ -68,6 +68,9 @@ TagManager:
   - name: Projectile
     uniqueID: 1412532177
     locked: 0
+  - name: FogOfWar
+    uniqueID: 526016579
+    locked: 0
   - name: ItemInInventory
     uniqueID: 1870598677
     locked: 0
@@ -85,7 +88,4 @@ TagManager:
     locked: 0
   - name: ItemDragged
     uniqueID: 1146551167
-    locked: 0
-  - name: DELETED
-    uniqueID: 526016579
     locked: 0
