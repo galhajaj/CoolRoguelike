@@ -47,13 +47,13 @@ public class DungeonTile : GridElement
         IN_SIGHT
     }
 
-    private TileFogStatus _tileFogStatus = TileFogStatus.UNREVEALED;
-    public TileFogStatus FogStatus
+    private bool _isRevealed = false;
+    public bool IsRevealed
     {
-        get { return _tileFogStatus; }
+        get { return _isRevealed; }
         set
         {
-            _tileFogStatus = value;
+            _isRevealed = value;
             setFogOfWarSprite();
         }
     }
@@ -121,20 +121,7 @@ public class DungeonTile : GridElement
     // ======================================================================================================================================== //
     private void setFogOfWarSprite()
     {
-        switch (_tileFogStatus)
-        {
-            case TileFogStatus.UNREVEALED:
-                _fogOfWarSpriteRenderer.sprite = _blackFogSprite;
-                break;
-            case TileFogStatus.REVEALED_BUT_NOT_IN_SIGHT:
-                _fogOfWarSpriteRenderer.sprite = _transparentFogSprite;
-                break;
-            case TileFogStatus.IN_SIGHT:
-                _fogOfWarSpriteRenderer.sprite = null;
-                break;
-            default:
-                break;
-        }
+        _fogOfWarSpriteRenderer.sprite = _isRevealed ? _transparentFogSprite : _blackFogSprite;
     }
     // ======================================================================================================================================== //
 }

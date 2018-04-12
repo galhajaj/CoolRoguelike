@@ -27,6 +27,7 @@ public class DungeonSaveData : SaveData
 [Serializable]
 public class AreaSaveData : SaveData
 {
+    public bool[,] TileRevealationMap;
     public List<SaveData> Objects = new List<SaveData>();
 }
 
@@ -80,6 +81,12 @@ public class SaveAndLoad : Singleton<SaveAndLoad>
             // for all areas
             foreach (AreaSaveData areaSaveData in dungeonSaveData.Areas.Values)
             {
+                // fog of war
+                areaSaveData.TileRevealationMap = new bool[Dungeon.Instance.Width, Dungeon.Instance.Height];
+                for (int i = 0; i < Dungeon.Instance.Width; ++i)
+                    for (int j = 0; j < Dungeon.Instance.Height; ++j)
+                        areaSaveData.TileRevealationMap[i, j] = false;
+
                 List<ItemSaveData> itemsSaveDataFromTreasures = new List<ItemSaveData>();
 
                 // for all objects inside area

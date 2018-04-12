@@ -201,6 +201,7 @@ public class Party : Singleton<Party>
             return;
 
         Dungeon.Instance.ShowArea(partyTile.LeadTo);
+        Dungeon.Instance.RevealPartySurroundings();
     }
     // ====================================================================================================== //
     public void MoveToAdjacentAreaInPosition()
@@ -230,6 +231,7 @@ public class Party : Singleton<Party>
             Position targetPosition = this.Position.CyclicPosition;
             DungeonTile targetTile = Dungeon.Instance.GetTile(targetPosition);
             Dungeon.Instance.PutDungeonObjectInTile(this.DungeonObject, targetTile);
+            Dungeon.Instance.RevealPartySurroundings();
             this.PayWalkCost();
 
             // TODO: when party move to adjacent area - handle situation where the place is blocked or contain monster

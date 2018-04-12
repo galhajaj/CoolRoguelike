@@ -137,6 +137,7 @@ public class DungeonTurnManager : Singleton<DungeonTurnManager>
                 if (nextTile != null)
                 {
                     Dungeon.Instance.PutDungeonObjectInTile(Party.Instance.DungeonObject, nextTile);
+                    Dungeon.Instance.RevealPartySurroundings();
                     Party.Instance.PayWalkCost();
 
                     // stop when reach target
